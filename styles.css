@@ -1,0 +1,319 @@
+/* BloomyCocoon Custom Stylesheet & Transition System */
+
+/* Root theme definitions based on design guidelines */
+:root {
+    --color-surface: #fff8f6;
+    --color-surface-dim: #f8d2c9;
+    --color-surface-bright: #fff8f6;
+    --color-surface-container-lowest: #ffffff;
+    --color-surface-container-low: #fff1ed;
+    --color-surface-container: #ffe9e4;
+    --color-surface-container-high: #ffe2db;
+    --color-surface-container-highest: #ffdad2;
+    --color-on-surface: #2a1611;
+    --color-on-surface-variant: #484740;
+    --color-primary: #605e5a;
+    --color-on-primary: #ffffff;
+    --color-secondary: #725852;
+    --color-on-secondary: #ffffff;
+    --color-tertiary: #566252;
+    --color-tertiary-container: #ebf8e3;
+    --color-outline: #79776f;
+    --color-outline-variant: #c9c6bd;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-surface-container-low);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-surface-dim);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-outline-variant);
+}
+
+/* Base Body settings */
+body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Custom visual styling */
+.soft-glow {
+    box-shadow: 0 20px 40px -10px rgba(123, 94, 87, 0.06);
+}
+
+.ceramic-texture {
+    background-image: radial-gradient(#7b5e57 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+    opacity: 0.03;
+}
+
+.organic-shape {
+    border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%;
+}
+
+.crochet-texture {
+    background-image: radial-gradient(#DCCFC0 0.5px, transparent 0.5px);
+    background-size: 12px 12px;
+    opacity: 0.2;
+}
+
+/* Transitions view setup */
+#app-viewport {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-top: 80px; /* Buffer for global fixed header */
+}
+
+/* Screen state structure */
+.screen {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-surface);
+    display: none;
+}
+
+.screen.active {
+    display: block;
+    position: relative;
+}
+
+.screen.in-transition {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+/* Animation utilities */
+.will-change-transform {
+    will-change: transform, opacity;
+}
+
+/* Push transition keyframes (Forward navigation) */
+@keyframes pushEnter {
+    from {
+        transform: translateX(100%);
+        opacity: 0.9;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pushExit {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-30%);
+        opacity: 0.85;
+    }
+}
+
+/* Push Back transition keyframes (Backward navigation) */
+@keyframes pushBackEnter {
+    from {
+        transform: translateX(-30%);
+        opacity: 0.85;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pushBackExit {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0.9;
+    }
+}
+
+/* Slide Up transition keyframes (Modal overlay) */
+@keyframes slideUpEnter {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUpExit {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+
+/* Active transition classes applied by router */
+.animate-push-enter {
+    animation: pushEnter 380ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-push-exit {
+    animation: pushExit 380ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-push-back-enter {
+    animation: pushBackEnter 380ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-push-back-exit {
+    animation: pushBackExit 380ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up-enter {
+    animation: slideUpEnter 420ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up-exit {
+    animation: slideUpExit 420ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Interactive elements overrides */
+.faq-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-details[open] .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Cart animation slider */
+#sideCart.cart-visible {
+    transform: translateX(0);
+}
+
+/* Dynamic steps style */
+.step-dot.active {
+    background-color: var(--color-secondary);
+    transform: scale(1.2);
+}
+
+.step-dot.completed {
+    background-color: var(--color-tertiary);
+}
+
+/* Toast notifier */
+#toast-container {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.toast {
+    background: #422b25;
+    color: #ffede9;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: var(--color-tertiary);
+    color: white;
+    border-radius: 9999px;
+    box-shadow: 0 8px 30px rgba(86, 98, 82, 0.25);
+    z-index: 40;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 1;
+}
+
+.whatsapp-float:hover {
+    transform: translateY(-4px) scale(1.03);
+    background-color: #485345; /* Darker sage */
+    box-shadow: 0 12px 40px rgba(86, 98, 82, 0.35);
+}
+
+.whatsapp-float:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.whatsapp-float.whatsapp-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.9);
+}
+
+/* Base HTML overflow protection during active layout transitions */
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Micro-animations for Back Buttons */
+button[onclick="navigateBack()"] {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button[onclick="navigateBack()"]:hover {
+    color: var(--color-primary) !important;
+}
+
+button[onclick="navigateBack()"]:hover span {
+    transform: translateX(-4px);
+}
+
+button[onclick="navigateBack()"] span {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Premium Floating Capsule Back Button */
+.absolute button[onclick="navigateBack()"]:hover {
+    background-color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(114, 88, 82, 0.15);
+}
+
+.absolute button[onclick="navigateBack()"]:active {
+    transform: translateY(0px) scale(0.98);
+}
+

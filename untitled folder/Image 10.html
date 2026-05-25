@@ -1,0 +1,297 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Contact Us | BloomyCocoon</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#fedbd2",
+                    "on-tertiary-container": "#667262",
+                    "on-background": "#2a1611",
+                    "on-primary-fixed-variant": "#484743",
+                    "primary-fixed": "#e6e2dd",
+                    "tertiary": "#566252",
+                    "inverse-primary": "#c9c6c1",
+                    "on-primary-fixed": "#1c1c19",
+                    "secondary": "#725852",
+                    "primary": "#605e5a",
+                    "on-secondary-fixed-variant": "#59413b",
+                    "surface-tint": "#605e5a",
+                    "outline": "#79776f",
+                    "secondary-fixed-dim": "#e1bfb7",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#ffdad2",
+                    "tertiary-container": "#ebf8e3",
+                    "on-surface-variant": "#484740",
+                    "surface-container-highest": "#ffdad2",
+                    "primary-fixed-dim": "#c9c6c1",
+                    "on-primary-container": "#706f6b",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c9c6bd",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#141e12",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#ffe2db",
+                    "surface-bright": "#fff8f6",
+                    "surface-container": "#ffe9e4",
+                    "surface": "#fff8f6",
+                    "on-secondary-fixed": "#291712",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#f8d2c9",
+                    "on-tertiary-fixed-variant": "#3e4a3b",
+                    "on-secondary-container": "#775d56",
+                    "inverse-on-surface": "#ffede9",
+                    "background": "#fff8f6",
+                    "tertiary-fixed-dim": "#bdcab7",
+                    "primary-container": "#f7f3ee",
+                    "secondary-container": "#fbd8d0",
+                    "on-surface": "#2a1611",
+                    "inverse-surface": "#422b25",
+                    "tertiary-fixed": "#d9e6d2",
+                    "surface-container-low": "#fff1ed",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "sm": "12px",
+                    "md": "24px",
+                    "lg": "48px",
+                    "gutter": "24px",
+                    "xl": "80px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fff8f6; color: #2a1611; scroll-behavior: smooth; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .soft-glow { box-shadow: 0 20px 40px -10px rgba(123, 94, 87, 0.06); }
+        .organic-shape { border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%; }
+        .ceramic-texture { background-image: radial-gradient(#7b5e57 0.5px, transparent 0.5px); background-size: 24px 24px; opacity: 0.03; }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<nav class="bg-surface/90 backdrop-blur-md text-primary docked full-width top-0 sticky z-50 border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center px-lg py-base w-full max-w-container-max mx-auto">
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary italic">BloomyCocoon</div>
+<div class="hidden md:flex items-center gap-lg">
+
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Collection</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Custom Orders</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">FAQ</a>
+<a class="text-primary border-b border-secondary pb-1 font-label-md text-label-md" href="#">Contact Us</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-primary-container/50 p-2 rounded-full transition-all">shopping_bag</button>
+
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-xl pb-lg px-lg overflow-hidden">
+<div class="ceramic-texture absolute inset-0 pointer-events-none"></div>
+<div class="max-w-container-max mx-auto grid md:grid-cols-2 gap-lg items-center">
+<div class="z-10">
+<span class="inline-block font-label-md text-label-md text-secondary tracking-widest uppercase mb-sm">Get in Touch</span>
+<h1 class="font-display-lg text-display-lg md:text-display-lg mb-md leading-tight">Let's Start a <br><span class="italic font-normal">Conversation</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed">Whether it's a custom request for a loved one or a question about our slow-crafted process, we're here to weave your ideas into reality.</p>
+</div>
+<div class="relative flex justify-center">
+<div class="organic-shape bg-secondary-container w-64 h-64 md:w-80 md:h-80 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 opacity-40 blur-3xl"></div>
+<div class="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/5] w-full max-w-sm rotate-2 hover:rotate-0 transition-transform duration-700">
+<img class="w-full h-full object-cover" data-alt="A serene, high-end close-up of a handmade crochet project in progress. The scene is bathed in soft, warm morning sunlight, highlighting the intricate textures of dusty pink and cream cotton yarn. A pair of vintage-style wooden crochet hooks rests gently on a weathered oak table. The overall aesthetic is minimalist, elegant, and cozy, reflecting a slow-living boutique brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBoc4cEQ_ahN5f7MAhtILDTBiBdYreRaMkItqqO_t29ZjP8PrHWe53nCnjLQ-fnmCnsgRAVd0dIr0IBSEMA11FdKAbdgSgzKFbIAdgFpLx8lNyycWF3lThw8udvoJ2UjGnVYCL_RnMtSRsEc9vxwMT5qewhjVWuAgW4QRXLL4guakfImFLQHitgEi8zm-u5pAYBqx8UmAVoGF-Imifr_ljXK6Z7Zs86rHOVD5-2Hr0KK4JSV4kAfl2D83_lryDhz-nHG2jmeXv0HM">
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Methods -->
+<section class="py-xl px-lg bg-surface-container-low/50">
+<div class="max-w-container-max mx-auto">
+<div class="grid md:grid-cols-3 gap-md">
+<!-- Instagram -->
+<a class="group p-lg bg-surface-container-lowest rounded-2xl soft-glow border border-outline-variant/10 hover:border-secondary/20 transition-all duration-300 flex flex-col items-center text-center" href="#">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-3xl">photo_camera</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Instagram</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">@bloomycocoon</p>
+</a>
+<!-- WhatsApp (Priority) -->
+<a class="group p-lg bg-secondary-container rounded-2xl soft-glow border border-secondary/10 hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center md:scale-105 z-20" href="#">
+<div class="w-16 h-16 rounded-full bg-on-secondary flex items-center justify-center mb-md shadow-sm">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-xs text-on-secondary-container">WhatsApp</h3>
+<p class="text-on-secondary-fixed-variant font-body-md text-body-md mb-md">Direct support for custom inquiries</p>
+<span class="font-label-md text-label-md bg-on-secondary px-md py-xs rounded-full text-secondary">Chat with us</span>
+</a>
+<!-- Email -->
+<a class="group p-lg bg-surface-container-lowest rounded-2xl soft-glow border border-outline-variant/10 hover:border-secondary/20 transition-all duration-300 flex flex-col items-center text-center" href="#">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-3xl">mail</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Email</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">hello@bloomycocoon.com</p>
+</a>
+</div>
+</div>
+</section>
+<!-- Contact Form -->
+<section class="py-xl px-lg">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-xl">
+<h2 class="font-headline-md text-headline-md mb-sm">Write to the Studio</h2>
+<p class="text-on-surface-variant">We respond to every message within 24-48 hours during weekdays.</p>
+</div>
+<form class="space-y-md">
+<div class="grid md:grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md ml-xs text-on-surface-variant">Your Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl p-md focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-body-md" placeholder="Rose Marie" type="text">
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md ml-xs text-on-surface-variant">Email Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl p-md focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-body-md" placeholder="rose@example.com" type="email">
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md ml-xs text-on-surface-variant">Your Message</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-xl p-md focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-body-md resize-none" placeholder="Tell us about your dream cocoon..." rows="6"></textarea>
+</div>
+<div class="flex justify-center pt-md">
+<button class="bg-secondary text-on-secondary px-xl py-md rounded-full font-headline-sm text-headline-sm hover:opacity-90 transition-all shadow-md hover:shadow-lg active:scale-95" type="submit">Send Message</button>
+</div>
+</form>
+</div>
+</section>
+<!-- Social Connection -->
+<section class="py-xl px-lg overflow-hidden">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-xl">
+<div class="w-full md:w-1/2 grid grid-cols-2 gap-sm">
+<img class="rounded-xl aspect-square object-cover shadow-sm -rotate-3 hover:rotate-0 transition-transform" data-alt="A beautiful, cozy Instagram-style shot featuring a stack of handmade crochet baby blankets in cream, sage, and dusty pink. The blankets are folded neatly on a minimalist wooden bench next to a small ceramic vase with a single dried flower. Soft afternoon light filters through a linen curtain, creating a peaceful, handcrafted boutique aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhzYNDuzZLf2R1SVWd59TMPxsr9lRsPYPAGO7PMyqJVT-7Kx28RdKHTHtI6LEp0dqwurHDYFdxaoQoWx4s23UnsBgu1TsxDKTO4TcIFqUAHIIzT6eiLUnIZtPredgbZDf5bZ0vXC0S0EacBHuj5QjQ9qfgBMpBWmKhrInaYecwcJw7jYcM068myjPXgIaI54k8yhg2QcHnGr725bBsMBlPnajfOjeRTTMdAYQ4dnC9VhVSkCQ4wom79pb3zRjXmiKo1UGdUUTpzvY">
+<img class="rounded-xl aspect-square object-cover shadow-sm translate-y-8 rotate-3 hover:rotate-0 transition-transform" data-alt="A macro shot of soft, high-quality ivory yarn being woven into a delicate floral pattern. The artisan's hands are partially visible, showing careful craftsmanship. The background is a soft-focus beige interior, echoing the premium, handcrafted, and cozy brand identity of BloomyCocoon." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ_jlBMInxb1ueliInye0wAwkayvjdgYg_5YKOU0MtuP1lkO67_lYMMFJOIJpFZDY44_r9cjxdrkOZ9HdSs6VOpFQNMArjvQYpgp4IMoPqLa_SiFtU1ilyv3cCpNOvflQA_sz7onlec9u6NOg01wyKSafgCuvjAe3Ssl0MzDGHWd--dV4H_c3Z6wrZ6KaKTT3VbH4ZyFkTWFpqt_uZTvq-oDoTbJVTVHPYF3BHYqFL450wuJ_AiMkCBSbQlH-Ikicht8HQspBbsvo">
+</div>
+<div class="w-full md:w-1/2 text-center md:text-left">
+<h2 class="font-display-lg text-display-lg mb-md leading-tight">Follow Our Journey</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg">See behind-the-scenes of every stitch, new pattern drops, and our community of happy cocoon owners.</p>
+<a class="inline-flex items-center gap-base font-label-md text-label-md text-secondary border-b-2 border-secondary/30 pb-xs hover:border-secondary transition-all" href="#">
+                        Find us on Instagram <span class="material-symbols-outlined text-sm">north_east</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Final CTA Banner -->
+<section class="px-lg pb-xl">
+<div class="max-w-container-max mx-auto bg-primary-container rounded-[2rem] p-lg md:p-xl text-center relative overflow-hidden soft-glow">
+<div class="ceramic-texture absolute inset-0 opacity-10"></div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="font-headline-md text-headline-md mb-md">Ready to gift something timeless?</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg mb-lg">Let’s discuss your vision for a custom order. Whether it’s a specific color or a personalized design, we make it happen with love.</p>
+<div class="flex flex-col sm:flex-row gap-md justify-center">
+<button class="bg-secondary text-on-secondary px-lg py-md rounded-full font-label-md text-label-md hover:opacity-90 transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+                            Start Custom Order
+                        </button>
+<button class="border border-secondary text-secondary px-lg py-md rounded-full font-label-md text-label-md hover:bg-secondary/5 transition-all">
+                            View Collections
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-surface-container-high full-width py-xl mt-xl border-t border-outline-variant/10">
+<div class="flex flex-col items-center justify-center text-center px-lg max-w-container-max mx-auto gap-base">
+<div class="font-display-lg text-display-lg text-primary dark:text-inverse-primary mb-md">BloomyCocoon</div>
+<div class="flex flex-wrap justify-center gap-lg mb-lg">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary font-body-md text-body-md transition-opacity hover:opacity-80" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary font-body-md text-body-md transition-opacity hover:opacity-80" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary font-body-md text-body-md transition-opacity hover:opacity-80" href="#">Care Guide</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary font-body-md text-body-md transition-opacity hover:opacity-80" href="#">Wholesale</a>
+</div>
+<p class="text-on-surface-variant dark:text-surface-variant font-caption text-caption">© 2024 BloomyCocoon. Crafted for slow living.</p>
+</div>
+</footer>
+<!-- SideNavBar (Hidden by default, triggered by cart action) -->
+<aside class="fixed right-0 top-0 h-full w-80 bg-surface-container-low dark:bg-surface-container-lowest shadow-xl border-l border-outline-variant/30 translate-x-full transition-transform duration-500 ease-in-out z-[60] flex flex-col p-md" id="cart-sidebar">
+<div class="flex justify-between items-center mb-lg">
+<h2 class="font-headline-sm text-headline-sm text-primary">Your Cocoon</h2>
+<button class="material-symbols-outlined text-primary hover:bg-primary-container p-2 rounded-full" onclick="toggleCart()">close</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Handmade with love and patience</p>
+<div class="flex-grow space-y-base overflow-y-auto">
+<div class="p-sm text-center border-2 border-dashed border-outline-variant/30 rounded-xl text-on-surface-variant">
+                Your cart is currently empty.
+            </div>
+</div>
+<div class="pt-lg space-y-sm">
+<button class="w-full bg-secondary text-on-secondary py-md rounded-lg font-label-md text-label-md flex items-center justify-center gap-sm hover:opacity-90">
+                Proceed to WhatsApp Checkout
+            </button>
+</div>
+</aside>
+<script>
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('translate-x-full');
+        }
+        
+        // Simple micro-interaction for form inputs
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+                input.parentElement.style.transition = 'transform 0.3s ease';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+
+
+
+
+</body></html>
