@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const screenDescriptions = {
-        'screen-home': 'All pieces are slowly and lovingly hand-stitched by sisters from their home in Mampad, Malappuram, Kerala. Discover our signature crochet bouquets, plushies, and custom bespoke gifts.',
+        'screen-home': 'All pieces are slowly and lovingly hand-stitched by sisters from their home in Mampad, Malappuram, Kerala. Discover our signature crochet bouquets, plushies, and custom crochet gifts.',
         'screen-collection': 'Explore the signature collection of BloomyCocoon, slowly handcrafted in Malappuram, Kerala. Browse our everlasting crochet bouquets, plushies, and accessories.',
-        'screen-about': 'Learn the story of BloomyCocoon, run by sisters from their home in Mampad, Kerala. Discover our dedication to slow living, premium milk cotton, and intentional gifting.',
+        'screen-about': 'Learn the story of BloomyCocoon, run by sisters from their home in Mampad, Kerala. Discover our dedication to thoughtful gifting and quality yarn.',
         'screen-faq': 'Find answers to common questions about ordering, caring for crochet items, shipping, packaging, and custom designs at BloomyCocoon.',
         'screen-contact': 'Get in touch with BloomyCocoon. Contact the sisters at their home-based crochet workspace in Mampad, Malappuram, Kerala, India for custom orders or questions.',
-        'screen-custom-orders': 'Order custom bespoke crochet gifts handcrafted by sisters at their home in Mampad, Kerala. Select your preferred item type, and let us stitch your vision.'
+        'screen-custom-orders': 'Order custom crochet gifts handcrafted by sisters at their home in Mampad, Kerala. Select your preferred item type, and let us stitch your vision.'
     };
 
     // SPA ROUTER WITH DYNAMIC TRANSITIONS & SEO SYNCING
@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         renderCart();
-        showToast(`Stitched "${name}" into your Cocoon!`);
+        showToast(`Added "${name}" to your cart!`);
         
         // Automatically slide open the drawer
         const sideCart = document.getElementById('sideCart');
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img src="${item.img}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg">
                             <div class="flex-1">
                                 <h4 class="font-label-md text-sm text-secondary truncate">${item.name}</h4>
-                                <p class="text-caption text-on-surface-variant font-bold">₹${item.price.toLocaleString('en-IN')}</p>
+                                <p class="text-caption text-on-surface-variant font-bold">Starting from ₹${item.price.toLocaleString('en-IN')}</p>
                                 <div class="flex items-center gap-2 mt-xs">
                                     <button onclick="updateQty('${item.id}', -1)" class="w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">-</button>
                                     <span class="font-body-md text-xs font-bold px-1">${item.qty}</span>
@@ -637,7 +637,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast("✨ Custom order request submitted!");
             
             // Construct a beautiful WhatsApp message
-            let message = "Hello BloomyCocoon! 🌸 I would like to place a custom bespoke order with the following specifications:\n\n";
+            let message = "Hello BloomyCocoon! 🌸 I would like to place a custom crochet order with the following specifications:\n\n";
             message += `🧶 *Base Type:* ${orderData.type}\n`;
             message += `📝 *Personalization/Notes:* ${orderData.notes || "None specified."}\n\n`;
             message += `👤 *Customer Name:* ${orderData.name}\n\n`;
@@ -776,11 +776,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    
+    function applyCollectionFilterFromUrl() {
+        const hash = window.location.hash || '';
+        const match = hash.match(/category=([^&]+)/);
+        if (!match) return;
+        const category = decodeURIComponent(match[1]);
+        const btn = document.querySelector(`#screen-collection button[data-category-filter="${category}"]`) || document.querySelector('#screen-collection button[data-category-filter="all"]');
+        if (btn) filterCollectionCategory(category, btn);
+    }
+
     // ----------------------------------------------------
     // 8. BOOTSTRAP INITIALIZATION
     // ----------------------------------------------------
     initNavigationBindings();
     setupProductCardAddToCartTriggers();
+    applyCollectionFilterFromUrl();
     
     // Setup dynamic live listener on step-3 notes
     const notesInput = document.getElementById('custom-notes');
@@ -799,10 +810,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Construct a beautiful message
             let message = "Hello BloomyCocoon! 🌸 I would like to place an order for the following handmade crochet items:\n\n";
-            let total = 0;
-            cart.forEach(item => {
-                message += `🧶 *${item.name}* (Qty: ${item.qty}) - ₹${(item.price * item.qty).toLocaleString('en-IN')}\n`;
-                total += item.price * item.qty;
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - Qty: ${item.qty} - Starting from ₹${item.price.toLocaleString('en-IN')}\n`;
             });
             message += `\n💰 *Total Value:* ₹${total.toLocaleString('en-IN')}\n\nCan we please discuss the color preferences and customization details? Thank you! ✨`;
 
