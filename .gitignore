@@ -7,6 +7,9 @@ dist/
 tmp/
 out-tsc/
 
+# Local deployment metadata
+.vercel/
+
 # IDEs and editors
 .idea/
 .project
