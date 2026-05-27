@@ -13,7 +13,645 @@ document.addEventListener('DOMContentLoaded', () => {
     let isRoutingFromHash = false;
 
     // Cart state
+    
     let cart = [];
+
+    const collectionCategories = [
+  {
+    "id": "bouquets",
+    "label": "Bouquets"
+  },
+  {
+    "id": "plushies",
+    "label": "Plushies"
+  },
+  {
+    "id": "keychains",
+    "label": "Keychains"
+  },
+  {
+    "id": "baby-gifts",
+    "label": "Baby Gifts"
+  },
+  {
+    "id": "accessories",
+    "label": "Accessories"
+  },
+  {
+    "id": "home-decor",
+    "label": "Home & Decor"
+  },
+  {
+    "id": "gift-combos",
+    "label": "Gift Combos"
+  }
+];
+    const legacyFilterMap = {
+  "decor": "home-decor"
+};
+    const categoryFallbackImages = {
+  "bouquets": "images/mixed_luxury_bouquet.png",
+  "plushies": "images/cozy_bear_plushie.png",
+  "keychains": "images/mini_animal_keychain.png",
+  "baby-gifts": "images/crochet_bunny_plush.png",
+  "accessories": "images/crochet_tote_bag.png",
+  "home-decor": "images/crochet_wall_hanging.png",
+  "gift-combos": "images/hero_crochet_scene.png",
+  "default": "images/hero_crochet_scene.png"
+};
+    const collectionProducts = [
+  {
+    "id": "single-crochet-rose",
+    "name": "Single Crochet Rose",
+    "category": "bouquets",
+    "startingPrice": 149,
+    "image": "images/crochet_rose_bouquet_single-crochet-rose-landscape-generated.png",
+    "badge": "Single Stem",
+    "description": "A keepsake rose stem for tiny gestures, notes, and thoughtful add-ons."
+  },
+  {
+    "id": "single-crochet-tulip",
+    "name": "Single Crochet Tulip",
+    "category": "bouquets",
+    "startingPrice": 169,
+    "image": "images/crochet_tulip_bouquet_single-crochet-tulip-landscape-generated.png",
+    "badge": "Fresh Pick",
+    "description": "A soft tulip stem with a clean handmade wrap and cheerful color options."
+  },
+  {
+    "id": "single-sunflower-stem",
+    "name": "Single Sunflower Stem",
+    "category": "bouquets",
+    "startingPrice": 199,
+    "image": "images/crochet_sunflower_bouquet_single-sunflower-stem-generated.png",
+    "badge": "Sunny",
+    "description": "A bright sunflower stem made for desk corners, jars, and little surprises."
+  },
+  {
+    "id": "rose-bouquet",
+    "name": "Rose Bouquet",
+    "category": "bouquets",
+    "startingPrice": 799,
+    "image": "images/crochet_rose_bouquet_rose-bouquet.png",
+    "badge": "Made with Love",
+    "description": "A romantic rose bunch stitched in lasting yarn with gentle floral detail."
+  },
+  {
+    "id": "tulip-bouquet",
+    "name": "Tulip Bouquet",
+    "category": "bouquets",
+    "startingPrice": 899,
+    "image": "images/crochet_tulip_bouquet_tulip-bouquet.png",
+    "badge": "New Arrival",
+    "description": "A graceful tulip bouquet in soft shades, wrapped for gifting."
+  },
+  {
+    "id": "lavender-bouquet",
+    "name": "Lavender Bouquet",
+    "category": "bouquets",
+    "startingPrice": 799,
+    "image": "images/crochet_lavender_bouquet_lavender-bouquet.png",
+    "badge": "Kept Favorite",
+    "description": "A calming lavender bunch preserved from the original BloomyCocoon collection."
+  },
+  {
+    "id": "custom-premium-bouquet",
+    "name": "Custom Premium Bouquet",
+    "category": "bouquets",
+    "startingPrice": 1499,
+    "image": "images/mixed_luxury_bouquet_custom-premium-bouquet.png",
+    "badge": "Custom",
+    "featured": true,
+    "description": "A premium bouquet tailored by flower type, palette, size, and packaging."
+  },
+  {
+    "id": "mini-teddy-plushie",
+    "name": "Mini Teddy Plushie",
+    "category": "plushies",
+    "startingPrice": 399,
+    "image": "images/cozy_bear_plushie_mini-teddy-plushie.png",
+    "badge": "Tiny Hug",
+    "description": "A pocket-sized teddy plushie with a soft, cuddly finish."
+  },
+  {
+    "id": "bunny-plushie",
+    "name": "Bunny Plushie",
+    "category": "plushies",
+    "startingPrice": 499,
+    "image": "images/crochet_bunny_plush_bunny-plushie.png",
+    "badge": "Gift Favorite",
+    "description": "A gentle bunny plushie stitched for birthdays, baby gifting, and keepsakes."
+  },
+  {
+    "id": "cat-plushie",
+    "name": "Cat Plushie",
+    "category": "plushies",
+    "startingPrice": 499,
+    "image": "images/crochet_cat_plushie_cat-plushie.png",
+    "description": "A cozy cat companion with handmade charm and custom color options."
+  },
+  {
+    "id": "duck-plushie",
+    "name": "Duck Plushie",
+    "category": "plushies",
+    "startingPrice": 449,
+    "image": "images/crochet_duck_plushie_duck-plushie.png",
+    "description": "A cheerful duck plushie with rounded details and soft yarn texture."
+  },
+  {
+    "id": "bee-plushie",
+    "name": "Bee Plushie",
+    "category": "plushies",
+    "startingPrice": 399,
+    "image": "images/crochet_bee_plushie.png",
+    "description": "A sweet mini bee plushie for playful gifting and decor accents."
+  },
+  {
+    "id": "frog-plushie",
+    "name": "Frog Plushie",
+    "category": "plushies",
+    "startingPrice": 449,
+    "image": "images/crochet_frog_plushie.png",
+    "description": "A playful frog plushie with custom expressions and cozy colors."
+  },
+  {
+    "id": "penguin-plushie",
+    "name": "Penguin Plushie",
+    "category": "plushies",
+    "startingPrice": 499,
+    "image": "images/crochet_penguin_plushie.png",
+    "description": "A rounded penguin plushie made for tiny shelves and warm gifting."
+  },
+  {
+    "id": "dinosaur-plushie",
+    "name": "Dinosaur Plushie",
+    "category": "plushies",
+    "startingPrice": 599,
+    "image": "images/crochet_dinosaur_plushie.png",
+    "description": "A friendly dinosaur plushie with handmade spikes and custom colors."
+  },
+  {
+    "id": "octopus-plushie",
+    "name": "Octopus Plushie",
+    "category": "plushies",
+    "startingPrice": 399,
+    "image": "images/cozy_bear_plushie_octopus-plushie-generated.png",
+    "description": "A tiny octopus plushie with soft tentacles and cheerful detail."
+  },
+  {
+    "id": "custom-animal-plushie",
+    "name": "Custom Animal Plushie",
+    "category": "plushies",
+    "startingPrice": 699,
+    "image": "images/crochet_bunny_plush_custom-animal-plushie.png",
+    "badge": "Custom",
+    "description": "A made-to-order animal plushie inspired by your favorite character or pet."
+  },
+  {
+    "id": "mini-pocket-plushies",
+    "name": "Mini Pocket Plushies",
+    "category": "plushies",
+    "startingPrice": 299,
+    "image": "images/cozy_bear_plushie_mini-pocket-plushies-generated.png",
+    "badge": "Kept Favorite",
+    "description": "Small pocket plushies preserved from the original collection for tiny gifting."
+  },
+  {
+    "id": "heart-keychain",
+    "name": "Heart Keychain",
+    "category": "keychains",
+    "startingPrice": 149,
+    "image": "images/heart_keychain_heart-keychain.png",
+    "badge": "Sweet Note",
+    "description": "A soft heart charm for keys, bags, hampers, and little add-ons."
+  },
+  {
+    "id": "flower-keychain",
+    "name": "Flower Keychain",
+    "category": "keychains",
+    "startingPrice": 149,
+    "image": "images/crochet_flower_keychain_flower-keychain.png",
+    "description": "A cheerful flower charm made in your preferred yarn shade."
+  },
+  {
+    "id": "mushroom-keychain",
+    "name": "Mushroom Keychain",
+    "category": "keychains",
+    "startingPrice": 199,
+    "image": "images/crochet_mushroom_keychain.png",
+    "description": "A whimsical mushroom keychain for playful bag and key styling."
+  },
+  {
+    "id": "teddy-keychain",
+    "name": "Teddy Keychain",
+    "category": "keychains",
+    "startingPrice": 249,
+    "image": "images/mini_animal_keychain_teddy-keychain.png",
+    "description": "A tiny teddy charm with a soft handmade finish."
+  },
+  {
+    "id": "bunny-keychain",
+    "name": "Bunny Keychain",
+    "category": "keychains",
+    "startingPrice": 249,
+    "image": "images/mini_animal_keychain_bunny-keychain-generated.png",
+    "description": "A bunny keychain with petite ears and cozy yarn texture."
+  },
+  {
+    "id": "cat-keychain",
+    "name": "Cat Keychain",
+    "category": "keychains",
+    "startingPrice": 249,
+    "image": "images/mini_animal_keychain_cat-keychain-generated.png",
+    "description": "A cat charm made for bags, keys, and custom gift boxes."
+  },
+  {
+    "id": "duck-keychain",
+    "name": "Duck Keychain",
+    "category": "keychains",
+    "startingPrice": 249,
+    "image": "images/mini_animal_keychain_duck-keychain-generated.png",
+    "description": "A cheerful duck charm with bright handmade personality."
+  },
+  {
+    "id": "initial-letter-keychain",
+    "name": "Initial Letter Keychain",
+    "category": "keychains",
+    "startingPrice": 199,
+    "image": "images/heart_keychain_initial-letter-keychain-generated.png",
+    "badge": "Personalized",
+    "description": "A custom initial keychain for names, couples, and hampers."
+  },
+  {
+    "id": "couple-keychain-set",
+    "name": "Couple Keychain Set",
+    "category": "keychains",
+    "startingPrice": 399,
+    "image": "images/crochet_couple_keychains.png",
+    "description": "A pair of coordinated crochet keychains made for couple gifting."
+  },
+  {
+    "id": "custom-character-keychain",
+    "name": "Custom Character Keychain",
+    "category": "keychains",
+    "startingPrice": 349,
+    "image": "images/mini_animal_keychain_custom-character-keychain-generated.png",
+    "badge": "Custom",
+    "description": "A character-inspired charm based on your idea, theme, or reference."
+  },
+  {
+    "id": "strawberry-keychain",
+    "name": "Strawberry Keychain",
+    "category": "keychains",
+    "startingPrice": 199,
+    "image": "images/strawberry_keychain_strawberry-keychain.png",
+    "badge": "Kept Favorite",
+    "description": "A fruity strawberry charm preserved from the original collection."
+  },
+  {
+    "id": "baby-booties",
+    "name": "Baby Booties",
+    "category": "baby-gifts",
+    "startingPrice": 399,
+    "image": "images/crochet_bunny_plush_baby-booties-generated.png",
+    "description": "Soft crochet booties for newborn gifting, made in gentle baby shades."
+  },
+  {
+    "id": "baby-cap",
+    "name": "Baby Cap",
+    "category": "baby-gifts",
+    "startingPrice": 399,
+    "image": "images/crochet_headband_baby-cap-generated.png",
+    "description": "A cozy handmade baby cap with custom color and sizing options."
+  },
+  {
+    "id": "baby-mittens",
+    "name": "Baby Mittens",
+    "category": "baby-gifts",
+    "startingPrice": 299,
+    "image": "images/crochet_bunny_plush_baby-mittens.png",
+    "description": "Tiny mittens stitched for comfort, softness, and newborn gifting."
+  },
+  {
+    "id": "baby-booties-cap-set",
+    "name": "Baby Booties + Cap Set",
+    "category": "baby-gifts",
+    "startingPrice": 799,
+    "image": "images/crochet_bunny_plush_baby-booties-cap-set.png",
+    "badge": "Set",
+    "description": "A coordinated baby set with booties and cap in matching yarn shades."
+  },
+  {
+    "id": "baby-rattle",
+    "name": "Baby Rattle",
+    "category": "baby-gifts",
+    "startingPrice": 349,
+    "image": "images/crochet_baby_rattle.png",
+    "description": "A soft crochet rattle for a sweet baby shower or newborn gift."
+  },
+  {
+    "id": "baby-name-garland",
+    "name": "Baby Name Garland",
+    "category": "baby-gifts",
+    "startingPrice": 799,
+    "image": "images/crochet_wall_hanging_baby-name-garland-generated.png",
+    "badge": "Name Custom",
+    "description": "A custom name garland for nurseries, celebrations, and keepsake corners."
+  },
+  {
+    "id": "baby-bunny-plushie",
+    "name": "Baby Bunny Plushie",
+    "category": "baby-gifts",
+    "startingPrice": 499,
+    "image": "images/crochet_bunny_plush_baby-bunny-plushie.png",
+    "description": "A gentle baby bunny plushie in soft yarn and nursery-friendly colors."
+  },
+  {
+    "id": "baby-bear-plushie",
+    "name": "Baby Bear Plushie",
+    "category": "baby-gifts",
+    "startingPrice": 499,
+    "image": "images/cozy_bear_plushie_baby-bear-plushie.png",
+    "description": "A soft baby bear plushie for newborn hampers and first keepsakes."
+  },
+  {
+    "id": "baby-shower-mini-set",
+    "name": "Baby Shower Mini Set",
+    "category": "baby-gifts",
+    "startingPrice": 1299,
+    "image": "images/crochet_bunny_plush_baby-shower-mini-set-generated.png",
+    "badge": "Shower Gift",
+    "description": "A curated mini baby set for shower tables, hampers, and family gifting."
+  },
+  {
+    "id": "newborn-gift-hamper",
+    "name": "Newborn Gift Hamper",
+    "category": "baby-gifts",
+    "startingPrice": 1999,
+    "image": "images/hero_crochet_scene_newborn-gift-hamper-generated.png",
+    "badge": "Hamper",
+    "featured": true,
+    "description": "A larger newborn hamper with baby essentials, plush details, and packaging."
+  },
+  {
+    "id": "crochet-bow-clip",
+    "name": "Crochet Bow Clip",
+    "category": "accessories",
+    "startingPrice": 149,
+    "image": "images/crochet_headband_crochet-bow-clip-generated.png",
+    "description": "A sweet bow clip with soft texture and custom shade options."
+  },
+  {
+    "id": "crochet-scrunchie",
+    "name": "Crochet Scrunchie",
+    "category": "accessories",
+    "startingPrice": 149,
+    "image": "images/crochet_scrunchies_crochet-scrunchie.png",
+    "badge": "Cozy Soft",
+    "description": "A soft crochet scrunchie for gentle everyday wear."
+  },
+  {
+    "id": "crochet-hair-band",
+    "name": "Crochet Hair Band",
+    "category": "accessories",
+    "startingPrice": 199,
+    "image": "images/crochet_headband_crochet-hair-band.png",
+    "badge": "Trending",
+    "description": "A handmade hair band with comfortable stretch and cozy texture."
+  },
+  {
+    "id": "flower-brooch",
+    "name": "Flower Brooch",
+    "category": "accessories",
+    "startingPrice": 199,
+    "image": "images/crochet_flower_brooch.png",
+    "description": "A crochet flower brooch for bags, sarees, jackets, and gift wraps."
+  },
+  {
+    "id": "crochet-bracelet",
+    "name": "Crochet Bracelet",
+    "category": "accessories",
+    "startingPrice": 149,
+    "image": "images/crochet_bracelet_earrings.png",
+    "description": "A lightweight crochet bracelet with soft color options."
+  },
+  {
+    "id": "crochet-earrings",
+    "name": "Crochet Earrings",
+    "category": "accessories",
+    "startingPrice": 199,
+    "image": "images/crochet_flower_keychain_crochet-earrings-generated.png",
+    "description": "Delicate crochet earrings for a soft handmade accessory moment."
+  },
+  {
+    "id": "bag-charm",
+    "name": "Bag Charm",
+    "category": "accessories",
+    "startingPrice": 249,
+    "image": "images/crochet_bag_charm_bag-charm.png",
+    "description": "A playful charm for tote bags, backpacks, and custom hampers."
+  },
+  {
+    "id": "phone-charm",
+    "name": "Phone Charm",
+    "category": "accessories",
+    "startingPrice": 199,
+    "image": "images/crochet_bag_charm_phone-charm-generated.png",
+    "description": "A tiny crochet phone charm for soft personal styling."
+  },
+  {
+    "id": "crochet-coin-pouch",
+    "name": "Crochet Coin Pouch",
+    "category": "accessories",
+    "startingPrice": 399,
+    "image": "images/crochet_coin_pouch_crochet-coin-pouch.png",
+    "badge": "Retro Charm",
+    "description": "A compact coin pouch for cards, coins, and small essentials."
+  },
+  {
+    "id": "crochet-phone-sleeve",
+    "name": "Crochet Phone Sleeve",
+    "category": "accessories",
+    "startingPrice": 399,
+    "image": "images/crochet_phone_sleeve_crochet-phone-sleeve.png",
+    "badge": "Must Have",
+    "description": "A protective crochet phone sleeve preserved from the original collection."
+  },
+  {
+    "id": "crochet-tote-bag",
+    "name": "Crochet Tote Bag",
+    "category": "accessories",
+    "startingPrice": 799,
+    "image": "images/crochet_tote_bag_crochet-tote-bag.png",
+    "badge": "Kept Favorite",
+    "featured": true,
+    "description": "A roomy handmade tote preserved from the original collection."
+  },
+  {
+    "id": "crochet-coaster",
+    "name": "Crochet Coaster",
+    "category": "home-decor",
+    "startingPrice": 149,
+    "image": "images/doily_table_decor_crochet-coaster.png",
+    "description": "A single handmade coaster for mugs, desks, and cozy corners."
+  },
+  {
+    "id": "mini-flower-pot",
+    "name": "Mini Flower Pot",
+    "category": "home-decor",
+    "startingPrice": 399,
+    "image": "images/crochet_mini_flower_pot.png",
+    "description": "A mini crochet flower pot for desks, shelves, and small decor corners."
+  },
+  {
+    "id": "car-hanging-charm",
+    "name": "Car Hanging Charm",
+    "category": "home-decor",
+    "startingPrice": 349,
+    "image": "images/crochet_car_hanging.png",
+    "description": "A soft hanging charm for cars, windows, and gifting."
+  },
+  {
+    "id": "crochet-garland",
+    "name": "Crochet Garland",
+    "category": "home-decor",
+    "startingPrice": 799,
+    "image": "images/crochet_wall_hanging_crochet-garland-generated.png",
+    "description": "A handmade garland for rooms, celebrations, and nursery corners."
+  },
+  {
+    "id": "table-decor-piece",
+    "name": "Table Decor Piece",
+    "category": "home-decor",
+    "startingPrice": 599,
+    "image": "images/doily_table_decor_table-decor-piece.png",
+    "description": "A handcrafted decor accent for coffee tables, shelves, and gifting."
+  },
+  {
+    "id": "door-hanging",
+    "name": "Door Hanging",
+    "category": "home-decor",
+    "startingPrice": 699,
+    "image": "images/crochet_wall_hanging_door-hanging-generated.png",
+    "description": "A soft door hanging for festive, nursery, or everyday decor."
+  },
+  {
+    "id": "custom-name-decor",
+    "name": "Custom Name Decor",
+    "category": "home-decor",
+    "startingPrice": 999,
+    "image": "images/crochet_wall_hanging_custom-name-decor-generated.png",
+    "badge": "Name Custom",
+    "description": "A personalized crochet name decor piece for rooms, doors, and gifts."
+  },
+  {
+    "id": "crochet-cushion-cover",
+    "name": "Crochet Cushion Cover",
+    "category": "home-decor",
+    "startingPrice": 699,
+    "image": "images/crochet_cushion_cover_crochet-cushion-cover.png",
+    "badge": "Kept Favorite",
+    "description": "A cozy cushion cover preserved from the original collection."
+  },
+  {
+    "id": "crochet-plant-holder",
+    "name": "Crochet Plant Holder",
+    "category": "home-decor",
+    "startingPrice": 499,
+    "image": "images/crochet_plant_holder_crochet-plant-holder.png",
+    "badge": "Kept Favorite",
+    "description": "A sage-toned plant holder preserved from the original collection."
+  },
+  {
+    "id": "wall-hanging",
+    "name": "Wall Hanging",
+    "category": "home-decor",
+    "startingPrice": 699,
+    "image": "images/crochet_wall_hanging_wall-hanging.png",
+    "badge": "Boho Premium",
+    "featured": true,
+    "description": "A crochet wall piece made to warm up rooms, doors, and blank walls."
+  },
+  {
+    "id": "keychain-flower-combo",
+    "name": "Keychain + Flower Combo",
+    "category": "gift-combos",
+    "startingPrice": 399,
+    "image": "images/crochet_keychain_flower_combo.png",
+    "badge": "Combo",
+    "description": "A small gift pairing with one keychain and one handmade flower."
+  },
+  {
+    "id": "mini-bouquet-note-card",
+    "name": "Mini Bouquet + Note Card",
+    "category": "gift-combos",
+    "startingPrice": 499,
+    "image": "images/crochet_rose_bouquet_mini-bouquet-note-card.png",
+    "description": "A mini bouquet packaged with a note card for simple thoughtful gifting."
+  },
+  {
+    "id": "plushie-flower-combo",
+    "name": "Plushie + Flower Combo",
+    "category": "gift-combos",
+    "startingPrice": 799,
+    "image": "images/crochet_plushie_flower_combo.png",
+    "description": "A cozy plushie paired with a handmade flower for warm occasions."
+  },
+  {
+    "id": "birthday-mini-gift-box",
+    "name": "Birthday Mini Gift Box",
+    "category": "gift-combos",
+    "startingPrice": 999,
+    "image": "images/crochet_birthday_gift_box.png",
+    "badge": "Birthday",
+    "description": "A birthday-ready crochet gift box with soft add-ons and packaging."
+  },
+  {
+    "id": "couple-keychain-combo",
+    "name": "Couple Keychain Combo",
+    "category": "gift-combos",
+    "startingPrice": 499,
+    "image": "images/heart_keychain_couple-keychain-combo-generated.png",
+    "description": "A couple-friendly charm combo with coordinated handmade keychains."
+  },
+  {
+    "id": "couple-bouquet-combo",
+    "name": "Couple Bouquet Combo",
+    "category": "gift-combos",
+    "startingPrice": 1199,
+    "image": "images/mixed_luxury_bouquet_couple-bouquet-combo.png",
+    "description": "A romantic combo built around a crochet bouquet and matching details."
+  },
+  {
+    "id": "baby-gift-combo",
+    "name": "Baby Gift Combo",
+    "category": "gift-combos",
+    "startingPrice": 1499,
+    "image": "images/crochet_bunny_plush_baby-gift-combo.png",
+    "description": "A sweet baby gift combo with plush, accessory, or nursery elements."
+  },
+  {
+    "id": "anniversary-gift-box",
+    "name": "Anniversary Gift Box",
+    "category": "gift-combos",
+    "startingPrice": 1499,
+    "image": "images/mixed_luxury_bouquet_anniversary-gift-box-generated.png",
+    "badge": "Anniversary",
+    "description": "An anniversary box with crochet keepsakes, flowers, and gift-ready packaging."
+  },
+  {
+    "id": "custom-crochet-hamper",
+    "name": "Custom Crochet Hamper",
+    "category": "gift-combos",
+    "startingPrice": 1999,
+    "image": "images/hero_crochet_scene_custom-crochet-hamper-generated.png",
+    "badge": "Custom Hamper",
+    "featured": true,
+    "description": "A fully custom hamper combining crochet pieces, notes, flowers, and packaging."
+  }
+];
+    const priceNote = "Final price may vary based on size, color, custom name, flowers, packaging, and delivery.";
+
 
     // Custom Order step state
     let orderStep = 1;
@@ -682,24 +1320,64 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 6. COLLECTION CATEGORY PILLS FILTERING
     // ----------------------------------------------------
-    window.filterCollectionCategory = function(category, buttonEl) {
-        // Toggle selected styling
-        const filterSection = buttonEl.parentElement;
-        filterSection.querySelectorAll('button').forEach(btn => {
-            btn.className = "whitespace-nowrap px-6 py-2 rounded-full hover:bg-secondary/10 transition-colors font-label-md bg-primary-container text-on-primary-container";
-        });
-        buttonEl.className = "whitespace-nowrap px-6 py-2 rounded-full font-label-md bg-secondary text-on-secondary shadow-sm";
+    const categoryToggleBaseClass = "w-10 h-10 shrink-0 rounded-full bg-primary-container text-secondary flex items-center justify-center hover:bg-secondary hover:text-on-secondary transition-colors";
+    const categoryToggleActiveClass = "w-10 h-10 shrink-0 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm transition-colors";
+    const categoryButtonBaseClass = "whitespace-nowrap px-6 py-2 rounded-full hover:bg-secondary/10 transition-colors font-label-md bg-primary-container text-on-primary-container";
+    const categoryButtonActiveClass = "whitespace-nowrap px-6 py-2 rounded-full font-label-md bg-secondary text-on-secondary shadow-sm";
 
-        // Filter products in grid
-        const productGrid = document.querySelector('#screen-collection .grid');
+    function getCollectionFilterRoot(sourceEl) {
+        return (sourceEl && sourceEl.closest('[data-collection-filters]')) || document.querySelector('#screen-collection [data-collection-filters]');
+    }
+
+    function setCollectionCategoryListOpen(root, isOpen) {
+        if (!root) return;
+        const list = root.querySelector('[data-category-filter-list]');
+        const toggle = root.querySelector('[data-category-filter-toggle]');
+        if (list) {
+            list.dataset.open = isOpen ? 'true' : 'false';
+            list.style.maxWidth = isOpen ? `${list.scrollWidth}px` : '0px';
+            list.style.opacity = isOpen ? '1' : '0';
+            list.style.transform = isOpen ? 'translateX(0)' : 'translateX(-12px)';
+            list.style.pointerEvents = isOpen ? 'auto' : 'none';
+        }
+        if (toggle) {
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            toggle.title = isOpen ? 'Hide categories' : 'Show categories';
+        }
+    }
+
+    window.showAllCollectionCategories = function(buttonEl) {
+        const root = getCollectionFilterRoot(buttonEl);
+        const list = root ? root.querySelector('[data-category-filter-list]') : null;
+        const shouldOpen = !list || list.dataset.open !== 'true';
+        setCollectionCategoryListOpen(root, shouldOpen);
+        filterCollectionCategory('all', buttonEl);
+    };
+
+    window.filterCollectionCategory = function(category, buttonEl) {
+        const activeCategory = legacyFilterMap[category] || category;
+        const root = getCollectionFilterRoot(buttonEl);
+        if (buttonEl && root) {
+            root.querySelectorAll('button[data-category-filter]').forEach(btn => {
+                btn.className = categoryButtonBaseClass;
+            });
+            const toggle = root.querySelector('[data-category-filter-toggle]');
+            if (toggle) {
+                toggle.className = activeCategory === 'all' ? categoryToggleActiveClass : categoryToggleBaseClass;
+            }
+            if (buttonEl.matches('[data-category-filter]')) {
+                buttonEl.className = categoryButtonActiveClass;
+                setCollectionCategoryListOpen(root, true);
+            }
+        }
+
+        const productGrid = document.querySelector('#collection-product-grid');
         if (!productGrid) return;
 
-        const productCards = productGrid.querySelectorAll('.product-card');
-        
-        productCards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-            if (category === 'all' || cardCategory === category) {
-                card.style.display = 'block';
+        productGrid.querySelectorAll('.product-card').forEach(card => {
+            const filterCategories = (card.getAttribute('data-filter-categories') || card.getAttribute('data-category') || '').split(/\s+/);
+            if (activeCategory === 'all' || filterCategories.includes(activeCategory)) {
+                card.style.display = '';
             } else {
                 card.style.display = 'none';
             }
@@ -782,12 +1460,142 @@ document.addEventListener('DOMContentLoaded', () => {
         const match = hash.match(/category=([^&]+)/);
         if (!match) return;
         const category = decodeURIComponent(match[1]);
-        const btn = document.querySelector(`#screen-collection button[data-category-filter="${category}"]`) || document.querySelector('#screen-collection button[data-category-filter="all"]');
-        if (btn) filterCollectionCategory(category, btn);
+        const activeCategory = legacyFilterMap[category] || category;
+        const btn = document.querySelector(`#screen-collection button[data-category-filter="${activeCategory}"]`);
+        const toggle = document.querySelector('#screen-collection [data-category-filter-toggle]');
+        if (btn) {
+            setCollectionCategoryListOpen(getCollectionFilterRoot(btn), true);
+            filterCollectionCategory(activeCategory, btn);
+        } else if (toggle) {
+            filterCollectionCategory('all', toggle);
+        }
     }
 
     // ----------------------------------------------------
     // 8. BOOTSTRAP INITIALIZATION
+    // ----------------------------------------------------
+    
+    function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/&/g, '&amp;')
+                  .replace(/</g, '&lt;')
+                  .replace(/>/g, '&gt;')
+                  .replace(/"/g, '&quot;')
+                  .replace(/'/g, '&#039;');
+    }
+
+    function getProductImage(product) {
+        return product.image || categoryFallbackImages[product.category] || categoryFallbackImages.default;
+    }
+
+    function getProductCategoryIds(product) {
+        return [product.category, ...(product.filterCategories || [])];
+    }
+
+    function getCategoryLabel(catId) {
+        const cat = collectionCategories.find(c => c.id === catId);
+        return cat ? cat.label : "Handmade";
+    }
+
+    function formatPrice(price) {
+        return Number(price).toLocaleString('en-IN');
+    }
+
+    function getProductCardMarkup(product) {
+        const image = getProductImage(product);
+        const fallbackImage = categoryFallbackImages[product.category] || categoryFallbackImages.default;
+        const badgeMarkup = product.badge ? `<span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">${escapeHTML(product.badge)}</span>` : '';
+        const filterCategories = getProductCategoryIds(product).join(' ');
+        const categoryLabel = getCategoryLabel(product.category);
+
+        if (product.featured) {
+            const tagMarkup = product.tag ? `<span class="bg-[#A8B5A2] text-white px-4 py-1 rounded-full font-label-md text-sm">${escapeHTML(product.tag)}</span>` : '';
+            return `
+                <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
+                    <div class="relative h-[260px] md:h-[420px] overflow-hidden">
+                        <img alt="${escapeHTML(product.name)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" width="800" height="500">
+                        <div class="absolute top-md right-md flex flex-col gap-2 items-end">
+                            ${product.badge ? `<span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">${escapeHTML(product.badge)}</span>` : ''}
+                            ${tagMarkup}
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-lg">
+                        <div class="flex justify-between items-end flex-wrap gap-4">
+                            <div class="max-w-xl">
+                                <span class="text-caption text-on-surface-variant font-label-md uppercase tracking-wide">${escapeHTML(categoryLabel)}</span>
+                                <h3 class="font-headline-md text-2xl md:text-headline-md text-secondary mb-xs">${escapeHTML(product.name)}</h3>
+                                <p class="font-body-md text-on-surface-variant">${escapeHTML(product.description)}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-headline-sm text-secondary block font-bold">Starting from ₹${formatPrice(product.startingPrice)}</span>
+                                <button data-add-to-cart="${product.id}" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm">
+                                    Add to Cart <span class="material-symbols-outlined" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        return `
+            <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                <div class="relative h-[180px] md:h-[260px] overflow-hidden rounded-t-xl bg-surface-container">
+                    <img alt="${escapeHTML(product.name)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" width="400" height="500">
+                    <div class="absolute top-base left-base">
+                        ${badgeMarkup}
+                    </div>
+                </div>
+                <div class="p-md">
+                    <span class="text-caption text-on-surface-variant font-label-md uppercase tracking-wide">${escapeHTML(categoryLabel)}</span>
+                    <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">${escapeHTML(product.name)}</h3>
+                    <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
+                    <div class="flex justify-between items-center gap-sm">
+                        <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹${formatPrice(product.startingPrice)}</span>
+                        <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="w-10 h-10 shrink-0 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        `;
+    }
+
+    function renderCollectionProducts() {
+        const productGrid = document.querySelector('#collection-product-grid');
+        if (!productGrid) return;
+
+        productGrid.innerHTML = collectionProducts.map(getProductCardMarkup).join('');
+        applyImageFallbacks(productGrid);
+        setupProductCardAddToCartTriggers();
+        applyCollectionFilterFromUrl();
+    }
+
+    function setupProductCardAddToCartTriggers() {
+        document.querySelectorAll('[data-add-to-cart]').forEach(addBtn => {
+            if (addBtn.dataset.cartBound === 'true') return;
+
+            const product = collectionProducts.find(item => item.id === addBtn.dataset.addToCart);
+            if (!product) return;
+
+            addBtn.dataset.cartBound = 'true';
+            addBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                addToCart(product.id, product.name, product.category, product.startingPrice, getProductImage(product));
+            });
+        });
+    }
+
+    function applyImageFallbacks(root = document) {
+        root.querySelectorAll('img[data-fallback-src]').forEach(img => {
+            img.addEventListener('error', () => {
+                if (img.dataset.fallbackApplied === 'true') return;
+                img.dataset.fallbackApplied = 'true';
+                img.src = img.dataset.fallbackSrc || categoryFallbackImages.default;
+            }, { once: true });
+        });
+    }
+
     // ----------------------------------------------------
     initNavigationBindings();
     setupProductCardAddToCartTriggers();
@@ -826,4 +1634,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open("https://wa.me/qr/FPRYIK4LQREII1", "_blank");
         });
     });
+
+    renderCollectionProducts();
 });

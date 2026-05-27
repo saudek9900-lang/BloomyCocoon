@@ -184,7 +184,8 @@
     </script>
     
     <!-- Link to custom stylesheets -->
-    <link rel="stylesheet" href="styles.css">
+  <script type="module" crossorigin src="/app.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CUNVzCM1.css">
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-secondary-container">
 
@@ -243,15 +244,15 @@
             <!-- Rendered by JS -->
             <div class="text-center py-xl opacity-60 flex flex-col items-center">
                 <span class="material-symbols-outlined text-display-lg block mb-sm">shopping_basket</span>
-                <p class="font-label-md">Your basket is empty</p>
+                <p class="font-label-md">Your Cart is empty</p>
             </div>
         </div>
         
         <div class="pt-lg border-t border-outline-variant/20 space-y-sm">
-            <p class="text-caption text-on-surface-variant">Prices may vary based on size, color, design complexity, and customization.</p>
+            <p class="text-caption text-on-surface-variant bg-white/55 border border-outline-variant/15 rounded-lg px-3 py-2">Final price may vary based on size, color, custom name, flowers, packaging, and delivery.</p>
             <div class="flex justify-between items-center mb-sm">
-                <span class="font-label-md text-on-surface-variant">Subtotal</span>
-                <span class="font-headline-sm text-secondary cart-total-price">₹0</span>
+                <span class="font-label-md text-on-surface-variant">Starting Total</span>
+                <span class="font-headline-sm text-secondary cart-total-price">Add items</span>
             </div>
             <textarea id="cart-customer-note" class="w-full bg-surface-container-low border border-outline-variant/20 rounded-lg p-2 text-sm" rows="2" placeholder="Add a note for customization (optional)"></textarea>
             <button disabled class="w-full bg-secondary text-white py-4 rounded-xl font-label-md flex items-center justify-center gap-base active:scale-95 transition-transform checkout-btn opacity-55 cursor-default">
@@ -270,30 +271,30 @@
         <section class="screen active" id="screen-home">
             <main>
                 <!-- Hero section -->
-                <section class="relative min-h-[870px] flex items-center overflow-hidden pt-12 md:pt-0">
+                <section class="mobile-hero relative min-h-[820px] flex items-center overflow-hidden pt-12 md:pt-0">
                     <div class="absolute inset-0 crochet-texture pointer-events-none"></div>
                     <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg w-full grid grid-cols-1 md:grid-cols-12 items-center gap-gutter relative z-10">
                         <div class="md:col-span-6 space-y-md">
                             <div class="inline-flex items-center gap-2 bg-tertiary-container text-on-tertiary-container px-4 py-1.5 rounded-full font-label-md text-label-md">
                                 <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
-                                Artisan Crafted Every Day
+                                Soft handmade gifting
                             </div>
                             <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background leading-tight">
-                                Handcrafted with <span class="text-secondary italic">Love</span>,<br>
-                                Stitched for <span class="relative">Memories<span class="absolute bottom-1 left-0 w-full h-3 bg-secondary-fixed/30 -z-10"></span></span>
+                                Thoughtful crochet gifts, <span class="text-secondary italic">made slowly</span><br>
+                                for moments that stay.
                             </h1>
                             <p class="text-base md:text-body-lg font-body-lg text-on-surface-variant max-w-md">
-                                Experience the warmth of slow-made treasures. From everlasting bouquets to cuddly companions, every stitch tells a story of patience and artistry.
+                                Explore cozy crochet bouquets, plushies, keepsakes, and custom pieces stitched with patience, warmth, and a personal touch.
                             </p>
                             <div class="flex flex-wrap gap-md pt-base">
-                                <button class="bg-secondary text-on-secondary px-8 py-4 rounded-full font-label-md text-label-md soft-glow hover:translate-y-[-2px] transition-all duration-300">Explore Collection</button>
-                                <button class="border border-secondary text-secondary px-8 py-4 rounded-full font-label-md text-label-md hover:bg-secondary/5 transition-all duration-300">Custom Orders</button>
+                                <button class="bg-secondary text-on-secondary px-8 py-4 rounded-full font-label-md text-label-md soft-glow hover:translate-y-[-2px] transition-all duration-300">Start Custom Order</button>
+                                <button class="border border-secondary text-secondary px-8 py-4 rounded-full font-label-md text-label-md hover:bg-secondary/5 transition-all duration-300">Explore Collection</button>
                             </div>
                         </div>
-                        <div class="md:col-span-6 mt-lg md:mt-0 relative h-[260px] md:h-[600px]">
+                        <div class="mobile-hero-media md:col-span-6 mt-lg md:mt-0 relative h-[260px] md:h-[600px]">
                             <div class="absolute inset-0 bg-secondary-fixed-dim/20 rounded-[4rem] -rotate-3 translate-x-4"></div>
-                            <img alt="Cozy Crochet Scene" class="w-full h-full object-cover rounded-[4rem] shadow-2xl relative z-10" src="images/hero_crochet_scene.png" fetchpriority="high" width="600" height="600">
-                            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-base">
+                            <img alt="Cozy Crochet Scene" class="w-full h-full object-cover rounded-[4rem] shadow-2xl relative z-10" src="/assets/hero_crochet_scene-DkLWzVp4.png" fetchpriority="high" width="600" height="600">
+                            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl z-20 hidden sm:flex items-center gap-base">
                                 <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-secondary">redeem</span>
                                 </div>
@@ -305,8 +306,8 @@
                         </div>
                     </div>
                 </section>
-                <!-- Explore Bento Section -->
-                <section class="py-10 md:py-xl bg-surface-container-low">
+                <!-- Explore Our World Section -->
+                <section class="py-12 md:py-xl bg-surface-container-low">
                     <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg">
                         <div class="flex justify-between items-end mb-lg">
                             <div class="space-y-base">
@@ -317,62 +318,118 @@
                                 View All <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </a>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
-                            <a href="#/collection?category=bouquets" class="relative group overflow-hidden rounded-3xl bg-surface h-64">
-                                <img alt="Bouquets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/mixed_luxury_bouquet.png"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-lg"><span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Bouquets</span></div>
+                        <div class="explore-category-grid grid grid-cols-2 lg:grid-cols-4 gap-sm md:gap-md">
+                            <a href="#/collection?category=bouquets" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56">
+                                <img alt="Bouquets" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/mixed_luxury_bouquet-4RArEmw5.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Bouquets</span></div>
                             </a>
-                            <a href="#/collection?category=plushies" class="relative group overflow-hidden rounded-3xl bg-surface h-64"><img alt="Plushies" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/crochet_cat_plushie.png"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-lg"><span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Plushies</span></div></a>
-                            <a href="#/collection?category=keychains" class="relative group overflow-hidden rounded-3xl bg-surface h-64"><img alt="Keychains" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/strawberry_keychain.png"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-lg"><span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Keychains</span></div></a>
-                            <a href="#/collection?category=accessories" class="relative group overflow-hidden rounded-3xl bg-surface h-64"><img alt="Accessories" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/crochet_tote_bag.png"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-lg"><span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Accessories</span></div></a>
-                            <a href="#/collection?category=decor" class="relative group overflow-hidden rounded-3xl bg-surface h-64"><img alt="Home & Decor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/crochet_wall_hanging.png"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-lg"><span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Home &amp; Decor</span></div></a>
-                            <a href="#/custom" class="relative group overflow-hidden rounded-3xl bg-surface h-64"><img alt="Custom Gifts" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="images/crochet_bag_charm.png"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-lg"><span class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Custom Gifts</span></div></a>
+                            <a href="#/collection?category=plushies" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Plushies" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_cat_plushie-D8o8Ou8x.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Plushies</span></div></a>
+                            <a href="#/collection?category=keychains" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Keychains" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/strawberry_keychain-B9ySgrER.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Keychains</span></div></a>
+                            <a href="#/collection?category=baby-gifts" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Baby Gifts" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_bunny_plush-D5VpjWGt.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Baby Gifts</span></div></a>
+                            <a href="#/collection?category=accessories" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Accessories" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_tote_bag-BWS2Scgr.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Accessories</span></div></a>
+                            <a href="#/collection?category=home-decor" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Home & Decor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_wall_hanging-Caqc-O6s.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Home &amp; Decor</span></div></a>
+                            <a href="#/collection?category=gift-combos" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Gift Combos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/hero_crochet_scene-DkLWzVp4.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Gift Combos</span></div></a>
                         </div>
                     </div>
                 </section>
-                <!-- Showcase Highlight -->
-                <section class="py-10 md:py-xl max-w-container-max mx-auto px-4 sm:px-6 md:px-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-lg items-center bg-surface-container-low rounded-3xl overflow-hidden p-md border border-outline-variant/15 soft-glow">
+
+                <!-- How to Order -->
+                <section class="py-12 md:py-xl bg-surface">
+                    <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg">
+                        <div class="max-w-2xl mb-lg">
+                            <h2 class="font-headline-md text-2xl md:text-headline-md text-on-surface mb-base">How to Order</h2>
+                            <p class="font-body-md text-on-surface-variant">A simple Cart to WhatsApp flow, with personal confirmation before anything is handmade.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-md md:gap-lg">
+                            <div class="order-step-card bg-surface-container-low rounded-2xl p-md border border-outline-variant/15 soft-glow">
+                                <div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md">
+                                    <span class="material-symbols-outlined">shopping_bag</span>
+                                </div>
+                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Step 1</span>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mt-xs mb-xs">Browse &amp; Add to Cart</h3>
+                                <p class="font-body-md text-on-surface-variant">Explore our handmade crochet creations and add your favorite pieces to Cart.</p>
+                            </div>
+                            <div class="order-step-card bg-surface-container-low rounded-2xl p-md border border-outline-variant/15 soft-glow">
+                                <div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-md">
+                                    <span class="material-symbols-outlined">chat</span>
+                                </div>
+                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Step 2</span>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mt-xs mb-xs">Finalize on WhatsApp</h3>
+                                <p class="font-body-md text-on-surface-variant">Your selected items will be shared on WhatsApp so we can confirm customization, quantity, and final details.</p>
+                            </div>
+                            <div class="order-step-card bg-surface-container-low rounded-2xl p-md border border-outline-variant/15 soft-glow">
+                                <div class="w-12 h-12 rounded-full bg-primary-container text-secondary flex items-center justify-center mb-md">
+                                    <span class="material-symbols-outlined">favorite</span>
+                                </div>
+                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Step 3</span>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface mt-xs mb-xs">Handmade with Care</h3>
+                                <p class="font-body-md text-on-surface-variant">Once confirmed, your crochet pieces are carefully handmade and prepared with love.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Custom Crochet Highlight -->
+                <section class="py-12 md:py-xl max-w-container-max mx-auto px-4 sm:px-6 md:px-lg">
+                    <div class="mobile-feature-panel grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-lg items-center bg-surface-container-low rounded-3xl overflow-hidden p-md border border-outline-variant/15 soft-glow">
                         <div class="relative rounded-2xl overflow-hidden aspect-[4/3] w-full">
-                            <img class="w-full h-full object-cover" src="images/about_process.png" alt="Sisters handcrafting crochet threads lovingly at home" loading="lazy" width="400" height="500">
+                            <img class="w-full h-full object-cover" src="/assets/about_process-CA2IMdmF.png" alt="Sisters handcrafting crochet threads lovingly at home" loading="lazy" width="400" height="500">
                         </div>
                         <div class="p-4 space-y-md">
-                            <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-secondary leading-tight">Your Story, <br><span class="italic font-normal">Our Threads</span></h2>
-                            <div class="space-y-sm pt-xs">
-                                <div class="flex gap-sm items-start">
-                                    <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
-                                    <p class="font-body-md text-on-surface-variant"><strong class="text-on-surface">The Fiber:</strong> We source only the softest milk cotton yarn, ensuring each piece is soft to the touch and highly durable.</p>
+                            <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-secondary leading-tight">Made Specially for <span class="italic font-normal">Your Moments</span></h2>
+                            <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant max-w-xl">Some gifts deserve to be personal. Share your idea with us, and we'll help turn it into a soft handmade crochet creation.</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-sm pt-xs">
+                                <div class="bg-white/55 rounded-xl p-sm border border-outline-variant/10">
+                                    <span class="material-symbols-outlined text-secondary mb-xs">palette</span>
+                                    <p class="font-label-md text-label-md text-on-surface">Colors</p>
                                 </div>
-                                <div class="flex gap-sm items-start">
-                                    <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
-                                    <p class="font-body-md text-on-surface-variant"><strong class="text-on-surface">The Craft:</strong> Each stitch is intentional, meaning no two creations are identical. Your piece is uniquely yours.</p>
+                                <div class="bg-white/55 rounded-xl p-sm border border-outline-variant/10">
+                                    <span class="material-symbols-outlined text-secondary mb-xs">straighten</span>
+                                    <p class="font-label-md text-label-md text-on-surface">Size</p>
                                 </div>
-                                <div class="flex gap-sm items-start">
-                                    <span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
-                                    <p class="font-body-md text-on-surface-variant"><strong class="text-on-surface">The Customization:</strong> Select your color palette, size, and personalization to make a truly custom gift.</p>
+                                <div class="bg-white/55 rounded-xl p-sm border border-outline-variant/10">
+                                    <span class="material-symbols-outlined text-secondary mb-xs">redeem</span>
+                                    <p class="font-label-md text-label-md text-on-surface">Gift Details</p>
                                 </div>
                             </div>
                             <div class="pt-base">
-                                <button class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md hover:opacity-90 transition-all">Start Your Custom Request</button>
+                                <button class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md hover:opacity-90 transition-all">Start a Custom Request</button>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- CTA Custom orders -->
-                <section class="px-4 sm:px-6 md:px-lg pb-10 md:pb-xl text-center">
-                    <button class="bg-secondary text-on-secondary px-8 py-4 rounded-full font-label-md hover:scale-105 transition-transform shadow-lg">Order Custom</button>
-                </section>
-            </main>
 
-
-                <section class="py-10 md:py-xl">
-                    <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg">
-                        <div class="bg-surface-container-low rounded-3xl p-lg border border-outline-variant/20 text-center space-y-md">
-                            <h3 class="font-headline-md text-2xl md:text-headline-md text-on-surface">Explore More on Instagram</h3>
-                            <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">See more of our handmade crochet creations, custom orders, behind-the-scenes moments, and latest updates on Instagram.</p>
-                            <a href="https://www.instagram.com/bloomy_cocoon_?igsh=MTJrcDByb3NndWRpdQ==" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-7 py-3 rounded-full font-label-md">View Instagram <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+                <!-- Our Story -->
+                <section class="py-12 md:py-xl bg-primary-container">
+                    <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-lg items-center">
+                        <div class="md:col-span-5">
+                            <h2 class="font-headline-md text-2xl md:text-headline-md text-primary mb-base">Our Story</h2>
+                            <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant leading-relaxed">BloomyCocoon is a homegrown crochet studio shaped by patient hands, soft yarn, and the belief that handmade gifts carry a warmth that lasts beyond the occasion.</p>
+                            <a href="#/about" class="inline-flex items-center gap-base mt-md text-secondary font-label-md border-b border-secondary/30 pb-xs hover:border-secondary transition-all">Read our story <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                        </div>
+                        <div class="md:col-span-7 grid grid-cols-2 gap-sm">
+                            <img class="rounded-2xl aspect-[4/5] object-cover shadow-sm" src="/assets/yarn_storage-DXIsgwW5.png" alt="Warm yarn storage for BloomyCocoon crochet pieces" loading="lazy" width="400" height="500">
+                            <img class="rounded-2xl aspect-[4/5] object-cover shadow-sm translate-y-6" src="/assets/contact_workspace-CFzbKRkz.png" alt="Cozy BloomyCocoon crochet workspace" loading="lazy" width="400" height="500">
                         </div>
                     </div>
                 </section>
+
+                <!-- Instagram -->
+                <section class="py-12 md:py-xl px-4 sm:px-6 md:px-lg overflow-hidden">
+                    <div class="max-w-container-max mx-auto flex flex-col items-center gap-6 md:gap-lg">
+                        <div class="w-full max-w-2xl text-center">
+                            <h2 class="font-headline-md text-2xl md:text-headline-md mb-base">Follow Our Handmade Journey</h2>
+                            <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant mb-lg">See behind-the-scenes stitches, new crochet drops, and custom pieces before they become gifts.</p>
+                            <a class="inline-flex items-center gap-base font-label-md text-label-md text-secondary border-b-2 border-secondary/30 pb-xs hover:border-secondary transition-all" href="https://www.instagram.com/bloomy_cocoon_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
+                                Find us on Instagram <span class="material-symbols-outlined text-sm">north_east</span>
+                            </a>
+                        </div>
+                        <div class="w-full max-w-2xl grid grid-cols-2 gap-sm pt-base">
+                            <img class="rounded-xl aspect-square object-cover shadow-sm -rotate-2 hover:rotate-0 transition-transform duration-500" src="/assets/crochet_plant_holder-gPx4r98w.png" alt="Crochet plant holder" loading="lazy" width="400" height="400">
+                            <img class="rounded-xl aspect-square object-cover shadow-sm translate-y-4 rotate-2 hover:rotate-0 transition-transform duration-500" src="/assets/crochet_cushion_cover-BtWQq08C.png" alt="Handcrafted crochet cushion cover" loading="lazy" width="400" height="400">
+                        </div>
+                    </div>
+                </section>
+            </main>
             <!-- Footer -->
             <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base">
@@ -411,62 +468,49 @@
                     <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
                         A curation of slow-made treasures, hand-stitched with premium yarn and an abundance of patience. From everlasting bouquets to whimsical companions, discover the warmth of a BloomyCocoon creation.
                     </p>
+                    <p class="font-body-md text-on-surface-variant mt-md bg-surface-container-low border border-outline-variant/20 rounded-2xl px-4 py-3 inline-block">Final price may vary based on size, color, custom name, flowers, packaging, and delivery.</p>
                 </section>
 
-                <p class="font-body-md text-on-surface-variant mb-sm">Prices may vary based on size, color, design complexity, and customization.</p>
+                <section class="mb-10 md:mb-xl">
+                    <div class="bg-surface-container-low rounded-3xl p-lg border border-outline-variant/20 text-center space-y-md">
+                        <h3 class="font-headline-md text-2xl md:text-headline-md text-on-surface">Explore More on Instagram</h3>
+                        <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">See more of our handmade crochet creations, custom orders, behind-the-scenes moments, and latest updates on Instagram.</p>
+                        <a href="https://www.instagram.com/bloomy_cocoon_?igsh=MTJrcDByb3NndWRpdQ==" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-7 py-3 rounded-full font-label-md">View Instagram <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+                    </div>
+                </section>
+
                 <!-- Filters category scroll -->
                 <section class="mb-6 md:mb-lg overflow-x-auto">
-                    <div class="flex gap-md pb-4 items-center">
-                        <span class="material-symbols-outlined text-secondary">tune</span>
-                        <button onclick="filterCollectionCategory('all', this)" data-category-filter="all" class="whitespace-nowrap px-6 py-2 rounded-full font-label-md bg-secondary text-on-secondary shadow-sm">All</button>
-                        <button onclick="filterCollectionCategory('bouquets', this)" data-category-filter="bouquets" class="whitespace-nowrap px-6 py-2 rounded-full hover:bg-secondary/10 transition-colors font-label-md bg-primary-container text-on-primary-container">Bouquets</button>
-                        <button onclick="filterCollectionCategory('plushies', this)" data-category-filter="plushies" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Plushies</button>
-                        <button onclick="filterCollectionCategory('keychains', this)" data-category-filter="keychains" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Keychains</button>
-                        <button onclick="filterCollectionCategory('accessories', this)" data-category-filter="accessories" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Accessories</button>
-                        <button onclick="filterCollectionCategory('decor', this)" data-category-filter="decor" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Home &amp; Decor</button>
-                        <button onclick="filterCollectionCategory('custom', this)" data-category-filter="custom" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Custom Gifts</button>
+                    <div class="flex gap-md pb-4 items-center" data-collection-filters>
+                        <button onclick="showAllCollectionCategories(this)" data-category-filter-toggle class="w-10 h-10 shrink-0 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm transition-colors" aria-label="Show categories" aria-expanded="false" title="Show categories">
+                            <span class="material-symbols-outlined">tune</span>
+                        </button>
+                        <div class="flex flex-nowrap gap-sm items-center overflow-x-auto whitespace-nowrap transition-all duration-300 ease-out" data-category-filter-list data-open="false" style="max-width: 0; width: max-content; opacity: 0; transform: translateX(-12px); pointer-events: none;">
+                            <button onclick="filterCollectionCategory('bouquets', this)" data-category-filter="bouquets" class="whitespace-nowrap px-6 py-2 rounded-full hover:bg-secondary/10 transition-colors font-label-md bg-primary-container text-on-primary-container">Bouquets</button>
+                            <button onclick="filterCollectionCategory('plushies', this)" data-category-filter="plushies" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Plushies</button>
+                            <button onclick="filterCollectionCategory('keychains', this)" data-category-filter="keychains" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Keychains</button>
+                            <button onclick="filterCollectionCategory('baby-gifts', this)" data-category-filter="baby-gifts" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Baby Gifts</button>
+                            <button onclick="filterCollectionCategory('accessories', this)" data-category-filter="accessories" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Accessories</button>
+                            <button onclick="filterCollectionCategory('home-decor', this)" data-category-filter="home-decor" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Home &amp; Decor</button>
+                            <button onclick="filterCollectionCategory('gift-combos', this)" data-category-filter="gift-combos" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Gift Combos</button>
+                        </div>
                     </div>
                 </section>
 
                 <!-- Grid Products -->
-                <div class="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-gutter">
-                    <!-- 1. Mixed Flower Luxury Bouquet (Wide) -->
-                    <div data-category="bouquets" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[280px] md:h-[500px] overflow-hidden">
-                            <img alt="Mixed Flower Luxury Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/mixed_luxury_bouquet.png" loading="lazy" width="800" height="500">
-                            <div class="absolute top-md right-md flex flex-col gap-2 items-end">
-                                <span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">Premium Choice</span>
-                                <span class="bg-[#A8B5A2] text-white px-4 py-1 rounded-full font-label-md text-sm">Luxury Edition</span>
-                            </div>
-                        </div>
-                        <div class="p-6 md:p-lg">
-                            <div class="flex justify-between items-end flex-wrap gap-4">
-                                <div>
-                                    <h3 class="font-headline-md text-2xl md:text-headline-md text-secondary mb-xs">Mixed Flower Luxury Bouquet</h3>
-                                    <p class="font-body-md text-on-surface-variant">A beautiful handmade selection featuring roses, sunflowers, daisies, and lavender stems, wrapped elegantly.</p>
-                                </div>
-                                <div class="text-right">
-                                    <span class="font-headline-sm text-secondary block font-bold">₹0</span>
-                                    <button class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm">
-                                        Add to Cart <span class="material-symbols-outlined" data-icon="add">add</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div id="collection-product-grid" class="mobile-product-grid grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-gutter">
                     <!-- 2. Crochet Rose Bouquet -->
                     <div data-category="bouquets" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl">
-                            <img alt="Crochet Rose Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_rose_bouquet.png" loading="lazy" width="400" height="500">
+                            <img alt="Crochet Rose Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_rose_bouquet-DWTGAznD.png" loading="lazy" width="400" height="500">
                             <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Best Seller</span>
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Made with Love</span>
                             </div>
                         </div>
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Rose Bouquet</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -477,7 +521,7 @@
                     <!-- 3. Crochet Tulip Bouquet -->
                     <div data-category="bouquets" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Tulip Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_tulip_bouquet.png" loading="lazy" width="400" height="500">
+                            <img alt="Crochet Tulip Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_tulip_bouquet-Bb42o6R9.png" loading="lazy" width="400" height="500">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">New Arrival</span>
                             </div>
@@ -485,7 +529,7 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Tulip Bouquet</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -496,7 +540,7 @@
                     <!-- 4. Sunflower Bouquet -->
                     <div data-category="bouquets" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Sunflower Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_sunflower_bouquet.png" loading="lazy" width="400" height="500">
+                            <img alt="Sunflower Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_sunflower_bouquet-CrQU50oN.png" loading="lazy" width="400" height="500">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Artisan Special</span>
                             </div>
@@ -504,7 +548,7 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Sunflower Bouquet</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -515,7 +559,7 @@
                     <!-- 5. Lavender Bouquet -->
                     <div data-category="bouquets" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Lavender Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_lavender_bouquet.png" loading="lazy" width="400" height="500">
+                            <img alt="Lavender Bouquet" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_lavender_bouquet-Dp8CXNkW.png" loading="lazy" width="400" height="500">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Limited Edition</span>
                             </div>
@@ -523,7 +567,7 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Lavender Bouquet</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -534,7 +578,7 @@
                     <!-- 6. Crochet Teddy Bear -->
                     <div data-category="plushies" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Teddy Bear" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/cozy_bear_plushie.png" loading="lazy" width="400" height="500">
+                            <img alt="Crochet Teddy Bear" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/cozy_bear_plushie-C6Wcjnzm.png" loading="lazy" width="400" height="500">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Top Loved</span>
                             </div>
@@ -542,7 +586,7 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Teddy Bear</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -553,15 +597,15 @@
                     <!-- 7. Crochet Bunny Plush -->
                     <div data-category="plushies" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Bunny Plush" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_bunny_plush.png" loading="lazy" width="400" height="400">
+                            <img alt="Crochet Bunny Plush" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_bunny_plush-D5VpjWGt.png" loading="lazy" width="400" height="400">
                             <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Best Seller</span>
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Gift Favorite</span>
                             </div>
                         </div>
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Bunny Plush</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -572,7 +616,7 @@
                     <!-- 8. Crochet Cat Plushie -->
                     <div data-category="plushies" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Cat Plushie" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_cat_plushie.png" loading="lazy" width="400" height="400">
+                            <img alt="Crochet Cat Plushie" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_cat_plushie-D8o8Ou8x.png" loading="lazy" width="400" height="400">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Artesanal</span>
                             </div>
@@ -580,7 +624,7 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Cat Plushie</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -591,7 +635,7 @@
                     <!-- 9. Crochet Duck Plushie -->
                     <div data-category="plushies" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Duck Plushie" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_duck_plushie.png" loading="lazy" width="400" height="400">
+                            <img alt="Crochet Duck Plushie" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_duck_plushie-dhfBKBpd.png" loading="lazy" width="400" height="400">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Cuteness Alert</span>
                             </div>
@@ -599,7 +643,7 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Duck Plushie</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -610,7 +654,7 @@
                     <!-- 10. Mini Pocket Plushies -->
                     <div data-category="plushies" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Mini Pocket Plushies" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/mini_animal_keychain.png" loading="lazy" width="400" height="400">
+                            <img alt="Mini Pocket Plushies" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/mini_animal_keychain-GtZ71-W6.png" loading="lazy" width="400" height="400">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Miniature Series</span>
                             </div>
@@ -618,7 +662,7 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Mini Pocket Plushies</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -629,7 +673,7 @@
                     <!-- 11. Flower Keychain -->
                     <div data-category="keychains" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Flower Keychain" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_flower_keychain.png" loading="lazy" width="400" height="400">
+                            <img alt="Flower Keychain" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_flower_keychain-Cqv6knKM.png" loading="lazy" width="400" height="400">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Gift Pick</span>
                             </div>
@@ -637,7 +681,140 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Flower Keychain</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
+                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 13. Heart Keychain -->
+                    <div data-category="keychains" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
+                            <img alt="Heart Keychain" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/heart_keychain-CxdOoCpL.png" loading="lazy" width="400" height="400">
+                            <div class="absolute top-base left-base">
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Gift Pick</span>
+                            </div>
+                        </div>
+                        <div class="p-md">
+                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Heart Keychain</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
+                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 15. Strawberry Keychain -->
+                    <div data-category="keychains" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
+                            <img alt="Strawberry Keychain" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/strawberry_keychain-B9ySgrER.png" loading="lazy" width="400" height="400">
+                            <div class="absolute top-base left-base">
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Sweet Series</span>
+                            </div>
+                        </div>
+                        <div class="p-md">
+                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Strawberry Keychain</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
+                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 16. Crochet Bag Charm -->
+                    <div data-category="keychains" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
+                            <img alt="Crochet Bag Charm" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_bag_charm-BGxzZ89z.png" loading="lazy" width="400" height="500">
+                            <div class="absolute top-base left-base">
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Artisan Choice</span>
+                            </div>
+                        </div>
+                        <div class="p-md">
+                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Bag Charm</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
+                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 17. Crochet Scrunchies -->
+                    <div data-category="accessories" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
+                            <img alt="Crochet Scrunchies" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_scrunchies-CiWIzlR-.png" loading="lazy" width="400" height="500">
+                            <div class="absolute top-base left-base">
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Cozy Soft</span>
+                            </div>
+                        </div>
+                        <div class="p-md">
+                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Scrunchies</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
+                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 18. Crochet Headband -->
+                    <div data-category="accessories" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
+                            <img alt="Crochet Headband" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_headband-DqXUjdTk.png" loading="lazy" width="400" height="500">
+                            <div class="absolute top-base left-base">
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Trending</span>
+                            </div>
+                        </div>
+                        <div class="p-md">
+                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Headband</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
+                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 19. Crochet Coin Pouch -->
+                    <div data-category="accessories" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
+                            <img alt="Crochet Coin Pouch" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_coin_pouch-Xv1apfNr.png" loading="lazy" width="400" height="500">
+                            <div class="absolute top-base left-base">
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Retro Charm</span>
+                            </div>
+                        </div>
+                        <div class="p-md">
+                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Coin Pouch</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
+                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 20. Crochet Phone Sleeve -->
+                    <div data-category="accessories" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
+                            <img alt="Crochet Phone Sleeve" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_phone_sleeve-775UY7oS.png" loading="lazy" width="400" height="500">
+                            <div class="absolute top-base left-base">
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Must Have</span>
+                            </div>
+                        </div>
+                        <div class="p-md">
+                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Phone Sleeve</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -648,7 +825,7 @@
                     <!-- 12. Crochet Tote Bag (Wide) -->
                     <div data-category="accessories" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[200px] md:h-[350px] overflow-hidden">
-                            <img alt="Crochet Tote Bag" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_tote_bag.png" loading="lazy" width="800" height="500">
+                            <img alt="Crochet Tote Bag" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_tote_bag-BWS2Scgr.png" loading="lazy" width="800" height="500">
                             <div class="absolute top-md right-md flex flex-col gap-2 items-end">
                                 <span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">Eco Friendly</span>
                                 <span class="bg-[#A8B5A2] text-white px-4 py-1 rounded-full font-label-md text-sm">Artisan Crafted</span>
@@ -661,7 +838,7 @@
                                     <p class="font-body-md text-on-surface-variant">Artisanal boho-style shopper tote bag made of high-quality milk cotton fibers, extremely durable.</p>
                                 </div>
                                 <div class="text-right">
-                                    <span class="font-headline-sm text-secondary block font-bold">₹0</span>
+                                    <span class="font-headline-sm text-secondary block font-bold">Starting from ₹149</span>
                                     <button class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm">
                                         Add to Cart <span class="material-symbols-outlined" data-icon="add">add</span>
                                     </button>
@@ -670,181 +847,10 @@
                         </div>
                     </div>
 
-                    <!-- 13. Heart Keychain -->
-                    <div data-category="keychains" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Heart Keychain" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/heart_keychain.png" loading="lazy" width="400" height="400">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Gift Pick</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Heart Keychain</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 14. Mini Animal Keychain -->
-                    <div data-category="keychains" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Mini Animal Keychain" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/mini_animal_keychain.png" loading="lazy" width="400" height="400">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Cute Charm</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Mini Animal Keychain</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 15. Strawberry Keychain -->
-                    <div data-category="keychains" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Strawberry Keychain" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/strawberry_keychain.png" loading="lazy" width="400" height="400">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Sweet Series</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Strawberry Keychain</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 16. Crochet Bag Charm -->
-                    <div data-category="keychains" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Bag Charm" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_bag_charm.png" loading="lazy" width="400" height="500">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Artisan Choice</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Bag Charm</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 17. Crochet Scrunchies -->
-                    <div data-category="accessories" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Scrunchies" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_scrunchies.png" loading="lazy" width="400" height="500">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Cozy Soft</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Scrunchies</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 18. Crochet Headband -->
-                    <div data-category="accessories" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Headband" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_headband.png" loading="lazy" width="400" height="500">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Trending</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Headband</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 19. Crochet Coin Pouch -->
-                    <div data-category="accessories" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Coin Pouch" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_coin_pouch.png" loading="lazy" width="400" height="500">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Retro Charm</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Coin Pouch</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 20. Crochet Phone Sleeve -->
-                    <div data-category="accessories" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Phone Sleeve" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_phone_sleeve.png" loading="lazy" width="400" height="500">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Must Have</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Phone Sleeve</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 21. Crochet Coaster Set -->
-                    <div data-category="decor" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Coaster Set" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/doily_table_decor.png" loading="lazy" width="400" height="500">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Best Seller</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Coaster Set</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- 22. Crochet Cushion Cover -->
                     <div data-category="decor" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Cushion Cover" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_cushion_cover.png" loading="lazy" width="400" height="500">
+                            <img alt="Crochet Cushion Cover" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_cushion_cover-BtWQq08C.png" loading="lazy" width="400" height="500">
                             <div class="absolute top-base left-base">
                                 <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Organic Cozy</span>
                             </div>
@@ -852,7 +858,7 @@
                         <div class="p-md">
                             <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Cushion Cover</h3>
                             <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
                                 <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                                     <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                                 </button>
@@ -860,10 +866,28 @@
                         </div>
                     </div>
 
+                    <!-- 25. Crochet Plant Holder -->
+                    <div data-category="decor" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
+                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
+                            <img alt="Crochet Plant Holder" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_plant_holder-gPx4r98w.png" loading="lazy" width="400" height="500">
+                            <div class="absolute top-base left-base">
+                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Sage Boho</span>
+                            </div>
+                        </div>
+                        <div class="p-md">
+                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Plant Holder</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹149</span>
+                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <!-- 23. Crochet Wall Hanging (Wide) -->
                     <div data-category="decor" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
                         <div class="relative h-[200px] md:h-[350px] overflow-hidden">
-                            <img alt="Crochet Wall Hanging" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_wall_hanging.png" loading="lazy" width="400" height="500">
+                            <img alt="Crochet Wall Hanging" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="/assets/crochet_wall_hanging-Caqc-O6s.png" loading="lazy" width="400" height="500">
                             <div class="absolute top-md right-md flex flex-col gap-2 items-end">
                                 <span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">Flagship Art</span>
                                 <span class="bg-[#A8B5A2] text-white px-4 py-1 rounded-full font-label-md text-sm">Boho Premium</span>
@@ -876,7 +900,7 @@
                                     <p class="font-body-md text-on-surface-variant">A premium large-scale macrame and crochet wall hanging on organic driftwood, designed to elevate empty walls.</p>
                                 </div>
                                 <div class="text-right">
-                                    <span class="font-headline-sm text-secondary block font-bold">₹0</span>
+                                    <span class="font-headline-sm text-secondary block font-bold">Starting from ₹149</span>
                                     <button class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm">
                                         Add to Cart <span class="material-symbols-outlined" data-icon="add">add</span>
                                     </button>
@@ -885,57 +909,9 @@
                         </div>
                     </div>
 
-                    <!-- 24. Crochet Doily/Table Decor -->
-                    <div data-category="decor" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Doily/Table Decor" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/doily_table_decor.png" loading="lazy" width="400" height="500">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Artisan Special</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Doily/Table Decor</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- 25. Crochet Plant Holder -->
-                    <div data-category="decor" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                        <div class="relative h-[180px] md:h-[300px] overflow-hidden rounded-t-xl bg-slate-100">
-                            <img alt="Crochet Plant Holder" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/crochet_plant_holder.png" loading="lazy" width="400" height="500">
-                            <div class="absolute top-base left-base">
-                                <span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">Sage Boho</span>
-                            </div>
-                        </div>
-                        <div class="p-md">
-                            <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">Crochet Plant Holder</h3>
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md text-on-surface-variant font-bold">₹0</span>
-                                <button class="w-10 h-10 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                                    <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 26. Wide Card: Bespoke Commissions -->
-                    <div data-category="custom" class="col-span-2 md:col-span-8 group product-card bg-primary-container rounded-xl soft-glow transition-all duration-500 flex flex-col md:flex-row items-center">
-                        <div class="w-full md:w-1/2 h-[200px] md:h-[350px] overflow-hidden rounded-t-xl md:rounded-l-xl md:rounded-tr-none">
-                            <img alt="Custom Garden Commissions" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="images/mixed_luxury_bouquet.png" loading="lazy" width="400" height="500">
-                        </div>
-                        <div class="w-full md:w-1/2 p-6 md:p-lg">
-                            <span class="text-secondary font-label-md uppercase tracking-widest text-xs mb-sm block">Personalized Service</span>
-                            <h3 class="font-headline-md text-2xl md:text-headline-md text-secondary mb-md leading-tight">Custom Garden Commissions</h3>
-                            <p class="font-body-md text-on-surface-variant mb-lg">Tell us your favorite bloom, and we will craft it in yarn. Perfect for anniversaries and everlasting memories.</p>
-                            <button class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md hover:opacity-90 transition-all">Start Your Order</button>
-                        </div>
-                    </div>
                 </div>
+
             </main>
 
             <!-- Footer -->
@@ -952,7 +928,7 @@
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Care Guide</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/contact">Contact</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_?igsh=MTJrcDByb3NndWRpdQ==">Instagram</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/qr/FPRYIK4LQREII1">WhatsApp</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </div>
                     <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
                 </div>
@@ -971,7 +947,7 @@
                             <span class="material-symbols-outlined">arrow_back</span> Back
                         </button>
                     </div>
-                    <img alt="Crochet process" class="absolute inset-0 w-full h-full object-cover" src="images/about_process.png" loading="lazy" width="500" height="500">
+                    <img alt="Crochet process" class="absolute inset-0 w-full h-full object-cover" src="/assets/about_process-CA2IMdmF.png" loading="lazy" width="500" height="500">
                     <div class="absolute inset-0 bg-secondary/10"></div>
                     <div class="relative z-10 text-center px-md max-w-3xl">
                         <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-base drop-shadow-sm">Where Every Stitch Tells a Story</h2>
@@ -981,11 +957,7 @@
 
                 <!-- Our Story Paragraphs -->
                 <section class="py-10 md:py-xl max-w-container-max mx-auto px-4 sm:px-6 md:px-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-lg items-center">
-                        <div class="relative group">
-                            <div class="absolute -inset-4 bg-[#fbd8d0] rounded-xl -rotate-2 group-hover:rotate-0 transition-transform duration-500"></div>
-                            <img alt="Yarn storage" class="relative rounded-xl shadow-xl w-full h-[280px] md:h-[500px] object-cover" src="images/yarn_storage.png" loading="lazy" width="500" height="500">
-                        </div>
+                    <div class="max-w-3xl mx-auto">
                         <div class="space-y-md">
                             <h3 class="font-headline-md text-2xl md:text-headline-md text-primary">Our Story</h3>
                             <div class="w-12 h-1 bg-[#fbd8d0] mb-md"></div>
@@ -995,6 +967,10 @@
                             <p class="font-body-md text-body-md text-on-surface-variant">
                                 Working side-by-side from our home, we believe that in an age of instant gratification, there is profound beauty in the slow. Every piece we create is driven by the belief that handmade gifts carry an emotional warmth and a tactile history that mass production can never replicate. When you hold a BloomyCocoon creation, you're holding hours of our focused patience, mutual encouragement, and genuine care.
                             </p>
+                        </div>
+                        <div class="relative group mt-10 md:mt-lg">
+                            <div class="absolute -inset-4 bg-[#fbd8d0] rounded-xl -rotate-2 group-hover:rotate-0 transition-transform duration-500"></div>
+                            <img alt="Yarn storage" class="relative rounded-xl shadow-xl w-full h-[280px] md:h-[500px] object-cover" src="/assets/yarn_storage-DXIsgwW5.png" loading="lazy" width="500" height="500">
                         </div>
                     </div>
                 </section>
@@ -1006,7 +982,7 @@
                             <h3 class="font-headline-md text-2xl md:text-headline-md text-primary mb-xs">Crafting with Intention</h3>
                             <p class="font-body-md text-on-surface-variant">The delicate journey from inspiration to your hands.</p>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+                        <div class="compact-card-grid grid grid-cols-1 md:grid-cols-4 gap-md">
                             <!-- Designing -->
                             <div class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant/30 hover:shadow-md transition-shadow">
                                 <div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container mb-base">
@@ -1058,26 +1034,6 @@
                                 <span class="block font-headline-sm text-secondary">Slow Craftsmanship</span>
                                 <span class="font-caption text-on-surface-variant uppercase tracking-widest">Our Value</span>
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Aesthetic process gallery -->
-                <section class="py-10 md:py-xl px-md">
-                    <div class="max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-md">
-                        <div class="space-y-md">
-                            <img alt="Crochet macro" class="rounded-xl object-cover h-64 w-full shadow-sm hover:scale-[1.02] transition-transform duration-500" src="images/heart_keychain.png" loading="lazy" width="400" height="500">
-                            <img alt="Finished plush" class="rounded-xl object-cover h-80 w-full shadow-sm hover:scale-[1.02] transition-transform duration-500" src="images/crochet_duck_plushie.png" loading="lazy" width="400" height="400">
-                        </div>
-                        <div class="space-y-md pt-lg">
-                            <img alt="Sustainable wrapping" class="rounded-xl object-cover h-96 w-full shadow-sm hover:scale-[1.02] transition-transform duration-500" src="images/about_process.png" loading="lazy" width="400" height="500">
-                        </div>
-                        <div class="space-y-md">
-                            <img alt="Bamboo tools" class="rounded-xl object-cover h-80 w-full shadow-sm hover:scale-[1.02] transition-transform duration-500" src="images/yarn_storage.png" loading="lazy" width="500" height="500">
-                            <img alt="Flower coaster" class="rounded-xl object-cover h-64 w-full shadow-sm hover:scale-[1.02] transition-transform duration-500" src="images/doily_table_decor.png" loading="lazy" width="400" height="500">
-                        </div>
-                        <div class="space-y-md pt-base">
-                            <img alt="Earth tones stack" class="rounded-xl object-cover h-full w-full shadow-sm hover:scale-[1.02] transition-transform duration-500" src="images/crochet_cushion_cover.png" loading="lazy" width="400" height="500">
                         </div>
                     </div>
                 </section>
@@ -1135,7 +1091,7 @@
                         </div>
                         <div class="relative group">
                             <div class="aspect-[16/9] md:aspect-[4/5] rounded-3xl overflow-hidden shadow-xl transform rotate-2 group-hover:rotate-0 transition-transform duration-700">
-                                <img alt="Handmade crochet" class="w-full h-full object-cover" src="images/about_process.png" loading="lazy" width="400" height="500">
+                                <img alt="Handmade crochet" class="w-full h-full object-cover" src="/assets/about_process-CA2IMdmF.png" loading="lazy" width="400" height="500">
                             </div>
                             <div class="absolute -bottom-6 -left-6 bg-secondary-fixed p-md rounded-2xl shadow-lg border border-white/50 hidden lg:block bg-[#fedbd2]">
                                 <p class="font-headline-sm text-headline-sm text-[#291712] italic">Crafted with Love</p>
@@ -1235,7 +1191,7 @@
                             <p class="font-body-lg text-on-secondary-container">Let's chat on WhatsApp for a personalized experience.</p>
                         </div>
                         <div class="relative z-10">
-                            <a class="inline-flex items-center gap-sm bg-secondary text-on-secondary px-6 py-3 rounded-full font-headline-sm shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group" href="https://wa.me/qr/FPRYIK4LQREII1" target="_blank" rel="noopener">
+                            <a class="inline-flex items-center gap-sm bg-secondary text-on-secondary px-6 py-3 rounded-full font-headline-sm shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group" href="https://wa.me/919061174579" target="_blank" rel="noopener" data-whatsapp-message="Hi BloomyCocoon, I need help with an order or a crochet gift enquiry.">
                                 <span class="material-symbols-outlined">chat</span>
                                 Start Chatting
                             </a>
@@ -1285,7 +1241,7 @@
                         <div class="relative flex justify-center">
                             <div class="organic-shape bg-[#fbd8d0] w-64 h-64 md:w-80 md:h-80 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 opacity-40 blur-3xl"></div>
                             <div class="relative rounded-2xl overflow-hidden shadow-xl aspect-[16/9] md:aspect-[4/5] w-full max-w-sm rotate-2 hover:rotate-0 transition-transform duration-700">
-                                <img class="w-full h-full object-cover" src="images/contact_workspace.png" alt="Cozy home workspace showing crochet tools and premium cotton yarn" loading="lazy" width="400" height="500">
+                                <img class="w-full h-full object-cover" src="/assets/contact_workspace-CFzbKRkz.png" alt="Cozy home workspace showing crochet tools and premium cotton yarn" loading="lazy" width="400" height="500">
                             </div>
                         </div>
                     </div>
@@ -1294,7 +1250,7 @@
                 <!-- Cards grid -->
                 <section class="py-10 md:py-xl px-4 sm:px-6 md:px-lg bg-surface-container-low/50">
                     <div class="max-w-container-max mx-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+                        <div class="mobile-contact-grid grid grid-cols-1 md:grid-cols-3 gap-md">
                             <!-- Instagram -->
                             <a class="group p-6 md:p-lg bg-surface-container-lowest rounded-2xl soft-glow border border-outline-variant/10 hover:border-secondary/20 transition-all duration-300 flex flex-col items-center text-center cursor-pointer" href="https://www.instagram.com/bloomy_cocoon_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
                                 <div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
@@ -1304,7 +1260,7 @@
                                 <p class="text-on-surface-variant font-body-md text-body-md">@bloomy_cocoon_</p>
                             </a>
                             <!-- WhatsApp priority -->
-                            <a class="group p-6 md:p-lg bg-secondary-container rounded-2xl soft-glow border border-secondary/10 hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center z-20 cursor-pointer" href="https://wa.me/qr/FPRYIK4LQREII1" target="_blank" rel="noopener">
+                            <a class="group p-6 md:p-lg bg-secondary-container rounded-2xl soft-glow border border-secondary/10 hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center z-20 cursor-pointer" href="https://wa.me/919061174579" target="_blank" rel="noopener" data-whatsapp-message="Hi BloomyCocoon, I would like to contact you about a handmade crochet gift.">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-md shadow-sm">
                                     <span class="material-symbols-outlined text-secondary text-3xl" aria-hidden="true">chat</span>
                                 </div>
@@ -1357,8 +1313,8 @@
                 <section class="py-10 md:py-xl px-4 sm:px-6 md:px-lg overflow-hidden">
                     <div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-xl">
                         <div class="w-full md:w-1/2 grid grid-cols-2 gap-sm">
-                            <img class="rounded-xl aspect-square object-cover shadow-sm -rotate-3 hover:rotate-0 transition-transform duration-500" src="images/crochet_plant_holder.png" alt="Crochet plant holder" loading="lazy" width="400" height="400">
-                            <img class="rounded-xl aspect-square object-cover shadow-sm translate-y-8 rotate-3 hover:rotate-0 transition-transform duration-500" src="images/crochet_cushion_cover.png" alt="Handcrafted crochet cushion cover" loading="lazy" width="400" height="400">
+                            <img class="rounded-xl aspect-square object-cover shadow-sm -rotate-3 hover:rotate-0 transition-transform duration-500" src="/assets/crochet_plant_holder-gPx4r98w.png" alt="Crochet plant holder" loading="lazy" width="400" height="400">
+                            <img class="rounded-xl aspect-square object-cover shadow-sm translate-y-8 rotate-3 hover:rotate-0 transition-transform duration-500" src="/assets/crochet_cushion_cover-BtWQq08C.png" alt="Handcrafted crochet cushion cover" loading="lazy" width="400" height="400">
                         </div>
                         <div class="w-full md:w-1/2 text-center md:text-left mt-12 md:mt-0">
                             <h3 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-md leading-tight">Follow Our Journey</h3>
@@ -1430,7 +1386,7 @@
                         </div>
                         <div class="relative order-1 lg:order-2">
                             <div class="aspect-[16/9] md:aspect-[4/5] rounded-xl overflow-hidden soft-glow rotate-2">
-                                <img alt="Handmade detail" class="w-full h-full object-cover" src="images/doily_table_decor.png" loading="lazy" width="400" height="500">
+                                <img alt="Handmade detail" class="w-full h-full object-cover" src="/assets/doily_table_decor-C5n0g7d1.png" loading="lazy" width="400" height="500">
                             </div>
                             <div class="absolute -bottom-6 -left-6 bg-surface-container-high p-md rounded-xl soft-glow hidden md:block">
                                 <div class="flex items-center gap-sm">
@@ -1449,11 +1405,11 @@
                             <h3 class="font-headline-md text-2xl md:text-headline-md mb-base">Our Custom Process</h3>
                             <p class="font-body-md text-body-md text-on-surface-variant">Three simple steps from idea to handmade gift.</p>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-lg">
+                        <div class="compact-process-grid grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-lg">
                             <!-- Consultation -->
                             <div class="group flex flex-col items-center">
                                 <div class="w-48 h-48 mb-md overflow-hidden rounded-full border-4 border-white soft-glow group-hover:scale-105 transition-transform duration-500">
-                                    <img class="w-full h-full object-cover" src="images/crochet_coin_pouch.png" alt="Crochet coin pouch illustrating custom orders" loading="lazy" width="400" height="500">
+                                    <img class="w-full h-full object-cover" src="/assets/crochet_coin_pouch-Xv1apfNr.png" alt="Crochet coin pouch illustrating custom orders" loading="lazy" width="400" height="500">
                                 </div>
                                 <h3 class="font-headline-sm text-headline-sm text-center mb-sm text-secondary">1. Consultation</h3>
                                 <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">We discuss your ideas, color preferences, and the story behind your piece.</p>
@@ -1461,7 +1417,7 @@
                             <!-- Handcrafting -->
                             <div class="group flex flex-col items-center">
                                 <div class="w-48 h-48 mb-md overflow-hidden rounded-full border-4 border-white soft-glow group-hover:scale-105 transition-transform duration-500">
-                                    <img class="w-full h-full object-cover" src="images/crochet_phone_sleeve.png" alt="Crochet phone sleeve illustrating handcrafting process" loading="lazy" width="400" height="500">
+                                    <img class="w-full h-full object-cover" src="/assets/crochet_phone_sleeve-775UY7oS.png" alt="Crochet phone sleeve illustrating handcrafting process" loading="lazy" width="400" height="500">
                                 </div>
                                 <h3 class="font-headline-sm text-headline-sm text-center mb-sm text-secondary">2. Handcrafting</h3>
                                 <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">Your item is slowly brought to life using quality yarn.</p>
@@ -1469,7 +1425,7 @@
                             <!-- Gifting -->
                             <div class="group flex flex-col items-center">
                                 <div class="w-48 h-48 mb-md overflow-hidden rounded-full border-4 border-white soft-glow group-hover:scale-105 transition-transform duration-500">
-                                    <img class="w-full h-full object-cover" src="images/cozy_bear_plushie.png" alt="Gift-wrapped crochet plushie teddy bear" loading="lazy" width="400" height="500">
+                                    <img class="w-full h-full object-cover" src="/assets/cozy_bear_plushie-C6Wcjnzm.png" alt="Gift-wrapped crochet plushie teddy bear" loading="lazy" width="400" height="500">
                                 </div>
                                 <h3 class="font-headline-sm text-headline-sm text-center mb-sm text-secondary">3. Gifting</h3>
                                 <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">Your cocoon arrives in eco-friendly packaging, wrapped with love.</p>
@@ -1569,7 +1525,7 @@
                                 
                                 <div class="bg-white rounded-2xl p-sm soft-glow border border-outline-variant/10 my-md">
                                     <div class="aspect-square rounded-xl overflow-hidden mb-sm bg-primary-container relative">
-                                        <img id="preview-image" alt="Visual reference" class="w-full h-full object-cover transition-all duration-500" src="images/mixed_luxury_bouquet.png" loading="lazy" width="400" height="500">
+                                        <img id="preview-image" alt="Visual reference" class="w-full h-full object-cover transition-all duration-500" src="/assets/mixed_luxury_bouquet-4RArEmw5.png" loading="lazy" width="400" height="500">
                                         <span class="absolute top-2 left-2 bg-[#A8B5A2] text-white px-3 py-1 rounded-full text-caption font-bold tracking-wider uppercase">Custom Build</span>
                                     </div>
                                     <div class="space-y-1">
@@ -1603,7 +1559,7 @@
     </div>
 
     <!-- Global Floating WhatsApp Button -->
-    <a href="https://wa.me/qr/FPRYIK4LQREII1" target="_blank" rel="noopener" id="whatsapp-global-float" class="whatsapp-float h-12 w-12 md:w-auto md:px-5 gap-2" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/919061174579" target="_blank" rel="noopener" id="whatsapp-global-float" class="whatsapp-float h-12 w-12 md:w-auto md:px-5 gap-2" aria-label="Chat on WhatsApp">
         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.431 2.5 1.157 3.476L6.5 17.5l2.176-.906a5.751 5.751 0 003.355.845c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm3.39 8.163c-.156.438-.767.828-1.22 1.002-.303.116-.7.217-1.127.217-.61 0-1.393-.195-2.23-.746-1.173-.772-1.93-1.954-2.518-2.868-.27-.417-.468-.86-.468-1.332 0-.583.25-.873.493-1.109.117-.113.235-.226.353-.339.094-.09.18-.178.257-.257.086-.089.172-.113.256-.113.084 0 .167.012.235.036.082.029.17.067.247.199.1.171.343.834.373.896.03.062.051.134.01.218-.042.084-.092.14-.15.207-.058.067-.123.15-.176.206-.06.063-.122.132-.053.252.069.12.306.505.656.816.45.4.83.524 1.01.61.18.086.284.073.39-.049.106-.122.457-.532.58-.716.12-.184.24-.153.404-.092.164.062 1.04.49 1.217.579.177.089.295.134.339.21.044.076.044.44-.112.878zM12 2C6.477 2 2 6.477 2 12c0 2.01.593 3.88 1.61 5.44L2 22l4.7-.93C8.16 21.65 9.99 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.745 0-3.374-.483-4.767-1.32l-.341-.205-2.828.56.57-2.723-.228-.363A7.94 7.94 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
         </svg>
@@ -1616,6 +1572,5 @@
     </a>
 
     <!-- Script imports -->
-    <script type="module" src="app.js"></script>
 </body>
 </html>
