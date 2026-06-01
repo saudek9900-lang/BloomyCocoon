@@ -11,9 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenHistory = ['screen-home'];
     let inTransition = false;
     let isRoutingFromHash = false;
+    let shouldFocusCustomOrder = false;
+
+    const CANONICAL_URL = "https://bloomycocoon.com/";
+    const WHATSAPP_NUMBER = "919061174579";
 
     // Cart state
-    
     let cart = [];
 
     const collectionCategories = [
@@ -651,6 +654,63 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 ];
     const priceNote = "Final price may vary based on size, color, custom name, flowers, packaging, and delivery.";
+    const categoryDescriptions = {
+        "all": "Explore BloomyCocoon's handmade crochet collection — bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos crafted in Kerala and delivered across India. Add your favourites to cart and continue to WhatsApp to customize and finalize your order.",
+        "bouquets": "Long-lasting handmade crochet bouquets crafted for birthdays, anniversaries, Valentine's Day and meaningful surprises. Choose from roses, tulips, sunflowers and custom bouquet styles, then finalize colors, size and wrapping through WhatsApp.",
+        "plushies": "Soft handmade crochet plushies made for cute gifting, keepsakes and cozy custom surprises. These pieces work well for birthdays, baby gifting, couple gifts and thoughtful handmade moments.",
+        "keychains": "Affordable crochet keychains and charms for bags, keys, couple gifts and small handmade surprises. Choose from hearts, flowers, animals, initials and custom character-inspired designs.",
+        "baby-gifts": "Soft crochet baby gifts for newborns, baby showers and thoughtful handmade gifting. Options can include booties, caps, mittens, rattles, baby plushies and custom baby-themed gift sets.",
+        "accessories": "Cute handmade crochet accessories including scrunchies, hair bands, charms, brooches, earrings, bracelets and small wearable pieces. Perfect for soft everyday styling and affordable gifting.",
+        "home-decor": "Cozy crochet decor pieces made to bring warmth to rooms, desks, cars and gifting corners. Explore coasters, wall hangings, car charms, flower pots, garlands and custom name decor.",
+        "gift-combos": "Handmade crochet gift combos for birthdays, anniversaries, couples, baby gifting and special occasions. Combine bouquets, plushies, keychains, notes and packaging into a personalized gift set."
+    };
+
+    function getSafePrice(price) {
+        const value = Number(price);
+        return Number.isFinite(value) && value > 0 ? value : 0;
+    }
+
+    function getCartSubtotal() {
+        return cart.reduce((sum, item) => sum + (getSafePrice(item.price) * item.qty), 0);
+    }
+
+    function buildWhatsAppUrl(message) {
+        return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    }
+
+    function openWhatsAppMessage(message) {
+        window.open(buildWhatsAppUrl(message), "_blank", "noopener");
+    }
+
+    function trackEvent(eventName, params = {}) {
+        if (window.gtag && typeof window.gtag === "function") {
+            window.gtag("event", eventName, params);
+        }
+        if (window.dataLayer && Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({ event: eventName, ...params });
+        }
+    }
+
+    function buildCartWhatsAppMessage() {
+        const note = document.getElementById('cart-customer-note')?.value.trim();
+        let message = "Hello BloomyCocoon! 🌸 I would like to place an order for these handmade crochet items:\n\n";
+
+        cart.forEach((item, index) => {
+            message += `${index + 1}. ${item.name}\n`;
+            message += `Category: ${getCategoryLabel(item.category)}\n`;
+            message += `Qty: ${item.qty}\n`;
+            message += `Starting from: ₹${formatPrice(getSafePrice(item.price))}\n\n`;
+        });
+
+        message += `Starting total: ₹${formatPrice(getCartSubtotal())}\n\n`;
+
+        if (note) {
+            message += `Customization note:\n${note}\n\n`;
+        }
+
+        message += "I understand the final price may vary based on size, color, custom name, flowers, packaging, and delivery. Please help me finalize the order.";
+        return message;
+    }
 
 
     // Custom Order step state
@@ -672,7 +732,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function getScreenIdFromHash(hash) {
-        const cleanHash = hash.replace(/^#/, '');
+        const cleanHash = hash.replace(/^#/, '').split('?')[0];
         if (cleanHash === '' || cleanHash === '/' || cleanHash === '/home' || cleanHash === 'home') return 'screen-home';
         if (cleanHash === '/collection' || cleanHash === 'collection') return 'screen-collection';
         if (cleanHash === '/custom' || cleanHash === 'custom' || cleanHash === 'custom-orders') return 'screen-custom-orders';
@@ -683,21 +743,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const screenTitles = {
-        'screen-home': 'BloomyCocoon | Handcrafted Crochet Gifts',
-        'screen-collection': 'BloomyCocoon | The Collection - Handcrafted Crochet Gifts',
-        'screen-about': 'BloomyCocoon | About Us - Story & Hand-Stitched Art',
-        'screen-faq': 'BloomyCocoon | FAQ - Common Questions',
-        'screen-contact': 'BloomyCocoon | Contact Us - Get in Touch',
-        'screen-custom-orders': 'BloomyCocoon | Custom Bespoke Crochet Orders'
+        'screen-home': 'Handmade Crochet Gifts in Kerala & India | BloomyCocoon',
+        'screen-collection': 'Crochet Bouquets, Plushies, Keychains & Handmade Gifts | BloomyCocoon',
+        'screen-about': 'About BloomyCocoon | Handmade Crochet Brand from Malappuram, Kerala',
+        'screen-faq': 'BloomyCocoon FAQ | Crochet Orders, Delivery & Care',
+        'screen-contact': 'Contact BloomyCocoon | WhatsApp Crochet Gift Orders',
+        'screen-custom-orders': 'Custom Crochet Gifts in Kerala | BloomyCocoon'
     };
 
     const screenDescriptions = {
-        'screen-home': 'All pieces are slowly and lovingly hand-stitched by sisters from their home in Mampad, Malappuram, Kerala. Discover our signature crochet bouquets, plushies, and custom crochet gifts.',
-        'screen-collection': 'Explore the signature collection of BloomyCocoon, slowly handcrafted in Malappuram, Kerala. Browse our everlasting crochet bouquets, plushies, and accessories.',
-        'screen-about': 'Learn the story of BloomyCocoon, run by sisters from their home in Mampad, Kerala. Discover our dedication to thoughtful gifting and quality yarn.',
-        'screen-faq': 'Find answers to common questions about ordering, caring for crochet items, shipping, packaging, and custom designs at BloomyCocoon.',
-        'screen-contact': 'Get in touch with BloomyCocoon. Contact the sisters at their home-based crochet workspace in Mampad, Malappuram, Kerala, India for custom orders or questions.',
-        'screen-custom-orders': 'Order custom crochet gifts handcrafted by sisters at their home in Mampad, Kerala. Select your preferred item type, and let us stitch your vision.'
+        'screen-home': 'Affordable handmade crochet gifts from Mampad, Malappuram, Kerala. Explore crochet bouquets, plushies, keychains, baby gifts and custom orders with delivery across India.',
+        'screen-collection': 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon. Custom orders available across India.',
+        'screen-about': 'Meet BloomyCocoon, a handmade crochet gifting brand from Mampad, Malappuram, Kerala, creating soft and meaningful gifts delivered across India.',
+        'screen-faq': 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, production time, starting prices and crochet gift care.',
+        'screen-contact': 'Contact BloomyCocoon for handmade crochet gifts and custom orders. Based in Mampad, Malappuram, Kerala and delivering across India.',
+        'screen-custom-orders': 'Create custom crochet bouquets, plushies, keychains, baby gifts and handmade gift combos with BloomyCocoon. Share your idea and finalize your order on WhatsApp.'
     };
 
     // SPA ROUTER WITH DYNAMIC TRANSITIONS & SEO SYNCING
@@ -732,6 +792,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const twitterDesc = document.querySelector('meta[name="twitter:description"]');
         if (twitterDesc) twitterDesc.setAttribute('content', newDesc);
+
+        const canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', CANONICAL_URL);
+
+        const ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', CANONICAL_URL);
+
+        const twitterUrl = document.querySelector('meta[property="twitter:url"]');
+        if (twitterUrl) twitterUrl.setAttribute('content', CANONICAL_URL);
 
         inTransition = true;
         
@@ -810,13 +879,26 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Re-sync nav highlights
             syncNavigationUI();
+            if (targetScreenId === 'screen-collection') {
+                applyCollectionFilterFromUrl();
+            }
+
+            if (targetScreenId === 'screen-custom-orders') {
+                whatsappFloat?.classList.add('whatsapp-hidden');
+            }
 
             // Sync the URL hash programmatically if not driven by hashchange event
             if (!isRoutingFromHash) {
                 const targetHash = screenHashMapping[targetScreenId] || '#/';
-                if (window.location.hash !== targetHash) {
+                const keepCollectionFilterHash = targetScreenId === 'screen-collection' && window.location.hash.startsWith('#/collection?');
+                if (!keepCollectionFilterHash && window.location.hash !== targetHash) {
                     window.location.hash = targetHash;
                 }
+            }
+
+            if (targetScreenId === 'screen-custom-orders' && shouldFocusCustomOrder) {
+                shouldFocusCustomOrder = false;
+                setTimeout(() => scrollToCustomOrderForm(), 80);
             }
         }, animTime);
     };
@@ -845,6 +927,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('nav').forEach(nav => {
             nav.querySelectorAll('a').forEach(link => {
                 const text = link.innerText.toLowerCase();
+
+                if (link.matches('[data-nav-logo], .nav-logo') || text.trim() === 'bloomycocoon') {
+                    return;
+                }
                 
                 // Clear original classes
                 link.className = "text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md";
@@ -919,15 +1005,75 @@ document.addEventListener('DOMContentLoaded', () => {
         queryElements(selector).forEach(el => {
             el.addEventListener('click', (e) => {
                 e.preventDefault();
+                if (targetScreen === 'screen-home' && currentScreen === 'screen-home') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
                 navigateTo(targetScreen, transition);
+                if (targetScreen === 'screen-home') {
+                    setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'instant' });
+                    }, 460);
+                }
             });
         });
     }
 
+    function scrollToCustomOrderForm(behavior = 'smooth') {
+        const customBuilder = document.getElementById('custom-builder-section');
+        if (customBuilder) {
+            const headerOffset = 96;
+            const targetTop = customBuilder.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top: Math.max(0, targetTop), behavior });
+        }
+    }
+
+    function openCustomOrderFlow() {
+        if (currentScreen === 'screen-custom-orders') {
+            window.resetCustomOrder?.();
+            setTimeout(() => scrollToCustomOrderForm(), 80);
+            setTimeout(() => scrollToCustomOrderForm('instant'), 650);
+            return;
+        }
+
+        shouldFocusCustomOrder = true;
+        navigateTo('screen-custom-orders', 'slide_up');
+        setTimeout(() => {
+            window.resetCustomOrder?.();
+        }, 720);
+        setTimeout(() => scrollToCustomOrderForm('instant'), 1100);
+        setTimeout(() => scrollToCustomOrderForm('instant'), 1700);
+    }
+
     // Bindings matching the Navigation Specification EXACTLY
     function initNavigationBindings() {
+        document.addEventListener('click', (e) => {
+            const logo = e.target.closest('[data-nav-logo]');
+            if (!logo) return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            if (currentScreen === 'screen-home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                navigateTo('screen-home', 'push_back');
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                }, 460);
+            }
+        }, true);
+
+        document.addEventListener('click', (e) => {
+            const customTrigger = e.target.closest('[data-navigate-custom-order]');
+            if (!customTrigger) return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            openCustomOrderFlow();
+        }, true);
+
         // Logo links go Home with push_back
-        bindNav('.nav-logo, header div.font-display-lg-mobile a, nav div.font-display-lg-mobile a, nav a:contains("BloomyCocoon")', 'screen-home', 'push_back');
+        bindNav('[data-nav-logo], .nav-logo, header div.font-display-lg-mobile a, nav div.font-display-lg-mobile a, nav a:contains("BloomyCocoon")', 'screen-home', 'push_back');
         
         // Ensure manual binders for logos because exact selectors are nested
         document.querySelectorAll('a, div').forEach(el => {
@@ -938,6 +1084,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                     if (currentScreen !== 'screen-home') {
                         navigateTo('screen-home', 'push_back');
+                        setTimeout(() => {
+                            window.scrollTo({ top: 0, behavior: 'instant' });
+                        }, 460);
+                    } else {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                 });
             }
@@ -951,6 +1102,12 @@ document.addEventListener('DOMContentLoaded', () => {
         bindNav('nav a[href*="custom"], nav a[href="#custom"], a:contains("Custom Orders")', 'screen-custom-orders', 'push');
         bindNav('button:contains("Custom Orders"), button:contains("Start Your Custom Request"), button:contains("Start a Custom Order"), button:contains("Start Your Order")', 'screen-custom-orders', 'push');
         bindNav('button:contains("Order Custom"), button:contains("Start Custom Order")', 'screen-custom-orders', 'slide_up'); // Slide-up triggers
+        queryElements('button:contains("Start a Custom Request")').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.preventDefault();
+                openCustomOrderFlow();
+            });
+        });
         
         // About Us navigation
         bindNav('nav a[href*="about"], nav a[href="#about"], a:contains("About Us")', 'screen-about', 'push');
@@ -969,6 +1126,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sideCart = document.getElementById('sideCart');
         if (sideCart) {
             sideCart.classList.toggle('cart-visible');
+            document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
+                btn.setAttribute('aria-expanded', sideCart.classList.contains('cart-visible') ? 'true' : 'false');
+            });
             
             // Toggle WhatsApp button visibility based on cart state
             const whatsappFloat = document.getElementById('whatsapp-global-float');
@@ -986,6 +1146,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const sideCart = document.getElementById('sideCart');
         if (sideCart) {
             sideCart.classList.remove('cart-visible');
+            document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
+                btn.setAttribute('aria-expanded', 'false');
+            });
             
             // Show WhatsApp button when closing cart (unless on custom orders)
             const whatsappFloat = document.getElementById('whatsapp-global-float');
@@ -999,6 +1162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenu) {
             mobileMenu.classList.toggle('hidden');
+            document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
+                btn.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true');
+            });
         }
     };
 
@@ -1007,21 +1173,37 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.closest('#mobile-menu a') || e.target.closest('nav a')) {
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenu) mobileMenu.classList.add('hidden');
+            document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
+                btn.setAttribute('aria-expanded', 'false');
+            });
         }
     });
 
-    window.addToCart = function(id, name, price, img) {
-        const parsedPrice = parseFloat(price);
+    window.addToCart = function(id, name, category, price, img) {
+        if (arguments.length === 4) {
+            img = price;
+            price = category;
+            category = 'handmade';
+        }
+
+        const parsedPrice = getSafePrice(price);
         const existing = cart.find(item => item.id === id);
         
         if (existing) {
             existing.qty += 1;
         } else {
-            cart.push({ id, name, price: parsedPrice, img, qty: 1 });
+            cart.push({ id, name, category, price: parsedPrice, img, qty: 1 });
         }
         
         renderCart();
         showToast(`Added "${name}" to your cart!`);
+        trackEvent('add_to_cart', {
+            item_id: id,
+            item_name: name,
+            item_category: category,
+            value: parsedPrice,
+            currency: 'INR'
+        });
         
         // Automatically slide open the drawer
         const sideCart = document.getElementById('sideCart');
@@ -1061,12 +1243,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const checkoutBtn = document.querySelectorAll('.checkout-btn');
 
         let totalQty = 0;
-        let subtotal = 0;
 
         cart.forEach(item => {
             totalQty += item.qty;
-            subtotal += item.price * item.qty;
         });
+
+        const subtotal = getCartSubtotal();
 
         // Update badge counters
         cartBadge.forEach(badge => {
@@ -1080,7 +1262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Render subtotal texts
         cartTotalText.forEach(el => {
-            el.innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+            el.innerText = totalQty > 0 ? `₹${formatPrice(subtotal)}` : 'Add items';
         });
 
         // Enable/Disable checkout button
@@ -1108,19 +1290,21 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 let html = '<div class="space-y-md pr-2 max-h-[60vh] overflow-y-auto">';
                 cart.forEach(item => {
+                    const categoryLabel = getCategoryLabel(item.category);
                     html += `
                         <div class="flex items-center gap-4 bg-surface-container-lowest p-sm rounded-xl border border-outline-variant/15 soft-glow">
-                            <img src="${item.img}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg">
+                            <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-14 h-14 object-cover rounded-lg">
                             <div class="flex-1">
-                                <h4 class="font-label-md text-sm text-secondary truncate">${item.name}</h4>
-                                <p class="text-caption text-on-surface-variant font-bold">Starting from ₹${item.price.toLocaleString('en-IN')}</p>
+                                <h4 class="font-label-md text-sm text-secondary truncate">${escapeHTML(item.name)}</h4>
+                                <p class="text-caption text-on-surface-variant">${escapeHTML(categoryLabel)}</p>
+                                <p class="text-caption text-on-surface-variant font-bold">Starting from ${formatStartingPrice(item.price)}</p>
                                 <div class="flex items-center gap-2 mt-xs">
-                                    <button onclick="updateQty('${item.id}', -1)" class="w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">-</button>
+                                    <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">-</button>
                                     <span class="font-body-md text-xs font-bold px-1">${item.qty}</span>
-                                    <button onclick="updateQty('${item.id}', 1)" class="w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">+</button>
+                                    <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">+</button>
                                 </div>
                             </div>
-                            <button onclick="removeFromCart('${item.id}')" class="text-outline-variant hover:text-error transition-colors p-1">
+                            <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="text-outline-variant hover:text-error transition-colors p-1">
                                 <span class="material-symbols-outlined text-[18px]">delete</span>
                             </button>
                         </div>
@@ -1128,31 +1312,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 html += '</div>';
                 container.innerHTML = html;
-            }
-        });
-    }
-
-    // Add buttons dynamically across standard page additions
-    function setupProductCardAddToCartTriggers() {
-        // Setup signature buttons
-        document.querySelectorAll('.group.cursor-pointer, .product-card').forEach((card, index) => {
-            const addBtn = card.querySelector('button');
-            if (addBtn) {
-                const titleEl = card.querySelector('h3');
-                const priceEl = card.querySelector('span.text-secondary.font-bold, span.font-body-md.text-on-surface-variant');
-                const imgEl = card.querySelector('img');
-
-                if (titleEl && priceEl && imgEl) {
-                    const id = `item-${index}`;
-                    const name = titleEl.innerText;
-                    const price = priceEl.innerText.replace(/[₹$,]/g, '').trim().split(/[—–-]/)[0].trim();
-                    const img = imgEl.src;
-
-                    addBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        addToCart(id, name, price, img);
-                    });
-                }
             }
         });
     }
@@ -1260,6 +1419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         orderData.name = nameVal;
+        orderData.notes = document.getElementById('custom-notes').value.trim();
 
         // Perform final animation submit
         const stepCard = document.getElementById(`step-card-${orderStep}`);
@@ -1274,28 +1434,21 @@ document.addEventListener('DOMContentLoaded', () => {
             
             showToast("✨ Custom order request submitted!");
             
-            // Construct a beautiful WhatsApp message
-            let message = "Hello BloomyCocoon! 🌸 I would like to place a custom crochet order with the following specifications:\n\n";
-            message += `🧶 *Base Type:* ${orderData.type}\n`;
-            message += `📝 *Personalization/Notes:* ${orderData.notes || "None specified."}\n\n`;
-            message += `👤 *Customer Name:* ${orderData.name}\n\n`;
-            message += "Can we please discuss the creation timeline and secure payment details? Thank you! ✨";
+            let message = "Hello BloomyCocoon! 🌸 I would like to place a custom crochet order.\n\n";
+            message += `Customer name: ${orderData.name}\n`;
+            message += `Base type: ${orderData.type}\n`;
+            message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
+            message += "Source: Custom Order Page\n\n";
+            message += "Please help me finalize the design, starting price, timeline and delivery.";
 
-            // Try to copy to clipboard for redundancy
-            navigator.clipboard.writeText(message).then(() => {
-                showToast("📋 Custom details copied! Redirecting to WhatsApp...");
-            }).catch(err => {
-                console.error("Could not copy details", err);
+            trackEvent('custom_order_submit', {
+                order_type: orderData.type
             });
 
-            // Redirect to WhatsApp after a tiny delay so they see the success state
+            showToast("Opening WhatsApp with your custom request...");
             setTimeout(() => {
-                window.open("https://wa.me/qr/FPRYIK4LQREII1", "_blank");
-            }, 1800);
-            
-            // Clean state
-            cart = [];
-            renderCart();
+                openWhatsAppMessage(message);
+            }, 600);
         }
     };
 
@@ -1354,8 +1507,17 @@ document.addEventListener('DOMContentLoaded', () => {
         filterCollectionCategory('all', buttonEl);
     };
 
+    function updateCategoryDescription(category) {
+        const copyEl = document.getElementById('collection-category-copy');
+        if (!copyEl) return;
+        const activeCategory = legacyFilterMap[category] || category || 'all';
+        copyEl.textContent = categoryDescriptions[activeCategory] || categoryDescriptions.all;
+    }
+
     window.filterCollectionCategory = function(category, buttonEl) {
         const activeCategory = legacyFilterMap[category] || category;
+        updateCategoryDescription(activeCategory);
+        trackEvent('category_filter_click', { category: activeCategory });
         const root = getCollectionFilterRoot(buttonEl);
         if (buttonEl && root) {
             root.querySelectorAll('button[data-category-filter]').forEach(btn => {
@@ -1427,6 +1589,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        let message = "Hello BloomyCocoon! 🌸 I would like to contact you about a crochet gift enquiry.\n\n";
+        message += `Customer name: ${name}\n`;
+        message += `Email: ${email}\n`;
+        message += `Message: ${msg}\n`;
+        message += "Source: Contact Page";
+
+        trackEvent('contact_whatsapp_click');
+        openWhatsAppMessage(message);
+
         // Success animation
         form.innerHTML = `
             <div class="text-center py-xl space-y-md bg-primary-container rounded-3xl p-md soft-glow border border-outline-variant/10 animate-push-enter">
@@ -1438,8 +1609,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button onclick="location.reload()" class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md text-sm mt-md">Write Another Message</button>
             </div>
         `;
-        showToast("✉️ Message successfully dispatched!");
+        showToast("Opening WhatsApp with your message.");
     };
+
+    function hydrateExternalConversionLinks() {
+        document.querySelectorAll('a[data-whatsapp-message]').forEach(link => {
+            const message = link.getAttribute('data-whatsapp-message');
+            if (message) {
+                link.href = buildWhatsAppUrl(message);
+            }
+            if (link.dataset.analyticsBound === 'true') return;
+            link.dataset.analyticsBound = 'true';
+            link.addEventListener('click', () => {
+                trackEvent('contact_whatsapp_click');
+            });
+        });
+
+        document.querySelectorAll('a[href*="instagram.com"]').forEach(link => {
+            if (link.dataset.analyticsBound === 'true') return;
+            link.dataset.analyticsBound = 'true';
+            link.addEventListener('click', () => {
+                trackEvent('instagram_click');
+            });
+        });
+    }
 
     // FAQ dynamic listener
     document.querySelectorAll('.faq-details').forEach(el => {
@@ -1497,8 +1690,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return cat ? cat.label : "Handmade";
     }
 
+    function getProductAltText(product) {
+        const categoryAlt = {
+            "bouquets": "Handmade crochet bouquet for gifting in Kerala",
+            "plushies": "Crochet plushie handmade gift by BloomyCocoon",
+            "keychains": "Handmade crochet keychain for small gifts in India",
+            "baby-gifts": "Baby crochet gift handmade in Kerala",
+            "accessories": "Handmade crochet accessory by BloomyCocoon",
+            "home-decor": "Crochet home decor piece by BloomyCocoon",
+            "gift-combos": "Handmade crochet gift combo for birthdays and anniversaries"
+        };
+        return `${product.name} - ${categoryAlt[product.category] || 'Handmade crochet gift by BloomyCocoon'}`;
+    }
+
     function formatPrice(price) {
-        return Number(price).toLocaleString('en-IN');
+        return getSafePrice(price).toLocaleString('en-IN');
+    }
+
+    function formatStartingPrice(price) {
+        const safePrice = getSafePrice(price);
+        return safePrice > 0 ? `₹${formatPrice(safePrice)}` : 'Confirm on WhatsApp';
     }
 
     function getProductCardMarkup(product) {
@@ -1507,13 +1718,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const badgeMarkup = product.badge ? `<span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">${escapeHTML(product.badge)}</span>` : '';
         const filterCategories = getProductCategoryIds(product).join(' ');
         const categoryLabel = getCategoryLabel(product.category);
+        const productAlt = getProductAltText(product);
 
         if (product.featured) {
             const tagMarkup = product.tag ? `<span class="bg-[#A8B5A2] text-white px-4 py-1 rounded-full font-label-md text-sm">${escapeHTML(product.tag)}</span>` : '';
             return `
                 <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
                     <div class="relative h-[260px] md:h-[420px] overflow-hidden">
-                        <img alt="${escapeHTML(product.name)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" width="800" height="500">
+                        <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" width="800" height="500">
                         <div class="absolute top-md right-md flex flex-col gap-2 items-end">
                             ${product.badge ? `<span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">${escapeHTML(product.badge)}</span>` : ''}
                             ${tagMarkup}
@@ -1527,8 +1739,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p class="font-body-md text-on-surface-variant">${escapeHTML(product.description)}</p>
                             </div>
                             <div class="text-right">
-                                <span class="font-headline-sm text-secondary block font-bold">Starting from ₹${formatPrice(product.startingPrice)}</span>
-                                <button data-add-to-cart="${product.id}" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm">
+                                <span class="font-headline-sm text-secondary block font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
+                                <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm">
                                     Add to Cart <span class="material-symbols-outlined" data-icon="add">add</span>
                                 </button>
                             </div>
@@ -1541,7 +1753,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `
             <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                 <div class="relative h-[180px] md:h-[260px] overflow-hidden rounded-t-xl bg-surface-container">
-                    <img alt="${escapeHTML(product.name)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" width="400" height="500">
+                    <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" width="400" height="500">
                     <div class="absolute top-base left-base">
                         ${badgeMarkup}
                     </div>
@@ -1551,7 +1763,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">${escapeHTML(product.name)}</h3>
                     <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
                     <div class="flex justify-between items-center gap-sm">
-                        <span class="font-body-md text-on-surface-variant font-bold">Starting from ₹${formatPrice(product.startingPrice)}</span>
+                        <span class="font-body-md text-on-surface-variant font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
                         <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="w-10 h-10 shrink-0 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
                             <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
                         </button>
@@ -1568,6 +1780,7 @@ document.addEventListener('DOMContentLoaded', () => {
         productGrid.innerHTML = collectionProducts.map(getProductCardMarkup).join('');
         applyImageFallbacks(productGrid);
         setupProductCardAddToCartTriggers();
+        updateCategoryDescription('all');
         applyCollectionFilterFromUrl();
     }
 
@@ -1596,8 +1809,77 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function syncDynamicStructuredData() {
+        const existing = document.getElementById('catalog-faq-schema');
+        if (existing) existing.remove();
+
+        const productList = collectionProducts.map((product, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+                "@type": "Product",
+                "@id": `${CANONICAL_URL}#/collection/${product.id}`,
+                "name": product.name,
+                "description": product.description,
+                "category": getCategoryLabel(product.category),
+                "image": `${CANONICAL_URL}${getProductImage(product)}`,
+                "brand": {
+                    "@id": `${CANONICAL_URL}#organization`
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": `${CANONICAL_URL}#/collection`,
+                    "priceCurrency": "INR",
+                    "price": getSafePrice(product.startingPrice),
+                    "availability": "https://schema.org/InStock"
+                }
+            }
+        }));
+
+        const faqItems = Array.from(document.querySelectorAll('#screen-faq .faq-details')).map(details => {
+            const question = details.querySelector('summary span')?.textContent.trim();
+            const answer = details.querySelector('p')?.textContent.trim();
+            if (!question || !answer) return null;
+            return {
+                "@type": "Question",
+                "name": question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": answer
+                }
+            };
+        }).filter(Boolean);
+
+        const graph = [
+            {
+                "@type": "ItemList",
+                "@id": `${CANONICAL_URL}#/collection#products`,
+                "name": "BloomyCocoon handmade crochet collection",
+                "itemListElement": productList
+            }
+        ];
+
+        if (faqItems.length > 0) {
+            graph.push({
+                "@type": "FAQPage",
+                "@id": `${CANONICAL_URL}#/faq#faq`,
+                "mainEntity": faqItems
+            });
+        }
+
+        const script = document.createElement('script');
+        script.id = 'catalog-faq-schema';
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": graph
+        });
+        document.head.appendChild(script);
+    }
+
     // ----------------------------------------------------
     initNavigationBindings();
+    hydrateExternalConversionLinks();
     setupProductCardAddToCartTriggers();
     applyCollectionFilterFromUrl();
     
@@ -1612,28 +1894,19 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             if (cart.length === 0) {
-                showToast("Your basket is empty.");
+                showToast("Please add at least one item before continuing to WhatsApp.");
                 return;
             }
 
-            // Construct a beautiful message
-            let message = "Hello BloomyCocoon! 🌸 I would like to place an order for the following handmade crochet items:\n\n";
-            cart.forEach((item, index) => {
-                message += `${index + 1}. ${item.name} - Qty: ${item.qty} - Starting from ₹${item.price.toLocaleString('en-IN')}\n`;
+            trackEvent('whatsapp_checkout_click', {
+                value: getCartSubtotal(),
+                currency: 'INR',
+                item_count: cart.reduce((sum, item) => sum + item.qty, 0)
             });
-            message += `\n💰 *Total Value:* ₹${total.toLocaleString('en-IN')}\n\nCan we please discuss the color preferences and customization details? Thank you! ✨`;
-
-            // Try to copy to clipboard
-            navigator.clipboard.writeText(message).then(() => {
-                showToast("📋 Order copied! Paste it in the WhatsApp chat.");
-            }).catch(err => {
-                console.error("Could not copy order details", err);
-            });
-
-            // Open WhatsApp
-            window.open("https://wa.me/qr/FPRYIK4LQREII1", "_blank");
+            openWhatsAppMessage(buildCartWhatsAppMessage());
         });
     });
 
     renderCollectionProducts();
+    syncDynamicStructuredData();
 });
