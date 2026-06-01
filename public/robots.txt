@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bloomycocoon.com/sitemap.xml
+Sitemap: https://www.bloomycocoon.com/sitemap.xml

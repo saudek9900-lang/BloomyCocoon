@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isRoutingFromHash = false;
     let shouldFocusCustomOrder = false;
 
-    const CANONICAL_URL = "https://bloomycocoon.com/";
+    const CANONICAL_URL = "https://www.bloomycocoon.com/";
     const WHATSAPP_NUMBER = "919061174579";
 
     // Cart state
