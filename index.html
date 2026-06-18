@@ -105,17 +105,17 @@
     <!-- GLOBAL MAIN NAVIGATION HEADER (SHARED ACCROSS ALL MAIN PAGES) -->
     <nav class="bg-surface/85 backdrop-blur-md text-primary fixed w-full top-0 left-0 z-50 border-b border-outline-variant/20 shadow-sm transition-all duration-300">
         <div class="flex justify-between items-center px-4 sm:px-6 md:px-lg w-full max-w-container-max mx-auto py-md">
-            <a data-nav-logo class="nav-logo cursor-pointer flex items-center gap-0 hover:opacity-85 transition-opacity" href="#/">
+            <a data-nav-logo class="nav-logo cursor-pointer flex items-center gap-0 hover:opacity-85 transition-opacity" href="/">
                 <span class="font-headline-sm text-headline-sm md:text-[28px] tracking-tight text-secondary font-serif">
                     <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
                 </span>
             </a>
             <div class="hidden md:flex items-center font-body-md text-body-md gap-md">
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#/collection">Handmade Collection</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#/custom">Custom Orders</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#/about">About Us</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#/faq">FAQ</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#/contact">Contact Us</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/collections">Handmade Collection</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/custom-order">Custom Orders</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/about">About Us</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/faq">FAQ</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contact">Contact Us</a>
             </div>
             <div class="flex items-center gap-md">
                 <button onclick="toggleCart()" class="p-2 text-on-surface-variant hover:bg-primary-container/50 rounded-full transition-all duration-300 relative" aria-label="Open cart" aria-controls="sideCart" aria-expanded="false">
@@ -129,11 +129,11 @@
         </div>
         <!-- Mobile Dropdown Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 py-sm border-t border-outline-variant/20 bg-surface flex flex-col gap-sm">
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="#/collection">Handmade Collection</a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="#/custom">Custom Orders</a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="#/about">About Us</a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="#/faq">FAQ</a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="#/contact">Contact Us</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/collections">Handmade Collection</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/custom-order">Custom Orders</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/about">About Us</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/faq">FAQ</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/contact">Contact Us</a>
         </div>
     </nav>
 
@@ -224,20 +224,20 @@
                                 <h2 class="font-headline-md text-2xl md:text-headline-md text-on-surface">Explore Our World</h2>
                                 <p class="text-body-md font-body-md text-on-surface-variant">Find the perfect handmade gift category</p>
                             </div>
-                            <a class="text-secondary font-label-md flex items-center gap-base group" href="#/collection">
+                            <a class="text-secondary font-label-md flex items-center gap-base group" href="/collections">
                                 View All <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </a>
                         </div>
                         <div class="explore-category-grid grid grid-cols-2 lg:grid-cols-4 gap-sm md:gap-md">
-                            <a href="#/collection?category=bouquets" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56">
+                            <a href="/collections?category=bouquets" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56">
                                 <img alt="Handmade crochet bouquet for gifting in Kerala" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/mixed_luxury_bouquet-4RArEmw5.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Bouquets</span></div>
                             </a>
-                            <a href="#/collection?category=plushies" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Crochet plushies handmade gift by BloomyCocoon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_cat_plushie-D8o8Ou8x.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Plushies</span></div></a>
-                            <a href="#/collection?category=keychains" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Handmade crochet keychain for small gifts in India" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/strawberry_keychain-B9ySgrER.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Keychains</span></div></a>
-                            <a href="#/collection?category=baby-gifts" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Baby crochet gift handmade in Kerala" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_bunny_plush-D5VpjWGt.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Baby Gifts</span></div></a>
-                            <a href="#/collection?category=accessories" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Handmade crochet accessory by BloomyCocoon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_tote_bag-BWS2Scgr.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Accessories</span></div></a>
-                            <a href="#/collection?category=home-decor" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Crochet home decor piece by BloomyCocoon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_wall_hanging-Caqc-O6s.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Home &amp; Decor</span></div></a>
-                            <a href="#/collection?category=gift-combos" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Handmade crochet gift combo for birthdays and anniversaries" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/hero_crochet_scene-DkLWzVp4.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Gift Combos</span></div></a>
+                            <a href="/collections?category=plushies" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Crochet plushies handmade gift by BloomyCocoon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_cat_plushie-D8o8Ou8x.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Plushies</span></div></a>
+                            <a href="/collections?category=keychains" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Handmade crochet keychain for small gifts in India" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/strawberry_keychain-B9ySgrER.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Keychains</span></div></a>
+                            <a href="/collections?category=baby-gifts" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Baby crochet gift handmade in Kerala" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_bunny_plush-D5VpjWGt.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Baby Gifts</span></div></a>
+                            <a href="/collections?category=accessories" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Handmade crochet accessory by BloomyCocoon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_tote_bag-BWS2Scgr.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Accessories</span></div></a>
+                            <a href="/collections?category=home-decor" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Crochet home decor piece by BloomyCocoon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/crochet_wall_hanging-Caqc-O6s.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Home &amp; Decor</span></div></a>
+                            <a href="/collections?category=gift-combos" class="explore-category-card relative group overflow-hidden rounded-2xl md:rounded-3xl bg-surface h-36 sm:h-44 md:h-56"><img alt="Handmade crochet gift combo for birthdays and anniversaries" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="/assets/hero_crochet_scene-DkLWzVp4.png" loading="lazy" width="420" height="320"><div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent flex items-end p-sm md:p-lg"><span class="bg-white/90 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full font-label-md text-label-md text-on-surface">Gift Combos</span></div></a>
                         </div>
                         <p class="font-body-md text-on-surface-variant mt-lg max-w-3xl">
                             BloomyCocoon creates affordable handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from Mampad, Malappuram, Kerala, with delivery across Kerala and India.
@@ -335,7 +335,7 @@
                         <div class="md:col-span-5">
                             <h2 class="font-headline-md text-2xl md:text-headline-md text-primary mb-base">Our Story</h2>
                             <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant leading-relaxed">BloomyCocoon is a homegrown crochet studio shaped by patient hands, soft yarn, and the belief that handmade gifts carry a warmth that lasts beyond the occasion.</p>
-                            <a href="#/about" class="inline-flex items-center gap-base mt-md text-secondary font-label-md border-b border-secondary/30 pb-xs hover:border-secondary transition-all">Read our story <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                            <a href="/about" class="inline-flex items-center gap-base mt-md text-secondary font-label-md border-b border-secondary/30 pb-xs hover:border-secondary transition-all">Read our story <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
                         </div>
                         <div class="md:col-span-7 grid grid-cols-2 gap-sm">
                             <img class="rounded-2xl aspect-[4/5] object-cover shadow-sm" src="/assets/yarn_storage-DXIsgwW5.png" alt="Warm yarn storage for BloomyCocoon crochet pieces" loading="lazy" width="400" height="500">
@@ -364,19 +364,19 @@
             <!-- Footer -->
             <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
-                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="#/">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
                         <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
                             <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
                         </span>
                     </a>
                     <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
                     <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/">Home</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/collection">Handmade Collection</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/custom">Custom Orders</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/about">About Us</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/faq">FAQ</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/contact">Contact Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>
@@ -399,7 +399,7 @@
                 </div>
                 <!-- Title -->
                 <section class="mb-10 md:mb-xl text-center md:text-left">
-                    <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-md">The Collection</h2>
+                    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-md">The Collection</h1>
                     <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
                         Explore BloomyCocoon’s handmade crochet collection — bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos crafted in Kerala and delivered across India. Add your favourites to cart and continue to WhatsApp to customize and finalize your order.
                     </p>
@@ -448,19 +448,19 @@
             <!-- Footer -->
             <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
-                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="#/">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
                         <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
                             <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
                         </span>
                     </a>
                     <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
                     <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/">Home</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/collection">Handmade Collection</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/custom">Custom Orders</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/about">About Us</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/faq">FAQ</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/contact">Contact Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>
@@ -484,7 +484,7 @@
                     <img alt="BloomyCocoon handmade crochet process in Malappuram Kerala" class="absolute inset-0 w-full h-full object-cover" src="/assets/about_process-CA2IMdmF.png" loading="lazy" width="500" height="500">
                     <div class="absolute inset-0 bg-secondary/10"></div>
                     <div class="relative z-10 text-center px-md max-w-3xl">
-                        <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-base drop-shadow-sm">Where Every Stitch Tells a Story</h2>
+                        <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-base drop-shadow-sm">Where Every Stitch Tells a Story</h1>
                         <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant bg-white/20 backdrop-blur-sm px-md py-base inline-block rounded-lg">A cozy space for handmade gifting.</p>
                     </div>
                 </section>
@@ -591,19 +591,19 @@
             <!-- Footer -->
             <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
-                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="#/">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
                         <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
                             <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
                         </span>
                     </a>
                     <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
                     <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/">Home</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/collection">Handmade Collection</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/custom">Custom Orders</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/about">About Us</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/faq">FAQ</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/contact">Contact Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>
@@ -626,7 +626,7 @@
                 <header class="relative overflow-hidden bg-primary-container py-10 md:py-xl">
                     <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-lg items-center">
                         <div class="z-10 text-center md:text-left">
-                            <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-secondary mb-md">Common Questions</h2>
+                            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-secondary mb-md">Common Questions</h1>
                             <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant max-w-lg mx-auto md:mx-0">
                                 Everything you need to know about our slow-crafted crochet treasures. Find answers about custom orders, delivery, and caring for your handmade cocoons.
                             </p>
@@ -772,19 +772,19 @@
             <!-- Footer -->
             <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
-                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="#/">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
                         <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
                             <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
                         </span>
                     </a>
                     <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
                     <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/">Home</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/collection">Handmade Collection</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/custom">Custom Orders</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/about">About Us</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/faq">FAQ</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/contact">Contact Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>
@@ -809,7 +809,7 @@
                     <div class="max-w-container-max mx-auto grid md:grid-cols-2 gap-6 md:gap-lg items-center">
                         <div class="z-10">
                             <span class="inline-block font-label-md text-label-md text-secondary tracking-widest uppercase mb-sm">Get in Touch</span>
-                            <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-md leading-tight">Let's Start a <br><span class="italic font-normal">Conversation</span></h2>
+                            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-md leading-tight">Let's Start a <br><span class="italic font-normal">Conversation</span></h1>
                             <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant max-w-md leading-relaxed">Have a crochet gift idea in mind? Message BloomyCocoon on WhatsApp to discuss custom bouquets, plushies, keychains, baby gifts, accessories, home decor or gift combos. We are based in Mampad, Malappuram, Kerala and deliver across India.</p>
                         </div>
                         <div class="relative flex justify-center">
@@ -924,19 +924,19 @@
             <!-- Footer -->
             <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
-                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="#/">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
                         <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
                             <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
                         </span>
                     </a>
                     <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
                     <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/">Home</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/collection">Handmade Collection</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/custom">Custom Orders</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/about">About Us</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/faq">FAQ</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/contact">Contact Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>
@@ -960,7 +960,7 @@
                     <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg grid grid-cols-1 lg:grid-cols-2 gap-lg items-center">
                         <div class="z-10 order-2 lg:order-1">
                             <span class="inline-block px-sm py-xs bg-tertiary-container text-on-tertiary-container rounded-full font-label-md text-label-md mb-md">Custom Crochet</span>
-                            <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-md leading-tight">Your Vision, <br><span class="italic text-secondary">Our Stitches</span></h2>
+                            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-md leading-tight">Your Vision, <br><span class="italic text-secondary">Our Stitches</span></h1>
                             <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant mb-lg max-w-lg">Create a custom crochet gift with BloomyCocoon. Share your idea, choose the product type, add colors or personal details, and continue to WhatsApp. We’ll help finalize the design, starting price, timeline and delivery before handcrafting begins.</p>
                         </div>
                         <div class="relative order-1 lg:order-2">
@@ -1126,19 +1126,19 @@
             <!-- Footer -->
             <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
-                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="#/">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
                         <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
                             <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
                         </span>
                     </a>
                     <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
                     <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/">Home</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/collection">Handmade Collection</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/custom">Custom Orders</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/about">About Us</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/faq">FAQ</a>
-                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#/contact">Contact Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>

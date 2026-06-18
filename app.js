@@ -5,15 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. STATE MANAGEMENT
     // ----------------------------------------------------
     // ----------------------------------------------------
-    // 1. STATE MANAGEMENT & SPA HASH ROUTING
+    // 1. STATE MANAGEMENT & SPA ROUTING
     // ----------------------------------------------------
     let currentScreen = 'screen-home';
     const screenHistory = ['screen-home'];
     let inTransition = false;
-    let isRoutingFromHash = false;
+    let isRoutingFromHistory = false;
     let shouldFocusCustomOrder = false;
 
-    const CANONICAL_URL = "https://www.bloomycocoon.com/";
+    const SITE_ORIGIN = "https://www.bloomycocoon.com";
+    const CANONICAL_URL = `${SITE_ORIGIN}/`;
     const WHATSAPP_NUMBER = "919061174579";
 
     // Cart state
@@ -721,48 +722,158 @@ document.addEventListener('DOMContentLoaded', () => {
         name: ''
     };
 
-    // Hash-to-Screen Mapping for standard routing
-    const screenHashMapping = {
-        'screen-home': '#/',
-        'screen-collection': '#/collection',
-        'screen-custom-orders': '#/custom',
-        'screen-about': '#/about',
-        'screen-faq': '#/faq',
-        'screen-contact': '#/contact'
+    const screenMetadata = {
+        'screen-home': {
+            path: '/',
+            title: 'Handmade Crochet Gifts in Kerala & India | BloomyCocoon',
+            description: 'Affordable handmade crochet gifts from Mampad, Malappuram, Kerala. Explore crochet bouquets, plushies, keychains, baby gifts and custom orders with delivery across India.'
+        },
+        'screen-collection': {
+            path: '/collections',
+            title: 'Crochet Bouquets, Plushies, Keychains & Handmade Gifts | BloomyCocoon',
+            description: 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon. Custom orders available across India.'
+        },
+        'screen-custom-orders': {
+            path: '/custom-order',
+            title: 'Custom Crochet Gifts in Kerala | BloomyCocoon',
+            description: 'Create custom crochet bouquets, plushies, keychains, baby gifts and handmade gift combos with BloomyCocoon. Share your idea and finalize your order on WhatsApp.'
+        },
+        'screen-about': {
+            path: '/about',
+            title: 'About BloomyCocoon | Handmade Crochet Brand from Malappuram, Kerala',
+            description: 'Meet BloomyCocoon, a handmade crochet gifting brand from Mampad, Malappuram, Kerala, creating soft and meaningful gifts delivered across India.'
+        },
+        'screen-faq': {
+            path: '/faq',
+            title: 'BloomyCocoon FAQ | Crochet Orders, Delivery & Care',
+            description: 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, production time, starting prices and crochet gift care.'
+        },
+        'screen-contact': {
+            path: '/contact',
+            title: 'Contact BloomyCocoon | WhatsApp Crochet Gift Orders',
+            description: 'Contact BloomyCocoon for handmade crochet gifts and custom orders. Based in Mampad, Malappuram, Kerala and delivering across India.'
+        }
     };
+
+    function trimTrailingSlash(pathname) {
+        return pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+    }
+
+    function getScreenIdFromPath(pathname) {
+        const cleanPath = trimTrailingSlash(pathname || '/');
+        if (cleanPath === '/' || cleanPath === '/home') return 'screen-home';
+        if (cleanPath === '/collections' || cleanPath === '/collection') return 'screen-collection';
+        if (cleanPath === '/custom-order' || cleanPath === '/custom' || cleanPath === '/custom-orders') return 'screen-custom-orders';
+        if (cleanPath === '/about') return 'screen-about';
+        if (cleanPath === '/faq') return 'screen-faq';
+        if (cleanPath === '/contact') return 'screen-contact';
+        return null;
+    }
 
     function getScreenIdFromHash(hash) {
         const cleanHash = hash.replace(/^#/, '').split('?')[0];
-        if (cleanHash === '' || cleanHash === '/' || cleanHash === '/home' || cleanHash === 'home') return 'screen-home';
-        if (cleanHash === '/collection' || cleanHash === 'collection') return 'screen-collection';
-        if (cleanHash === '/custom' || cleanHash === 'custom' || cleanHash === 'custom-orders') return 'screen-custom-orders';
-        if (cleanHash === '/about' || cleanHash === 'about') return 'screen-about';
-        if (cleanHash === '/faq' || cleanHash === 'faq') return 'screen-faq';
-        if (cleanHash === '/contact' || cleanHash === 'contact') return 'screen-contact';
-        return 'screen-home';
+        const normalizedPath = cleanHash.startsWith('/') ? cleanHash : `/${cleanHash}`;
+        return getScreenIdFromPath(normalizedPath) || 'screen-home';
     }
 
-    const screenTitles = {
-        'screen-home': 'Handmade Crochet Gifts in Kerala & India | BloomyCocoon',
-        'screen-collection': 'Crochet Bouquets, Plushies, Keychains & Handmade Gifts | BloomyCocoon',
-        'screen-about': 'About BloomyCocoon | Handmade Crochet Brand from Malappuram, Kerala',
-        'screen-faq': 'BloomyCocoon FAQ | Crochet Orders, Delivery & Care',
-        'screen-contact': 'Contact BloomyCocoon | WhatsApp Crochet Gift Orders',
-        'screen-custom-orders': 'Custom Crochet Gifts in Kerala | BloomyCocoon'
-    };
+    function getScreenPath(screenId) {
+        return screenMetadata[screenId]?.path || '/';
+    }
 
-    const screenDescriptions = {
-        'screen-home': 'Affordable handmade crochet gifts from Mampad, Malappuram, Kerala. Explore crochet bouquets, plushies, keychains, baby gifts and custom orders with delivery across India.',
-        'screen-collection': 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon. Custom orders available across India.',
-        'screen-about': 'Meet BloomyCocoon, a handmade crochet gifting brand from Mampad, Malappuram, Kerala, creating soft and meaningful gifts delivered across India.',
-        'screen-faq': 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, production time, starting prices and crochet gift care.',
-        'screen-contact': 'Contact BloomyCocoon for handmade crochet gifts and custom orders. Based in Mampad, Malappuram, Kerala and delivering across India.',
-        'screen-custom-orders': 'Create custom crochet bouquets, plushies, keychains, baby gifts and handmade gift combos with BloomyCocoon. Share your idea and finalize your order on WhatsApp.'
-    };
+    function getCleanCollectionSearch(search) {
+        const params = new URLSearchParams(search || '');
+        const rawCategory = params.get('category');
+        if (!rawCategory) return '';
+        const category = legacyFilterMap[rawCategory] || rawCategory;
+        const isKnownCategory = collectionCategories.some(item => item.id === category);
+        return isKnownCategory ? `?category=${encodeURIComponent(category)}` : '';
+    }
+
+    function getRouteForScreen(screenId, search = window.location.search) {
+        const path = getScreenPath(screenId);
+        const cleanSearch = screenId === 'screen-collection' ? getCleanCollectionSearch(search) : '';
+        return `${path}${cleanSearch}`;
+    }
+
+    function getCanonicalForScreen(screenId) {
+        return `${SITE_ORIGIN}${getScreenPath(screenId)}`;
+    }
+
+    function absoluteUrl(path) {
+        return `${SITE_ORIGIN}/${String(path).replace(/^\/+/, '')}`;
+    }
+
+    function updateBrowserRoute(screenId, action = 'push', search = window.location.search) {
+        const route = getRouteForScreen(screenId, search);
+        const currentRoute = `${window.location.pathname}${window.location.search}`;
+        if (route === currentRoute) return;
+        const method = action === 'replace' ? 'replaceState' : 'pushState';
+        window.history[method]({ screenId }, '', route);
+    }
+
+    function getLegacyHashSearch(hash) {
+        const queryIndex = hash.indexOf('?');
+        return queryIndex >= 0 ? hash.slice(queryIndex) : '';
+    }
+
+    function normalizeLegacyHashRoute() {
+        if (!window.location.hash.startsWith('#/')) return false;
+        const screenId = getScreenIdFromHash(window.location.hash);
+        const search = screenId === 'screen-collection' ? getLegacyHashSearch(window.location.hash) : '';
+        window.history.replaceState({ screenId }, '', getRouteForScreen(screenId, search));
+        return true;
+    }
+
+    function syncScreenMetadata(screenId) {
+        const metadata = screenMetadata[screenId] || screenMetadata['screen-home'];
+        const canonicalUrl = getCanonicalForScreen(screenId);
+        
+        document.title = metadata.title;
+        
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', metadata.description);
+        
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', metadata.title);
+        
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute('content', metadata.description);
+        
+        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twitterTitle) twitterTitle.setAttribute('content', metadata.title);
+        
+        const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twitterDesc) twitterDesc.setAttribute('content', metadata.description);
+
+        const canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', canonicalUrl);
+
+        const ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+
+        const twitterUrl = document.querySelector('meta[property="twitter:url"]');
+        if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
+    }
 
     // SPA ROUTER WITH DYNAMIC TRANSITIONS & SEO SYNCING
-    window.navigateTo = function(targetScreenId, transitionType = 'push') {
-        if (inTransition || targetScreenId === currentScreen) return;
+    window.navigateTo = function(targetScreenId, transitionType = 'push', options = {}) {
+        const routeSearch = options.routeSearch ?? window.location.search;
+        const shouldUpdateHistory = options.updateHistory !== false;
+        const historyAction = options.replaceHistory ? 'replace' : 'push';
+
+        if (inTransition) return;
+
+        if (targetScreenId === currentScreen) {
+            if (shouldUpdateHistory && !isRoutingFromHistory) {
+                updateBrowserRoute(targetScreenId, historyAction, routeSearch);
+            }
+            syncScreenMetadata(targetScreenId);
+            syncNavigationUI();
+            if (targetScreenId === 'screen-collection') {
+                applyCollectionFilterFromUrl();
+            }
+            return;
+        }
 
         const currentScreenEl = document.getElementById(currentScreen);
         const targetScreenEl = document.getElementById(targetScreenId);
@@ -772,35 +883,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Update Title, Meta Description, and Open Graph tags dynamically for premium SEO
-        const newTitle = screenTitles[targetScreenId] || 'BloomyCocoon';
-        const newDesc = screenDescriptions[targetScreenId] || '';
-        
-        document.title = newTitle;
-        
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', newDesc);
-        
-        const ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle) ogTitle.setAttribute('content', newTitle);
-        
-        const ogDesc = document.querySelector('meta[property="og:description"]');
-        if (ogDesc) ogDesc.setAttribute('content', newDesc);
-        
-        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-        if (twitterTitle) twitterTitle.setAttribute('content', newTitle);
-        
-        const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-        if (twitterDesc) twitterDesc.setAttribute('content', newDesc);
-
-        const canonical = document.querySelector('link[rel="canonical"]');
-        if (canonical) canonical.setAttribute('href', CANONICAL_URL);
-
-        const ogUrl = document.querySelector('meta[property="og:url"]');
-        if (ogUrl) ogUrl.setAttribute('content', CANONICAL_URL);
-
-        const twitterUrl = document.querySelector('meta[property="twitter:url"]');
-        if (twitterUrl) twitterUrl.setAttribute('content', CANONICAL_URL);
+        syncScreenMetadata(targetScreenId);
 
         inTransition = true;
         
@@ -876,6 +959,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             currentScreen = targetScreenId;
             inTransition = false;
+
+            if (shouldUpdateHistory && !isRoutingFromHistory) {
+                updateBrowserRoute(targetScreenId, historyAction, routeSearch);
+            }
             
             // Re-sync nav highlights
             syncNavigationUI();
@@ -885,15 +972,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (targetScreenId === 'screen-custom-orders') {
                 whatsappFloat?.classList.add('whatsapp-hidden');
-            }
-
-            // Sync the URL hash programmatically if not driven by hashchange event
-            if (!isRoutingFromHash) {
-                const targetHash = screenHashMapping[targetScreenId] || '#/';
-                const keepCollectionFilterHash = targetScreenId === 'screen-collection' && window.location.hash.startsWith('#/collection?');
-                if (!keepCollectionFilterHash && window.location.hash !== targetHash) {
-                    window.location.hash = targetHash;
-                }
             }
 
             if (targetScreenId === 'screen-custom-orders' && shouldFocusCustomOrder) {
@@ -906,9 +984,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Global helper for going back
     window.navigateBack = function() {
         if (screenHistory.length > 1) {
-            window.history.back(); // Triggers hashchange listener
+            window.history.back();
         } else {
-            window.location.hash = '#/';
+            navigateTo('screen-home', 'push_back', { replaceHistory: true });
         }
     };
 
@@ -950,30 +1028,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Hashchange listener to coordinate browser forward/backward operations
-    window.addEventListener('hashchange', () => {
-        const targetScreenId = getScreenIdFromHash(window.location.hash);
-        if (targetScreenId === currentScreen) return;
-
-        let transitionType = 'push';
-        
-        // Match going back vs going forward using our history stack
+    function getHistoryTransition(targetScreenId) {
         if (screenHistory.length > 1 && screenHistory[screenHistory.length - 2] === targetScreenId) {
-            transitionType = (currentScreen === 'screen-custom-orders') ? 'slide_down' : 'push_back';
-        } else {
-            transitionType = (targetScreenId === 'screen-custom-orders') ? 'slide_up' : 'push';
+            return (currentScreen === 'screen-custom-orders') ? 'slide_down' : 'push_back';
+        }
+        return (targetScreenId === 'screen-custom-orders') ? 'slide_up' : 'push';
+    }
+
+    // Popstate listener to coordinate browser forward/backward operations
+    window.addEventListener('popstate', () => {
+        const targetScreenId = getScreenIdFromPath(window.location.pathname) || 'screen-home';
+        if (targetScreenId === currentScreen) {
+            if (targetScreenId === 'screen-collection') {
+                applyCollectionFilterFromUrl();
+            }
+            syncScreenMetadata(targetScreenId);
+            return;
         }
 
-        isRoutingFromHash = true;
-        navigateTo(targetScreenId, transitionType);
-        isRoutingFromHash = false;
+        const transitionType = getHistoryTransition(targetScreenId);
+
+        isRoutingFromHistory = true;
+        navigateTo(targetScreenId, transitionType, {
+            updateHistory: false,
+            routeSearch: window.location.search
+        });
+        isRoutingFromHistory = false;
+    });
+
+    // Backward compatibility for old hash URLs.
+    window.addEventListener('hashchange', () => {
+        if (!normalizeLegacyHashRoute()) return;
+        const targetScreenId = getScreenIdFromPath(window.location.pathname) || 'screen-home';
+        if (targetScreenId === currentScreen) {
+            if (targetScreenId === 'screen-collection') {
+                applyCollectionFilterFromUrl();
+            }
+            syncScreenMetadata(targetScreenId);
+            return;
+        }
+
+        const transitionType = getHistoryTransition(targetScreenId);
+        navigateTo(targetScreenId, transitionType, {
+            updateHistory: false,
+            routeSearch: window.location.search
+        });
     });
 
     // Handle deep-linking on page load
-    const initialHash = window.location.hash || '#/';
-    const initialScreen = getScreenIdFromHash(initialHash);
+    normalizeLegacyHashRoute();
+    const initialScreen = getScreenIdFromPath(window.location.pathname) || 'screen-home';
+    window.history.replaceState({ screenId: initialScreen }, '', getRouteForScreen(initialScreen, window.location.search));
+    syncScreenMetadata(initialScreen);
     if (initialScreen !== 'screen-home') {
-        navigateTo(initialScreen, 'instant');
+        navigateTo(initialScreen, 'instant', {
+            updateHistory: false,
+            routeSearch: window.location.search
+        });
+    } else if (initialScreen === 'screen-collection') {
+        applyCollectionFilterFromUrl();
     }
 
     // ----------------------------------------------------
@@ -1047,6 +1160,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Bindings matching the Navigation Specification EXACTLY
     function initNavigationBindings() {
+        document.addEventListener('click', (e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.defaultPrevented) return;
+
+            const link = e.target.closest('a[href]');
+            if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
+
+            const url = new URL(link.getAttribute('href'), window.location.origin);
+            if (url.origin !== window.location.origin) return;
+
+            const targetScreen = getScreenIdFromPath(url.pathname);
+            if (!targetScreen) return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            if (targetScreen === 'screen-home' && currentScreen === 'screen-home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            let transition = 'push';
+            if (targetScreen === 'screen-home') {
+                transition = 'push_back';
+            } else if (targetScreen === 'screen-custom-orders' && currentScreen !== 'screen-custom-orders') {
+                transition = 'slide_up';
+            }
+
+            navigateTo(targetScreen, transition, { routeSearch: url.search });
+        }, true);
+
         document.addEventListener('click', (e) => {
             const logo = e.target.closest('[data-nav-logo]');
             if (!logo) return;
@@ -1544,6 +1687,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.display = 'none';
             }
         });
+
+        if (currentScreen === 'screen-collection') {
+            const search = activeCategory === 'all' ? '' : `?category=${encodeURIComponent(activeCategory)}`;
+            updateBrowserRoute('screen-collection', 'replace', search);
+            syncScreenMetadata('screen-collection');
+        }
     };
 
     // ----------------------------------------------------
@@ -1649,13 +1798,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function applyCollectionFilterFromUrl() {
-        const hash = window.location.hash || '';
-        const match = hash.match(/category=([^&]+)/);
-        if (!match) return;
-        const category = decodeURIComponent(match[1]);
+        const category = new URLSearchParams(window.location.search).get('category');
+        const toggle = document.querySelector('#screen-collection [data-category-filter-toggle]');
+        if (!category) {
+            if (toggle) {
+                filterCollectionCategory('all', toggle);
+            }
+            return;
+        }
         const activeCategory = legacyFilterMap[category] || category;
         const btn = document.querySelector(`#screen-collection button[data-category-filter="${activeCategory}"]`);
-        const toggle = document.querySelector('#screen-collection [data-category-filter-toggle]');
         if (btn) {
             setCollectionCategoryListOpen(getCollectionFilterRoot(btn), true);
             filterCollectionCategory(activeCategory, btn);
@@ -1818,19 +1970,20 @@ document.addEventListener('DOMContentLoaded', () => {
             "position": index + 1,
             "item": {
                 "@type": "Product",
-                "@id": `${CANONICAL_URL}#/collection/${product.id}`,
+                "@id": `${SITE_ORIGIN}/collections#${product.id}`,
                 "name": product.name,
                 "description": product.description,
                 "category": getCategoryLabel(product.category),
-                "image": `${CANONICAL_URL}${getProductImage(product)}`,
+                "image": absoluteUrl(getProductImage(product)),
                 "brand": {
                     "@id": `${CANONICAL_URL}#organization`
                 },
                 "offers": {
-                    "@type": "Offer",
-                    "url": `${CANONICAL_URL}#/collection`,
+                    "@type": "AggregateOffer",
+                    "url": `${SITE_ORIGIN}/collections`,
                     "priceCurrency": "INR",
-                    "price": getSafePrice(product.startingPrice),
+                    "lowPrice": getSafePrice(product.startingPrice),
+                    "offerCount": 1,
                     "availability": "https://schema.org/InStock"
                 }
             }
@@ -1853,7 +2006,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const graph = [
             {
                 "@type": "ItemList",
-                "@id": `${CANONICAL_URL}#/collection#products`,
+                "@id": `${SITE_ORIGIN}/collections#products`,
                 "name": "BloomyCocoon handmade crochet collection",
                 "itemListElement": productList
             }
@@ -1862,7 +2015,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (faqItems.length > 0) {
             graph.push({
                 "@type": "FAQPage",
-                "@id": `${CANONICAL_URL}#/faq#faq`,
+                "@id": `${SITE_ORIGIN}/faq#faq`,
                 "mainEntity": faqItems
             });
         }
