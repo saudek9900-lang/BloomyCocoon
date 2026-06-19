@@ -709,10 +709,12 @@ document.addEventListener('DOMContentLoaded', () => {
         message += `Starting total: ₹${formatPrice(getCartSubtotal())}\n\n`;
 
         if (note) {
-            message += `Customization note:\n${note}\n\n`;
+            message += `Customization / delivery note:\n${note}\n\n`;
         }
 
-        message += "I understand the final price may vary based on size, color, custom name, flowers, packaging, and delivery. Please help me finalize the order.";
+        message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, color, custom name, flowers, packaging, and delivery.\n\n";
+        message += "Payment can be confirmed on WhatsApp, mostly through UPI: 50% advance before making begins, and the remaining 50% after completion before delivery.\n";
+        message += "Delivery is available across Kerala and India.";
         return message;
     }
 
@@ -724,6 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
         notes: '',
         name: ''
     };
+    let lastCartTrigger = null;
 
     const screenMetadata = {
         'screen-home': {
@@ -1270,61 +1273,85 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 4. INTERACTIVE SHOPPING BASKET
     // ----------------------------------------------------
+    function setCartOpen(isOpen, triggerEl = document.activeElement) {
+        const sideCart = document.getElementById('sideCart');
+        if (!sideCart) return;
+
+        if (isOpen && triggerEl instanceof HTMLElement) {
+            lastCartTrigger = triggerEl;
+        }
+
+        sideCart.classList.toggle('cart-visible', isOpen);
+        document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        const whatsappFloat = document.getElementById('whatsapp-global-float');
+        if (whatsappFloat) {
+            if (isOpen) {
+                whatsappFloat.classList.add('whatsapp-hidden');
+            } else if (currentScreen !== 'screen-custom-orders') {
+                whatsappFloat.classList.remove('whatsapp-hidden');
+            }
+        }
+
+        if (isOpen) {
+            const closeBtn = sideCart.querySelector('.cart-close-btn');
+            requestAnimationFrame(() => (closeBtn || sideCart).focus({ preventScroll: true }));
+        } else if (lastCartTrigger && document.contains(lastCartTrigger)) {
+            lastCartTrigger.focus({ preventScroll: true });
+        }
+    }
+
+    function closeMobileMenu() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu) mobileMenu.classList.add('hidden');
+        document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
+            btn.setAttribute('aria-expanded', 'false');
+        });
+    }
+
     window.toggleCart = function() {
         const sideCart = document.getElementById('sideCart');
         if (sideCart) {
-            sideCart.classList.toggle('cart-visible');
-            document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
-                btn.setAttribute('aria-expanded', sideCart.classList.contains('cart-visible') ? 'true' : 'false');
-            });
-            
-            // Toggle WhatsApp button visibility based on cart state
-            const whatsappFloat = document.getElementById('whatsapp-global-float');
-            if (whatsappFloat) {
-                if (sideCart.classList.contains('cart-visible')) {
-                    whatsappFloat.classList.add('whatsapp-hidden');
-                } else if (currentScreen !== 'screen-custom-orders') {
-                    whatsappFloat.classList.remove('whatsapp-hidden');
-                }
-            }
+            setCartOpen(!sideCart.classList.contains('cart-visible'));
         }
     };
 
     window.closeCart = function() {
-        const sideCart = document.getElementById('sideCart');
-        if (sideCart) {
-            sideCart.classList.remove('cart-visible');
-            document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
-                btn.setAttribute('aria-expanded', 'false');
-            });
-            
-            // Show WhatsApp button when closing cart (unless on custom orders)
-            const whatsappFloat = document.getElementById('whatsapp-global-float');
-            if (whatsappFloat && currentScreen !== 'screen-custom-orders') {
-                whatsappFloat.classList.remove('whatsapp-hidden');
-            }
-        }
+        setCartOpen(false);
     };
 
     window.toggleMobileMenu = function() {
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenu) {
-            mobileMenu.classList.toggle('hidden');
+            const shouldOpen = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !shouldOpen);
             document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
-                btn.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true');
+                btn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
             });
+            if (shouldOpen) {
+                requestAnimationFrame(() => mobileMenu.querySelector('a')?.focus({ preventScroll: true }));
+            }
         }
     };
 
     // Auto-close mobile menu on any link click
     document.addEventListener('click', (e) => {
         if (e.target.closest('#mobile-menu a') || e.target.closest('nav a')) {
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu) mobileMenu.classList.add('hidden');
-            document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
-                btn.setAttribute('aria-expanded', 'false');
-            });
+            closeMobileMenu();
         }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+
+        const sideCart = document.getElementById('sideCart');
+        if (sideCart?.classList.contains('cart-visible')) {
+            closeCart();
+        }
+
+        closeMobileMenu();
     });
 
     window.addToCart = function(id, name, category, price, img) {
@@ -1356,13 +1383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Automatically slide open the drawer
         const sideCart = document.getElementById('sideCart');
         if (sideCart && !sideCart.classList.contains('cart-visible')) {
-            sideCart.classList.add('cart-visible');
-            
-            // Hide WhatsApp button while cart is open
-            const whatsappFloat = document.getElementById('whatsapp-global-float');
-            if (whatsappFloat) {
-                whatsappFloat.classList.add('whatsapp-hidden');
-            }
+            setCartOpen(true);
         }
     };
 
@@ -1401,11 +1422,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update badge counters
         cartBadge.forEach(badge => {
             badge.innerText = totalQty;
+            badge.setAttribute('aria-label', `${totalQty} item${totalQty === 1 ? '' : 's'} in cart`);
             if (totalQty > 0) {
                 badge.classList.remove('hidden');
             } else {
                 badge.classList.add('hidden');
             }
+        });
+
+        document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
+            btn.setAttribute('aria-label', totalQty > 0 ? `Open cart, ${totalQty} item${totalQty === 1 ? '' : 's'} selected` : 'Open cart');
         });
 
         // Render subtotal texts
@@ -1441,18 +1467,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     const categoryLabel = getCategoryLabel(item.category);
                     html += `
                         <div class="flex items-center gap-4 bg-surface-container-lowest p-sm rounded-xl border border-outline-variant/15 soft-glow">
-                            <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-14 h-14 object-cover rounded-lg">
-                            <div class="flex-1">
+                            <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-14 h-14 object-cover rounded-lg" width="56" height="56" loading="lazy" decoding="async">
+                            <div class="flex-1 min-w-0">
                                 <h4 class="font-label-md text-sm text-secondary truncate">${escapeHTML(item.name)}</h4>
                                 <p class="text-caption text-on-surface-variant">${escapeHTML(categoryLabel)}</p>
                                 <p class="text-caption text-on-surface-variant font-bold">Starting from ${formatStartingPrice(item.price)}</p>
                                 <div class="flex items-center gap-2 mt-xs">
-                                    <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">-</button>
-                                    <span class="font-body-md text-xs font-bold px-1">${item.qty}</span>
-                                    <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">+</button>
+                                    <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">-</button>
+                                    <span class="font-body-md text-xs font-bold px-1" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
+                                    <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">+</button>
                                 </div>
                             </div>
-                            <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="text-outline-variant hover:text-error transition-colors p-1">
+                            <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn text-outline-variant hover:text-error transition-colors p-1">
                                 <span class="material-symbols-outlined text-[18px]">delete</span>
                             </button>
                         </div>
@@ -1587,7 +1613,8 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `Base type: ${orderData.type}\n`;
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
             message += "Source: Custom Order Page\n\n";
-            message += "Please help me finalize the design, Starting from price, timeline and delivery.";
+            message += "Please help me finalize the design, Starting from price, final quote, 1-2 week custom timeline, and delivery across Kerala and India.\n\n";
+            message += "I understand payment is confirmed on WhatsApp, mostly through UPI: 50% advance before making begins, and the remaining 50% after completion before delivery.";
 
             trackEvent('custom_order_submit', {
                 order_type: orderData.type

@@ -51,6 +51,26 @@ body {
     scroll-behavior: smooth;
 }
 
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid rgba(114, 88, 82, 0.58);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(255, 218, 210, 0.72);
+}
+
+summary:focus-visible {
+    border-radius: 12px;
+}
+
+button:disabled:focus-visible {
+    outline-color: rgba(121, 119, 111, 0.45);
+    box-shadow: none;
+}
+
 .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-weight: 400;
@@ -239,6 +259,10 @@ body {
     display: none;
 }
 
+.faq-details summary {
+    min-height: 44px;
+}
+
 .faq-details[open] .faq-icon {
     transform: rotate(180deg);
 }
@@ -250,6 +274,22 @@ body {
 /* Cart animation slider */
 #sideCart.cart-visible {
     transform: translateX(0);
+}
+
+#sideCart {
+    max-width: min(100vw, 24rem);
+    overflow-wrap: anywhere;
+}
+
+#sideCart .cart-items-container {
+    min-height: 0;
+}
+
+.cart-quantity-btn,
+.cart-remove-btn,
+.cart-close-btn {
+    min-width: 36px;
+    min-height: 36px;
 }
 
 /* Dynamic steps style */
@@ -360,6 +400,32 @@ button[onclick="navigateBack()"] span {
 @media (max-width: 767px) {
     #app-viewport { padding-top: 64px; }
     body { font-size: 14px; }
+    #sideCart { width: min(100vw, 22rem) !important; }
+    #mobile-menu a { min-height: 44px; display: flex; align-items: center; }
+    [data-collection-filters] { min-width: 0; }
+    [data-category-filter-list] { -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+    [data-category-filter],
+    [data-category-filter-toggle],
+    .type-pill,
+    .checkout-btn {
+        min-height: 44px;
+    }
+    .checkout-btn,
+    .type-pill,
+    .product-card button,
+    #custom-builder-section button {
+        white-space: normal;
+        text-align: center;
+    }
+    #custom-builder-section .flex.justify-between {
+        gap: 10px;
+    }
+    .cart-quantity-btn,
+    .cart-remove-btn,
+    .cart-close-btn {
+        min-width: 40px !important;
+        min-height: 40px !important;
+    }
     nav > div { padding-top: 12px !important; padding-bottom: 12px !important; }
     nav .text-headline-sm { font-size: 21px !important; }
     .text-display-lg-mobile { font-size: 30px !important; line-height: 1.08 !important; letter-spacing: 0 !important; }

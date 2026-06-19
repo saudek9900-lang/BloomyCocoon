@@ -6,7 +6,7 @@
     <title>Handmade Crochet Gifts in Kerala &amp; India | BloomyCocoon</title>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3TXB88CT8"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-M3TXB88CT8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -117,6 +117,8 @@
     </script>
     
     <!-- Fonts & Material Symbols -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     
@@ -145,9 +147,9 @@
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contact">Contact Us</a>
             </div>
             <div class="flex items-center gap-md">
-                <button onclick="toggleCart()" class="p-2 text-on-surface-variant hover:bg-primary-container/50 rounded-full transition-all duration-300 relative" aria-label="Open cart" aria-controls="sideCart" aria-expanded="false">
+                <button onclick="toggleCart()" class="p-2 text-on-surface-variant hover:bg-primary-container/50 rounded-full transition-all duration-300 relative cart-trigger" aria-label="Open cart" aria-controls="sideCart" aria-expanded="false">
                     <span class="material-symbols-outlined">shopping_bag</span>
-                    <span class="absolute top-1 right-1 w-4 h-4 bg-secondary text-white text-[10px] rounded-full flex items-center justify-center font-bold cart-badge hidden">0</span>
+                    <span class="absolute top-1 right-1 w-4 h-4 bg-secondary text-white text-[10px] rounded-full flex items-center justify-center font-bold cart-badge hidden" aria-live="polite">0</span>
                 </button>
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-on-surface-variant" aria-label="Open mobile menu" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="material-symbols-outlined">menu</span>
@@ -165,34 +167,35 @@
     </nav>
 
     <!-- GLOBAL CART SIDEBAR -->
-    <aside class="fixed right-0 top-0 h-full w-80 bg-surface-container-low border-l border-outline-variant/30 shadow-xl z-[60] flex flex-col p-md translate-x-full transition-transform duration-300" id="sideCart">
+    <aside class="fixed right-0 top-0 h-full w-80 bg-surface-container-low border-l border-outline-variant/30 shadow-xl z-[60] flex flex-col p-md translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1">
         <div class="flex justify-between items-start mb-lg">
             <div>
-                <h2 class="font-headline-sm text-headline-sm text-primary">Cart</h2>
-                <p class="font-caption text-caption text-on-surface-variant italic">Handmade with love and patience</p>
+                <h2 class="font-headline-sm text-headline-sm text-primary" id="cart-title">Cart</h2>
+                <p class="font-caption text-caption text-on-surface-variant italic" id="cart-description">Your handmade picks before WhatsApp confirmation</p>
             </div>
-            <button class="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-primary-container/40" onclick="toggleCart()" aria-label="Close cart">
+            <button class="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-primary-container/40 cart-close-btn" onclick="closeCart()" aria-label="Close cart drawer">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
         
         <!-- Cart Items dynamic wrapper -->
-        <div class="flex-1 cart-items-container overflow-y-auto">
+        <div class="flex-1 cart-items-container overflow-y-auto" aria-live="polite" aria-relevant="additions removals text">
             <!-- Rendered by JS -->
             <div class="text-center py-xl opacity-60 flex flex-col items-center">
                 <span class="material-symbols-outlined text-display-lg block mb-sm">shopping_basket</span>
-                <p class="font-label-md">Your Cart is empty</p>
+                <p class="font-label-md">Your cart is empty</p>
             </div>
         </div>
         
         <div class="pt-lg border-t border-outline-variant/20 space-y-sm">
-            <p class="text-caption text-on-surface-variant bg-white/55 border border-outline-variant/15 rounded-lg px-3 py-2">Final price may vary based on size, color, custom name, flowers, packaging, and delivery.</p>
+            <p class="text-caption text-on-surface-variant bg-white/55 border border-outline-variant/15 rounded-lg px-3 py-2" id="cart-checkout-note">Starting from prices are only a guide. Final quote, customization, payment and delivery are confirmed personally on WhatsApp.</p>
+            <p class="text-caption text-on-surface-variant bg-white/55 border border-outline-variant/15 rounded-lg px-3 py-2" id="cart-payment-note">Payment is confirmed on WhatsApp, mostly through UPI: 50% advance before making begins, and the remaining 50% after completion before delivery across Kerala and India.</p>
             <div class="flex justify-between items-center mb-sm">
                 <span class="font-label-md text-on-surface-variant">Starting Total</span>
                 <span class="font-headline-sm text-secondary cart-total-price">Add items</span>
             </div>
-            <textarea id="cart-customer-note" class="w-full bg-surface-container-low border border-outline-variant/20 rounded-lg p-2 text-sm" rows="2" placeholder="Add a note for customization (optional)" aria-label="Customization note"></textarea>
-            <button disabled class="w-full bg-secondary text-white py-4 rounded-xl font-label-md flex items-center justify-center gap-base active:scale-95 transition-transform checkout-btn opacity-55 cursor-default">
+            <textarea id="cart-customer-note" class="w-full bg-surface-container-low border border-outline-variant/20 rounded-lg p-2 text-sm" rows="2" placeholder="Add colors, name, date, or delivery note (optional)" aria-label="Customization note" aria-describedby="cart-checkout-note cart-payment-note"></textarea>
+            <button disabled class="w-full bg-secondary text-white py-4 rounded-xl font-label-md flex items-center justify-center gap-base active:scale-95 transition-transform checkout-btn opacity-55 cursor-default" aria-label="Continue to WhatsApp to confirm final quote and order details" aria-describedby="cart-checkout-note cart-payment-note">
                 Continue on WhatsApp
                 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
             </button>
@@ -988,7 +991,7 @@
                         <div class="z-10 order-2 lg:order-1">
                             <span class="inline-block px-sm py-xs bg-tertiary-container text-on-tertiary-container rounded-full font-label-md text-label-md mb-md">Custom Crochet</span>
                             <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-md leading-tight">Your Vision, <br><span class="italic text-secondary">Our Stitches</span></h1>
-                            <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant mb-lg max-w-lg">Create a custom crochet gift with BloomyCocoon. Share your idea, choose the product type, add colors or personal details, and continue to WhatsApp. We’ll help finalize the design, Starting from price, final quote, 1-2 week custom timeline and delivery before handcrafting begins. You can also read the <a class="text-secondary font-label-md hover:underline" href="/faq">FAQ</a>.</p>
+                            <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant mb-lg max-w-lg">Create a custom crochet gift with BloomyCocoon. Share your idea, choose the product type, add colors or personal details, and continue to WhatsApp. We’ll gently confirm the design, Starting from price, final quote, 1-2 week custom timeline, payment, and delivery across Kerala and India before handcrafting begins. You can also read the <a class="text-secondary font-label-md hover:underline" href="/faq">FAQ</a>.</p>
                         </div>
                         <div class="relative order-1 lg:order-2">
                             <div class="aspect-[16/9] md:aspect-[4/5] rounded-xl overflow-hidden soft-glow rotate-2">
@@ -1018,7 +1021,7 @@
                                     <img class="w-full h-full object-cover" src="/assets/crochet_coin_pouch-Xv1apfNr.png" alt="Crochet coin pouch illustrating custom orders" loading="lazy" width="400" height="500">
                                 </div>
                                 <h3 class="font-headline-sm text-headline-sm text-center mb-sm text-secondary">1. Consultation</h3>
-	                                <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">We discuss your idea, color preferences, occasion, budget guide and delivery needs on WhatsApp.</p>
+	                                <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">We discuss your idea, colors, occasion, Starting from budget guide, final quote and delivery needs on WhatsApp.</p>
                             </div>
                             <!-- Handcrafting -->
                             <div class="group flex flex-col items-center">
@@ -1026,7 +1029,7 @@
                                     <img class="w-full h-full object-cover" src="/assets/crochet_phone_sleeve-775UY7oS.png" alt="Crochet phone sleeve illustrating handcrafting process" loading="lazy" width="400" height="500">
                                 </div>
                                 <h3 class="font-headline-sm text-headline-sm text-center mb-sm text-secondary">2. Handcrafting</h3>
-	                                <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">After confirmation and advance payment, your item is slowly handmade with care.</p>
+	                                <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">After WhatsApp confirmation and 50% advance payment, your item is slowly handmade with care.</p>
                             </div>
                             <!-- Gifting -->
                             <div class="group flex flex-col items-center">
@@ -1034,7 +1037,7 @@
                                     <img class="w-full h-full object-cover" src="/assets/cozy_bear_plushie-C6Wcjnzm.png" alt="Gift-wrapped crochet plushie teddy bear" loading="lazy" width="400" height="500">
                                 </div>
                                 <h3 class="font-headline-sm text-headline-sm text-center mb-sm text-secondary">3. Gifting</h3>
-	                                <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">The final balance is confirmed after completion, before your gift is prepared for delivery.</p>
+	                                <p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">The remaining 50% is confirmed after completion, before your gift is prepared for delivery.</p>
                             </div>
                         </div>
                     </div>
@@ -1058,7 +1061,7 @@
                                 <!-- STEP 1: TYPE -->
                                 <div id="step-card-1" class="space-y-md">
                                     <h3 class="font-headline-sm text-headline-sm text-secondary">What would you like us to stitch?</h3>
-                                    <p class="text-caption text-on-surface-variant">Select the base creation type of your custom request.</p>
+                                    <p class="text-caption text-on-surface-variant">Select the base creation type of your custom request. Details and final quote are confirmed on WhatsApp.</p>
                                     <div class="grid grid-cols-2 gap-sm pt-xs">
                                         <button onclick="selectOrderType('Bouquet')" class="type-pill px-4 py-3 rounded-xl font-label-md text-sm bg-secondary text-on-secondary shadow-sm text-center font-bold">Bouquet</button>
                                         <button onclick="selectOrderType('Plushie')" class="type-pill px-4 py-3 rounded-xl font-label-md text-sm bg-primary-container text-on-primary-container text-center">Plushie</button>
@@ -1077,7 +1080,7 @@
                                 <!-- STEP 2: DETAILS -->
                                 <div id="step-card-2" class="hidden space-y-md">
                                     <h3 class="font-headline-sm text-headline-sm text-secondary">Personalization & Notes</h3>
-                                    <p class="text-caption text-on-surface-variant">Add details such as size adjustments, gift cards, or specific flower stems.</p>
+                                    <p class="text-caption text-on-surface-variant">Add colors, size ideas, names, gift notes, packaging wishes, delivery needs, or specific flower stems.</p>
                                     <label for="custom-notes" class="sr-only">Personalization notes</label>
                                     <textarea id="custom-notes" class="w-full bg-surface-container-low border-none rounded-xl p-md focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-body-md resize-none" placeholder="E.g., I would like a small white bunny with a tiny red scarf instead of a green one, and a matching rose stem..." rows="5"></textarea>
                                     <div class="flex justify-between items-center pt-lg">
@@ -1091,7 +1094,7 @@
                                 <!-- STEP 3: CONTACT INFO -->
                                 <div id="step-card-3" class="hidden space-y-md">
                                     <h3 class="font-headline-sm text-headline-sm text-secondary">Custom Order Details</h3>
-                                    <p class="text-caption text-on-surface-variant">Tell us your name, and click the button to send your custom order details directly to our WhatsApp chat!</p>
+                                    <p class="text-caption text-on-surface-variant">Tell us your name, then send the request to WhatsApp. We will confirm the final quote, timeline, payment and delivery there.</p>
                                     <div class="space-y-sm pt-xs">
                                         <div>
                                             <label for="order-name" class="font-label-md text-label-md ml-xs text-on-surface-variant block mb-1">Your Full Name</label>
@@ -1116,7 +1119,7 @@
                                         Thank you! We've saved your custom configuration: <br>
                                         <strong class="text-on-surface">Base Type:</strong> <span id="final-type">Bouquet</span>
                                     </p>
-                                    <p class="text-caption text-on-surface-variant">Redirecting to WhatsApp chat to finalize your order details...</p>
+                                    <p class="text-caption text-on-surface-variant">Opening WhatsApp to confirm your final quote, payment, timeline and delivery...</p>
                                     <div class="pt-md">
                                         <button onclick="resetCustomOrder()" class="bg-secondary text-white px-8 py-3 rounded-full font-label-md text-sm">Create Another Order</button>
                                     </div>
@@ -1142,7 +1145,7 @@
                                 </div>
 
                                 <div class="text-center p-sm bg-white/40 rounded-xl border border-secondary/5">
-	                                    <p class="text-[11px] text-on-surface-variant">Custom orders usually take 1-2 weeks, with the exact timeline confirmed on WhatsApp.</p>
+	                                    <p class="text-[11px] text-on-surface-variant">Custom orders usually take 1-2 weeks. Final quote, payment and delivery are confirmed on WhatsApp.</p>
                                 </div>
                             </div>
                         </div>
