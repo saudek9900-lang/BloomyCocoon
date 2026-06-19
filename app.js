@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 149,
     "image": "images/crochet_rose_bouquet_single-crochet-rose-landscape-generated.png",
     "badge": "Single Stem",
-    "description": "A keepsake rose stem for tiny gestures, notes, and thoughtful add-ons."
+    "description": "Best for tiny gestures, student gifts and note-card add-ons, with colors confirmed on WhatsApp."
   },
   {
     "id": "single-crochet-tulip",
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 169,
     "image": "images/crochet_tulip_bouquet_single-crochet-tulip-landscape-generated.png",
     "badge": "Fresh Pick",
-    "description": "A soft tulip stem with a clean handmade wrap and cheerful color options."
+    "description": "A cheerful single stem for birthdays, desk corners and surprises, with shade choices confirmed on WhatsApp."
   },
   {
     "id": "single-sunflower-stem",
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 199,
     "image": "images/crochet_sunflower_bouquet_single-sunflower-stem-generated.png",
     "badge": "Sunny",
-    "description": "A bright sunflower stem made for desk corners, jars, and little surprises."
+    "description": "A sunny long-lasting flower for desk corners, jars and small surprise gifts."
   },
   {
     "id": "rose-bouquet",
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 799,
     "image": "images/crochet_rose_bouquet_rose-bouquet.png",
     "badge": "Made with Love",
-    "description": "A romantic rose bunch stitched in lasting yarn with gentle floral detail."
+    "description": "Best for anniversaries, couple gifts and soft surprises, with colors and wrapping confirmed on WhatsApp."
   },
   {
     "id": "tulip-bouquet",
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 899,
     "image": "images/crochet_tulip_bouquet_tulip-bouquet.png",
     "badge": "New Arrival",
-    "description": "A graceful tulip bouquet in soft shades, wrapped for gifting."
+    "description": "A graceful long-lasting bouquet for birthdays, thank-you gifts and gentle celebrations."
   },
   {
     "id": "lavender-bouquet",
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 799,
     "image": "images/crochet_lavender_bouquet_lavender-bouquet.png",
     "badge": "Kept Favorite",
-    "description": "A calming lavender bunch preserved from the original BloomyCocoon collection."
+    "description": "A calming lavender bouquet for keepsake gifting, cozy decor and soft handmade surprises."
   },
   {
     "id": "custom-premium-bouquet",
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "image": "images/mixed_luxury_bouquet_custom-premium-bouquet.png",
     "badge": "Custom",
     "featured": true,
-    "description": "A premium bouquet tailored by flower type, palette, size, and packaging."
+    "description": "A premium custom bouquet tailored by flower type, palette, size and packaging, with final quote confirmed on WhatsApp."
   },
   {
     "id": "mini-teddy-plushie",
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 399,
     "image": "images/cozy_bear_plushie_mini-teddy-plushie.png",
     "badge": "Tiny Hug",
-    "description": "A pocket-sized teddy plushie with a soft, cuddly finish."
+    "description": "Best for cute birthday gifts, student desks and tiny keepsakes, with colors confirmed on WhatsApp."
   },
   {
     "id": "bunny-plushie",
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 499,
     "image": "images/crochet_bunny_plush_bunny-plushie.png",
     "badge": "Gift Favorite",
-    "description": "A gentle bunny plushie stitched for birthdays, baby gifting, and keepsakes."
+    "description": "A gentle bunny plushie for birthdays, baby gifting and keepsakes, with shade details confirmed on WhatsApp."
   },
   {
     "id": "cat-plushie",
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 699,
     "image": "images/crochet_bunny_plush_custom-animal-plushie.png",
     "badge": "Custom",
-    "description": "A made-to-order animal plushie inspired by your favorite character or pet."
+    "description": "A made-to-order animal plushie inspired by your idea, with size, colors and final quote confirmed on WhatsApp."
   },
   {
     "id": "mini-pocket-plushies",
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 299,
     "image": "images/cozy_bear_plushie_mini-pocket-plushies-generated.png",
     "badge": "Kept Favorite",
-    "description": "Small pocket plushies preserved from the original collection for tiny gifting."
+    "description": "Small pocket plushies for tiny gifting, students, desk friends and surprise add-ons."
   },
   {
     "id": "heart-keychain",
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 199,
     "image": "images/heart_keychain_initial-letter-keychain-generated.png",
     "badge": "Personalized",
-    "description": "A custom initial keychain for names, couples, and hampers."
+    "description": "A custom initial keychain for names, students, couples and handmade gift hampers."
   },
   {
     "id": "couple-keychain-set",
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "keychains",
     "startingPrice": 399,
     "image": "images/crochet_couple_keychains.png",
-    "description": "A pair of coordinated crochet keychains made for couple gifting."
+    "description": "A coordinated pair for couple gifts, friendship surprises and anniversary add-ons."
   },
   {
     "id": "custom-character-keychain",
@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 349,
     "image": "images/mini_animal_keychain_custom-character-keychain-generated.png",
     "badge": "Custom",
-    "description": "A character-inspired charm based on your idea, theme, or reference."
+    "description": "A character-inspired charm based on your idea or theme, with final details confirmed on WhatsApp."
   },
   {
     "id": "strawberry-keychain",
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 199,
     "image": "images/strawberry_keychain_strawberry-keychain.png",
     "badge": "Kept Favorite",
-    "description": "A fruity strawberry charm preserved from the original collection."
+    "description": "A fruity strawberry charm for bags, keys, student gifts and playful handmade surprises."
   },
   {
     "id": "baby-booties",
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "baby-gifts",
     "startingPrice": 399,
     "image": "images/crochet_bunny_plush_baby-booties-generated.png",
-    "description": "Soft crochet booties for newborn gifting, made in gentle baby shades."
+    "description": "Soft crochet booties for newborn gifting and baby showers, with gentle shades confirmed on WhatsApp."
   },
   {
     "id": "baby-cap",
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 799,
     "image": "images/crochet_wall_hanging_baby-name-garland-generated.png",
     "badge": "Name Custom",
-    "description": "A custom name garland for nurseries, celebrations, and keepsake corners."
+    "description": "A custom name garland for nurseries, baby showers and keepsake corners, with final quote confirmed on WhatsApp."
   },
   {
     "id": "baby-bunny-plushie",
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 1299,
     "image": "images/crochet_bunny_plush_baby-shower-mini-set-generated.png",
     "badge": "Shower Gift",
-    "description": "A curated mini baby set for shower tables, hampers, and family gifting."
+    "description": "A curated mini baby set for shower tables, hampers and family gifting."
   },
   {
     "id": "newborn-gift-hamper",
@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "image": "images/hero_crochet_scene_newborn-gift-hamper-generated.png",
     "badge": "Hamper",
     "featured": true,
-    "description": "A larger newborn hamper with baby essentials, plush details, and packaging."
+    "description": "A larger newborn hamper with baby pieces, plush details and packaging, finalized personally on WhatsApp."
   },
   {
     "id": "crochet-bow-clip",
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "accessories",
     "startingPrice": 149,
     "image": "images/crochet_headband_crochet-bow-clip-generated.png",
-    "description": "A sweet bow clip with soft texture and custom shade options."
+    "description": "A sweet bow clip for soft everyday styling, return gifts and custom shade requests."
   },
   {
     "id": "crochet-scrunchie",
@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 399,
     "image": "images/crochet_phone_sleeve_crochet-phone-sleeve.png",
     "badge": "Must Have",
-    "description": "A protective crochet phone sleeve preserved from the original collection."
+    "description": "A protective crochet phone sleeve for daily use, soft styling and handmade gifting."
   },
   {
     "id": "crochet-tote-bag",
@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "image": "images/crochet_tote_bag_crochet-tote-bag.png",
     "badge": "Kept Favorite",
     "featured": true,
-    "description": "A roomy handmade tote preserved from the original collection."
+    "description": "A roomy handmade tote for everyday styling, gifting and custom color requests."
   },
   {
     "id": "crochet-coaster",
@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "home-decor",
     "startingPrice": 799,
     "image": "images/crochet_wall_hanging_crochet-garland-generated.png",
-    "description": "A handmade garland for rooms, celebrations, and nursery corners."
+    "description": "A handmade garland for rooms, celebrations, nursery corners and gentle festive decor."
   },
   {
     "id": "table-decor-piece",
@@ -549,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 999,
     "image": "images/crochet_wall_hanging_custom-name-decor-generated.png",
     "badge": "Name Custom",
-    "description": "A personalized crochet name decor piece for rooms, doors, and gifts."
+    "description": "A personalized crochet name decor piece for rooms, doors, baby gifting and keepsakes."
   },
   {
     "id": "crochet-cushion-cover",
@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 699,
     "image": "images/crochet_cushion_cover_crochet-cushion-cover.png",
     "badge": "Kept Favorite",
-    "description": "A cozy cushion cover preserved from the original collection."
+    "description": "A cozy cushion cover for warm corners, housewarming gifts and soft home decor."
   },
   {
     "id": "crochet-plant-holder",
@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 499,
     "image": "images/crochet_plant_holder_crochet-plant-holder.png",
     "badge": "Kept Favorite",
-    "description": "A sage-toned plant holder preserved from the original collection."
+    "description": "A cozy plant holder for shelves, windows and handmade home decor gifts."
   },
   {
     "id": "wall-hanging",
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 399,
     "image": "images/crochet_keychain_flower_combo.png",
     "badge": "Combo",
-    "description": "A small gift pairing with one keychain and one handmade flower."
+    "description": "A small gift pairing for students, friends and surprise notes, with colors confirmed on WhatsApp."
   },
   {
     "id": "mini-bouquet-note-card",
@@ -594,7 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "gift-combos",
     "startingPrice": 499,
     "image": "images/crochet_rose_bouquet_mini-bouquet-note-card.png",
-    "description": "A mini bouquet packaged with a note card for simple thoughtful gifting."
+    "description": "A mini bouquet with a note card, best for birthdays, apologies and sweet surprise gifts."
   },
   {
     "id": "plushie-flower-combo",
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "gift-combos",
     "startingPrice": 799,
     "image": "images/crochet_plushie_flower_combo.png",
-    "description": "A cozy plushie paired with a handmade flower for warm occasions."
+    "description": "A cozy plushie paired with a handmade flower for birthdays, couple gifts and warm occasions."
   },
   {
     "id": "birthday-mini-gift-box",
@@ -611,7 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 999,
     "image": "images/crochet_birthday_gift_box.png",
     "badge": "Birthday",
-    "description": "A birthday-ready crochet gift box with soft add-ons and packaging."
+    "description": "A birthday-ready crochet gift box with soft add-ons, packaging and final details confirmed on WhatsApp."
   },
   {
     "id": "couple-keychain-combo",
@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "gift-combos",
     "startingPrice": 1199,
     "image": "images/mixed_luxury_bouquet_couple-bouquet-combo.png",
-    "description": "A romantic combo built around a crochet bouquet and matching details."
+    "description": "A romantic combo for anniversaries, couple surprises and long-lasting bouquet gifts."
   },
   {
     "id": "baby-gift-combo",
@@ -635,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "gift-combos",
     "startingPrice": 1499,
     "image": "images/crochet_bunny_plush_baby-gift-combo.png",
-    "description": "A sweet baby gift combo with plush, accessory, or nursery elements."
+    "description": "A sweet baby gift combo with plush, accessory or nursery elements, finalized through WhatsApp."
   },
   {
     "id": "anniversary-gift-box",
@@ -644,7 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 1499,
     "image": "images/mixed_luxury_bouquet_anniversary-gift-box-generated.png",
     "badge": "Anniversary",
-    "description": "An anniversary box with crochet keepsakes, flowers, and gift-ready packaging."
+    "description": "An anniversary box with crochet keepsakes, flowers and gift-ready packaging."
   },
   {
     "id": "custom-crochet-hamper",
@@ -654,19 +654,19 @@ document.addEventListener('DOMContentLoaded', () => {
     "image": "images/hero_crochet_scene_custom-crochet-hamper-generated.png",
     "badge": "Custom Hamper",
     "featured": true,
-    "description": "A fully custom hamper combining crochet pieces, notes, flowers, and packaging."
+    "description": "A fully custom hamper combining crochet pieces, notes, flowers and packaging, with final quote confirmed on WhatsApp."
   }
 ];
     const priceNote = "Final price may vary based on size, color, custom name, flowers, packaging, and delivery.";
     const categoryDescriptions = {
-        "all": "Explore BloomyCocoon's handmade crochet collection — bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos crafted in Kerala and delivered across India. Add your favourites to cart and continue to WhatsApp to customize and finalize your order.",
-        "bouquets": "Long-lasting handmade crochet bouquets crafted for birthdays, anniversaries, Valentine's Day and meaningful surprises. Choose from roses, tulips, sunflowers and custom bouquet styles, then finalize colors, size and wrapping through WhatsApp.",
-        "plushies": "Soft handmade crochet plushies made for cute gifting, keepsakes and cozy custom surprises. These pieces work well for birthdays, baby gifting, couple gifts and thoughtful handmade moments.",
-        "keychains": "Affordable crochet keychains and charms for bags, keys, couple gifts and small handmade surprises. Choose from hearts, flowers, animals, initials and custom character-inspired designs.",
-        "baby-gifts": "Soft crochet baby gifts for newborns, baby showers and thoughtful handmade gifting. Options can include booties, caps, mittens, rattles, baby plushies and custom baby-themed gift sets.",
-        "accessories": "Cute handmade crochet accessories including scrunchies, hair bands, charms, brooches, earrings, bracelets and small wearable pieces. Perfect for soft everyday styling and affordable gifting.",
-        "home-decor": "Cozy crochet decor pieces made to bring warmth to rooms, desks, cars and gifting corners. Explore coasters, wall hangings, car charms, flower pots, garlands and custom name decor.",
-        "gift-combos": "Handmade crochet gift combos for birthdays, anniversaries, couples, baby gifting and special occasions. Combine bouquets, plushies, keychains, notes and packaging into a personalized gift set."
+        "all": "Explore handmade crochet gifts from BloomyCocoon in Mampad, Malappuram, Kerala, India. Find crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and custom gift combos for birthdays, anniversaries, students, baby showers and surprise gifts, with delivery across Kerala and India.",
+        "bouquets": "BloomyCocoon's crochet bouquets are long-lasting handmade flower gifts for birthdays, anniversaries, couple gifts and soft surprises. Choose roses, tulips, sunflowers, lavender or custom bouquet styles, then confirm colors, wrapping, Starting from price and final quote on WhatsApp before making begins.",
+        "plushies": "Soft handmade crochet plushies for birthdays, baby gifting, student desks, couple surprises and keepsake gifts. Each plushie can be discussed for color, size and small details through WhatsApp, making it a cozy custom crochet gift from Kerala for moments that need a gentle hug.",
+        "keychains": "Crochet keychains are small handmade gifts for students, friends, couples, bags, keys and custom hampers. Choose hearts, flowers, initials, animals or character-inspired charms, then confirm colors, quantity and final quote on WhatsApp before BloomyCocoon makes your order in Kerala with care.",
+        "baby-gifts": "Gentle baby crochet gifts for newborns, baby showers, naming moments and soft family keepsakes. Explore booties, caps, mittens, rattles, baby plushies, name garlands and baby gift sets, with sizing, colors, Starting from price and delivery confirmed on WhatsApp before making.",
+        "accessories": "Handmade crochet accessories for soft everyday styling, small surprises and affordable gifting. Browse scrunchies, hair bands, bow clips, brooches, earrings, bracelets, bag charms, phone charms and pouches, with custom shades and final details confirmed through WhatsApp for Kerala and India orders.",
+        "home-decor": "Cozy crochet home decor pieces for rooms, desks, cars, nursery corners and handmade housewarming gifts. Explore coasters, wall hangings, door hangings, car charms, garlands, plant holders and custom name decor made with a warm BloomyCocoon feel for personal spaces too.",
+        "gift-combos": "Gift combos and custom crochet hampers bring bouquets, plushies, keychains, notes and packaging together for birthdays, anniversaries, couple gifts, baby gifting and surprise moments. BloomyCocoon confirms the mix, Starting from price, final quote and delivery across Kerala and India on WhatsApp."
     };
 
     function getSafePrice(price) {
@@ -729,12 +729,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'screen-home': {
             path: '/',
             title: 'Handmade Crochet Gifts in Kerala & India | BloomyCocoon',
-            description: 'Affordable handmade crochet gifts from Mampad, Malappuram, Kerala. Explore crochet bouquets, plushies, keychains, baby gifts and custom orders with delivery across India.'
+            description: 'Handmade crochet gifts from Mampad, Malappuram, Kerala, India. Explore crochet bouquets, plushies, keychains, baby gifts and custom crochet gifts with delivery across Kerala and India.'
         },
         'screen-collection': {
             path: '/collections',
             title: 'Crochet Bouquets, Plushies, Keychains & Handmade Gifts | BloomyCocoon',
-            description: 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon. Custom orders available across India.'
+            description: 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon in Kerala, with custom orders available across India.'
         },
         'screen-custom-orders': {
             path: '/custom-order',
@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'screen-faq': {
             path: '/faq',
             title: 'BloomyCocoon FAQ | Crochet Orders, Delivery & Care',
-            description: 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, production time, starting prices and crochet gift care.'
+            description: 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, production time, Starting from prices and crochet gift care.'
         },
         'screen-contact': {
             path: '/contact',
@@ -1587,7 +1587,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `Base type: ${orderData.type}\n`;
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
             message += "Source: Custom Order Page\n\n";
-            message += "Please help me finalize the design, starting price, timeline and delivery.";
+            message += "Please help me finalize the design, Starting from price, timeline and delivery.";
 
             trackEvent('custom_order_submit', {
                 order_type: orderData.type
@@ -1759,7 +1759,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="material-symbols-outlined text-3xl">done</span>
                 </div>
                 <h3 class="font-headline-sm text-headline-sm text-secondary">Your message is stitched!</h3>
-                <p class="text-on-surface-variant max-w-sm mx-auto leading-relaxed">Thank you, ${name}. We've received your request and our weavers will get back to you within 24-48 hours.</p>
+                <p class="text-on-surface-variant max-w-sm mx-auto leading-relaxed">Thank you, ${name}. WhatsApp is opening so we can confirm your crochet gift enquiry personally.</p>
                 <button onclick="location.reload()" class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md text-sm mt-md">Write Another Message</button>
             </div>
         `;
@@ -2028,7 +2028,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     "additionalProperty": [
                         {
                             "@type": "PropertyValue",
-                            "name": "Starting price shown on website",
+                            "name": "Starting from price shown on website",
                             "value": `Starting from INR ${getSafePrice(product.startingPrice)}`
                         },
                         {
@@ -2044,7 +2044,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "@type": "ItemList",
                 "@id": `${SITE_ORIGIN}/collections#products`,
                 "name": "BloomyCocoon handmade crochet collection",
-                "description": "Handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos with starting prices shown on the website. Final price is confirmed on WhatsApp.",
+                "description": "Handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos with Starting from prices shown on the website. Final quote is confirmed on WhatsApp.",
                 "itemListElement": productList
             });
         }
