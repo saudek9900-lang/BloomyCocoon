@@ -727,6 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name: ''
     };
     let lastCartTrigger = null;
+    let cartScrollY = 0;
 
     const screenMetadata = {
         'screen-home': {
@@ -907,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Open drawer logic or cleanup
         if (targetScreenId !== 'screen-collection') {
-            closeCart();
+            window.closeCart();
         }
 
         // Keep page position clean
@@ -1182,6 +1183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.preventDefault();
             e.stopImmediatePropagation();
+            closeMobileMenu();
 
             if (targetScreen === 'screen-home' && currentScreen === 'screen-home') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1282,9 +1284,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         sideCart.classList.toggle('cart-visible', isOpen);
+        sideCart.setAttribute('aria-modal', isOpen ? 'true' : 'false');
         document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
             btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
+
+        if (isOpen && !document.body.classList.contains('cart-open')) {
+            cartScrollY = window.scrollY;
+            document.body.style.top = `-${cartScrollY}px`;
+            document.body.classList.add('cart-open');
+        } else if (!isOpen && document.body.classList.contains('cart-open')) {
+            document.body.classList.remove('cart-open');
+            document.body.style.top = '';
+            window.scrollTo({ top: cartScrollY, behavior: 'instant' });
+        }
 
         const whatsappFloat = document.getElementById('whatsapp-global-float');
         if (whatsappFloat) {
@@ -1336,10 +1349,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Auto-close mobile menu on any link click
+    // Auto-close mobile menu on link clicks and cart on outside taps
     document.addEventListener('click', (e) => {
-        if (e.target.closest('#mobile-menu a') || e.target.closest('nav a')) {
+        const clickedMobileMenuLink = e.target.closest('#mobile-menu a');
+        const clickedNavLink = e.target.closest('nav a');
+        if (clickedMobileMenuLink || clickedNavLink) {
             closeMobileMenu();
+        }
+
+        const sideCart = document.getElementById('sideCart');
+        if (!sideCart?.classList.contains('cart-visible')) return;
+
+        const clickedInsideCart = e.target.closest('#sideCart');
+        const clickedCartControl = e.target.closest('[aria-controls="sideCart"], [data-add-to-cart]');
+        if (!clickedInsideCart && !clickedCartControl) {
+            window.closeCart();
         }
     });
 
@@ -1348,7 +1372,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const sideCart = document.getElementById('sideCart');
         if (sideCart?.classList.contains('cart-visible')) {
-            closeCart();
+            window.closeCart();
         }
 
         closeMobileMenu();

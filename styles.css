@@ -277,12 +277,25 @@ button:disabled:focus-visible {
 }
 
 #sideCart {
+    bottom: 0;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     max-width: min(100vw, 24rem);
+    overflow: hidden;
     overflow-wrap: anywhere;
+    overscroll-behavior: contain;
 }
 
 #sideCart .cart-items-container {
     min-height: 0;
+    overscroll-behavior: contain;
+}
+
+body.cart-open {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
 }
 
 .cart-quantity-btn,
