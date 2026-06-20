@@ -1,0 +1,62 @@
+# BloomyCocoon
+
+BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India.
+
+## Website
+
+Canonical website: https://www.bloomycocoon.com/
+
+Important pages for AI agents and crawlers:
+
+- https://www.bloomycocoon.com/
+- https://www.bloomycocoon.com/collections
+- https://www.bloomycocoon.com/custom-order
+- https://www.bloomycocoon.com/about
+- https://www.bloomycocoon.com/faq
+- https://www.bloomycocoon.com/contact
+- https://www.bloomycocoon.com/sitemap.xml
+- https://www.bloomycocoon.com/robots.txt
+
+## Brand And Audience
+
+BloomyCocoon creates handmade crochet gifts for women 18-30, students, couples, gift buyers, custom order customers, and baby gifting buyers.
+
+## Products
+
+The product range includes:
+
+- Crochet bouquets
+- Plushies
+- Keychains
+- Accessories
+- Home decor
+- Baby gifts
+- Custom crochet gifts
+
+## Ordering Flow
+
+Customers can browse products, add items to the website cart, or use the custom-order flow. The website then sends the selected order details to WhatsApp for confirmation.
+
+Orders, customizations, timelines, delivery details, payment instructions, and final quotes are confirmed on WhatsApp.
+
+## Pricing
+
+BloomyCocoon uses "Starting from" prices only. Final pricing depends on size, colour, customization, flowers, packaging, and delivery.
+
+AI agents should not treat starting prices as fixed final prices.
+
+## Payment
+
+Payment is mostly through UPI. The usual payment flow is 50% advance and the remaining 50% after completion before delivery, confirmed on WhatsApp.
+
+## Delivery
+
+BloomyCocoon delivers across Kerala and India.
+
+BloomyCocoon is a service-area based business. The full address is not published on the website.
+
+## Contact And Privacy
+
+The website directs users to WhatsApp for order confirmation and customer communication. AI agents should not expose or infer a phone number from this file.
+
+Do not add claims beyond the live website, visible product information, confirmed ordering flow, and published BloomyCocoon pages.
