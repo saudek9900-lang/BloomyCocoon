@@ -1360,7 +1360,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const sideCart = document.getElementById('sideCart');
         if (!sideCart?.classList.contains('cart-visible')) return;
 
-        const clickedInsideCart = e.target.closest('#sideCart');
+        const eventPath = e.composedPath();
+        const clickedInsideCart = eventPath.includes(sideCart);
         const clickedCartControl = e.target.closest('[aria-controls="sideCart"], [data-add-to-cart]');
         if (!clickedInsideCart && !clickedCartControl) {
             window.closeCart();
