@@ -1487,7 +1487,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
             } else {
-                let html = '<div class="space-y-md pr-2 max-h-[60vh] overflow-y-auto">';
+                let html = '<div class="cart-items-list space-y-md pr-2">';
                 cart.forEach(item => {
                     const categoryLabel = getCategoryLabel(item.category);
                     html += `
@@ -2205,10 +2205,22 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(script);
     }
 
+    function setupCartCompactNote() {
+        const paymentNote = document.getElementById('cart-payment-note');
+        if (!paymentNote || document.getElementById('cart-compact-note')) return;
+
+        const compactNote = document.createElement('p');
+        compactNote.className = 'cart-compact-note text-caption text-on-surface-variant bg-white/55 border border-outline-variant/15 rounded-lg px-3 py-2';
+        compactNote.id = 'cart-compact-note';
+        compactNote.textContent = 'Starting prices are a guide. Final quote, payment and delivery are confirmed on WhatsApp.';
+        paymentNote.insertAdjacentElement('afterend', compactNote);
+    }
+
     // ----------------------------------------------------
     initNavigationBindings();
     hydrateExternalConversionLinks();
     setupProductCardAddToCartTriggers();
+    setupCartCompactNote();
     applyCollectionFilterFromUrl();
     
     // Setup dynamic live listener on step-3 notes
