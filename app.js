@@ -66,6 +66,24 @@ document.addEventListener('DOMContentLoaded', () => {
   "gift-combos": "images/hero_crochet_scene.png",
   "default": "images/hero_crochet_scene.png"
 };
+    const responsiveImageWidths = [320, 480, 640];
+    const responsiveImagePaths = new Set([
+  "images/hero_crochet_scene.png",
+  "images/mixed_luxury_bouquet.png",
+  "images/mixed_luxury_bouquet_custom-premium-bouquet.png",
+  "images/mixed_luxury_bouquet_couple-bouquet-combo.png",
+  "images/crochet_cat_plushie.png",
+  "images/crochet_cat_plushie_cat-plushie.png",
+  "images/strawberry_keychain.png",
+  "images/strawberry_keychain_strawberry-keychain.png",
+  "images/crochet_tote_bag.png",
+  "images/crochet_tote_bag_crochet-tote-bag.png",
+  "images/crochet_wall_hanging.png",
+  "images/crochet_wall_hanging_wall-hanging.png",
+  "images/about_process.png",
+  "images/yarn_storage.png",
+  "images/contact_workspace.png"
+]);
     const collectionProducts = [
   {
     "id": "single-crochet-rose",
@@ -1605,7 +1623,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const previewSource = document.getElementById('preview-webp-source');
             const previewImagePath = sampleImages[orderData.type] || sampleImages['Other'];
 
-            if (previewSource) previewSource.srcset = getWebpImagePath(previewImagePath);
+            if (previewSource) {
+                previewSource.srcset = getResponsiveWebpSrcset(previewImagePath);
+                previewSource.sizes = '(min-width: 768px) 33vw, 100vw';
+            }
             previewImage.src = previewImagePath;
         }
     }
@@ -1898,6 +1919,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return imagePath.replace(/\.png$/i, '.webp');
     }
 
+    function getResponsiveWebpSrcset(imagePath) {
+        const webpPath = getWebpImagePath(imagePath);
+        if (!responsiveImagePaths.has(imagePath)) return webpPath;
+        const basePath = webpPath.replace(/\.webp$/i, '');
+        return [
+            ...responsiveImageWidths.map(width => `${basePath}-${width}.webp ${width}w`),
+            `${webpPath} 1024w`
+        ].join(', ');
+    }
+
+    function getProductImageSizes(isFeatured) {
+        return isFeatured ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 100vw';
+    }
+
     function getProductCategoryIds(product) {
         return [product.category, ...(product.filterCategories || [])];
     }
@@ -1943,7 +1978,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
                     <div class="relative h-[260px] md:h-[420px] overflow-hidden">
                         <picture class="contents">
-                            <source srcset="${escapeHTML(getWebpImagePath(image))}" type="image/webp">
+                            <source srcset="${escapeHTML(getResponsiveWebpSrcset(image))}" sizes="${getProductImageSizes(true)}" type="image/webp">
                             <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
                         </picture>
                         <div class="absolute top-md right-md flex flex-col gap-2 items-end">
@@ -1974,7 +2009,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                 <div class="relative h-[180px] md:h-[260px] overflow-hidden rounded-t-xl bg-surface-container">
                     <picture class="contents">
-                        <source srcset="${escapeHTML(getWebpImagePath(image))}" type="image/webp">
+                        <source srcset="${escapeHTML(getResponsiveWebpSrcset(image))}" sizes="${getProductImageSizes(false)}" type="image/webp">
                         <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
                     </picture>
                     <div class="absolute top-base left-base">
