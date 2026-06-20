@@ -1577,7 +1577,11 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         if (previewImage) {
-            previewImage.src = sampleImages[orderData.type] || sampleImages['Other'];
+            const previewSource = document.getElementById('preview-webp-source');
+            const previewImagePath = sampleImages[orderData.type] || sampleImages['Other'];
+
+            if (previewSource) previewSource.srcset = getWebpImagePath(previewImagePath);
+            previewImage.src = previewImagePath;
         }
     }
 
@@ -1865,6 +1869,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return product.image || categoryFallbackImages[product.category] || categoryFallbackImages.default;
     }
 
+    function getWebpImagePath(imagePath) {
+        return imagePath.replace(/\.png$/i, '.webp');
+    }
+
     function getProductCategoryIds(product) {
         return [product.category, ...(product.filterCategories || [])];
     }
@@ -1909,7 +1917,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return `
                 <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
                     <div class="relative h-[260px] md:h-[420px] overflow-hidden">
-                        <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" width="800" height="500">
+                        <picture class="contents">
+                            <source srcset="${escapeHTML(getWebpImagePath(image))}" type="image/webp">
+                            <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
+                        </picture>
                         <div class="absolute top-md right-md flex flex-col gap-2 items-end">
                             ${product.badge ? `<span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">${escapeHTML(product.badge)}</span>` : ''}
                             ${tagMarkup}
@@ -1937,7 +1948,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return `
             <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
                 <div class="relative h-[180px] md:h-[260px] overflow-hidden rounded-t-xl bg-surface-container">
-                    <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" width="400" height="500">
+                    <picture class="contents">
+                        <source srcset="${escapeHTML(getWebpImagePath(image))}" type="image/webp">
+                        <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
+                    </picture>
                     <div class="absolute top-base left-base">
                         ${badgeMarkup}
                     </div>
@@ -1988,6 +2002,8 @@ document.addEventListener('DOMContentLoaded', () => {
             img.addEventListener('error', () => {
                 if (img.dataset.fallbackApplied === 'true') return;
                 img.dataset.fallbackApplied = 'true';
+                const picture = img.closest('picture');
+                if (picture) picture.querySelectorAll('source').forEach(source => source.remove());
                 img.src = img.dataset.fallbackSrc || categoryFallbackImages.default;
             }, { once: true });
         });
