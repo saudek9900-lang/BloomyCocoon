@@ -84,6 +84,14 @@ function stripTags(value) {
   return decodeHtml(String(value).replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
 }
 
+function stripIconText(value) {
+  return String(value)
+    .replace(/<span\b(?=[^>]*\bclass=["'][^"']*\bmaterial-symbols(?:-outlined)?\b)[^>]*>[\s\S]*?<\/span>/gi, ' ')
+    .replace(/\b(?:expand_more|keyboard_arrow_\w+|chevron_\w+|chevron)\b/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function replaceOne(html, pattern, replacement, label) {
   if (!pattern.test(html)) {
     throw new Error(`Could not find ${label} in built HTML.`);
@@ -186,7 +194,7 @@ function extractFaqItems(html) {
     const detailsHtml = match[1];
     const summaryMatch = detailsHtml.match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/i);
     const answerMatch = detailsHtml.match(/<p\b[^>]*>([\s\S]*?)<\/p>/i);
-    const question = summaryMatch ? stripTags(summaryMatch[1]) : '';
+    const question = summaryMatch ? stripTags(stripIconText(summaryMatch[1])) : '';
     const answer = answerMatch ? stripTags(answerMatch[1]) : '';
     if (!question || !answer) continue;
     items.push({
