@@ -129,7 +129,7 @@
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-secondary-container">
 
     <!-- Toast popup message container -->
-    <div id="toast-container"></div>
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <!-- GLOBAL MAIN NAVIGATION HEADER (SHARED ACCROSS ALL MAIN PAGES) -->
     <nav class="bg-surface/85 backdrop-blur-md text-primary fixed w-full top-0 left-0 z-50 border-b border-outline-variant/20 shadow-sm transition-all duration-300">
@@ -147,7 +147,7 @@
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contact">Contact Us</a>
             </div>
             <div class="flex items-center gap-md">
-                <button onclick="toggleCart()" class="p-2 text-on-surface-variant hover:bg-primary-container/50 rounded-full transition-all duration-300 relative cart-trigger" aria-label="Open cart" aria-controls="sideCart" aria-expanded="false">
+                <button onclick="toggleCart(this)" class="p-2 text-on-surface-variant hover:bg-primary-container/50 rounded-full transition-all duration-300 relative cart-trigger" aria-label="Open cart" aria-controls="sideCart" aria-expanded="false">
                     <span class="material-symbols-outlined">shopping_bag</span>
                     <span class="absolute top-1 right-1 w-4 h-4 bg-secondary text-white text-[10px] rounded-full flex items-center justify-center font-bold cart-badge hidden" aria-live="polite">0</span>
                 </button>

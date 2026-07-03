@@ -709,6 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function trackEvent(eventName, params = {}) {
         if (window.gtag && typeof window.gtag === "function") {
             window.gtag("event", eventName, params);
+            return;
         }
         if (window.dataLayer && Array.isArray(window.dataLayer)) {
             window.dataLayer.push({ event: eventName, ...params });
@@ -1264,6 +1265,73 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 4. INTERACTIVE SHOPPING BASKET
     // ----------------------------------------------------
+    function setPageBehindCartInert(isInert) {
+        const pageRegions = [
+            document.querySelector('nav'),
+            document.getElementById('app-viewport'),
+            document.getElementById('whatsapp-global-float')
+        ].filter(Boolean);
+
+        pageRegions.forEach(region => {
+            if (isInert) {
+                if (!region.hasAttribute('inert')) {
+                    region.dataset.cartInertApplied = 'true';
+                    region.setAttribute('inert', '');
+                    region.setAttribute('aria-hidden', 'true');
+                }
+                return;
+            }
+
+            if (region.dataset.cartInertApplied === 'true') {
+                region.removeAttribute('inert');
+                region.removeAttribute('aria-hidden');
+                delete region.dataset.cartInertApplied;
+            }
+        });
+    }
+
+    function getCartFocusableElements(sideCart) {
+        return Array.from(sideCart.querySelectorAll([
+            'a[href]',
+            'button:not([disabled])',
+            'textarea:not([disabled])',
+            'input:not([disabled])',
+            'select:not([disabled])',
+            '[tabindex]:not([tabindex="-1"])'
+        ].join(','))).filter(el => {
+            const style = window.getComputedStyle(el);
+            return style.display !== 'none' && style.visibility !== 'hidden';
+        });
+    }
+
+    function keepFocusInsideCart(event, sideCart) {
+        if (event.key !== 'Tab') return;
+
+        const focusableElements = getCartFocusableElements(sideCart);
+        if (focusableElements.length === 0) {
+            event.preventDefault();
+            sideCart.focus({ preventScroll: true });
+            return;
+        }
+
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+
+        if (!sideCart.contains(document.activeElement)) {
+            event.preventDefault();
+            firstFocusable.focus({ preventScroll: true });
+            return;
+        }
+
+        if (event.shiftKey && document.activeElement === firstFocusable) {
+            event.preventDefault();
+            lastFocusable.focus({ preventScroll: true });
+        } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+            event.preventDefault();
+            firstFocusable.focus({ preventScroll: true });
+        }
+    }
+
     function setCartOpen(isOpen, triggerEl = document.activeElement) {
         const sideCart = document.getElementById('sideCart');
         if (!sideCart) return;
@@ -1274,6 +1342,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sideCart.classList.toggle('cart-visible', isOpen);
         sideCart.setAttribute('aria-modal', isOpen ? 'true' : 'false');
+        if (isOpen) {
+            sideCart.focus({ preventScroll: true });
+        }
+        setPageBehindCartInert(isOpen);
         document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
             btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
@@ -1313,10 +1385,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    window.toggleCart = function() {
+    window.toggleCart = function(triggerEl = document.activeElement) {
         const sideCart = document.getElementById('sideCart');
         if (sideCart) {
-            setCartOpen(!sideCart.classList.contains('cart-visible'));
+            setCartOpen(!sideCart.classList.contains('cart-visible'), triggerEl);
         }
     };
 
@@ -1358,14 +1430,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Escape') return;
-
         const sideCart = document.getElementById('sideCart');
         if (sideCart?.classList.contains('cart-visible')) {
-            window.closeCart();
+            if (e.key === 'Escape') {
+                window.closeCart();
+            } else {
+                keepFocusInsideCart(e, sideCart);
+            }
         }
 
-        closeMobileMenu();
+        if (e.key === 'Escape') {
+            closeMobileMenu();
+        }
     });
 
     window.addToCart = function(id, name, category, price, img) {
@@ -1758,6 +1834,9 @@ document.addEventListener('DOMContentLoaded', () => {
             container.id = 'toast-container';
             document.body.appendChild(container);
         }
+        container.setAttribute('role', 'status');
+        container.setAttribute('aria-live', 'polite');
+        container.setAttribute('aria-atomic', 'true');
 
         const toast = document.createElement('div');
         toast.className = 'toast';
@@ -1801,16 +1880,33 @@ document.addEventListener('DOMContentLoaded', () => {
         openWhatsAppMessage(message);
 
         // Success animation
-        form.innerHTML = `
-            <div class="text-center py-xl space-y-md bg-primary-container rounded-3xl p-md soft-glow border border-outline-variant/10 animate-push-enter">
-                <div class="w-16 h-16 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center mx-auto mb-sm">
-                    <span class="material-symbols-outlined text-3xl">done</span>
-                </div>
-                <h3 class="font-headline-sm text-headline-sm text-secondary">Your message is stitched!</h3>
-                <p class="text-on-surface-variant max-w-sm mx-auto leading-relaxed">Thank you, ${name}. WhatsApp is opening so we can confirm your crochet gift enquiry personally.</p>
-                <button onclick="location.reload()" class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md text-sm mt-md">Write Another Message</button>
-            </div>
-        `;
+        const successPanel = document.createElement('div');
+        successPanel.className = 'text-center py-xl space-y-md bg-primary-container rounded-3xl p-md soft-glow border border-outline-variant/10 animate-push-enter';
+
+        const iconWrapper = document.createElement('div');
+        iconWrapper.className = 'w-16 h-16 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center mx-auto mb-sm';
+
+        const icon = document.createElement('span');
+        icon.className = 'material-symbols-outlined text-3xl';
+        icon.textContent = 'done';
+        iconWrapper.appendChild(icon);
+
+        const heading = document.createElement('h3');
+        heading.className = 'font-headline-sm text-headline-sm text-secondary';
+        heading.textContent = 'Your message is stitched!';
+
+        const successMessage = document.createElement('p');
+        successMessage.className = 'text-on-surface-variant max-w-sm mx-auto leading-relaxed';
+        successMessage.textContent = `Thank you, ${name}. WhatsApp is opening so we can confirm your crochet gift enquiry personally.`;
+
+        const resetButton = document.createElement('button');
+        resetButton.className = 'bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md text-sm mt-md';
+        resetButton.type = 'button';
+        resetButton.textContent = 'Write Another Message';
+        resetButton.addEventListener('click', () => location.reload());
+
+        successPanel.append(iconWrapper, heading, successMessage, resetButton);
+        form.replaceChildren(successPanel);
         showToast("Opening WhatsApp with your message.");
     };
 
