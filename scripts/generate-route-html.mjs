@@ -57,6 +57,19 @@ function removeRouteSchema(html) {
   return html.replace(pattern, '');
 }
 
+function activateScreen(html, activeScreenId) {
+  return html.replace(
+    /<section\b([^>]*?)\bclass=["']([^"']*\bscreen\b[^"']*)["']([^>]*?)\bid=["']([^"']+)["']([^>]*)>/gi,
+    (match, beforeClass, classValue, afterClass, screenId, afterId) => {
+      const classes = classValue
+        .split(/\s+/)
+        .filter((className) => className && className !== 'active' && className !== 'hidden');
+      classes.push(screenId === activeScreenId ? 'active' : 'hidden');
+      return `<section${beforeClass}class="${classes.join(' ')}"${afterClass}id="${screenId}"${afterId}>`;
+    },
+  );
+}
+
 function updateMetadata(html, metadata) {
   const title = escapeHtml(metadata.title);
   const description = escapeHtml(metadata.description);
@@ -162,14 +175,14 @@ function insertRouteSchema(html, screenId, baseHtml) {
 
 async function writeRouteHtml(baseHtml, screenId) {
   const route = ROUTE_CONTENT[screenId];
-  const routeHtml = insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata(screenId)), screenId, baseHtml);
+  const routeHtml = activateScreen(insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata(screenId)), screenId, baseHtml), screenId);
   const outputDir = path.join(DIST_DIR, route.outputDir);
   await mkdir(outputDir, { recursive: true });
   await writeFile(path.join(outputDir, 'index.html'), routeHtml);
 }
 
 const baseHtml = await readFile(INDEX_PATH, 'utf8');
-await writeFile(INDEX_PATH, insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata('screen-home')), 'screen-home', baseHtml));
+await writeFile(INDEX_PATH, activateScreen(insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata('screen-home')), 'screen-home', baseHtml), 'screen-home'));
 
 for (const screenId of STATIC_ROUTE_SCREEN_IDS) {
   await writeRouteHtml(baseHtml, screenId);

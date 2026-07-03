@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 1. STATE MANAGEMENT & SPA ROUTING
     // ----------------------------------------------------
-    let currentScreen = 'screen-home';
-    const screenHistory = ['screen-home'];
+    let currentScreen = getScreenIdFromPath(window.location.pathname) || 'screen-home';
+    const screenHistory = [currentScreen];
     let inTransition = false;
     let isRoutingFromHistory = false;
     let shouldFocusCustomOrder = false;
+    let collectionProductsRendered = false;
+    let collectionProductsRenderScheduled = false;
 
     const WHATSAPP_NUMBER = "919061174579";
 
@@ -677,6 +679,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "description": "A fully custom hamper combining crochet pieces, notes, flowers and packaging, with final quote confirmed on WhatsApp."
   }
 ];
+    const responsiveProductImagePaths = new Set(collectionProducts.map(product => product.image).filter(Boolean));
     const priceNote = "Final price may vary based on size, color, custom name, flowers, packaging, and delivery.";
     const categoryDescriptions = {
         "all": "Explore handmade crochet gifts from BloomyCocoon in Mampad, Malappuram, Kerala, India. Find crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and custom gift combos for birthdays, anniversaries, students, baby showers and surprise gifts, with delivery across Kerala and India.",
@@ -821,6 +824,29 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
+    function setInitialScreenState(screenId) {
+        document.querySelectorAll('.screen').forEach(screen => {
+            const isActive = screen.id === screenId;
+            screen.classList.toggle('active', isActive);
+            screen.classList.toggle('hidden', !isActive);
+            screen.classList.remove(
+                'in-transition', 'will-change-transform',
+                'animate-push-exit', 'animate-push-enter',
+                'animate-push-back-exit', 'animate-push-back-enter',
+                'animate-slide-up-exit', 'animate-slide-up-enter'
+            );
+            screen.style.zIndex = '';
+        });
+
+        currentScreen = screenId;
+        screenHistory.splice(0, screenHistory.length, screenId);
+
+        const whatsappFloat = document.getElementById('whatsapp-global-float');
+        if (whatsappFloat) {
+            whatsappFloat.classList.toggle('whatsapp-hidden', screenId === 'screen-custom-orders');
+        }
+    }
+
     function syncScreenMetadata(screenId) {
         const metadata = screenMetadata[screenId] || screenMetadata['screen-home'];
         const canonicalUrl = getCanonicalForScreen(screenId);
@@ -868,6 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
             syncDynamicStructuredData(targetScreenId);
             syncNavigationUI();
             if (targetScreenId === 'screen-collection') {
+                ensureCollectionProductsRendered();
                 applyCollectionFilterFromUrl();
             }
             return;
@@ -879,6 +906,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!currentScreenEl || !targetScreenEl) {
             console.error(`Router error: Screen not found. Current: ${currentScreen}, Target: ${targetScreenId}`);
             return;
+        }
+
+        if (targetScreenId === 'screen-collection') {
+            ensureCollectionProductsRendered();
         }
 
         syncScreenMetadata(targetScreenId);
@@ -966,6 +997,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-sync nav highlights
             syncNavigationUI();
             if (targetScreenId === 'screen-collection') {
+                ensureCollectionProductsRendered();
                 applyCollectionFilterFromUrl();
             }
 
@@ -985,7 +1017,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (screenHistory.length > 1) {
             window.history.back();
         } else {
-            navigateTo('screen-home', 'push_back', { replaceHistory: true });
+            window.navigateTo('screen-home', 'push_back', { replaceHistory: true });
         }
     };
 
@@ -1048,7 +1080,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const transitionType = getHistoryTransition(targetScreenId);
 
         isRoutingFromHistory = true;
-        navigateTo(targetScreenId, transitionType, {
+        window.navigateTo(targetScreenId, transitionType, {
             updateHistory: false,
             routeSearch: window.location.search
         });
@@ -1068,7 +1100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const transitionType = getHistoryTransition(targetScreenId);
-        navigateTo(targetScreenId, transitionType, {
+        window.navigateTo(targetScreenId, transitionType, {
             updateHistory: false,
             routeSearch: window.location.search
         });
@@ -1077,16 +1109,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle deep-linking on page load
     normalizeLegacyHashRoute();
     const initialScreen = getScreenIdFromPath(window.location.pathname) || 'screen-home';
+    setInitialScreenState(initialScreen);
+    if (initialScreen === 'screen-collection') {
+        scheduleInitialCollectionProductsRender();
+    }
     window.history.replaceState({ screenId: initialScreen }, '', getRouteForScreen(initialScreen, window.location.search));
     syncScreenMetadata(initialScreen);
-    if (initialScreen !== 'screen-home') {
-        navigateTo(initialScreen, 'instant', {
-            updateHistory: false,
-            routeSearch: window.location.search
-        });
-    } else if (initialScreen === 'screen-collection') {
-        applyCollectionFilterFromUrl();
-    }
 
     // ----------------------------------------------------
     // 3. NAVIGATION BINDINGS (SPECS)
@@ -1121,7 +1149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     return;
                 }
-                navigateTo(targetScreen, transition);
+                window.navigateTo(targetScreen, transition);
                 if (targetScreen === 'screen-home') {
                     setTimeout(() => {
                         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -1149,7 +1177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         shouldFocusCustomOrder = true;
-        navigateTo('screen-custom-orders', 'slide_up');
+        window.navigateTo('screen-custom-orders', 'slide_up');
         setTimeout(() => {
             window.resetCustomOrder?.();
         }, 720);
@@ -1187,7 +1215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 transition = 'slide_up';
             }
 
-            navigateTo(targetScreen, transition, { routeSearch: url.search });
+            window.navigateTo(targetScreen, transition, { routeSearch: url.search });
         }, true);
 
         document.addEventListener('click', (e) => {
@@ -1199,7 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentScreen === 'screen-home') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                navigateTo('screen-home', 'push_back');
+                window.navigateTo('screen-home', 'push_back');
                 setTimeout(() => {
                     window.scrollTo({ top: 0, behavior: 'instant' });
                 }, 460);
@@ -1226,7 +1254,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.addEventListener('click', (e) => {
                     e.preventDefault();
                     if (currentScreen !== 'screen-home') {
-                        navigateTo('screen-home', 'push_back');
+                        window.navigateTo('screen-home', 'push_back');
                         setTimeout(() => {
                             window.scrollTo({ top: 0, behavior: 'instant' });
                         }, 460);
@@ -1461,7 +1489,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         renderCart();
-        showToast(`Added "${name}" to your cart!`);
+        window.showToast(`Added "${name}" to your cart!`);
         trackEvent('add_to_cart', {
             item_id: id,
             item_name: name,
@@ -1492,7 +1520,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.removeFromCart = function(id) {
         cart = cart.filter(i => i.id !== id);
         renderCart();
-        showToast("Unravelled item from cart.");
+        window.showToast("Unravelled item from cart.");
     };
 
     function renderCart() {
@@ -1685,7 +1713,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nameVal = document.getElementById('order-name').value.trim();
 
         if (!nameVal) {
-            showToast("Please fill in your Name.");
+            window.showToast("Please fill in your Name.");
             return;
         }
 
@@ -1703,7 +1731,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-render final custom details
             document.getElementById('final-type').innerText = orderData.type;
             
-            showToast("✨ Custom order request submitted!");
+            window.showToast("✨ Custom order request submitted!");
             
             let message = "Hello BloomyCocoon! 🌸 I would like to place a custom crochet order.\n\n";
             message += `Customer name: ${orderData.name}\n`;
@@ -1717,7 +1745,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 order_type: orderData.type
             });
 
-            showToast("Opening WhatsApp with your custom request...");
+            window.showToast("Opening WhatsApp with your custom request...");
             setTimeout(() => {
                 openWhatsAppMessage(message);
             }, 600);
@@ -1776,7 +1804,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const list = root ? root.querySelector('[data-category-filter-list]') : null;
         const shouldOpen = !list || list.dataset.open !== 'true';
         setCollectionCategoryListOpen(root, shouldOpen);
-        filterCollectionCategory('all', buttonEl);
+        window.filterCollectionCategory('all', buttonEl);
     };
 
     function updateCategoryDescription(category) {
@@ -1786,10 +1814,12 @@ document.addEventListener('DOMContentLoaded', () => {
         copyEl.textContent = categoryDescriptions[activeCategory] || categoryDescriptions.all;
     }
 
-    window.filterCollectionCategory = function(category, buttonEl) {
+    window.filterCollectionCategory = function(category, buttonEl, options = {}) {
         const activeCategory = legacyFilterMap[category] || category;
         updateCategoryDescription(activeCategory);
-        trackEvent('category_filter_click', { category: activeCategory });
+        if (options.track !== false) {
+            trackEvent('category_filter_click', { category: activeCategory });
+        }
         const root = getCollectionFilterRoot(buttonEl);
         if (buttonEl && root) {
             root.querySelectorAll('button[data-category-filter]').forEach(btn => {
@@ -1866,7 +1896,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const msg = form.querySelector('textarea').value.trim();
 
         if (!name || !email || !msg) {
-            showToast("Please fill in all the message fields.");
+            window.showToast("Please fill in all the message fields.");
             return;
         }
 
@@ -1907,7 +1937,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         successPanel.append(iconWrapper, heading, successMessage, resetButton);
         form.replaceChildren(successPanel);
-        showToast("Opening WhatsApp with your message.");
+        window.showToast("Opening WhatsApp with your message.");
     };
 
     function hydrateExternalConversionLinks() {
@@ -1951,7 +1981,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggle = document.querySelector('#screen-collection [data-category-filter-toggle]');
         if (!category) {
             if (toggle) {
-                filterCollectionCategory('all', toggle);
+                window.filterCollectionCategory('all', toggle, { track: false });
             }
             return;
         }
@@ -1959,9 +1989,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = document.querySelector(`#screen-collection button[data-category-filter="${activeCategory}"]`);
         if (btn) {
             setCollectionCategoryListOpen(getCollectionFilterRoot(btn), true);
-            filterCollectionCategory(activeCategory, btn);
+            window.filterCollectionCategory(activeCategory, btn, { track: false });
         } else if (toggle) {
-            filterCollectionCategory('all', toggle);
+            window.filterCollectionCategory('all', toggle, { track: false });
         }
     }
 
@@ -1988,7 +2018,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getResponsiveWebpSrcset(imagePath) {
         const webpPath = getWebpImagePath(imagePath);
-        if (!responsiveImagePaths.has(imagePath)) return webpPath;
+        if (!responsiveImagePaths.has(imagePath) && !responsiveProductImagePaths.has(imagePath)) return webpPath;
         const basePath = webpPath.replace(/\.webp$/i, '');
         return [
             ...responsiveImageWidths.map(width => `${basePath}-${width}.webp ${width}w`),
@@ -1997,7 +2027,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getProductImageSizes(isFeatured) {
-        return isFeatured ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 100vw';
+        return isFeatured ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 50vw';
     }
 
     function getProductCategoryIds(product) {
@@ -2103,10 +2133,39 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!productGrid) return;
 
         productGrid.innerHTML = collectionProducts.map(getProductCardMarkup).join('');
+        collectionProductsRendered = true;
         applyImageFallbacks(productGrid);
         setupProductCardAddToCartTriggers();
         updateCategoryDescription('all');
         applyCollectionFilterFromUrl();
+    }
+
+    function ensureCollectionProductsRendered() {
+        if (collectionProductsRendered) return;
+        renderCollectionProducts();
+    }
+
+    function scheduleInitialCollectionProductsRender() {
+        if (collectionProductsRendered || collectionProductsRenderScheduled) return;
+        const productGrid = document.querySelector('#collection-product-grid');
+        if (!productGrid) return;
+
+        collectionProductsRenderScheduled = true;
+        let hasRendered = false;
+
+        const render = () => {
+            if (hasRendered) return;
+            hasRendered = true;
+            window.removeEventListener('scroll', render);
+            window.removeEventListener('pointerdown', render);
+            window.removeEventListener('keydown', render);
+            ensureCollectionProductsRendered();
+        };
+
+        window.addEventListener('scroll', render, { once: true, passive: true });
+        window.addEventListener('pointerdown', render, { once: true, passive: true });
+        window.addEventListener('keydown', render, { once: true });
+        setTimeout(render, 2500);
     }
 
     function setupProductCardAddToCartTriggers() {
@@ -2119,7 +2178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addBtn.dataset.cartBound = 'true';
             addBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                addToCart(product.id, product.name, product.category, product.startingPrice, getProductImage(product));
+                window.addToCart(product.id, product.name, product.category, product.startingPrice, getProductImage(product));
             });
         });
     }
@@ -2183,10 +2242,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------------------------------------------
     initNavigationBindings();
+    syncNavigationUI();
     hydrateExternalConversionLinks();
-    setupProductCardAddToCartTriggers();
     setupCartCompactNote();
-    applyCollectionFilterFromUrl();
+    if (currentScreen === 'screen-collection') {
+        applyCollectionFilterFromUrl();
+    }
     
     // Setup dynamic live listener on step-3 notes
     const notesInput = document.getElementById('custom-notes');
@@ -2199,7 +2260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             if (cart.length === 0) {
-                showToast("Please add at least one item before continuing to WhatsApp.");
+                window.showToast("Please add at least one item before continuing to WhatsApp.");
                 return;
             }
 
@@ -2212,6 +2273,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    renderCollectionProducts();
     syncDynamicStructuredData(getScreenIdFromPath(window.location.pathname) || currentScreen);
 });
