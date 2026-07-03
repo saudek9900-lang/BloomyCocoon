@@ -1,65 +1,15 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import {
+  ROUTE_CONTENT,
+  ROUTE_SCHEMA_ID,
+  STATIC_ROUTE_SCREEN_IDS,
+  getRouteMetadata,
+  getRouteSchemaGraph,
+} from '../src/route-content.mjs';
 
-const SITE_ORIGIN = 'https://www.bloomycocoon.com';
 const DIST_DIR = path.resolve('dist');
 const INDEX_PATH = path.join(DIST_DIR, 'index.html');
-const ROUTE_SCHEMA_ID = 'catalog-faq-schema';
-
-const homeMetadata = {
-  title: 'Handmade Crochet Gifts in Kerala & India | BloomyCocoon',
-  description:
-    'BloomyCocoon creates handmade crochet bouquets, plushies, keychains, accessories, baby gifts, home decor and custom crochet gifts from Mampad, Malappuram, Kerala, with delivery across Kerala and India.',
-  canonical: `${SITE_ORIGIN}/`,
-};
-
-const routes = [
-  {
-    path: '/collections',
-    outputDir: 'collections',
-    title: 'Crochet Bouquets, Plushies, Keychains & Handmade Gifts | BloomyCocoon',
-    description:
-      'Explore BloomyCocoon handmade crochet gifts including bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos. Prices are starting from and final orders are confirmed on WhatsApp.',
-    schemaType: 'CollectionPage',
-    breadcrumbName: 'Handmade Collection',
-  },
-  {
-    path: '/custom-order',
-    outputDir: 'custom-order',
-    title: 'Custom Crochet Gifts in Kerala | BloomyCocoon',
-    description:
-      'Create a custom crochet gift with BloomyCocoon. Share your colour, size, flower, plushie, name, packaging and delivery preferences, then confirm the final quote on WhatsApp.',
-    schemaType: 'Service',
-    breadcrumbName: 'Custom Orders',
-  },
-  {
-    path: '/about',
-    outputDir: 'about',
-    title: 'About BloomyCocoon | Handmade Crochet Brand from Malappuram, Kerala',
-    description:
-      'Learn about BloomyCocoon, a soft and cozy handmade crochet gifting brand from Mampad, Malappuram, Kerala, making delicate custom gifts for birthdays, couples, babies and special moments.',
-    schemaType: 'AboutPage',
-    breadcrumbName: 'About BloomyCocoon',
-  },
-  {
-    path: '/faq',
-    outputDir: 'faq',
-    title: 'BloomyCocoon FAQ | Crochet Orders, Delivery & Care',
-    description:
-      'Find answers about BloomyCocoon crochet orders, custom gifts, starting prices, WhatsApp confirmation, payment, delivery across Kerala and India, timelines and handmade product care.',
-    schemaType: 'FAQPage',
-    breadcrumbName: 'BloomyCocoon FAQ',
-  },
-  {
-    path: '/contact',
-    outputDir: 'contact',
-    title: 'Contact BloomyCocoon | WhatsApp Crochet Gift Orders',
-    description:
-      'Contact BloomyCocoon for handmade crochet bouquets, plushies, baby gifts, keychains, accessories and custom crochet gifts. Orders and final quotes are confirmed on WhatsApp.',
-    schemaType: 'ContactPage',
-    breadcrumbName: 'Contact BloomyCocoon',
-  },
-];
 
 function escapeHtml(value) {
   return String(value)
@@ -165,28 +115,6 @@ function updateMetadata(html, metadata) {
   return next;
 }
 
-function getBreadcrumbList(route) {
-  const canonical = `${SITE_ORIGIN}${route.path}`;
-  return {
-    '@type': 'BreadcrumbList',
-    '@id': `${canonical}#breadcrumb`,
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: `${SITE_ORIGIN}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: route.breadcrumbName,
-        item: canonical,
-      },
-    ],
-  };
-}
-
 function extractFaqItems(html) {
   const items = [];
   const faqPattern = /<details\b[^>]*class=["'][^"']*\bfaq-details\b[^"']*["'][^>]*>([\s\S]*?)<\/details>/gi;
@@ -209,78 +137,16 @@ function extractFaqItems(html) {
   return items;
 }
 
-function getRoutePageSchema(route, baseHtml) {
-  const canonical = `${SITE_ORIGIN}${route.path}`;
-  if (route.schemaType === 'FAQPage') {
-    const faqItems = extractFaqItems(baseHtml);
-    if (faqItems.length === 0) {
-      throw new Error('Could not extract visible FAQ items from built HTML.');
-    }
-    return {
-      '@type': 'FAQPage',
-      '@id': `${canonical}#faq`,
-      url: canonical,
-      name: route.title,
-      description: route.description,
-      mainEntity: faqItems,
-    };
+function insertRouteSchema(html, screenId, baseHtml) {
+  const route = ROUTE_CONTENT[screenId];
+  const faqItems = route.schemaType === 'FAQPage' ? extractFaqItems(baseHtml) : [];
+  if (route.schemaType === 'FAQPage' && faqItems.length === 0) {
+    throw new Error('Could not extract visible FAQ items from built HTML.');
   }
 
-  if (route.schemaType === 'Service') {
-    return {
-      '@type': 'Service',
-      '@id': `${canonical}#service`,
-      name: route.title,
-      description: route.description,
-      areaServed: ['Kerala', 'India'],
-      provider: {
-        '@id': `${SITE_ORIGIN}/#localbusiness`,
-      },
-      serviceType: 'Custom crochet gifts',
-    };
-  }
-
-  const page = {
-    '@type': route.schemaType,
-    '@id': `${canonical}#webpage`,
-    url: canonical,
-    name: route.title,
-    description: route.description,
-    isPartOf: {
-      '@id': `${SITE_ORIGIN}/#website`,
-    },
-    about: {
-      '@id': route.path === '/about' ? `${SITE_ORIGIN}/#organization` : `${SITE_ORIGIN}/#localbusiness`,
-    },
-  };
-
-  if (route.schemaType === 'CollectionPage') {
-    page.mainEntity = {
-      '@type': 'ItemList',
-      name: 'BloomyCocoon handmade crochet gift categories',
-      itemListElement: [
-        'Bouquets',
-        'Plushies',
-        'Keychains',
-        'Baby Gifts',
-        'Accessories',
-        'Home Decor',
-        'Gift Combos',
-      ].map((name, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name,
-      })),
-    };
-  }
-
-  return page;
-}
-
-function insertRouteSchema(html, route, baseHtml) {
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getBreadcrumbList(route), getRoutePageSchema(route, baseHtml)],
+    '@graph': getRouteSchemaGraph(screenId, { faqItems }),
   };
   const script = [
     `    <script type="application/ld+json" id="${ROUTE_SCHEMA_ID}">`,
@@ -294,23 +160,19 @@ function insertRouteSchema(html, route, baseHtml) {
   return replaceOne(html, /<\/head>/i, `${script}\n</head>`, 'closing head tag');
 }
 
-async function writeRouteHtml(baseHtml, route) {
-  const metadata = {
-    title: route.title,
-    description: route.description,
-    canonical: `${SITE_ORIGIN}${route.path}`,
-  };
-  const routeHtml = insertRouteSchema(updateMetadata(baseHtml, metadata), route, baseHtml);
+async function writeRouteHtml(baseHtml, screenId) {
+  const route = ROUTE_CONTENT[screenId];
+  const routeHtml = insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata(screenId)), screenId, baseHtml);
   const outputDir = path.join(DIST_DIR, route.outputDir);
   await mkdir(outputDir, { recursive: true });
   await writeFile(path.join(outputDir, 'index.html'), routeHtml);
 }
 
 const baseHtml = await readFile(INDEX_PATH, 'utf8');
-await writeFile(INDEX_PATH, updateMetadata(baseHtml, homeMetadata));
+await writeFile(INDEX_PATH, insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata('screen-home')), 'screen-home', baseHtml));
 
-for (const route of routes) {
-  await writeRouteHtml(baseHtml, route);
+for (const screenId of STATIC_ROUTE_SCREEN_IDS) {
+  await writeRouteHtml(baseHtml, screenId);
 }
 
-console.log(`Generated route HTML for ${routes.map((route) => route.path).join(', ')}`);
+console.log(`Generated route HTML for ${STATIC_ROUTE_SCREEN_IDS.map((screenId) => ROUTE_CONTENT[screenId].path).join(', ')}`);

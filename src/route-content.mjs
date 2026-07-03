@@ -1,0 +1,184 @@
+export const SITE_ORIGIN = 'https://www.bloomycocoon.com';
+export const CANONICAL_URL = `${SITE_ORIGIN}/`;
+export const ROUTE_SCHEMA_ID = 'catalog-faq-schema';
+
+export const ENTITY_DESCRIPTION = 'BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India, offering custom crochet bouquets, plushies, keychains, accessories, home decor, and personalized handmade gifts through WhatsApp-based ordering.';
+export const PAYMENT_DESCRIPTION = 'Payment is confirmed through WhatsApp, mostly through UPI, with 50% advance and the remaining 50% after completion before delivery.';
+export const FINAL_PRICE_NOTE = 'Final price may vary based on size, color, custom name, flowers, packaging, and delivery. Final price is confirmed on WhatsApp.';
+
+export const ROUTE_CONTENT = {
+  'screen-home': {
+    path: '/',
+    outputDir: '',
+    title: 'Handmade Crochet Gifts in Kerala & India | BloomyCocoon',
+    description: 'Handmade crochet gifts from Mampad, Malappuram, Kerala, India. Explore crochet bouquets, plushies, keychains, baby gifts and custom crochet gifts with delivery across Kerala and India.',
+    schemaType: 'WebPage',
+    breadcrumbName: 'Home',
+  },
+  'screen-collection': {
+    path: '/collections',
+    outputDir: 'collections',
+    title: 'Crochet Bouquets, Plushies, Keychains & Handmade Gifts | BloomyCocoon',
+    description: 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon in Kerala, with custom orders available across India.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Handmade Collection',
+  },
+  'screen-custom-orders': {
+    path: '/custom-order',
+    outputDir: 'custom-order',
+    title: 'Custom Crochet Gifts in Kerala | BloomyCocoon',
+    description: 'Create custom crochet bouquets, plushies, keychains, baby gifts and handmade gift combos with BloomyCocoon. Share your idea and finalize your order on WhatsApp.',
+    schemaType: 'Service',
+    breadcrumbName: 'Custom Orders',
+  },
+  'screen-about': {
+    path: '/about',
+    outputDir: 'about',
+    title: 'About BloomyCocoon | Handmade Crochet Brand from Malappuram, Kerala',
+    description: 'Meet BloomyCocoon, a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India, offering custom crochet bouquets, plushies, keychains, accessories, home decor and personalized handmade gifts.',
+    schemaType: 'AboutPage',
+    breadcrumbName: 'About BloomyCocoon',
+  },
+  'screen-faq': {
+    path: '/faq',
+    outputDir: 'faq',
+    title: 'BloomyCocoon FAQ | Crochet Orders, Delivery & Care',
+    description: 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, production time, Starting from prices and crochet gift care.',
+    schemaType: 'FAQPage',
+    breadcrumbName: 'BloomyCocoon FAQ',
+  },
+  'screen-contact': {
+    path: '/contact',
+    outputDir: 'contact',
+    title: 'Contact BloomyCocoon | WhatsApp Crochet Gift Orders',
+    description: 'Contact BloomyCocoon for handmade crochet gifts and custom orders. Based in Mampad, Malappuram, Kerala and delivering across India.',
+    schemaType: 'ContactPage',
+    breadcrumbName: 'Contact BloomyCocoon',
+  },
+};
+
+export const ROUTE_SCREEN_IDS = Object.keys(ROUTE_CONTENT);
+export const STATIC_ROUTE_SCREEN_IDS = ROUTE_SCREEN_IDS.filter(screenId => screenId !== 'screen-home');
+
+const CATEGORY_LIST = [
+  'Bouquets',
+  'Plushies',
+  'Keychains',
+  'Baby Gifts',
+  'Accessories',
+  'Home Decor',
+  'Gift Combos',
+];
+
+export function getRouteContent(screenId) {
+  return ROUTE_CONTENT[screenId] || ROUTE_CONTENT['screen-home'];
+}
+
+export function getRouteCanonical(screenId) {
+  const route = getRouteContent(screenId);
+  return `${SITE_ORIGIN}${route.path}`;
+}
+
+export function getRouteMetadata(screenId) {
+  const route = getRouteContent(screenId);
+  return {
+    title: route.title,
+    description: route.description,
+    canonical: getRouteCanonical(screenId),
+  };
+}
+
+export function getBreadcrumbList(screenId) {
+  const route = getRouteContent(screenId);
+  const itemListElement = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: CANONICAL_URL,
+    },
+  ];
+
+  if (screenId !== 'screen-home') {
+    itemListElement.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: route.breadcrumbName,
+      item: getRouteCanonical(screenId),
+    });
+  }
+
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': `${getRouteCanonical(screenId)}#breadcrumb`,
+    itemListElement,
+  };
+}
+
+export function getRoutePageSchema(screenId, { faqItems = [] } = {}) {
+  const route = getRouteContent(screenId);
+  const canonical = getRouteCanonical(screenId);
+
+  if (route.schemaType === 'FAQPage') {
+    return {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      url: canonical,
+      name: route.title,
+      description: route.description,
+      mainEntity: faqItems,
+    };
+  }
+
+  if (route.schemaType === 'Service') {
+    return {
+      '@type': 'Service',
+      '@id': `${canonical}#service`,
+      name: route.title,
+      description: `${route.description} ${PAYMENT_DESCRIPTION}`,
+      areaServed: ['Kerala', 'India'],
+      provider: {
+        '@id': `${SITE_ORIGIN}/#localbusiness`,
+      },
+      serviceType: 'Custom crochet gifts',
+    };
+  }
+
+  const page = {
+    '@type': route.schemaType,
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: route.title,
+    description: route.schemaType === 'AboutPage' ? ENTITY_DESCRIPTION : route.description,
+    isPartOf: {
+      '@id': `${SITE_ORIGIN}/#website`,
+    },
+    about: {
+      '@id': route.schemaType === 'AboutPage' ? `${SITE_ORIGIN}/#organization` : `${SITE_ORIGIN}/#localbusiness`,
+    },
+  };
+
+  if (route.schemaType === 'CollectionPage') {
+    page.mainEntity = {
+      '@type': 'ItemList',
+      name: 'BloomyCocoon handmade crochet gift categories',
+      itemListElement: CATEGORY_LIST.map((name, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name,
+      })),
+    };
+  }
+
+  if (route.schemaType === 'ContactPage') {
+    page.mainEntity = {
+      '@id': `${SITE_ORIGIN}/#localbusiness`,
+    };
+  }
+
+  return page;
+}
+
+export function getRouteSchemaGraph(screenId, options = {}) {
+  return [getBreadcrumbList(screenId), getRoutePageSchema(screenId, options)];
+}

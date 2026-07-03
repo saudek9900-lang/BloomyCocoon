@@ -1,3 +1,10 @@
+import {
+    ROUTE_CONTENT,
+    ROUTE_SCHEMA_ID,
+    SITE_ORIGIN,
+    getRouteSchemaGraph
+} from './src/route-content.mjs';
+
 /* BloomyCocoon Main Application Controller */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,12 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isRoutingFromHistory = false;
     let shouldFocusCustomOrder = false;
 
-    const SITE_ORIGIN = "https://www.bloomycocoon.com";
-    const CANONICAL_URL = `${SITE_ORIGIN}/`;
     const WHATSAPP_NUMBER = "919061174579";
-    const ENTITY_DESCRIPTION = "BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India, offering custom crochet bouquets, plushies, keychains, accessories, home decor, and personalized handmade gifts through WhatsApp-based ordering.";
-    const PAYMENT_DESCRIPTION = "Payment is confirmed through WhatsApp, mostly through UPI, with 50% advance and the remaining 50% after completion before delivery.";
-    const FINAL_PRICE_NOTE = "Final price may vary based on size, color, custom name, flowers, packaging, and delivery. Final price is confirmed on WhatsApp.";
 
     // Cart state
     let cart = [];
@@ -747,38 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastCartTrigger = null;
     let cartScrollY = 0;
 
-    const screenMetadata = {
-        'screen-home': {
-            path: '/',
-            title: 'Handmade Crochet Gifts in Kerala & India | BloomyCocoon',
-            description: 'Handmade crochet gifts from Mampad, Malappuram, Kerala, India. Explore crochet bouquets, plushies, keychains, baby gifts and custom crochet gifts with delivery across Kerala and India.'
-        },
-        'screen-collection': {
-            path: '/collections',
-            title: 'Crochet Bouquets, Plushies, Keychains & Handmade Gifts | BloomyCocoon',
-            description: 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon in Kerala, with custom orders available across India.'
-        },
-        'screen-custom-orders': {
-            path: '/custom-order',
-            title: 'Custom Crochet Gifts in Kerala | BloomyCocoon',
-            description: 'Create custom crochet bouquets, plushies, keychains, baby gifts and handmade gift combos with BloomyCocoon. Share your idea and finalize your order on WhatsApp.'
-        },
-        'screen-about': {
-            path: '/about',
-            title: 'About BloomyCocoon | Handmade Crochet Brand from Malappuram, Kerala',
-            description: 'Meet BloomyCocoon, a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India, offering custom crochet bouquets, plushies, keychains, accessories, home decor and personalized handmade gifts.'
-        },
-        'screen-faq': {
-            path: '/faq',
-            title: 'BloomyCocoon FAQ | Crochet Orders, Delivery & Care',
-            description: 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, production time, Starting from prices and crochet gift care.'
-        },
-        'screen-contact': {
-            path: '/contact',
-            title: 'Contact BloomyCocoon | WhatsApp Crochet Gift Orders',
-            description: 'Contact BloomyCocoon for handmade crochet gifts and custom orders. Based in Mampad, Malappuram, Kerala and delivering across India.'
-        }
-    };
+    const screenMetadata = ROUTE_CONTENT;
 
     function trimTrailingSlash(pathname) {
         return pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
@@ -926,7 +897,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Open drawer logic or cleanup
         if (targetScreenId !== 'screen-collection') {
-            window.closeCart();
+            window.closeCart?.();
         }
 
         // Keep page position clean
@@ -2069,91 +2040,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function getBreadcrumbName(screenId) {
-        const names = {
-            'screen-home': 'Home',
-            'screen-collection': 'Handmade Collection',
-            'screen-custom-orders': 'Custom Orders',
-            'screen-about': 'About BloomyCocoon',
-            'screen-faq': 'BloomyCocoon FAQ',
-            'screen-contact': 'Contact BloomyCocoon'
-        };
-        return names[screenId] || 'BloomyCocoon';
-    }
-
-    function getBreadcrumbList(screenId) {
-        const itemListElement = [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": CANONICAL_URL
-            }
-        ];
-
-        if (screenId !== 'screen-home') {
-            itemListElement.push({
-                "@type": "ListItem",
-                "position": 2,
-                "name": getBreadcrumbName(screenId),
-                "item": getCanonicalForScreen(screenId)
-            });
-        }
-
-        return {
-            "@type": "BreadcrumbList",
-            "@id": `${getCanonicalForScreen(screenId)}#breadcrumb`,
-            "itemListElement": itemListElement
-        };
-    }
-
     function syncDynamicStructuredData(screenId = currentScreen) {
-        const existing = document.getElementById('catalog-faq-schema');
+        const existing = document.getElementById(ROUTE_SCHEMA_ID);
         if (existing) existing.remove();
 
-        const metadata = screenMetadata[screenId] || screenMetadata['screen-home'];
-        const graph = [getBreadcrumbList(screenId)];
-
-        if (screenId === 'screen-collection') {
-            const productList = collectionProducts.map((product, index) => ({
-                "@type": "ListItem",
-                "position": index + 1,
-                "item": {
-                    "@type": "Product",
-                    "@id": `${SITE_ORIGIN}/collections#${product.id}`,
-                    "name": product.name,
-                    "description": `${product.description} Starting from INR ${getSafePrice(product.startingPrice)}. Final price is confirmed on WhatsApp.`,
-                    "category": getCategoryLabel(product.category),
-                    "image": absoluteUrl(getProductImage(product)),
-                    "brand": {
-                        "@id": `${CANONICAL_URL}#organization`
-                    },
-                    "additionalProperty": [
-                        {
-                            "@type": "PropertyValue",
-                            "name": "Starting from price shown on website",
-                            "value": `Starting from INR ${getSafePrice(product.startingPrice)}`
-                        },
-                        {
-                            "@type": "PropertyValue",
-                            "name": "Final price note",
-                            "value": FINAL_PRICE_NOTE
-                        }
-                    ]
-                }
-            }));
-
-            graph.push({
-                "@type": "ItemList",
-                "@id": `${SITE_ORIGIN}/collections#products`,
-                "name": "BloomyCocoon handmade crochet collection",
-                "description": "Handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos with Starting from prices shown on the website. Final quote is confirmed on WhatsApp.",
-                "itemListElement": productList
-            });
-        }
+        let faqItems = [];
 
         if (screenId === 'screen-faq') {
-            const faqItems = Array.from(document.querySelectorAll('#screen-faq .faq-details')).map(details => {
+            faqItems = Array.from(document.querySelectorAll('#screen-faq .faq-details')).map(details => {
                 const question = details.querySelector('summary span')?.textContent.trim();
                 const answer = details.querySelector('p')?.textContent.trim();
                 if (!question || !answer) return null;
@@ -2166,72 +2060,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
             }).filter(Boolean);
-
-            if (faqItems.length > 0) {
-                graph.push({
-                    "@type": "FAQPage",
-                    "@id": `${SITE_ORIGIN}/faq#faq`,
-                    "url": `${SITE_ORIGIN}/faq`,
-                    "name": metadata.title,
-                    "description": metadata.description,
-                    "mainEntity": faqItems
-                });
-            }
         }
 
-        if (screenId === 'screen-about') {
-            graph.push({
-                "@type": "AboutPage",
-                "@id": `${SITE_ORIGIN}/about#about`,
-                "url": `${SITE_ORIGIN}/about`,
-                "name": metadata.title,
-                "description": ENTITY_DESCRIPTION,
-                "isPartOf": {
-                    "@id": `${SITE_ORIGIN}/#website`
-                },
-                "about": {
-                    "@id": `${SITE_ORIGIN}/#organization`
-                }
-            });
-        }
-
-        if (screenId === 'screen-contact') {
-            graph.push({
-                "@type": "ContactPage",
-                "@id": `${SITE_ORIGIN}/contact#contact`,
-                "url": `${SITE_ORIGIN}/contact`,
-                "name": metadata.title,
-                "description": "Contact BloomyCocoon through WhatsApp or email for handmade crochet gifts, custom orders, payment confirmation, and delivery details across Kerala and India.",
-                "isPartOf": {
-                    "@id": `${SITE_ORIGIN}/#website`
-                },
-                "about": {
-                    "@id": `${SITE_ORIGIN}/#organization`
-                },
-                "mainEntity": {
-                    "@id": `${SITE_ORIGIN}/#localbusiness`
-                }
-            });
-        }
-
-        if (screenId === 'screen-custom-orders') {
-            graph.push({
-                "@type": "WebPage",
-                "@id": `${SITE_ORIGIN}/custom-order#webpage`,
-                "url": `${SITE_ORIGIN}/custom-order`,
-                "name": metadata.title,
-                "description": `${metadata.description} ${PAYMENT_DESCRIPTION}`,
-                "isPartOf": {
-                    "@id": `${SITE_ORIGIN}/#website`
-                },
-                "about": {
-                    "@id": `${SITE_ORIGIN}/#localbusiness`
-                }
-            });
-        }
+        const graph = getRouteSchemaGraph(screenId, { faqItems });
 
         const script = document.createElement('script');
-        script.id = 'catalog-faq-schema';
+        script.id = ROUTE_SCHEMA_ID;
         script.type = 'application/ld+json';
         script.textContent = JSON.stringify({
             "@context": "https://schema.org",
