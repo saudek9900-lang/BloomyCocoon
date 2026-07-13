@@ -115,6 +115,26 @@
     {
       "source": "/contact",
       "destination": "/contact/index.html"
+    },
+    {
+      "source": "/shipping-delivery",
+      "destination": "/shipping-delivery/index.html"
+    },
+    {
+      "source": "/returns-cancellations",
+      "destination": "/returns-cancellations/index.html"
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy/index.html"
+    },
+    {
+      "source": "/order-terms",
+      "destination": "/order-terms/index.html"
+    },
+    {
+      "source": "/crochet-care",
+      "destination": "/crochet-care/index.html"
     }
   ]
 }

@@ -55,6 +55,46 @@ export const ROUTE_CONTENT = {
     schemaType: 'ContactPage',
     breadcrumbName: 'Contact BloomyCocoon',
   },
+  'screen-shipping-delivery': {
+    path: '/shipping-delivery',
+    outputDir: 'shipping-delivery',
+    title: 'Shipping & Delivery | BloomyCocoon',
+    description: 'Learn how BloomyCocoon confirms delivery charges on WhatsApp and delivers handmade crochet gifts across Kerala and India after production is complete.',
+    schemaType: 'WebPage',
+    breadcrumbName: 'Shipping & Delivery',
+  },
+  'screen-returns-cancellations': {
+    path: '/returns-cancellations',
+    outputDir: 'returns-cancellations',
+    title: 'Returns & Cancellations | BloomyCocoon',
+    description: 'Read BloomyCocoon’s cancellation and damage-support information for handmade crochet gifts ordered through WhatsApp.',
+    schemaType: 'WebPage',
+    breadcrumbName: 'Returns & Cancellations',
+  },
+  'screen-privacy-policy': {
+    path: '/privacy-policy',
+    outputDir: 'privacy-policy',
+    title: 'Privacy Policy | BloomyCocoon',
+    description: 'Understand how BloomyCocoon uses enquiry and order details to respond to customers and fulfil handmade crochet gift orders.',
+    schemaType: 'WebPage',
+    breadcrumbName: 'Privacy Policy',
+  },
+  'screen-order-terms': {
+    path: '/order-terms',
+    outputDir: 'order-terms',
+    title: 'Order Terms | BloomyCocoon',
+    description: 'Review BloomyCocoon’s Starting from pricing, WhatsApp confirmation, advance payment and handmade custom-order terms.',
+    schemaType: 'WebPage',
+    breadcrumbName: 'Order Terms',
+  },
+  'screen-crochet-care': {
+    path: '/crochet-care',
+    outputDir: 'crochet-care',
+    title: 'Crochet Care Guide | BloomyCocoon',
+    description: 'Simple care guidance to help preserve BloomyCocoon handmade crochet gifts, bouquets, plushies and keepsakes.',
+    schemaType: 'WebPage',
+    breadcrumbName: 'Crochet Care Guide',
+  },
 };
 
 export const ROUTE_SCREEN_IDS = Object.keys(ROUTE_CONTENT);

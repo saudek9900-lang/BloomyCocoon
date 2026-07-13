@@ -764,6 +764,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/about') return 'screen-about';
         if (cleanPath === '/faq') return 'screen-faq';
         if (cleanPath === '/contact') return 'screen-contact';
+        if (cleanPath === '/shipping-delivery') return 'screen-shipping-delivery';
+        if (cleanPath === '/returns-cancellations') return 'screen-returns-cancellations';
+        if (cleanPath === '/privacy-policy') return 'screen-privacy-policy';
+        if (cleanPath === '/order-terms') return 'screen-order-terms';
+        if (cleanPath === '/crochet-care') return 'screen-crochet-care';
         return null;
     }
 
@@ -1260,6 +1265,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Contact Us navigation
         bindNav('nav a[href*="contact"], nav a[href="#contact"], a:contains("Contact Us")', 'screen-contact', 'push');
+    }
+
+    function setupPolicyFooterLinks() {
+        const policyLinks = [
+            ['Shipping & Delivery', '/shipping-delivery'],
+            ['Returns & Cancellations', '/returns-cancellations'],
+            ['Privacy Policy', '/privacy-policy'],
+            ['Order Terms', '/order-terms'],
+            ['Crochet Care', '/crochet-care']
+        ];
+
+        document.querySelectorAll('footer nav[aria-label="Footer navigation"]').forEach((footerNav) => {
+            if (footerNav.querySelector('[data-policy-footer-links]')) return;
+
+            const policyGroup = document.createElement('span');
+            policyGroup.dataset.policyFooterLinks = 'true';
+            policyGroup.className = 'contents';
+            policyGroup.innerHTML = policyLinks.map(([label, href]) => (
+                `<a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="${href}">${label}</a>`
+            )).join('');
+            footerNav.append(policyGroup);
+        });
     }
 
     // ----------------------------------------------------
@@ -2183,6 +2210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------------------------------------------
     initNavigationBindings();
+    setupPolicyFooterLinks();
     hydrateExternalConversionLinks();
     setupProductCardAddToCartTriggers();
     setupCartCompactNote();
