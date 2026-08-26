@@ -115,6 +115,30 @@ function updateMetadata(html, metadata) {
   return next;
 }
 
+function setInitialScreen(html, activeScreenId) {
+  return html.replace(/<section\b[^>]*\bclass=["'][^"']*\bscreen\b[^"']*["'][^>]*>/gi, (sectionTag) => {
+    const idMatch = sectionTag.match(/\bid=["']([^"']+)["']/i);
+    if (!idMatch || !ROUTE_CONTENT[idMatch[1]]) return sectionTag;
+
+    const screenId = idMatch[1];
+    return sectionTag.replace(/\bclass=(["'])([^"']*)\1/i, (classAttr, quote, classValue) => {
+      const classes = classValue
+        .split(/\s+/)
+        .filter(Boolean)
+        .filter((className) => className !== 'active' && className !== 'hidden');
+      classes.push(screenId === activeScreenId ? 'active' : 'hidden');
+      return `class=${quote}${classes.join(' ')}${quote}`;
+    });
+  });
+}
+
+function restoreFaqFocusOutline(html) {
+  return html.replace(
+    /(<summary\b[^>]*\bclass=["'][^"']*)\s+focus:outline-none\b/gi,
+    '$1',
+  );
+}
+
 function extractFaqItems(html) {
   const items = [];
   const faqPattern = /<details\b[^>]*class=["'][^"']*\bfaq-details\b[^"']*["'][^>]*>([\s\S]*?)<\/details>/gi;
@@ -162,14 +186,25 @@ function insertRouteSchema(html, screenId, baseHtml) {
 
 async function writeRouteHtml(baseHtml, screenId) {
   const route = ROUTE_CONTENT[screenId];
-  const routeHtml = insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata(screenId)), screenId, baseHtml);
+  const routeHtml = insertRouteSchema(
+    updateMetadata(setInitialScreen(baseHtml, screenId), getRouteMetadata(screenId)),
+    screenId,
+    baseHtml,
+  );
   const outputDir = path.join(DIST_DIR, route.outputDir);
   await mkdir(outputDir, { recursive: true });
   await writeFile(path.join(outputDir, 'index.html'), routeHtml);
 }
 
-const baseHtml = await readFile(INDEX_PATH, 'utf8');
-await writeFile(INDEX_PATH, insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata('screen-home')), 'screen-home', baseHtml));
+const baseHtml = restoreFaqFocusOutline(await readFile(INDEX_PATH, 'utf8'));
+await writeFile(
+  INDEX_PATH,
+  insertRouteSchema(
+    updateMetadata(setInitialScreen(baseHtml, 'screen-home'), getRouteMetadata('screen-home')),
+    'screen-home',
+    baseHtml,
+  ),
+);
 
 for (const screenId of STATIC_ROUTE_SCREEN_IDS) {
   await writeRouteHtml(baseHtml, screenId);
