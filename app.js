@@ -744,6 +744,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let orderStep = 1;
     const orderData = {
         type: 'Bouquet',
+        color: 'Blush Pink',
         notes: '',
         name: ''
     };
@@ -1679,12 +1680,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    window.selectCustomColor = function(colorName, buttonEl) {
+        orderData.color = colorName;
+        document.querySelectorAll('.color-swatch-btn').forEach(btn => {
+            btn.classList.remove('bg-secondary', 'text-white', 'border-secondary', 'shadow-2xs');
+            btn.classList.add('bg-white', 'text-on-surface', 'border-outline-variant/30');
+        });
+        if (buttonEl) {
+            buttonEl.classList.remove('bg-white', 'text-on-surface', 'border-outline-variant/30');
+            buttonEl.classList.add('bg-secondary', 'text-white', 'border-secondary', 'shadow-2xs');
+        }
+        updateLivePreview();
+    };
+
     function updateLivePreview() {
         const previewType = document.getElementById('preview-type');
+        const previewColor = document.getElementById('preview-color');
         const previewNotes = document.getElementById('preview-notes');
         const previewImage = document.getElementById('preview-image');
 
         if (previewType) previewType.innerText = orderData.type;
+        if (previewColor) previewColor.innerText = orderData.color || "Blush Pink";
         
         if (previewNotes) {
             const notesInput = document.getElementById('custom-notes');
@@ -1744,6 +1760,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let message = "Hello BloomyCocoon! 🌸 I would like to place a custom crochet order.\n\n";
             message += `Customer name: ${orderData.name}\n`;
             message += `Base type: ${orderData.type}\n`;
+            message += `Palette preference: ${orderData.color || "Blush Pink"}\n`;
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
             message += "Source: Custom Order Page\n\n";
             message += "Please help me finalize the design, Starting from price, final quote, 1-2 week custom timeline, and delivery across Kerala and India.\n\n";
@@ -1770,6 +1787,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('order-name').value = '';
         
         orderData.type = 'Bouquet';
+        orderData.color = 'Blush Pink';
         orderData.notes = '';
         orderData.name = '';
         
