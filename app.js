@@ -700,6 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let activeFilterCategory = 'all';
     let activeSearchQuery = '';
+    window.collectionProducts = collectionProducts;
 
     function buildWhatsAppUrl(message) {
         return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -756,20 +757,35 @@ document.addEventListener('DOMContentLoaded', () => {
         let message = "Hello BloomyCocoon! 🌸 I would like to place an order for these handmade crochet items:\n\n";
 
         cart.forEach((item, index) => {
-            message += `${index + 1}. ${item.name}\n`;
-            message += `Category: ${getCategoryLabel(item.category)}\n`;
-            message += `Qty: ${item.qty}\n`;
-            message += `Starting from: ₹${formatPrice(getSafePrice(item.price))}\n\n`;
+            const catalogItem = collectionProducts.find(p => p.id === item.id);
+            const badge = item.badge || catalogItem?.badge || '';
+            const lineSubtotal = getSafePrice(item.price) * item.qty;
+
+            message += `${index + 1}. *${item.name}*`;
+            if (badge) message += ` [${badge}]`;
+            message += `\n`;
+            message += `   Category: ${getCategoryLabel(item.category)}\n`;
+            message += `   Qty: ${item.qty} × ₹${formatPrice(getSafePrice(item.price))} = ₹${formatPrice(lineSubtotal)}\n`;
+            if (item.itemNote && item.itemNote.trim()) {
+                message += `   Custom wish / color: "${item.itemNote.trim()}"\n`;
+            }
+            message += `\n`;
         });
 
-        message += `Starting total: ₹${formatPrice(getCartSubtotal())}\n\n`;
+        const subtotal = getCartSubtotal();
+        const advanceAmount = Math.round(subtotal * 0.5);
+        const balanceAmount = subtotal - advanceAmount;
+
+        message += `*Starting Total:* ₹${formatPrice(subtotal)}\n`;
+        message += `• 50% Advance via UPI (to start crafting): ₹${formatPrice(advanceAmount)}\n`;
+        message += `• 50% Balance (before dispatch): ₹${formatPrice(balanceAmount)}\n\n`;
 
         if (note) {
-            message += `Customization / delivery note:\n${note}\n\n`;
+            message += `*Order Notes / Delivery Details:*\n${note}\n\n`;
         }
 
         message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, color, custom name, flowers, packaging, and delivery.\n\n";
-        message += "Payment can be confirmed on WhatsApp, mostly through UPI: 50% advance before making begins, and the remaining 50% after completion before delivery.\n";
+        message += "Payment can be confirmed on WhatsApp via UPI: 50% advance before making begins, and 50% before delivery.\n";
         message += "Delivery is available across Kerala and India.";
         return message;
     }
@@ -1525,7 +1541,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    window.addToCart = function(id, name, category, price, img) {
+    window.addToCart = function(id, name, category, price, img, badge, description) {
         if (arguments.length === 4) {
             img = price;
             price = category;
@@ -1533,12 +1549,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const parsedPrice = getSafePrice(price);
+        const catalogItem = collectionProducts.find(item => item.id === id);
+        const resolvedBadge = badge || catalogItem?.badge || '';
+        const resolvedDesc = description || catalogItem?.description || '';
+
         const existing = cart.find(item => item.id === id);
         
         if (existing) {
             existing.qty += 1;
         } else {
-            cart.push({ id, name, category, price: parsedPrice, img, qty: 1 });
+            cart.push({
+                id,
+                name,
+                category,
+                price: parsedPrice,
+                img,
+                badge: resolvedBadge,
+                description: resolvedDesc,
+                itemNote: '',
+                qty: 1
+            });
         }
         
         renderCart();
@@ -1558,6 +1588,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    window.updateItemNote = function(id, note) {
+        const item = cart.find(i => i.id === id);
+        if (item) {
+            item.itemNote = note;
+        }
+    };
+
     window.updateQty = function(id, delta) {
         const item = cart.find(i => i.id === id);
         if (!item) return;
@@ -1571,9 +1608,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.removeFromCart = function(id) {
+        const removed = cart.find(i => i.id === id);
         cart = cart.filter(i => i.id !== id);
         renderCart();
-        showToast("Unravelled item from cart.");
+        if (removed) {
+            showToast(`Removed "${removed.name}" from cart.`);
+        } else {
+            showToast("Unravelled item from cart.");
+        }
     };
 
     function renderCart() {
@@ -1583,12 +1625,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const checkoutBtn = document.querySelectorAll('.checkout-btn');
 
         let totalQty = 0;
-
         cart.forEach(item => {
             totalQty += item.qty;
         });
 
         const subtotal = getCartSubtotal();
+        const advanceAmount = Math.round(subtotal * 0.5);
+        const balanceAmount = subtotal - advanceAmount;
+
+        // Update header count and breakdown
+        const headerCount = document.getElementById('cart-header-count');
+        if (headerCount) {
+            headerCount.textContent = `${totalQty} item${totalQty === 1 ? '' : 's'}`;
+        }
+        const summaryCount = document.getElementById('cart-summary-items-count');
+        if (summaryCount) {
+            summaryCount.textContent = `${totalQty} item${totalQty === 1 ? '' : 's'}`;
+        }
+        const advanceEl = document.getElementById('cart-advance-amount');
+        if (advanceEl) {
+            advanceEl.textContent = totalQty > 0 ? `₹${formatPrice(advanceAmount)}` : '₹0';
+        }
+        const balanceEl = document.getElementById('cart-balance-amount');
+        if (balanceEl) {
+            balanceEl.textContent = totalQty > 0 ? `₹${formatPrice(balanceAmount)}` : '₹0';
+        }
 
         // Update badge counters
         cartBadge.forEach(badge => {
@@ -1642,25 +1703,58 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
             } else {
-                let html = '<div class="cart-items-list space-y-md pr-2">';
+                let html = '<div class="cart-items-list space-y-3 pb-2">';
                 cart.forEach(item => {
                     const categoryLabel = getCategoryLabel(item.category);
+                    const catalogItem = collectionProducts.find(p => p.id === item.id);
+                    const badge = item.badge || catalogItem?.badge || '';
+                    const desc = item.description || catalogItem?.description || '';
+                    const lineSubtotal = getSafePrice(item.price) * item.qty;
+
                     html += `
-                        <div class="flex items-center gap-4 bg-surface-container-lowest p-sm rounded-xl border border-outline-variant/15 soft-glow">
-                            <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-14 h-14 object-cover rounded-lg" width="56" height="56" loading="lazy" decoding="async">
-                            <div class="flex-1 min-w-0">
-                                <h4 class="font-label-md text-sm text-secondary truncate">${escapeHTML(item.name)}</h4>
-                                <p class="text-caption text-on-surface-variant">${escapeHTML(categoryLabel)}</p>
-                                <p class="text-caption text-on-surface-variant font-bold">Starting from ${formatStartingPrice(item.price)}</p>
-                                <div class="flex items-center gap-1.5 mt-2 bg-primary-container/40 rounded-full w-fit px-1 py-0.5 border border-outline-variant/20">
-                                    <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[32px] min-h-[32px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
-                                    <span class="font-body-md text-xs font-bold px-2 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                                    <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[32px] min-h-[32px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                        <div class="bg-surface-container-lowest p-3 rounded-2xl border border-outline-variant/15 soft-glow space-y-2.5 transition-all">
+                            <!-- Top row: Image, title, badge, remove -->
+                            <div class="flex items-start gap-3">
+                                <div class="relative group cursor-pointer shrink-0" onclick="openQuickLook('${item.id}')" title="View details of ${escapeHTML(item.name)}">
+                                    <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-16 h-16 object-cover rounded-xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="64" height="64" loading="lazy" decoding="async">
+                                    <div class="absolute inset-0 bg-black/20 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white">
+                                        <span class="material-symbols-outlined text-[18px]">zoom_in</span>
+                                    </div>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-start justify-between gap-1">
+                                        <div class="min-w-0 pr-1">
+                                            <h4 class="font-label-md text-sm text-secondary font-bold leading-snug cursor-pointer hover:underline truncate" onclick="openQuickLook('${item.id}')">${escapeHTML(item.name)}</h4>
+                                            <div class="flex items-center gap-1.5 flex-wrap mt-0.5">
+                                                <span class="text-[11px] text-on-surface-variant font-medium">${escapeHTML(categoryLabel)}</span>
+                                                ${badge ? `<span class="bg-secondary/10 text-secondary text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(badge)}</span>` : ''}
+                                            </div>
+                                        </div>
+                                        <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn min-w-[28px] min-h-[28px] flex items-center justify-center rounded-full hover:bg-error-container/30 text-outline-variant hover:text-error transition-all p-1 shrink-0">
+                                            <span class="material-symbols-outlined text-[17px]">delete</span>
+                                        </button>
+                                    </div>
+                                    ${desc ? `<p class="text-[11px] text-on-surface-variant/80 line-clamp-2 mt-1 leading-relaxed">${escapeHTML(desc)}</p>` : ''}
                                 </div>
                             </div>
-                            <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full hover:bg-error-container/30 text-outline-variant hover:text-error transition-all p-1">
-                                <span class="material-symbols-outlined text-[18px]">delete</span>
-                            </button>
+
+                            <!-- Middle row: Quantity stepper & Price breakdown -->
+                            <div class="flex items-center justify-between pt-1 border-t border-outline-variant/10">
+                                <div class="flex items-center gap-1 bg-primary-container/40 rounded-full px-1 py-0.5 border border-outline-variant/20">
+                                    <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[28px] min-h-[28px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                                    <span class="font-body-md text-xs font-bold px-2 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
+                                    <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[28px] min-h-[28px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-headline-sm text-sm text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
+                                    ${item.qty > 1 ? `<div class="text-[10px] text-on-surface-variant font-medium">(₹${formatPrice(item.price)} each)</div>` : `<div class="text-[10px] text-on-surface-variant font-medium">Starting price</div>`}
+                                </div>
+                            </div>
+
+                            <!-- Bottom row: Item-specific customization note/color wish -->
+                            <div class="pt-1">
+                                <input type="text" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom color or note for this item..." class="w-full bg-surface-container-low/60 border border-outline-variant/15 rounded-lg px-2.5 py-1 text-[11px] text-on-surface placeholder:text-on-surface-variant/50 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Color or customization note for ${escapeHTML(item.name)}">
+                            </div>
                         </div>
                     `;
                 });
@@ -2399,23 +2493,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(script);
     }
 
-    function setupCartCompactNote() {
-        const paymentNote = document.getElementById('cart-payment-note');
-        if (!paymentNote || document.getElementById('cart-compact-note')) return;
-
-        const compactNote = document.createElement('p');
-        compactNote.className = 'cart-compact-note text-caption text-on-surface-variant bg-white/55 border border-outline-variant/15 rounded-lg px-3 py-2';
-        compactNote.id = 'cart-compact-note';
-        compactNote.textContent = 'Starting prices are a guide. Final quote, payment and delivery are confirmed on WhatsApp.';
-        paymentNote.insertAdjacentElement('afterend', compactNote);
-    }
-
     // ----------------------------------------------------
     initNavigationBindings();
     setupPolicyFooterLinks();
     hydrateExternalConversionLinks();
     setupProductCardAddToCartTriggers();
-    setupCartCompactNote();
     applyCollectionFilterFromUrl();
     
     // Setup dynamic live listener on step-3 notes
