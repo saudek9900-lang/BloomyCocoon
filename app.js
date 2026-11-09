@@ -1007,12 +1007,190 @@ document.addEventListener('DOMContentLoaded', () => {
         if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
     }
 
+    let detailCurrentProduct = null;
+    let detailSelectedQty = 1;
+    let detailSelectedAddons = {
+        card: false,
+        fairyLights: false,
+        windowBox: false
+    };
+
+    window.changeProductDetailQty = function(delta) {
+        detailSelectedQty = Math.max(1, Math.min(20, detailSelectedQty + delta));
+        const qtyVal = document.getElementById('detail-qty-val');
+        if (qtyVal) qtyVal.textContent = String(detailSelectedQty);
+        updateProductDetailActionLabels();
+        updateProductDetailWhatsAppLinks();
+    };
+
+    window.updateProductDetailAddons = function() {
+        const cardCheckbox = document.getElementById('detail-addon-card');
+        const lightsCheckbox = document.getElementById('detail-addon-lights');
+        const boxCheckbox = document.getElementById('detail-addon-box');
+
+        detailSelectedAddons.card = Boolean(cardCheckbox?.checked);
+        detailSelectedAddons.fairyLights = Boolean(lightsCheckbox?.checked);
+        detailSelectedAddons.windowBox = Boolean(boxCheckbox?.checked);
+
+        updateProductDetailActionLabels();
+        updateProductDetailWhatsAppLinks();
+    };
+
+    function updateProductDetailActionLabels() {
+        if (!detailCurrentProduct) return;
+        const basePrice = Number(detailCurrentProduct.startingPrice) || 149;
+        let addonsCost = 0;
+        if (detailSelectedAddons.card) addonsCost += 49;
+        if (detailSelectedAddons.fairyLights) addonsCost += 89;
+        if (detailSelectedAddons.windowBox) addonsCost += 129;
+
+        const totalEst = (basePrice * detailSelectedQty) + addonsCost;
+        
+        const addBtnText = document.getElementById('detail-add-to-cart-text');
+        if (addBtnText) {
+            addBtnText.textContent = detailSelectedQty > 1 ? `Add ${detailSelectedQty} to Cart • ₹${totalEst}` : (addonsCost > 0 ? `Add to Cart • ₹${totalEst}` : `Add to Cart`);
+        }
+
+        const stickyPrice = document.getElementById('detail-sticky-price');
+        if (stickyPrice) {
+            stickyPrice.textContent = detailSelectedQty > 1 || addonsCost > 0 ? `Total: ₹${totalEst}` : `Starting from ₹${basePrice}`;
+        }
+    }
+
+    function updateProductDetailWhatsAppLinks() {
+        if (!detailCurrentProduct) return;
+        const basePrice = Number(detailCurrentProduct.startingPrice) || 149;
+        let addonsCost = 0;
+        const addonsList = [];
+        if (detailSelectedAddons.card) {
+            addonsCost += 49;
+            addonsList.push('Calligraphy Note Card (+₹49)');
+        }
+        if (detailSelectedAddons.fairyLights) {
+            addonsCost += 89;
+            addonsList.push('Warm Fairy Lights (+₹89)');
+        }
+        if (detailSelectedAddons.windowBox) {
+            addonsCost += 129;
+            addonsList.push('Keepsake Window Box (+₹129)');
+        }
+
+        const totalEst = (basePrice * detailSelectedQty) + addonsCost;
+        let message = `Hi BloomyCocoon, I would like to order ${detailSelectedQty > 1 ? `${detailSelectedQty}x ` : ''}${detailCurrentProduct.name} (Starting from ₹${basePrice}${detailSelectedQty > 1 ? ' each' : ''}).`;
+        if (addonsList.length > 0) {
+            message += `\nAdd-ons: ${addonsList.join(', ')}.`;
+            message += `\nEstimated starting total: ₹${totalEst}.`;
+        }
+        message += `\nWhat colors and custom options are available?`;
+
+        const waUrl = `https://wa.me/919061174579?text=${encodeURIComponent(message)}`;
+        const mainWaBtn = document.getElementById('detail-whatsapp-btn');
+        if (mainWaBtn) mainWaBtn.href = waUrl;
+        const stickyWaBtn = document.getElementById('detail-sticky-wa-btn');
+        if (stickyWaBtn) stickyWaBtn.href = waUrl;
+    }
+
+    window.handleDetailAddToCart = function() {
+        if (!detailCurrentProduct) return;
+        
+        // Add to cart with quantity
+        addToCart(
+            detailCurrentProduct.id,
+            detailCurrentProduct.name,
+            detailCurrentProduct.category,
+            detailCurrentProduct.startingPrice,
+            getProductImage(detailCurrentProduct),
+            detailCurrentProduct.badge,
+            detailCurrentProduct.description,
+            detailSelectedQty
+        );
+
+        // If any gifting addons were selected, enable them in the cart
+        if (detailSelectedAddons.card && cartGiftAddons.card) {
+            cartGiftAddons.card.enabled = true;
+        }
+        if (detailSelectedAddons.fairyLights && cartGiftAddons.fairyLights) {
+            cartGiftAddons.fairyLights.enabled = true;
+        }
+        if (detailSelectedAddons.windowBox && cartGiftAddons.windowBox) {
+            cartGiftAddons.windowBox.enabled = true;
+        }
+        if (detailSelectedAddons.card || detailSelectedAddons.fairyLights || detailSelectedAddons.windowBox) {
+            renderCart();
+        }
+
+        // Tactile microinteraction confirmation on button
+        const addBtn = document.getElementById('detail-add-to-cart-btn');
+        const addBtnText = document.getElementById('detail-add-to-cart-text');
+        if (addBtnText) {
+            addBtnText.textContent = 'Added to Cart ✓';
+            if (addBtn) addBtn.classList.add('bg-tertiary');
+            setTimeout(() => {
+                updateProductDetailActionLabels();
+                if (addBtn) addBtn.classList.remove('bg-tertiary');
+            }, 1500);
+        }
+
+        const stickyAddBtn = document.getElementById('detail-sticky-add-btn');
+        if (stickyAddBtn) {
+            stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span><span>Added</span>`;
+            setTimeout(() => {
+                stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span><span>Add</span>`;
+            }, 1500);
+        }
+    };
+
+    window.openProductLightbox = function(src, alt) {
+        const modal = document.getElementById('product-lightbox-modal');
+        const img = document.getElementById('lightbox-img');
+        if (!modal || !img) return;
+
+        const targetSrc = src || (detailCurrentProduct ? getProductImage(detailCurrentProduct) : img.src);
+        const targetAlt = alt || (detailCurrentProduct ? `${detailCurrentProduct.name} - Handcrafted crochet stitch detail` : 'Product image');
+        img.src = targetSrc;
+        img.alt = targetAlt;
+
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+
+        const escHandler = (e) => {
+            if (e.key === 'Escape') {
+                closeProductLightbox();
+                window.removeEventListener('keydown', escHandler);
+            }
+        };
+        window.addEventListener('keydown', escHandler);
+    };
+
+    window.closeProductLightbox = function() {
+        const modal = document.getElementById('product-lightbox-modal');
+        if (!modal) return;
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = '';
+    };
+
     function renderProductDetailScreen(pathname = window.location.pathname) {
         const match = pathname.match(/^\/products?\/([^/?#]+)/);
         if (!match) return;
         const slug = match[1];
         const product = collectionProducts.find(p => p.id === slug);
         if (!product) return;
+
+        detailCurrentProduct = product;
+        detailSelectedQty = 1;
+        detailSelectedAddons = { card: false, fairyLights: false, windowBox: false };
+
+        // Reset quantity & checkboxes
+        const qtyVal = document.getElementById('detail-qty-val');
+        if (qtyVal) qtyVal.textContent = '1';
+        const cardBox = document.getElementById('detail-addon-card');
+        if (cardBox) cardBox.checked = false;
+        const lightsBox = document.getElementById('detail-addon-lights');
+        if (lightsBox) lightsBox.checked = false;
+        const boxBox = document.getElementById('detail-addon-box');
+        if (boxBox) boxBox.checked = false;
 
         const catLabel = getCategoryLabel(product.category);
         const breadcrumbCat = document.getElementById('detail-breadcrumb-cat');
@@ -1028,6 +1206,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (imgEl) {
             imgEl.src = imagePath;
             imgEl.alt = `${product.name} - Handmade crochet gift by BloomyCocoon`;
+        }
+
+        const lightboxImg = document.getElementById('lightbox-img');
+        if (lightboxImg) {
+            lightboxImg.src = imagePath;
+            lightboxImg.alt = `${product.name} - Handcrafted crochet stitch detail`;
         }
 
         const badgeEl = document.getElementById('detail-product-badge');
@@ -1056,18 +1240,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const addBtn = document.getElementById('detail-add-to-cart-btn');
         if (addBtn) addBtn.setAttribute('data-add-to-cart', product.id);
 
-        const waBtn = document.getElementById('detail-whatsapp-btn');
-        if (waBtn) {
-            const waMsg = encodeURIComponent(`Hi BloomyCocoon, I would like to order the ${product.name} (Starting from ₹${safePrice}). What colors and custom options are available?`);
-            waBtn.href = `https://wa.me/919061174579?text=${waMsg}`;
+        // Sticky bar sync
+        const stickyImg = document.getElementById('detail-sticky-img');
+        if (stickyImg) {
+            stickyImg.src = imagePath;
+            stickyImg.alt = product.name;
         }
+        const stickyName = document.getElementById('detail-sticky-name');
+        if (stickyName) stickyName.textContent = product.name;
 
+        const stickyPrice = document.getElementById('detail-sticky-price');
+        if (stickyPrice) stickyPrice.textContent = `Starting from ₹${safePrice}`;
+
+        updateProductDetailActionLabels();
+        updateProductDetailWhatsAppLinks();
+
+        // Related items
         const relatedContainer = document.getElementById('detail-related-products-grid');
         if (relatedContainer) {
             const sameCategory = collectionProducts.filter(p => p.id !== product.id && p.category === product.category);
             const otherCategory = collectionProducts.filter(p => p.id !== product.id && p.category !== product.category);
             const related = [...sameCategory, ...otherCategory].slice(0, 4);
             relatedContainer.innerHTML = related.map(p => getProductCardMarkup(p)).join('\n');
+            applyImageFallbacks(relatedContainer);
+            setupProductCardAddToCartTriggers(relatedContainer);
         }
     }
 
@@ -1728,13 +1924,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    window.addToCart = function(id, name, category, price, img, badge, description) {
+    window.addToCart = function(id, name, category, price, img, badge, description, qty = 1) {
         if (arguments.length === 4) {
             img = price;
             price = category;
             category = 'handmade';
         }
 
+        const addQty = Math.max(1, parseInt(qty, 10) || 1);
         const parsedPrice = getSafePrice(price);
         const catalogItem = collectionProducts.find(item => item.id === id);
         const resolvedBadge = badge || catalogItem?.badge || '';
@@ -1743,7 +1940,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const existing = cart.find(item => item.id === id);
         
         if (existing) {
-            existing.qty += 1;
+            existing.qty += addQty;
         } else {
             cart.push({
                 id,
@@ -1754,17 +1951,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 badge: resolvedBadge,
                 description: resolvedDesc,
                 itemNote: '',
-                qty: 1
+                qty: addQty
             });
         }
         
         renderCart();
-        showToast(`Added "${name}" to your cart!`);
+        const toastMsg = addQty > 1 ? `Added ${addQty}x "${name}" to your cart!` : `Added "${name}" to your cart!`;
+        showToast(toastMsg);
         trackEvent('add_to_cart', {
             item_id: id,
             item_name: name,
             item_category: category,
-            value: parsedPrice,
+            value: parsedPrice * addQty,
             currency: 'INR'
         });
         
@@ -2754,16 +2952,18 @@ document.addEventListener('DOMContentLoaded', () => {
         applyCollectionFilterFromUrl();
     }
 
-    function setupProductCardAddToCartTriggers() {
-        document.querySelectorAll('[data-add-to-cart]').forEach(addBtn => {
+    function setupProductCardAddToCartTriggers(root = document) {
+        root.querySelectorAll('[data-add-to-cart]').forEach(addBtn => {
+            if (addBtn.id === 'detail-add-to-cart-btn' || addBtn.id === 'detail-sticky-add-btn') return;
             if (addBtn.dataset.cartBound === 'true') return;
-
-            const product = collectionProducts.find(item => item.id === addBtn.dataset.addToCart);
-            if (!product) return;
 
             addBtn.dataset.cartBound = 'true';
             addBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                const productId = addBtn.dataset.addToCart;
+                if (!productId || productId === 'modal') return;
+                const product = collectionProducts.find(item => item.id === productId);
+                if (!product) return;
                 addToCart(product.id, product.name, product.category, product.startingPrice, getProductImage(product));
             });
         });

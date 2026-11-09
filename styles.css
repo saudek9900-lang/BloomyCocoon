@@ -587,3 +587,8 @@ button[onclick="navigateBack()"] span {
     .mobile-contact-grid, .compact-process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
     .mobile-hero-media { width: 86vw; height: 170px !important; }
 }
+
+#detail-sticky-bar {
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+}
+

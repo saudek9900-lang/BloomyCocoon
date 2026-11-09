@@ -5,7 +5,9 @@ export default {
     darkMode: "class",
     content: [
         "./index.html",
-        "./app.js"
+        "./app.js",
+        "./src/**/*.mjs",
+        "./scripts/**/*.mjs"
     ],
     theme: {
         extend: {

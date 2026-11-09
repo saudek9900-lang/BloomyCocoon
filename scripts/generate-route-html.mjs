@@ -280,21 +280,33 @@ function injectProductDetail(html, product, catalog) {
   let next = html;
 
   // 1. Breadcrumbs
-  const breadcrumbNav = `<nav aria-label="Breadcrumb" class="mb-6 text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5" id="detail-breadcrumbs">
-                    <a href="/" class="hover:text-secondary transition-colors">Home</a>
-                    <span class="text-outline-variant">/</span>
-                    <a href="/collections" class="hover:text-secondary transition-colors">Handmade Collection</a>
-                    <span class="text-outline-variant">/</span>
-                    <a href="/collections?category=${escapeHtml(product.category)}" id="detail-breadcrumb-cat" class="hover:text-secondary transition-colors">${escapeHtml(categoryLabel)}</a>
-                    <span class="text-outline-variant">/</span>
-                    <span id="detail-breadcrumb-name" class="text-on-surface font-semibold truncate max-w-[200px]">${escapeHtml(product.name)}</span>
+  const breadcrumbNav = `<nav aria-label="Breadcrumb" class="mb-6 text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5" id="detail-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">Home</span></a>
+                        <meta itemprop="position" content="1">
+                    </span>
+                    <span class="text-outline-variant" aria-hidden="true">/</span>
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/collections" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">Handmade Collection</span></a>
+                        <meta itemprop="position" content="2">
+                    </span>
+                    <span class="text-outline-variant" aria-hidden="true">/</span>
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/collections?category=${escapeHtml(product.category)}" id="detail-breadcrumb-cat" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">${escapeHtml(categoryLabel)}</span></a>
+                        <meta itemprop="position" content="3">
+                    </span>
+                    <span class="text-outline-variant" aria-hidden="true">/</span>
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span id="detail-breadcrumb-name" itemprop="name" class="text-on-surface font-semibold truncate max-w-[200px]">${escapeHtml(product.name)}</span>
+                        <meta itemprop="position" content="4">
+                    </span>
                 </nav>`;
   next = next.replace(/<nav\b[^>]*\bid=["']detail-breadcrumbs["'][^>]*>[\s\S]*?<\/nav>/i, breadcrumbNav);
 
   // 2. Picture
   const pictureMarkup = `<picture id="detail-product-picture" class="contents">
                                 <source srcset="${escapeHtml(webpSrcset)}" sizes="(min-width: 768px) 50vw, 100vw" type="image/webp">
-                                <img id="detail-product-img" src="${escapeHtml(image)}" alt="${escapeHtml(product.name)} - Handmade crochet gift by BloomyCocoon" class="w-full h-full object-cover" width="600" height="450" loading="eager">
+                                <img id="detail-product-img" src="${escapeHtml(image)}" alt="${escapeHtml(product.name)} - Handmade crochet gift by BloomyCocoon" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="600" height="450" loading="eager">
                             </picture>`;
   next = next.replace(/<picture\b[^>]*\bid=["']detail-product-picture["'][^>]*>[\s\S]*?<\/picture>/i, pictureMarkup);
 
@@ -332,16 +344,40 @@ function injectProductDetail(html, product, catalog) {
   // 8. Add to Cart button
   next = next.replace(
     /<button\b[^>]*\bid=["']detail-add-to-cart-btn["'][^>]*>([\s\S]*?)<\/button>/i,
-    `<button id="detail-add-to-cart-btn" data-add-to-cart="${escapeHtml(product.id)}" class="flex-1 bg-secondary text-white py-3.5 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm"><span class="material-symbols-outlined text-[20px]">add_shopping_cart</span><span>Add to Cart</span></button>`
+    `<button id="detail-add-to-cart-btn" data-add-to-cart="${escapeHtml(product.id)}" onclick="handleDetailAddToCart()" class="flex-1 min-h-[48px] bg-secondary text-white py-3 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">add_shopping_cart</span><span id="detail-add-to-cart-text">Add to Cart</span></button>`
   );
 
   // 9. WhatsApp button
   next = next.replace(
     /<a\b[^>]*\bid=["']detail-whatsapp-btn["'][^>]*>([\s\S]*?)<\/a>/i,
-    `<a id="detail-whatsapp-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="bg-[#25D366] text-white py-3.5 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:bg-[#20ba59] active:scale-95 transition-all shadow-sm"><span class="material-symbols-outlined text-[20px]">chat</span><span>Order on WhatsApp</span></a>`
+    `<a id="detail-whatsapp-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="min-h-[48px] bg-[#25D366] text-white py-3 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:bg-[#20ba59] active:scale-95 transition-all shadow-sm cursor-pointer"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span><span>Order on WhatsApp</span></a>`
   );
 
-  // 10. Related products grid
+  // 10. Sticky Mobile Bar
+  next = next.replace(
+    /<img\b[^>]*\bid=["']detail-sticky-img["'][^>]*>/i,
+    `<img id="detail-sticky-img" src="${escapeHtml(image)}" alt="${escapeHtml(product.name)}" class="w-11 h-11 rounded-xl object-cover border border-outline-variant/20 shrink-0" width="44" height="44">`
+  );
+  next = next.replace(
+    /(<span\b[^>]*\bid=["']detail-sticky-name["'][^>]*>)([\s\S]*?)(<\/span>)/i,
+    `$1${escapeHtml(product.name)}$3`
+  );
+  next = next.replace(
+    /(<span\b[^>]*\bid=["']detail-sticky-price["'][^>]*>)([\s\S]*?)(<\/span>)/i,
+    `$1Starting from ₹${safePrice}$3`
+  );
+  next = next.replace(
+    /<a\b[^>]*\bid=["']detail-sticky-wa-btn["'][^>]*>([\s\S]*?)<\/a>/i,
+    `<a id="detail-sticky-wa-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="bg-[#25D366] text-white w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-all shadow-xs min-h-[44px] min-w-[44px]" aria-label="Order on WhatsApp"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span></a>`
+  );
+
+  // 11. Lightbox Image
+  next = next.replace(
+    /<img\b[^>]*\bid=["']lightbox-img["'][^>]*>/i,
+    `<img id="lightbox-img" src="${escapeHtml(image)}" alt="${escapeHtml(product.name)} - Handcrafted crochet stitch detail" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300">`
+  );
+
+  // 12. Related products grid
   next = next.replace(
     /(<div\b[^>]*\bid=["']detail-related-products-grid["'][^>]*>)([\s\S]*?)(<\/div>)/i,
     `$1\n${relatedHtml}\n$3`

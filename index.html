@@ -1875,51 +1875,73 @@
         <!-- ==================================================== -->
         <!-- SCREEN 16: INDIVIDUAL STANDALONE PRODUCT DETAIL PAGE -->
         <!-- ==================================================== -->
-        <section id="screen-product-detail" class="screen flex flex-col justify-between" role="region" aria-label="Product Details">
-            <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pt-6 md:pt-10 pb-16 flex-1 w-full">
-                <!-- Breadcrumbs -->
-                <nav aria-label="Breadcrumb" class="mb-6 text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5" id="detail-breadcrumbs">
-                    <a href="/" class="hover:text-secondary transition-colors">Home</a>
-                    <span class="text-outline-variant">/</span>
-                    <a href="/collections" class="hover:text-secondary transition-colors">Handmade Collection</a>
-                    <span class="text-outline-variant">/</span>
-                    <a href="/collections" id="detail-breadcrumb-cat" class="hover:text-secondary transition-colors">Category</a>
-                    <span class="text-outline-variant">/</span>
-                    <span id="detail-breadcrumb-name" class="text-on-surface font-semibold truncate max-w-[200px]">Product</span>
+        <section id="screen-product-detail" class="screen flex flex-col justify-between relative" role="region" aria-label="Product Details">
+            <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pt-6 md:pt-10 pb-28 md:pb-16 flex-1 w-full">
+                <!-- Breadcrumbs with Schema Microdata -->
+                <nav aria-label="Breadcrumb" class="mb-6 text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5" id="detail-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">Home</span></a>
+                        <meta itemprop="position" content="1">
+                    </span>
+                    <span class="text-outline-variant" aria-hidden="true">/</span>
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/collections" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">Handmade Collection</span></a>
+                        <meta itemprop="position" content="2">
+                    </span>
+                    <span class="text-outline-variant" aria-hidden="true">/</span>
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/collections" id="detail-breadcrumb-cat" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">Category</span></a>
+                        <meta itemprop="position" content="3">
+                    </span>
+                    <span class="text-outline-variant" aria-hidden="true">/</span>
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span id="detail-breadcrumb-name" itemprop="name" class="text-on-surface font-semibold truncate max-w-[200px]">Product</span>
+                        <meta itemprop="position" content="4">
+                    </span>
                 </nav>
 
-                <!-- Back button -->
-                <div class="mb-6">
-                    <a href="/collections" class="inline-flex items-center gap-1.5 text-xs font-label-md text-secondary hover:text-primary transition-colors bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant/15 shadow-2xs">
-                        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                <!-- Back navigation pill -->
+                <div class="mb-6 flex items-center justify-between">
+                    <a href="/collections" class="inline-flex items-center gap-1.5 text-xs font-label-md text-secondary hover:text-primary transition-all bg-surface-container-low px-3.5 py-2 rounded-full border border-outline-variant/20 shadow-2xs hover:shadow-xs active:scale-95">
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
                         <span>Back to Handmade Collection</span>
                     </a>
+                    <span class="text-xs text-on-surface-variant/75 hidden sm:inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-secondary text-[16px]" aria-hidden="true">location_on</span>
+                        <span>Mampad, Malappuram, Kerala</span>
+                    </span>
                 </div>
 
                 <!-- Product Showcase Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start mb-16">
                     <!-- Visual Left Column -->
                     <div class="md:col-span-6 lg:col-span-6 space-y-4">
-                        <div class="aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-primary-container relative border border-outline-variant/20 shadow-md">
+                        <div class="aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-primary-container relative border border-outline-variant/20 shadow-md group">
                             <picture id="detail-product-picture" class="contents">
-                                <img id="detail-product-img" src="/images/hero_crochet_scene.png" alt="Handmade crochet gift" class="w-full h-full object-cover" width="600" height="450" loading="eager">
+                                <img id="detail-product-img" src="/images/hero_crochet_scene.png" alt="Handmade crochet gift" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="600" height="450" loading="eager">
                             </picture>
                             <span id="detail-product-badge" class="absolute top-4 left-4 bg-secondary text-white text-xs font-label-md px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm hidden"></span>
+                            
+                            <!-- Tap to zoom lightbox trigger button -->
+                            <button type="button" id="detail-zoom-trigger" onclick="openProductLightbox()" class="absolute bottom-4 right-4 bg-surface/90 hover:bg-surface text-secondary backdrop-blur-sm text-xs font-label-md px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border border-outline-variant/20 transition-all active:scale-95 cursor-pointer" aria-label="Zoom product image to inspect stitches">
+                                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">zoom_in</span>
+                                <span>Inspect Stitches</span>
+                            </button>
                         </div>
 
-                        <!-- Craftsmanship seals -->
+                        <!-- Craftsmanship assurance seals -->
                         <div class="grid grid-cols-3 gap-2 text-center text-xs text-on-surface-variant font-label-md">
                             <div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/15 flex flex-col items-center gap-1">
-                                <span class="material-symbols-outlined text-secondary text-[20px]">pan_tool</span>
-                                <span class="text-[11px] leading-tight font-medium">100% Handcrafted</span>
+                                <span class="material-symbols-outlined text-secondary text-[20px]" aria-hidden="true">pan_tool</span>
+                                <span class="text-[11px] leading-tight font-medium text-on-surface">100% Handcrafted</span>
                             </div>
                             <div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/15 flex flex-col items-center gap-1">
-                                <span class="material-symbols-outlined text-secondary text-[20px]">spa</span>
-                                <span class="text-[11px] leading-tight font-medium">Never-Wilting Yarn</span>
+                                <span class="material-symbols-outlined text-secondary text-[20px]" aria-hidden="true">spa</span>
+                                <span class="text-[11px] leading-tight font-medium text-on-surface">Never-Wilting Yarn</span>
                             </div>
                             <div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/15 flex flex-col items-center gap-1">
-                                <span class="material-symbols-outlined text-secondary text-[20px]">palette</span>
-                                <span class="text-[11px] leading-tight font-medium">Custom Shades</span>
+                                <span class="material-symbols-outlined text-secondary text-[20px]" aria-hidden="true">palette</span>
+                                <span class="text-[11px] leading-tight font-medium text-on-surface">Custom Shades</span>
                             </div>
                         </div>
                     </div>
@@ -1929,7 +1951,7 @@
                         <div>
                             <span id="detail-product-category" class="text-xs uppercase tracking-wider text-secondary font-bold font-label-md">Bouquets</span>
                             <h1 id="detail-product-name" class="font-headline-md text-3xl md:text-4xl text-primary font-bold mt-1">Handmade Crochet Gift</h1>
-                            <div class="flex items-baseline gap-2 mt-2">
+                            <div class="flex flex-wrap items-baseline gap-2 mt-2">
                                 <span id="detail-product-price" class="text-2xl md:text-3xl font-bold font-headline-md text-secondary">Starting from ₹149</span>
                                 <span class="text-xs text-on-surface-variant/80 font-medium">• Crafted to order in Kerala</span>
                             </div>
@@ -1961,24 +1983,66 @@
                             </div>
                         </div>
 
-                        <!-- Gifting Packaging Banner -->
-                        <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-secondary/5 border border-secondary/20 text-xs text-on-surface-variant">
-                            <span class="material-symbols-outlined text-secondary text-2xl mt-0.5">redeem</span>
-                            <div class="flex-1">
-                                <strong class="text-secondary block font-bold">Gifting this item?</strong>
-                                <span class="text-[11px] leading-relaxed">You can add handwritten calligraphy cards, warm fairy lights, and keepsake display window boxes during checkout.</span>
+                        <!-- Interactive Gifting Packaging Options -->
+                        <div class="p-4 rounded-2xl bg-secondary/5 border border-secondary/20 space-y-3">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary text-[20px]" aria-hidden="true">redeem</span>
+                                <strong class="text-secondary font-label-md text-sm font-bold">Artisanal Gifting Add-Ons</strong>
                             </div>
+                            <p class="text-[12px] text-on-surface-variant leading-relaxed">Select special touches to elevate your gift packaging before ordering:</p>
+                            <div class="space-y-2 pt-1 text-xs">
+                                <label class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
+                                    <div class="flex items-center gap-2.5">
+                                        <input type="checkbox" id="detail-addon-card" onchange="updateProductDetailAddons()" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
+                                        <span class="font-medium text-on-surface">✍️ Handwritten Calligraphy Note Card</span>
+                                    </div>
+                                    <span class="text-secondary font-bold font-label-md">+₹49</span>
+                                </label>
+                                <label class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
+                                    <div class="flex items-center gap-2.5">
+                                        <input type="checkbox" id="detail-addon-lights" onchange="updateProductDetailAddons()" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
+                                        <span class="font-medium text-on-surface">✨ Warm Fairy Lights (Wrapped with battery)</span>
+                                    </div>
+                                    <span class="text-secondary font-bold font-label-md">+₹89</span>
+                                </label>
+                                <label class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
+                                    <div class="flex items-center gap-2.5">
+                                        <input type="checkbox" id="detail-addon-box" onchange="updateProductDetailAddons()" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
+                                        <span class="font-medium text-on-surface">🎁 Keepsake Display Window Gift Box</span>
+                                    </div>
+                                    <span class="text-secondary font-bold font-label-md">+₹129</span>
+                                </label>
+                            </div>
+                            <p class="text-[11px] text-secondary/90 flex items-center gap-1.5 pt-0.5">
+                                <span class="material-symbols-outlined text-[15px]" aria-hidden="true">eco</span>
+                                <span>Complimentary lavender aroma mist included with gift boxes!</span>
+                            </p>
                         </div>
 
-                        <!-- Action Buttons -->
+                        <!-- Quantity Selector & Action Buttons -->
                         <div class="space-y-3 pt-2">
+                            <!-- Stepper Row -->
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center border border-outline-variant/30 rounded-full bg-surface-container-low p-1 shadow-2xs">
+                                    <button type="button" id="detail-qty-minus" onclick="changeProductDetailQty(-1)" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface hover:bg-secondary/10 active:scale-95 transition-all cursor-pointer" aria-label="Decrease quantity">
+                                        <span class="material-symbols-outlined text-[18px]">remove</span>
+                                    </button>
+                                    <span id="detail-qty-val" class="w-10 text-center font-bold text-on-surface text-sm select-none" aria-live="polite">1</span>
+                                    <button type="button" id="detail-qty-plus" onclick="changeProductDetailQty(1)" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface hover:bg-secondary/10 active:scale-95 transition-all cursor-pointer" aria-label="Increase quantity">
+                                        <span class="material-symbols-outlined text-[18px]">add</span>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-on-surface-variant font-label-md">Quantity to craft</span>
+                            </div>
+
+                            <!-- Buttons -->
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <button id="detail-add-to-cart-btn" class="flex-1 bg-secondary text-white py-3.5 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm">
-                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
-                                    <span>Add to Cart</span>
+                                <button id="detail-add-to-cart-btn" onclick="handleDetailAddToCart()" class="flex-1 min-h-[48px] bg-secondary text-white py-3 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer">
+                                    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">add_shopping_cart</span>
+                                    <span id="detail-add-to-cart-text">Add to Cart</span>
                                 </button>
-                                <a id="detail-whatsapp-btn" href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-[#25D366] text-white py-3.5 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:bg-[#20ba59] active:scale-95 transition-all shadow-sm">
-                                    <span class="material-symbols-outlined text-[20px]">chat</span>
+                                <a id="detail-whatsapp-btn" href="https://wa.me/919061174579" target="_blank" rel="noopener" class="min-h-[48px] bg-[#25D366] text-white py-3 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:bg-[#20ba59] active:scale-95 transition-all shadow-sm cursor-pointer">
+                                    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span>
                                     <span>Order on WhatsApp</span>
                                 </a>
                             </div>
@@ -1990,15 +2054,15 @@
                         <!-- Trust Bar -->
                         <div class="pt-4 border-t border-outline-variant/15 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-on-surface-variant">
                             <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-secondary text-[18px]">local_shipping</span>
+                                <span class="material-symbols-outlined text-secondary text-[18px]" aria-hidden="true">local_shipping</span>
                                 <span>All-India Shipping</span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+                                <span class="material-symbols-outlined text-secondary text-[18px]" aria-hidden="true">verified</span>
                                 <span>Photo Confirmation</span>
                             </div>
                             <div class="flex items-center gap-2 col-span-2 sm:col-span-1">
-                                <span class="material-symbols-outlined text-secondary text-[18px]">savings</span>
+                                <span class="material-symbols-outlined text-secondary text-[18px]" aria-hidden="true">savings</span>
                                 <span>50% Advance Booking</span>
                             </div>
                         </div>
@@ -2012,7 +2076,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>How do I care for and clean this handcrafted crochet item?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Spot clean gently using a damp cloth and mild soap if needed. Avoid machine washing or harsh soaking. Allow to air dry in the shade to preserve the vibrant yarn colors and structural shape.
@@ -2021,7 +2085,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>Can I request custom yarn colors or personal gift tags?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Yes! Every single piece is made slowly to order. Simply message us on WhatsApp (+91 9061174579) to select custom shades, personalized names, or handwritten calligraphy note cards.
@@ -2030,10 +2094,19 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>How long does production and delivery take across Kerala and India?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Small pieces and standard bouquets take 3–5 working days to craft. Delivery within Kerala typically arrives in 2–3 days, and 4–7 days for other Indian states with live courier tracking.
+                            </p>
+                        </details>
+                        <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
+                            <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
+                                <span>How does payment work for custom handmade orders?</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
+                            </summary>
+                            <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
+                                We require a 50% advance booking payment via UPI or Google Pay to begin hand-crocheting your order. Once completed, we send you high-resolution photos for approval before you pay the remaining balance and we dispatch with courier tracking.
                             </p>
                         </details>
                     </div>
@@ -2049,6 +2122,38 @@
                     </div>
                 </section>
             </main>
+
+            <!-- Sticky Mobile Purchase Bar (Fixed Bottom on Mobile) -->
+            <div id="detail-sticky-bar" class="fixed bottom-0 inset-x-0 z-40 bg-surface/95 backdrop-blur-md border-t border-outline-variant/20 px-4 py-2.5 shadow-[0_-4px_24px_rgba(42,22,17,0.08)] flex md:hidden items-center justify-between gap-3 transition-transform duration-300">
+                <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                    <img id="detail-sticky-img" src="/images/hero_crochet_scene.png" alt="" class="w-11 h-11 rounded-xl object-cover border border-outline-variant/20 shrink-0" width="44" height="44">
+                    <div class="min-w-0 flex-1">
+                        <span id="detail-sticky-name" class="font-label-md text-xs font-semibold text-on-surface truncate block">Product</span>
+                        <span id="detail-sticky-price" class="text-xs font-bold text-secondary font-headline-md block">Starting from ₹149</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button type="button" id="detail-sticky-add-btn" onclick="handleDetailAddToCart()" class="bg-secondary text-white px-4 py-2.5 rounded-full font-label-md text-xs flex items-center gap-1.5 active:scale-95 transition-all shadow-xs min-h-[44px]">
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span>
+                        <span>Add</span>
+                    </button>
+                    <a id="detail-sticky-wa-btn" href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-[#25D366] text-white w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-all shadow-xs min-h-[44px] min-w-[44px]" aria-label="Order on WhatsApp">
+                        <span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Image Lightbox Modal -->
+            <div id="product-lightbox-modal" onclick="closeProductLightbox()" class="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-label="Product Image View">
+                <button type="button" onclick="closeProductLightbox()" class="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-20 cursor-pointer min-h-[44px] min-w-[44px]" aria-label="Close image preview">
+                    <span class="material-symbols-outlined text-[24px]">close</span>
+                </button>
+                <div class="max-w-4xl max-h-[85vh] w-full flex items-center justify-center p-2" onclick="event.stopPropagation()">
+                    <img id="lightbox-img" src="" alt="Zoomed view of handmade crochet stitches" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300">
+                </div>
+            </div>
+
+            <!-- Footer -->
             <footer class="bg-surface-container py-10 border-t border-outline-variant/10"><div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg text-center"><a data-nav-logo class="nav-logo inline-flex justify-center" href="/"><span class="font-display-lg text-[36px] tracking-tight text-secondary font-serif"><span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span></span></a><nav class="flex flex-wrap justify-center gap-6 my-md" aria-label="Footer navigation"><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/">Home</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/collections">Handmade Collection</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/custom-order">Custom Orders</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/anniversary-gifts">Anniversary Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/birthday-gifts">Birthday Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/baby-shower-gifts">Baby Shower Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/return-gifts">Return Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/faq">FAQ</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/contact">Contact Us</a></nav><p class="font-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p></div></footer>
         </section>
 
