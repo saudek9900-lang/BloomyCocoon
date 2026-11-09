@@ -63,16 +63,20 @@ export function formatStartingPrice(price) {
 }
 
 export function getProductImage(product) {
-  return product.image || categoryFallbackImages[product.category] || categoryFallbackImages.default;
+  const img = product?.image || categoryFallbackImages[product?.category] || categoryFallbackImages.default;
+  if (!img) return '/images/hero_crochet_scene.png';
+  return img.startsWith('/') ? img : `/${img}`;
 }
 
 function getWebpImagePath(imagePath) {
-  return imagePath.replace(/\.png$/i, '.webp');
+  const clean = imagePath.replace(/^\//, '');
+  return `/${clean.replace(/\.png$/i, '.webp')}`;
 }
 
 export function getResponsiveWebpSrcset(imagePath) {
+  const cleanPath = imagePath.replace(/^\//, '');
   const webpPath = getWebpImagePath(imagePath);
-  if (!responsiveImagePaths.has(imagePath)) return webpPath;
+  if (!responsiveImagePaths.has(cleanPath)) return webpPath;
   const basePath = webpPath.replace(/\.webp$/i, '');
   return [
     ...responsiveImageWidths.map(width => `${basePath}-${width}.webp ${width}w`),
@@ -108,7 +112,8 @@ function getProductAltText(product) {
 
 export function getProductCardMarkup(product) {
   const image = getProductImage(product);
-  const fallbackImage = categoryFallbackImages[product.category] || categoryFallbackImages.default;
+  const rawFallback = categoryFallbackImages[product.category] || categoryFallbackImages.default;
+  const fallbackImage = rawFallback.startsWith('/') ? rawFallback : `/${rawFallback}`;
   const badgeMarkup = product.badge
     ? `<span class="bg-[#fbd8d0] text-[#775d56] px-3 py-1 rounded-full font-label-md text-xs">${escapeHTML(product.badge)}</span>`
     : '';
