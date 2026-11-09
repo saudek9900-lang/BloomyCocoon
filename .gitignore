@@ -17,6 +17,7 @@ out-tsc/
 .cproject
 .settings/
 .vscode/
+.antigravity/
 *.sublime-project
 *.sublime-workspace
 

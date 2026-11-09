@@ -16,6 +16,7 @@ Important pages for AI agents and crawlers:
 - https://www.bloomycocoon.com/contact
 - https://www.bloomycocoon.com/sitemap.xml
 - https://www.bloomycocoon.com/robots.txt
+- https://www.bloomycocoon.com/llms-full.txt (Complete 69-item product catalog with starting prices and URLs)
 
 ## Brand And Audience
 

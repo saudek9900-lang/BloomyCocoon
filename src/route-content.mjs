@@ -155,7 +155,68 @@ export function getBreadcrumbList(screenId) {
   };
 }
 
-export function getRoutePageSchema(screenId, { faqItems = [] } = {}) {
+const CATEGORY_LABELS = {
+  bouquets: 'Bouquets',
+  plushies: 'Plushies',
+  keychains: 'Keychains',
+  'baby-gifts': 'Baby Gifts',
+  accessories: 'Accessories',
+  'home-decor': 'Home & Decor',
+  'gift-combos': 'Gift Combos',
+};
+
+export function getProductSchema(product) {
+  const productUrl = `${SITE_ORIGIN}/collections#${product.id}`;
+  const imageUrl = product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`;
+  const safePrice = Number(product.startingPrice) || 149;
+
+  return {
+    '@type': 'Product',
+    '@id': `${productUrl}-product`,
+    name: product.name,
+    description: product.description || `Handmade crochet ${product.name} crafted in Kerala by BloomyCocoon.`,
+    image: imageUrl,
+    sku: product.id,
+    category: CATEGORY_LABELS[product.category] || 'Handmade',
+    brand: {
+      '@type': 'Brand',
+      name: 'BloomyCocoon',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: String(safePrice),
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      url: productUrl,
+      priceValidUntil: '2027-12-31',
+      seller: {
+        '@id': `${SITE_ORIGIN}/#organization`,
+      },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'IN',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 7,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn',
+      },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '0',
+          currency: 'INR',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'IN',
+        },
+      },
+    },
+  };
+}
+
+export function getRoutePageSchema(screenId, { faqItems = [], products = [] } = {}) {
   const route = getRouteContent(screenId);
   const canonical = getRouteCanonical(screenId);
 
@@ -199,15 +260,29 @@ export function getRoutePageSchema(screenId, { faqItems = [] } = {}) {
   };
 
   if (route.schemaType === 'CollectionPage') {
-    page.mainEntity = {
-      '@type': 'ItemList',
-      name: 'BloomyCocoon handmade crochet gift categories',
-      itemListElement: CATEGORY_LIST.map((name, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name,
-      })),
-    };
+    if (products && products.length > 0) {
+      page.mainEntity = {
+        '@type': 'ItemList',
+        name: 'BloomyCocoon Handmade Crochet Gift Collection',
+        description: 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon in Kerala, with custom orders available across India.',
+        numberOfItems: products.length,
+        itemListElement: products.map((product, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: getProductSchema(product),
+        })),
+      };
+    } else {
+      page.mainEntity = {
+        '@type': 'ItemList',
+        name: 'BloomyCocoon handmade crochet gift categories',
+        itemListElement: CATEGORY_LIST.map((name, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name,
+        })),
+      };
+    }
   }
 
   if (route.schemaType === 'ContactPage') {
@@ -222,3 +297,4 @@ export function getRoutePageSchema(screenId, { faqItems = [] } = {}) {
 export function getRouteSchemaGraph(screenId, options = {}) {
   return [getBreadcrumbList(screenId), getRoutePageSchema(screenId, options)];
 }
+

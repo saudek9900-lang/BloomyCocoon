@@ -7,9 +7,23 @@ import {
   getRouteMetadata,
   getRouteSchemaGraph,
 } from '../src/route-content.mjs';
+import { renderCollectionProductsHtml } from '../src/product-cards.mjs';
+import { generateSitemapXml, generateLlmsFullTxt } from '../src/sitemap-generator.mjs';
 
 const DIST_DIR = path.resolve('dist');
+const PUBLIC_DIR = path.resolve('public');
 const INDEX_PATH = path.join(DIST_DIR, 'index.html');
+const CATALOG_PATH = path.resolve('src/catalog.json');
+const catalog = JSON.parse(await readFile(CATALOG_PATH, 'utf8'));
+const preRenderedProductsHtml = renderCollectionProductsHtml(catalog);
+
+function injectPreRenderedProducts(html) {
+  const pattern = /(<div\b[^>]*\bid=["']collection-product-grid["'][^>]*>)([\s\S]*?)(<\/div>)/i;
+  if (!pattern.test(html)) {
+    throw new Error('Could not find #collection-product-grid in HTML.');
+  }
+  return html.replace(pattern, `$1\n${preRenderedProductsHtml}\n$3`);
+}
 
 function escapeHtml(value) {
   return String(value)
@@ -146,7 +160,7 @@ function insertRouteSchema(html, screenId, baseHtml) {
 
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': getRouteSchemaGraph(screenId, { faqItems }),
+    '@graph': getRouteSchemaGraph(screenId, { faqItems, products: catalog }),
   };
   const script = [
     `    <script type="application/ld+json" id="${ROUTE_SCHEMA_ID}">`,
@@ -168,7 +182,8 @@ async function writeRouteHtml(baseHtml, screenId) {
   await writeFile(path.join(outputDir, 'index.html'), routeHtml);
 }
 
-const baseHtml = await readFile(INDEX_PATH, 'utf8');
+const rawBaseHtml = await readFile(INDEX_PATH, 'utf8');
+const baseHtml = injectPreRenderedProducts(rawBaseHtml);
 await writeFile(INDEX_PATH, insertRouteSchema(updateMetadata(baseHtml, getRouteMetadata('screen-home')), 'screen-home', baseHtml));
 
 for (const screenId of STATIC_ROUTE_SCREEN_IDS) {
@@ -176,3 +191,16 @@ for (const screenId of STATIC_ROUTE_SCREEN_IDS) {
 }
 
 console.log(`Generated route HTML for ${STATIC_ROUTE_SCREEN_IDS.map((screenId) => ROUTE_CONTENT[screenId].path).join(', ')}`);
+
+// Generate sitemap.xml with image entries
+const sitemapXml = generateSitemapXml(catalog);
+await writeFile(path.join(PUBLIC_DIR, 'sitemap.xml'), sitemapXml);
+await writeFile(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml);
+console.log('Generated sitemap.xml with product image entries');
+
+// Generate llms-full.txt with complete catalog
+const baseLlms = await readFile(path.join(PUBLIC_DIR, 'llms.txt'), 'utf8');
+const llmsFullTxt = generateLlmsFullTxt(catalog, baseLlms);
+await writeFile(path.join(PUBLIC_DIR, 'llms-full.txt'), llmsFullTxt);
+await writeFile(path.join(DIST_DIR, 'llms-full.txt'), llmsFullTxt);
+console.log('Generated llms-full.txt with 69 catalog products');

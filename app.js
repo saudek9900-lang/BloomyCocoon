@@ -2129,7 +2129,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const productGrid = document.querySelector('#collection-product-grid');
         if (!productGrid) return;
 
-        productGrid.innerHTML = collectionProducts.map(getProductCardMarkup).join('');
+        if (productGrid.children.length === 0) {
+            productGrid.innerHTML = collectionProducts.map(getProductCardMarkup).join('');
+        }
         applyImageFallbacks(productGrid);
         setupProductCardAddToCartTriggers();
         updateCategoryDescription('all');
@@ -2185,7 +2187,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }).filter(Boolean);
         }
 
-        const graph = getRouteSchemaGraph(screenId, { faqItems });
+        const graph = getRouteSchemaGraph(screenId, { faqItems, products: collectionProducts });
 
         const script = document.createElement('script');
         script.id = ROUTE_SCHEMA_ID;
