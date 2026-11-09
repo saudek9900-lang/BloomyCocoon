@@ -698,12 +698,47 @@ document.addEventListener('DOMContentLoaded', () => {
         return cart.reduce((sum, item) => sum + (getSafePrice(item.price) * item.qty), 0);
     }
 
+    let activeFilterCategory = 'all';
+    let activeSearchQuery = '';
+
     function buildWhatsAppUrl(message) {
         return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     }
 
     function openWhatsAppMessage(message) {
         window.open(buildWhatsAppUrl(message), "_blank", "noopener");
+    }
+
+    function updateContextualWhatsAppFloat(screenId = currentScreen) {
+        const whatsappFloat = document.getElementById('whatsapp-global-float');
+        if (!whatsappFloat) return;
+
+        let msg = "Hi BloomyCocoon, I would like to enquire about handmade crochet gifts and custom orders.";
+        let label = "WhatsApp Us";
+
+        if (cart && cart.length > 0) {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            msg = `Hi BloomyCocoon! 🌸 I have ${totalQty} handcrafted item${totalQty === 1 ? '' : 's'} in my basket and would like to confirm my order.`;
+            label = "Order via WhatsApp";
+        } else if (screenId === 'screen-collection') {
+            if (activeFilterCategory && activeFilterCategory !== 'all') {
+                const catLabel = getCategoryLabel(activeFilterCategory);
+                msg = `Hi BloomyCocoon! 🌸 I'm exploring your ${catLabel} collection and would love to know about customization options.`;
+            } else {
+                msg = "Hi BloomyCocoon! 🌸 I'm exploring your handmade collection and would love to inquire about available pieces.";
+            }
+        } else if (screenId === 'screen-faq') {
+            msg = "Hi BloomyCocoon! 🌸 I'm reading your FAQ and have a question about delivery / custom orders.";
+        } else if (screenId === 'screen-contact') {
+            msg = "Hi BloomyCocoon! 🌸 I'd love to chat about a personalized crochet order.";
+        }
+
+        whatsappFloat.setAttribute('data-whatsapp-message', msg);
+        whatsappFloat.href = buildWhatsAppUrl(msg);
+        const labelSpan = whatsappFloat.querySelector('.whatsapp-label-text');
+        if (labelSpan) {
+            labelSpan.textContent = label;
+        }
     }
 
     function trackEvent(eventName, params = {}) {
@@ -899,6 +934,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 whatsappFloat.classList.add('whatsapp-hidden');
             } else {
                 whatsappFloat.classList.remove('whatsapp-hidden');
+                updateContextualWhatsAppFloat(targetScreenId);
             }
         }
 
@@ -1369,6 +1405,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         sideCart.classList.toggle('cart-visible', isOpen);
+        sideCart.classList.toggle('translate-x-full', !isOpen);
+        sideCart.classList.toggle('translate-x-0', isOpen);
         sideCart.setAttribute('aria-modal', isOpen ? 'true' : 'false');
         
         const backdrop = document.getElementById('cart-backdrop');
@@ -1432,6 +1470,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.closeCart = function() {
         setCartOpen(false);
     };
+
+    window.openCart = function(triggerEl = document.activeElement) {
+        setCartOpen(true, triggerEl);
+    };
+
+    window.setCartOpen = setCartOpen;
 
     window.toggleMobileMenu = function() {
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1583,9 +1627,18 @@ document.addEventListener('DOMContentLoaded', () => {
         cartContainers.forEach(container => {
             if (cart.length === 0) {
                 container.innerHTML = `
-                    <div class="text-center py-xl opacity-60 flex flex-col items-center">
-                        <span class="material-symbols-outlined text-display-lg block mb-sm">shopping_basket</span>
-                        <p class="font-label-md">Your basket is empty</p>
+                    <div class="text-center py-12 flex flex-col items-center gap-3">
+                        <div class="w-16 h-16 rounded-full bg-primary-container/70 flex items-center justify-center text-secondary">
+                            <span class="material-symbols-outlined text-3xl">shopping_basket</span>
+                        </div>
+                        <div>
+                            <p class="font-headline-sm text-lg text-secondary font-semibold">Your basket is waiting for blooms</p>
+                            <p class="font-body-md text-xs text-on-surface-variant max-w-[220px] mx-auto mt-1">Explore our slow-crafted bouquets, cute plushies, and forever gifts.</p>
+                        </div>
+                        <a href="/collections" onclick="setCartOpen(false)" class="mt-2 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs">
+                            <span>Browse Collection</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
                     </div>
                 `;
             } else {
@@ -1615,6 +1668,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.innerHTML = html;
             }
         });
+
+        updateContextualWhatsAppFloat();
     }
 
     // ----------------------------------------------------
@@ -1825,6 +1880,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.filterCollectionCategory = function(category, buttonEl) {
         const activeCategory = legacyFilterMap[category] || category;
+        activeFilterCategory = activeCategory;
         updateCategoryDescription(activeCategory);
         trackEvent('category_filter_click', { category: activeCategory });
         const root = getCollectionFilterRoot(buttonEl);
@@ -1841,14 +1897,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const productGrid = document.querySelector('#collection-product-grid');
         if (!productGrid) return;
 
-        productGrid.querySelectorAll('.product-card').forEach(card => {
-            const filterCategories = (card.getAttribute('data-filter-categories') || card.getAttribute('data-category') || '').split(/\s+/);
-            if (activeCategory === 'all' || filterCategories.includes(activeCategory)) {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+        applyCombinedCollectionFilters();
+        updateContextualWhatsAppFloat('screen-collection');
 
         if (currentScreen === 'screen-collection') {
             const search = activeCategory === 'all' ? '' : `?category=${encodeURIComponent(activeCategory)}`;
@@ -1856,6 +1906,137 @@ document.addEventListener('DOMContentLoaded', () => {
             syncScreenMetadata('screen-collection');
         }
     };
+
+    function applyCombinedCollectionFilters() {
+        const productGrid = document.querySelector('#collection-product-grid');
+        const emptyState = document.getElementById('collection-empty-state');
+        if (!productGrid) return;
+
+        let visibleCount = 0;
+        const query = activeSearchQuery.toLowerCase().trim();
+
+        productGrid.querySelectorAll('.product-card').forEach(card => {
+            const filterCategories = (card.getAttribute('data-filter-categories') || card.getAttribute('data-category') || '').split(/\s+/);
+            const matchesCategory = (activeFilterCategory === 'all' || filterCategories.includes(activeFilterCategory));
+            
+            const cardText = (card.textContent || '').toLowerCase();
+            const matchesQuery = !query || cardText.includes(query);
+
+            if (matchesCategory && matchesQuery) {
+                card.style.display = '';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (emptyState) {
+            emptyState.classList.toggle('hidden', visibleCount > 0);
+        }
+    }
+
+    window.handleCollectionSearch = function(query) {
+        activeSearchQuery = query || '';
+        const clearBtn = document.getElementById('collection-search-clear');
+        if (clearBtn) {
+            clearBtn.classList.toggle('hidden', !query.trim());
+        }
+        applyCombinedCollectionFilters();
+    };
+
+    window.clearCollectionSearch = function() {
+        activeSearchQuery = '';
+        const input = document.getElementById('collection-search-input');
+        if (input) input.value = '';
+        const clearBtn = document.getElementById('collection-search-clear');
+        if (clearBtn) clearBtn.classList.add('hidden');
+        applyCombinedCollectionFilters();
+    };
+
+    // ----------------------------------------------------
+    // QUICK LOOK MODAL LOGIC
+    // ----------------------------------------------------
+    let currentModalProduct = null;
+
+    window.openQuickLook = function(productId) {
+        const product = collectionProducts.find(item => item.id === productId);
+        if (!product) return;
+
+        currentModalProduct = product;
+        const modal = document.getElementById('quick-look-modal');
+        const dialog = document.getElementById('quick-look-dialog');
+        if (!modal) return;
+
+        document.getElementById('modal-product-name').textContent = product.name;
+        document.getElementById('modal-product-cat').textContent = getCategoryLabel(product.category);
+        document.getElementById('modal-product-price').textContent = `Starting from ${formatStartingPrice(product.startingPrice)}`;
+        document.getElementById('modal-product-desc').textContent = product.description;
+        
+        const imgEl = document.getElementById('modal-product-img');
+        if (imgEl) {
+            imgEl.src = getProductImage(product);
+            imgEl.alt = getProductAltText(product);
+        }
+
+        const badgeEl = document.getElementById('modal-product-badge');
+        if (badgeEl) {
+            if (product.badge) {
+                badgeEl.textContent = product.badge;
+                badgeEl.classList.remove('hidden');
+            } else {
+                badgeEl.classList.add('hidden');
+            }
+        }
+
+        const addBtn = document.getElementById('modal-add-to-cart-btn');
+        if (addBtn) {
+            addBtn.onclick = (e) => {
+                if (e) e.stopPropagation();
+                addToCart(product.id, product.name, product.category, product.startingPrice, getProductImage(product));
+                closeQuickLook();
+            };
+        }
+
+        const whatsappBtn = document.getElementById('modal-whatsapp-inquire-btn');
+        if (whatsappBtn) {
+            whatsappBtn.onclick = () => {
+                const msg = `Hi BloomyCocoon! 🌸 I would like to inquire about the "${product.name}" (${formatStartingPrice(product.startingPrice)}). Can you share color options and making time?`;
+                openWhatsAppMessage(msg);
+            };
+        }
+
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100', 'pointer-events-auto');
+        modal.setAttribute('aria-hidden', 'false');
+        if (dialog) {
+            dialog.classList.remove('scale-95');
+            dialog.classList.add('scale-100');
+        }
+    };
+
+    window.closeQuickLook = function() {
+        const modal = document.getElementById('quick-look-modal');
+        const dialog = document.getElementById('quick-look-dialog');
+        if (!modal) return;
+
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.classList.remove('opacity-100', 'pointer-events-auto');
+        modal.setAttribute('aria-hidden', 'true');
+        if (dialog) {
+            dialog.classList.add('scale-95');
+            dialog.classList.remove('scale-100');
+        }
+        currentModalProduct = null;
+    };
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('quick-look-modal');
+            if (modal && !modal.classList.contains('pointer-events-none')) {
+                closeQuickLook();
+            }
+        }
+    });
 
     // ----------------------------------------------------
     // 7. TOAST MESSENGER AND MICRO-INTERACTIONS
@@ -2076,12 +2257,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const tagMarkup = product.tag ? `<span class="bg-[#A8B5A2] text-white px-4 py-1 rounded-full font-label-md text-sm">${escapeHTML(product.tag)}</span>` : '';
             return `
                 <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
-                    <div class="relative h-[260px] md:h-[420px] overflow-hidden">
+                    <div class="relative h-[260px] md:h-[420px] overflow-hidden cursor-pointer group/img" onclick="openQuickLook('${product.id}')" role="button" tabindex="0" aria-label="Quick look at ${escapeHTML(product.name)}">
                         <picture class="contents">
                             <source srcset="${escapeHTML(getResponsiveWebpSrcset(image))}" sizes="${getProductImageSizes(true)}" type="image/webp">
-                            <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
+                            <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
                         </picture>
-                        <div class="absolute top-md right-md flex flex-col gap-2 items-end">
+                        <div class="absolute inset-0 bg-secondary/15 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                            <span class="bg-surface/90 backdrop-blur-xs text-secondary text-xs font-label-md px-3.5 py-2 rounded-full shadow-sm flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                <span>Quick Look</span>
+                            </span>
+                        </div>
+                        <div class="absolute top-md right-md flex flex-col gap-2 items-end pointer-events-none">
                             ${product.badge ? `<span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">${escapeHTML(product.badge)}</span>` : ''}
                             ${tagMarkup}
                         </div>
@@ -2090,7 +2277,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="flex justify-between items-end flex-wrap gap-4">
                             <div class="max-w-xl">
                                 <span class="text-caption text-on-surface-variant font-label-md uppercase tracking-wide">${escapeHTML(categoryLabel)}</span>
-                                <h3 class="font-headline-md text-2xl md:text-headline-md text-secondary mb-xs">${escapeHTML(product.name)}</h3>
+                                <h3 class="font-headline-md text-2xl md:text-headline-md text-secondary mb-xs cursor-pointer hover:underline" onclick="openQuickLook('${product.id}')">${escapeHTML(product.name)}</h3>
                                 <p class="font-body-md text-on-surface-variant">${escapeHTML(product.description)}</p>
                             </div>
                             <div class="text-right">
@@ -2107,18 +2294,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return `
             <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-                <div class="relative h-[180px] md:h-[260px] overflow-hidden rounded-t-xl bg-surface-container">
+                <div class="relative h-[180px] md:h-[260px] overflow-hidden rounded-t-xl bg-surface-container cursor-pointer group/img" onclick="openQuickLook('${product.id}')" role="button" tabindex="0" aria-label="Quick look at ${escapeHTML(product.name)}">
                     <picture class="contents">
                         <source srcset="${escapeHTML(getResponsiveWebpSrcset(image))}" sizes="${getProductImageSizes(false)}" type="image/webp">
-                        <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
+                        <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
                     </picture>
-                    <div class="absolute top-base left-base">
+                    <div class="absolute inset-0 bg-secondary/15 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <span class="bg-surface/90 backdrop-blur-xs text-secondary text-xs font-label-md px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-[16px]">visibility</span>
+                            <span>Quick Look</span>
+                        </span>
+                    </div>
+                    <div class="absolute top-base left-base pointer-events-none">
                         ${badgeMarkup}
                     </div>
                 </div>
                 <div class="p-md">
                     <span class="text-caption text-on-surface-variant font-label-md uppercase tracking-wide">${escapeHTML(categoryLabel)}</span>
-                    <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">${escapeHTML(product.name)}</h3>
+                    <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs cursor-pointer hover:underline" onclick="openQuickLook('${product.id}')">${escapeHTML(product.name)}</h3>
                     <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
                     <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
                         <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>

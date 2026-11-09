@@ -122,12 +122,18 @@ export function getProductCardMarkup(product) {
       : '';
     return `
       <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
-        <div class="relative h-[260px] md:h-[420px] overflow-hidden">
+        <div class="relative h-[260px] md:h-[420px] overflow-hidden cursor-pointer group/img" onclick="openQuickLook('${product.id}')" role="button" tabindex="0" aria-label="Quick look at ${escapeHTML(product.name)}">
           <picture class="contents">
             <source srcset="${escapeHTML(getResponsiveWebpSrcset(image))}" sizes="${getProductImageSizes(true)}" type="image/webp">
-            <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
+            <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
           </picture>
-          <div class="absolute top-md right-md flex flex-col gap-2 items-end">
+          <div class="absolute inset-0 bg-secondary/15 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+            <span class="bg-surface/90 backdrop-blur-xs text-secondary text-xs font-label-md px-3.5 py-2 rounded-full shadow-sm flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[18px]">visibility</span>
+              <span>Quick Look</span>
+            </span>
+          </div>
+          <div class="absolute top-md right-md flex flex-col gap-2 items-end pointer-events-none">
             ${product.badge ? `<span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">${escapeHTML(product.badge)}</span>` : ''}
             ${tagMarkup}
           </div>
@@ -136,7 +142,7 @@ export function getProductCardMarkup(product) {
           <div class="flex justify-between items-end flex-wrap gap-4">
             <div class="max-w-xl">
               <span class="text-caption text-on-surface-variant font-label-md uppercase tracking-wide">${escapeHTML(categoryLabel)}</span>
-              <h3 class="font-headline-md text-2xl md:text-headline-md text-secondary mb-xs">${escapeHTML(product.name)}</h3>
+              <h3 class="font-headline-md text-2xl md:text-headline-md text-secondary mb-xs cursor-pointer hover:underline" onclick="openQuickLook('${product.id}')">${escapeHTML(product.name)}</h3>
               <p class="font-body-md text-on-surface-variant">${escapeHTML(product.description)}</p>
             </div>
             <div class="text-right">
@@ -153,18 +159,24 @@ export function getProductCardMarkup(product) {
 
   return `
     <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-1 md:col-span-4 group product-card bg-surface-container-low rounded-xl soft-glow transition-all duration-500">
-      <div class="relative h-[180px] md:h-[260px] overflow-hidden rounded-t-xl bg-surface-container">
+      <div class="relative h-[180px] md:h-[260px] overflow-hidden rounded-t-xl bg-surface-container cursor-pointer group/img" onclick="openQuickLook('${product.id}')" role="button" tabindex="0" aria-label="Quick look at ${escapeHTML(product.name)}">
         <picture class="contents">
           <source srcset="${escapeHTML(getResponsiveWebpSrcset(image))}" sizes="${getProductImageSizes(false)}" type="image/webp">
-          <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
+          <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
         </picture>
-        <div class="absolute top-base left-base">
+        <div class="absolute inset-0 bg-secondary/15 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+          <span class="bg-surface/90 backdrop-blur-xs text-secondary text-xs font-label-md px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">visibility</span>
+            <span>Quick Look</span>
+          </span>
+        </div>
+        <div class="absolute top-base left-base pointer-events-none">
           ${badgeMarkup}
         </div>
       </div>
       <div class="p-md">
         <span class="text-caption text-on-surface-variant font-label-md uppercase tracking-wide">${escapeHTML(categoryLabel)}</span>
-        <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">${escapeHTML(product.name)}</h3>
+        <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs cursor-pointer hover:underline" onclick="openQuickLook('${product.id}')">${escapeHTML(product.name)}</h3>
         <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
         <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
           <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>

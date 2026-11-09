@@ -282,7 +282,7 @@ button:disabled:focus-visible {
 
 /* Cart animation slider */
 #sideCart.cart-visible {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) !important;
 }
 
 #sideCart {

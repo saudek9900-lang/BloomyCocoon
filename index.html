@@ -171,10 +171,10 @@
     </nav>
 
     <!-- GLOBAL CART BACKDROP OVERLAY -->
-    <div id="cart-backdrop" onclick="closeCart()" class="fixed inset-0 bg-black/35 backdrop-blur-xs z-[55] opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
+    <div id="cart-backdrop" onclick="closeCart()" class="fixed inset-0 bg-black/35 backdrop-blur-xs z-[75] opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
 
     <!-- GLOBAL CART SIDEBAR -->
-    <aside class="fixed right-0 top-0 h-full w-80 bg-surface-container-low border-l border-outline-variant/30 shadow-xl z-[60] flex flex-col p-md translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1">
+    <aside class="fixed right-0 top-0 h-full w-80 bg-surface-container-low border-l border-outline-variant/30 shadow-2xl z-[80] flex flex-col p-md translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1">
         <div class="flex justify-between items-start mb-lg">
             <div>
                 <h2 class="font-headline-sm text-headline-sm text-primary" id="cart-title">Cart</h2>
@@ -211,6 +211,49 @@
             </button>
         </div>
     </aside>
+
+    <!-- GLOBAL QUICK LOOK MODAL -->
+    <div id="quick-look-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" aria-hidden="true">
+        <div class="fixed inset-0 bg-black/45 backdrop-blur-xs" onclick="closeQuickLook()"></div>
+        <div class="relative bg-surface rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-outline-variant/20 z-10 overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="quick-look-dialog">
+            <button onclick="closeQuickLook()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-surface-container-low hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors z-20" aria-label="Close details">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div class="aspect-square rounded-2xl overflow-hidden bg-primary-container relative">
+                    <img id="modal-product-img" src="" alt="" class="w-full h-full object-cover">
+                    <span id="modal-product-badge" class="absolute top-3 left-3 bg-secondary text-white text-xs font-label-md px-3 py-1 rounded-full uppercase tracking-wider"></span>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <span id="modal-product-cat" class="text-xs uppercase tracking-wider text-secondary font-semibold font-label-md"></span>
+                        <h3 id="modal-product-name" class="font-headline-md text-2xl md:text-3xl text-secondary mt-1"></h3>
+                        <p id="modal-product-price" class="font-headline-sm text-xl text-on-surface font-bold mt-1"></p>
+                    </div>
+                    <p id="modal-product-desc" class="font-body-md text-sm text-on-surface-variant leading-relaxed"></p>
+                    
+                    <div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant/15 space-y-1.5 text-xs text-on-surface-variant">
+                        <div class="flex items-center gap-2 text-secondary font-semibold">
+                            <span class="material-symbols-outlined text-[16px]">eco</span>
+                            <span>Care &amp; Keepsake</span>
+                        </div>
+                        <p>100% slow handcrafted yarn. Spot clean gently with damp cloth. Made to last forever unlike real flowers.</p>
+                    </div>
+
+                    <div class="pt-2 flex flex-col sm:flex-row gap-2">
+                        <button id="modal-add-to-cart-btn" data-add-to-cart="modal" aria-controls="sideCart" class="flex-1 bg-secondary text-white py-3 px-4 rounded-full font-label-md text-sm flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                            <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                            <span>Add to Cart</span>
+                        </button>
+                        <button id="modal-whatsapp-inquire-btn" class="bg-[#25D366]/10 text-[#128C7E] border border-[#25D366]/30 py-3 px-4 rounded-full font-label-md text-sm flex items-center justify-center gap-1.5 hover:bg-[#25D366]/20 transition-all">
+                            <span class="material-symbols-outlined text-[18px]">chat</span>
+                            <span>Ask on WhatsApp</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- VIEWPORT WRAPPER FOR SINGLE PAGE NAVIGATION -->
     <div id="app-viewport">
@@ -443,7 +486,7 @@
                     </button>
                 </div>
                 <!-- Title -->
-                <section class="mb-10 md:mb-xl text-center md:text-left">
+                <section class="mb-6 md:mb-8 text-center md:text-left">
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-md">The Collection</h1>
                     <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
                         Explore BloomyCocoon’s handmade crochet collection — bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos crafted in Kerala and delivered across India. Add your favourites to cart, continue to WhatsApp, or start a <a class="text-secondary font-label-md hover:underline" href="/custom-order">custom order</a> for a more personal gift.
@@ -451,16 +494,15 @@
                     <p class="font-body-md text-on-surface-variant mt-md bg-surface-container-low border border-outline-variant/20 rounded-2xl px-4 py-3 inline-block">Starting from prices are a guide. Final quote, customization, timeline and delivery are confirmed on WhatsApp before making begins. You can also check the <a class="text-secondary font-label-md hover:underline" href="/faq">FAQ</a>.</p>
                 </section>
 
-                <section class="mb-10 md:mb-xl">
-                    <div class="bg-surface-container-low rounded-3xl p-lg border border-outline-variant/20 text-center space-y-md">
-                        <h3 class="font-headline-md text-2xl md:text-headline-md text-on-surface">Explore More on Instagram</h3>
-                        <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">See more of our handmade crochet creations, custom orders, behind-the-scenes moments, and latest updates on Instagram.</p>
-                        <a href="https://www.instagram.com/bloomy_cocoon_?igsh=MTJrcDByb3NndWRpdQ==" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-7 py-3 rounded-full font-label-md">View Instagram <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+                <!-- Search & Filters category scroll -->
+                <section class="mb-6 md:mb-lg sticky top-[72px] z-40 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-lg md:px-lg border-b border-outline-variant/15 space-y-2">
+                    <div class="relative max-w-md">
+                        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] pointer-events-none">search</span>
+                        <input type="text" id="collection-search-input" oninput="handleCollectionSearch(this.value)" placeholder="Search roses, plushies, keychains, gifts..." class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-9 py-2 text-sm font-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-secondary/25 focus:border-secondary transition-all" aria-label="Search handmade crochet collection">
+                        <button id="collection-search-clear" onclick="clearCollectionSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5 rounded-full" aria-label="Clear search">
+                            <span class="material-symbols-outlined text-[18px]">close</span>
+                        </button>
                     </div>
-                </section>
-
-                <!-- Filters category scroll -->
-                <section class="mb-6 md:mb-lg sticky top-[72px] z-40 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-lg md:px-lg border-b border-outline-variant/15">
                     <div class="flex gap-2 items-center overflow-x-auto no-scrollbar py-1" data-collection-filters>
                         <button onclick="filterCollectionCategory('all', this)" data-category-filter="all" class="whitespace-nowrap px-5 py-2.5 rounded-full font-label-md text-sm bg-secondary text-on-secondary shadow-sm transition-all duration-200">All Items</button>
                         <button onclick="filterCollectionCategory('bouquets', this)" data-category-filter="bouquets" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Bouquets 💐</button>
@@ -483,6 +525,30 @@
                 <div id="collection-product-grid" class="mobile-product-grid grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-gutter" aria-live="polite">
                     <!-- Product cards are generated from collectionProducts in app.js to keep names, categories, images, descriptions, and Starting from prices consistent. -->
                 </div>
+
+                <!-- Empty Search / Filter State -->
+                <div id="collection-empty-state" class="hidden text-center py-16 px-4 bg-surface-container-low rounded-3xl border border-outline-variant/20 my-8 space-y-3">
+                    <div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mx-auto text-secondary mb-2">
+                        <span class="material-symbols-outlined text-3xl">search_off</span>
+                    </div>
+                    <h3 class="font-headline-sm text-xl md:text-headline-sm text-secondary font-semibold">No stitches matched your search</h3>
+                    <p class="font-body-md text-on-surface-variant max-w-md mx-auto text-sm md:text-base">
+                        Can't find what you're imagining? We love handcrafting custom pieces from inspiration photos and color ideas.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-2 justify-center">
+                        <button onclick="clearCollectionSearch()" class="px-5 py-2 rounded-full border border-secondary text-secondary font-label-md text-xs hover:bg-secondary/5 transition-colors">Clear Search</button>
+                        <a href="/custom-order" class="px-5 py-2 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 transition-opacity">Request Custom Item</a>
+                    </div>
+                </div>
+
+                <!-- Explore More on Instagram banner -->
+                <section class="my-10 md:my-xl">
+                    <div class="bg-surface-container-low rounded-3xl p-lg border border-outline-variant/20 text-center space-y-md">
+                        <h3 class="font-headline-md text-2xl md:text-headline-md text-on-surface">Explore More on Instagram</h3>
+                        <p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">See more of our handmade crochet creations, custom orders, behind-the-scenes moments, and latest updates on Instagram.</p>
+                        <a href="https://www.instagram.com/bloomy_cocoon_?igsh=MTJrcDByb3NndWRpdQ==" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-7 py-3 rounded-full font-label-md hover:opacity-90 transition-opacity">View Instagram <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+                    </div>
+                </section>
 
             </main>
 
@@ -1313,7 +1379,7 @@
         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.431 2.5 1.157 3.476L6.5 17.5l2.176-.906a5.751 5.751 0 003.355.845c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm3.39 8.163c-.156.438-.767.828-1.22 1.002-.303.116-.7.217-1.127.217-.61 0-1.393-.195-2.23-.746-1.173-.772-1.93-1.954-2.518-2.868-.27-.417-.468-.86-.468-1.332 0-.583.25-.873.493-1.109.117-.113.235-.226.353-.339.094-.09.18-.178.257-.257.086-.089.172-.113.256-.113.084 0 .167.012.235.036.082.029.17.067.247.199.1.171.343.834.373.896.03.062.051.134.01.218-.042.084-.092.14-.15.207-.058.067-.123.15-.176.206-.06.063-.122.132-.053.252.069.12.306.505.656.816.45.4.83.524 1.01.61.18.086.284.073.39-.049.106-.122.457-.532.58-.716.12-.184.24-.153.404-.092.164.062 1.04.49 1.217.579.177.089.295.134.339.21.044.076.044.44-.112.878zM12 2C6.477 2 2 6.477 2 12c0 2.01.593 3.88 1.61 5.44L2 22l4.7-.93C8.16 21.65 9.99 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.745 0-3.374-.483-4.767-1.32l-.341-.205-2.828.56.57-2.723-.228-.363A7.94 7.94 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
         </svg>
-        <span class="hidden md:inline font-label-md text-sm tracking-wide">WhatsApp Us</span>
+        <span class="hidden md:inline font-label-md text-sm tracking-wide whatsapp-label-text">WhatsApp Us</span>
         <!-- Pulse effect dot positioned absolutely on the top-right corner of the button -->
         <span class="absolute top-0 right-0 flex h-3.5 w-3.5">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
