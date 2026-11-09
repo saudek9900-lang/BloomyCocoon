@@ -16,6 +16,7 @@ import {
   getResponsiveWebpSrcset,
 } from '../src/product-cards.mjs';
 import { generateSitemapXml, generateLlmsFullTxt } from '../src/sitemap-generator.mjs';
+import { generateGoogleMerchantXml } from '../src/merchant-feed-generator.mjs';
 
 const DIST_DIR = path.resolve('dist');
 const PUBLIC_DIR = path.resolve('public');
@@ -163,10 +164,24 @@ function updateMetadata(html, metadata) {
       `<meta name="twitter:image" content="${escapeHtml(metadata.image)}">`,
     );
   }
+  next = next.replace(/\s*<meta\s+property=["']product:[^"']+["'][^>]*>/gi, '');
   const ogType = metadata.isProduct ? 'product' : 'website';
+  let ogTypeMarkup = `<meta property="og:type" content="${ogType}">`;
+  if (metadata.isProduct) {
+    const productTags = [
+      `    <meta property="product:price:amount" content="${metadata.price}">`,
+      `    <meta property="product:price:currency" content="INR">`,
+      `    <meta property="product:availability" content="in stock">`,
+      `    <meta property="product:condition" content="new">`,
+      `    <meta property="product:retailer_item_id" content="${escapeHtml(metadata.id)}">`,
+      `    <meta property="product:brand" content="BloomyCocoon">`,
+      `    <meta property="product:category" content="${escapeHtml(metadata.category)}">`,
+    ].join('\n');
+    ogTypeMarkup += `\n${productTags}`;
+  }
   next = next.replace(
     /<meta\s+property=["']og:type["']\s+content=["'][^"']*["']\s*\/?>/i,
-    `<meta property="og:type" content="${ogType}">`,
+    ogTypeMarkup,
   );
   return next;
 }
@@ -450,3 +465,9 @@ const llmsFullTxt = generateLlmsFullTxt(catalog, baseLlms);
 await writeFile(path.join(PUBLIC_DIR, 'llms-full.txt'), llmsFullTxt);
 await writeFile(path.join(DIST_DIR, 'llms-full.txt'), llmsFullTxt);
 console.log('Generated llms-full.txt with 69 catalog products');
+
+// Generate Google Merchant Center XML feed
+const merchantXml = generateGoogleMerchantXml(catalog);
+await writeFile(path.join(PUBLIC_DIR, 'google-merchant-feed.xml'), merchantXml);
+await writeFile(path.join(DIST_DIR, 'google-merchant-feed.xml'), merchantXml);
+console.log('Generated google-merchant-feed.xml for 69 catalog products');

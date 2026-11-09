@@ -23,5 +23,6 @@ Allow: /
 
 # Sitemaps & Machine-Readable Manifests
 Sitemap: https://www.bloomycocoon.com/sitemap.xml
+# Google Merchant Center Product Feed: https://www.bloomycocoon.com/google-merchant-feed.xml
 # LLMs: https://www.bloomycocoon.com/llms.txt
 # LLMs-Full: https://www.bloomycocoon.com/llms-full.txt
