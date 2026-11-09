@@ -197,10 +197,11 @@ function extractFaqItems(html) {
 }
 
 function extractFaqItemsForScreen(html, screenId) {
-  const sectionPattern = new RegExp(`<section\\b[^>]*\\bid=["']${screenId}["'][^>]*>([\\s\\S]*?)<\\/section>`, 'i');
-  const sectionMatch = html.match(sectionPattern);
-  if (!sectionMatch) return [];
-  return extractFaqItems(sectionMatch[1]);
+  const screenStart = html.indexOf(`id="${screenId}"`);
+  if (screenStart === -1) return [];
+  const nextScreen = html.indexOf('<section class="screen', screenStart + 1);
+  const screenChunk = nextScreen !== -1 ? html.slice(screenStart, nextScreen) : html.slice(screenStart);
+  return extractFaqItems(screenChunk);
 }
 
 function insertRouteSchema(html, screenId, baseHtml) {
