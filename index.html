@@ -148,11 +148,17 @@
     }
     </script>
     
-    <!-- Fonts & Material Symbols -->
+    <!-- Preconnect & Asynchronous Fonts & Material Symbols -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet">
+    </noscript>
     
     <!-- Build-time Tailwind and custom styles -->
     <link rel="stylesheet" href="/styles.css">
@@ -206,7 +212,7 @@
     <div id="cart-backdrop" onclick="closeCart()" class="fixed inset-0 bg-black/35 backdrop-blur-xs z-[75] opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
 
     <!-- GLOBAL CART SIDEBAR -->
-    <aside class="fixed right-0 top-0 h-full w-full max-w-full sm:max-w-[460px] md:max-w-[480px] bg-surface-container-low border-l border-outline-variant/30 shadow-2xl z-[80] flex flex-col p-4 sm:p-5 translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1">
+    <aside class="fixed right-0 top-0 h-full w-full max-w-full sm:max-w-[460px] md:max-w-[480px] bg-surface-container-low border-l border-outline-variant/30 shadow-2xl z-[80] flex flex-col p-4 sm:p-5 translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1" inert>
         <div class="flex justify-between items-center mb-2.5 pb-2.5 border-b border-outline-variant/15 shrink-0">
             <div>
                 <div class="flex items-center gap-2">
@@ -281,14 +287,14 @@
             </a>
 
             <!-- Hidden elements to preserve JS bindings and two-way sync -->
-            <textarea id="cart-customer-note" class="hidden" aria-hidden="true"></textarea>
+            <textarea id="cart-customer-note" class="hidden" aria-label="Customer order notes"></textarea>
             <span class="cart-balance-amount hidden" id="cart-balance-amount">₹0</span>
             <p class="text-[10px] text-center text-on-surface-variant/75 hidden" id="cart-checkout-note"></p>
         </div>
     </aside>
 
     <!-- GLOBAL QUICK LOOK MODAL -->
-    <div id="quick-look-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" aria-hidden="true">
+    <div id="quick-look-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" inert>
         <div class="fixed inset-0 bg-black/45 backdrop-blur-xs" onclick="closeQuickLook()"></div>
         <div class="relative bg-surface rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-outline-variant/20 z-10 overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="quick-look-dialog">
             <button onclick="closeQuickLook()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-surface-container-low hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors z-20" aria-label="Close details">
@@ -2311,23 +2317,23 @@
                             </div>
                             <p class="text-[12px] text-on-surface-variant leading-relaxed">Select special touches to elevate your gift packaging before ordering:</p>
                             <div class="space-y-2 pt-1 text-xs">
-                                <label class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
+                                <label for="detail-addon-card" class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
                                     <div class="flex items-center gap-2.5">
-                                        <input type="checkbox" id="detail-addon-card" onchange="updateProductDetailAddons()" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
+                                        <input type="checkbox" id="detail-addon-card" onchange="updateProductDetailAddons()" aria-label="Add Handwritten Calligraphy Note Card (+₹49)" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
                                         <span class="font-medium text-on-surface">✍️ Handwritten Calligraphy Note Card</span>
                                     </div>
                                     <span class="text-secondary font-bold font-label-md">+₹49</span>
                                 </label>
-                                <label class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
+                                <label for="detail-addon-lights" class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
                                     <div class="flex items-center gap-2.5">
-                                        <input type="checkbox" id="detail-addon-lights" onchange="updateProductDetailAddons()" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
+                                        <input type="checkbox" id="detail-addon-lights" onchange="updateProductDetailAddons()" aria-label="Add Warm Fairy Lights (+₹89)" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
                                         <span class="font-medium text-on-surface">✨ Warm Fairy Lights (Wrapped with battery)</span>
                                     </div>
                                     <span class="text-secondary font-bold font-label-md">+₹89</span>
                                 </label>
-                                <label class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
+                                <label for="detail-addon-box" class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
                                     <div class="flex items-center gap-2.5">
-                                        <input type="checkbox" id="detail-addon-box" onchange="updateProductDetailAddons()" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
+                                        <input type="checkbox" id="detail-addon-box" onchange="updateProductDetailAddons()" aria-label="Add Keepsake Display Window Gift Box (+₹129)" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
                                         <span class="font-medium text-on-surface">🎁 Keepsake Display Window Gift Box</span>
                                     </div>
                                     <span class="text-secondary font-bold font-label-md">+₹129</span>
@@ -2464,7 +2470,7 @@
             </div>
 
             <!-- Image Lightbox Modal -->
-            <div id="product-lightbox-modal" onclick="closeProductLightbox()" class="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-label="Product Image View">
+            <div id="product-lightbox-modal" onclick="closeProductLightbox()" class="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-label="Product Image View" inert>
                 <button type="button" onclick="closeProductLightbox()" class="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-20 cursor-pointer min-h-[44px] min-w-[44px]" aria-label="Close image preview">
                     <span class="material-symbols-outlined text-[24px]">close</span>
                 </button>

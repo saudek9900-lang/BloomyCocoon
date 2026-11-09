@@ -97,13 +97,7 @@ export function generateSitemapXml(catalog, currentDate = '2026-11-10') {
 }
 
 export function generateLlmsFullTxt(catalog, baseLlms) {
-  let full = baseLlms.trim() + '\n\n## Curated Occasion Gift Guides\n\n';
-  full += 'Explore curated handmade crochet selections crafted for specific gifting moments:\n\n';
-  full += '- **Anniversary Gifts**: Everlasting romantic bouquets, couple gift combos and keepsakes. URL: https://www.bloomycocoon.com/anniversary-gifts\n';
-  full += '- **Birthday Gifts**: Cheerful flower boxes, custom plushies, and note-card combos. URL: https://www.bloomycocoon.com/birthday-gifts\n';
-  full += '- **Baby Shower & Newborn Gifts**: Ultra-soft baby booties, caps, rattles, and name garlands. URL: https://www.bloomycocoon.com/baby-shower-gifts\n';
-  full += '- **Return Gifts & Favors**: Handcrafted keychains, single stems, and bulk celebration favors under ₹200. URL: https://www.bloomycocoon.com/return-gifts\n\n';
-  full += '## Complete Product Catalog\n\n';
+  let full = baseLlms.trim() + '\n\n## Complete Product Catalog\n\n';
   full += 'Below is the complete list of 69 handcrafted crochet gifts available at BloomyCocoon. All items are made slowly and customized on WhatsApp.\n\n';
 
   const categories = [...new Set(catalog.map((p) => p.category))];
@@ -112,8 +106,7 @@ export function generateLlmsFullTxt(catalog, baseLlms) {
     full += `### ${formattedCat}\n\n`;
     const items = catalog.filter((p) => p.category === cat);
     for (const item of items) {
-      full += `- **${item.name}** (Starting from ₹${item.startingPrice}): ${item.description}\n`;
-      full += `  - URL: ${SITE_ORIGIN}/products/${item.id}\n`;
+      full += `- [${item.name}](${SITE_ORIGIN}/products/${item.id}) (Starting from ₹${item.startingPrice}): ${item.description}\n`;
     }
     full += '\n';
   }

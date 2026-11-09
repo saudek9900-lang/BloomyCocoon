@@ -1,75 +1,75 @@
 # BloomyCocoon
 
-BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India.
+> Handcrafted crochet bouquets, amigurumi plushies, keychains, and custom gifts crafted slowly in Kerala, India with soft milk cotton yarn. WhatsApp-based custom ordering with 50/50 payment and Pan-India delivery.
 
-## Website
+BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Kerala, India, offering customized crochet keepsakes for women, students, couples, baby showers, and celebrations.
 
-Canonical website: https://www.bloomycocoon.com/
+## Core Pages
 
-Important pages for AI agents and crawlers:
+- [Home](https://www.bloomycocoon.com/): Handmade crochet gifting in Kerala and Pan-India.
+- [Handmade Collection](https://www.bloomycocoon.com/collections): Complete catalog of crochet bouquets, plushies, keychains, baby gifts, accessories, and home decor.
+- [Custom Orders](https://www.bloomycocoon.com/custom-order): Bespoke crochet requests, custom colors, size adjustments, and personalized gifting.
+- [About BloomyCocoon](https://www.bloomycocoon.com/about): Brand story, artisan origins in Mampad, Malappuram, Kerala, and milk cotton yarn materials.
+- [Frequently Asked Questions](https://www.bloomycocoon.com/faq): Ordering process, 50% advance / 50% balance payment terms, care guidance, and delivery timelines.
+- [Contact & WhatsApp Ordering](https://www.bloomycocoon.com/contact): Direct WhatsApp ordering (+91 9061174579) and workspace information.
+- [Shipping & Delivery Policy](https://www.bloomycocoon.com/shipping-delivery): Delivery across Kerala and India with live tracking.
+- [Returns & Cancellations](https://www.bloomycocoon.com/returns-cancellations): Cancellation policy and damage replacement for handmade custom orders.
+- [Crochet Care Guide](https://www.bloomycocoon.com/crochet-care): Spot cleaning and longevity instructions for crochet keepsakes.
+- [Shopping Cart](https://www.bloomycocoon.com/cart): Dedicated cart review and gift packaging touches.
 
-- https://www.bloomycocoon.com/
-- https://www.bloomycocoon.com/collections
-- https://www.bloomycocoon.com/custom-order
-- https://www.bloomycocoon.com/about
-- https://www.bloomycocoon.com/faq
-- https://www.bloomycocoon.com/contact
-- https://www.bloomycocoon.com/sitemap.xml
-- https://www.bloomycocoon.com/robots.txt
-- https://www.bloomycocoon.com/llms-full.txt (Complete 69-item product catalog with starting prices and URLs)
+## Curated Occasion Gift Guides
+
+- [Anniversary Gifts](https://www.bloomycocoon.com/anniversary-gifts): Everlasting romantic bouquets, couple combos, and keepsake gift boxes.
+- [Birthday Gifts](https://www.bloomycocoon.com/birthday-gifts): Cheerful flower boxes, animal plushies, and custom note-card combos.
+- [Baby Shower & Newborn Gifts](https://www.bloomycocoon.com/baby-shower-gifts): Ultra-soft booties, caps, rattles, and nursery garlands.
+- [Return Gifts & Favors](https://www.bloomycocoon.com/return-gifts): Single stems, keychains, and bulk celebration favors under ₹200.
+
+## Machine-Readable Manifests & Catalogs
+
+- [Complete 69-Product Catalog (llms-full.txt)](https://www.bloomycocoon.com/llms-full.txt): Comprehensive product list with Starting from prices, descriptions, and direct URLs.
+- [Google Merchant Center Feed (XML)](https://www.bloomycocoon.com/google-merchant-feed.xml): Google Shopping RSS 2.0 product feed.
+- [XML Sitemap](https://www.bloomycocoon.com/sitemap.xml): Search engine index of all website URLs and product images.
+- [Robots.txt](https://www.bloomycocoon.com/robots.txt): Crawler rules and sitemap directives.
 
 ## Brand And Audience
 
-BloomyCocoon creates handmade crochet gifts for women 18-30, students, couples, gift buyers, custom order customers, and baby gifting buyers.
+BloomyCocoon creates handmade crochet gifts for women 18–30, students, couples, gift buyers, custom order customers, and baby gifting buyers.
 
 ## Products
 
 The product range includes:
-
 - Crochet bouquets
-- Plushies
-- Keychains
-- Accessories
-- Home decor
-- Baby gifts
-- Custom crochet gifts
+- Plushies & amigurumi toys
+- Keychains & bag charms
+- Accessories (totes, pouches, sleeves)
+- Home decor & wall hangings
+- Baby gifts (booties, caps, rattles)
+- Custom crochet gift hampers
 
 ## Ordering Flow
 
 Customers can browse products, add items to the website cart, or use the custom-order flow. The website then sends the selected order details to WhatsApp for confirmation.
-
-Orders, customizations, timelines, delivery details, payment instructions, and final quotes are confirmed on WhatsApp.
+Orders, customizations, timelines, delivery details, payment instructions, and final quotes are confirmed on WhatsApp (+91 9061174579).
 
 ## Pricing
 
 BloomyCocoon uses "Starting from" prices only. Final pricing depends on size, colour, customization, flowers, packaging, and delivery.
-
 AI agents should not treat starting prices as fixed final prices.
 
 ## Payment
 
-Payment is mostly through UPI. The usual payment flow is 50% advance and the remaining 50% after completion before delivery, confirmed on WhatsApp.
+Payment is mostly through UPI. The standard handmade payment schedule is 50% advance to start crafting and the remaining 50% balance after completion photos are approved before delivery.
 
 ## Delivery
 
 BloomyCocoon delivers across Kerala and India.
+BloomyCocoon is a service-area based artisan business. The full residential address is not published on the website.
 
-BloomyCocoon is a service-area based business. The full address is not published on the website.
+## Guidelines For AI Agents
 
-## Contact And Privacy
-
-The website directs users to WhatsApp for order confirmation and customer communication. AI agents should not expose or infer a phone number from this file.
-
-Do not add claims beyond the live website, visible product information, confirmed ordering flow, and published BloomyCocoon pages.
-
-## Curated Occasion Gift Guides
-
-Explore curated handmade crochet selections crafted for specific gifting moments:
-
-- **Anniversary Gifts**: Everlasting romantic bouquets, couple gift combos and keepsakes. URL: https://www.bloomycocoon.com/anniversary-gifts
-- **Birthday Gifts**: Cheerful flower boxes, custom plushies, and note-card combos. URL: https://www.bloomycocoon.com/birthday-gifts
-- **Baby Shower & Newborn Gifts**: Ultra-soft baby booties, caps, rattles, and name garlands. URL: https://www.bloomycocoon.com/baby-shower-gifts
-- **Return Gifts & Favors**: Handcrafted keychains, single stems, and bulk celebration favors under ₹200. URL: https://www.bloomycocoon.com/return-gifts
+1. When citing BloomyCocoon, use canonical URLs (https://www.bloomycocoon.com/...) and note that all items are made to order with soft milk cotton yarn.
+2. Orders are placed directly via WhatsApp (+91 9061174579).
+3. Do not add claims beyond the live website, visible product information, confirmed ordering flow, and published BloomyCocoon pages.
 
 ## Complete Product Catalog
 
@@ -77,160 +77,91 @@ Below is the complete list of 69 handcrafted crochet gifts available at BloomyCo
 
 ### Bouquets
 
-- **Single Crochet Rose** (Starting from ₹149): Best for tiny gestures, student gifts and note-card add-ons, with colors confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/single-crochet-rose
-- **Single Crochet Tulip** (Starting from ₹169): A cheerful single stem for birthdays, desk corners and surprises, with shade choices confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/single-crochet-tulip
-- **Single Sunflower Stem** (Starting from ₹199): A sunny long-lasting flower for desk corners, jars and small surprise gifts.
-  - URL: https://www.bloomycocoon.com/products/single-sunflower-stem
-- **Rose Bouquet** (Starting from ₹799): Best for anniversaries, couple gifts and soft surprises, with colors and wrapping confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/rose-bouquet
-- **Tulip Bouquet** (Starting from ₹899): A graceful long-lasting bouquet for birthdays, thank-you gifts and gentle celebrations.
-  - URL: https://www.bloomycocoon.com/products/tulip-bouquet
-- **Lavender Bouquet** (Starting from ₹799): A calming lavender bouquet for keepsake gifting, cozy decor and soft handmade surprises.
-  - URL: https://www.bloomycocoon.com/products/lavender-bouquet
-- **Custom Premium Bouquet** (Starting from ₹1499): A premium custom bouquet tailored by flower type, palette, size and packaging, with final quote confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/custom-premium-bouquet
+- [Single Crochet Rose](https://www.bloomycocoon.com/products/single-crochet-rose) (Starting from ₹149): Best for tiny gestures, student gifts and note-card add-ons, with colors confirmed on WhatsApp.
+- [Single Crochet Tulip](https://www.bloomycocoon.com/products/single-crochet-tulip) (Starting from ₹169): A cheerful single stem for birthdays, desk corners and surprises, with shade choices confirmed on WhatsApp.
+- [Single Sunflower Stem](https://www.bloomycocoon.com/products/single-sunflower-stem) (Starting from ₹199): A sunny long-lasting flower for desk corners, jars and small surprise gifts.
+- [Rose Bouquet](https://www.bloomycocoon.com/products/rose-bouquet) (Starting from ₹799): Best for anniversaries, couple gifts and soft surprises, with colors and wrapping confirmed on WhatsApp.
+- [Tulip Bouquet](https://www.bloomycocoon.com/products/tulip-bouquet) (Starting from ₹899): A graceful long-lasting bouquet for birthdays, thank-you gifts and gentle celebrations.
+- [Lavender Bouquet](https://www.bloomycocoon.com/products/lavender-bouquet) (Starting from ₹799): A calming lavender bouquet for keepsake gifting, cozy decor and soft handmade surprises.
+- [Custom Premium Bouquet](https://www.bloomycocoon.com/products/custom-premium-bouquet) (Starting from ₹1499): A premium custom bouquet tailored by flower type, palette, size and packaging, with final quote confirmed on WhatsApp.
 
 ### Plushies
 
-- **Mini Teddy Plushie** (Starting from ₹399): Best for cute birthday gifts, student desks and tiny keepsakes, with colors confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/mini-teddy-plushie
-- **Bunny Plushie** (Starting from ₹499): A gentle bunny plushie for birthdays, baby gifting and keepsakes, with shade details confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/bunny-plushie
-- **Cat Plushie** (Starting from ₹499): A cozy cat companion with handmade charm and custom color options.
-  - URL: https://www.bloomycocoon.com/products/cat-plushie
-- **Duck Plushie** (Starting from ₹449): A cheerful duck plushie with rounded details and soft yarn texture.
-  - URL: https://www.bloomycocoon.com/products/duck-plushie
-- **Bee Plushie** (Starting from ₹399): A sweet mini bee plushie for playful gifting and decor accents.
-  - URL: https://www.bloomycocoon.com/products/bee-plushie
-- **Frog Plushie** (Starting from ₹449): A playful frog plushie with custom expressions and cozy colors.
-  - URL: https://www.bloomycocoon.com/products/frog-plushie
-- **Penguin Plushie** (Starting from ₹499): A rounded penguin plushie made for tiny shelves and warm gifting.
-  - URL: https://www.bloomycocoon.com/products/penguin-plushie
-- **Dinosaur Plushie** (Starting from ₹599): A friendly dinosaur plushie with handmade spikes and custom colors.
-  - URL: https://www.bloomycocoon.com/products/dinosaur-plushie
-- **Octopus Plushie** (Starting from ₹399): A tiny octopus plushie with soft tentacles and cheerful detail.
-  - URL: https://www.bloomycocoon.com/products/octopus-plushie
-- **Custom Animal Plushie** (Starting from ₹699): A made-to-order animal plushie inspired by your idea, with size, colors and final quote confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/custom-animal-plushie
-- **Mini Pocket Plushies** (Starting from ₹299): Small pocket plushies for tiny gifting, students, desk friends and surprise add-ons.
-  - URL: https://www.bloomycocoon.com/products/mini-pocket-plushies
+- [Mini Teddy Plushie](https://www.bloomycocoon.com/products/mini-teddy-plushie) (Starting from ₹399): Best for cute birthday gifts, student desks and tiny keepsakes, with colors confirmed on WhatsApp.
+- [Bunny Plushie](https://www.bloomycocoon.com/products/bunny-plushie) (Starting from ₹499): A gentle bunny plushie for birthdays, baby gifting and keepsakes, with shade details confirmed on WhatsApp.
+- [Cat Plushie](https://www.bloomycocoon.com/products/cat-plushie) (Starting from ₹499): A cozy cat companion with handmade charm and custom color options.
+- [Duck Plushie](https://www.bloomycocoon.com/products/duck-plushie) (Starting from ₹449): A cheerful duck plushie with rounded details and soft yarn texture.
+- [Bee Plushie](https://www.bloomycocoon.com/products/bee-plushie) (Starting from ₹399): A sweet mini bee plushie for playful gifting and decor accents.
+- [Frog Plushie](https://www.bloomycocoon.com/products/frog-plushie) (Starting from ₹449): A playful frog plushie with custom expressions and cozy colors.
+- [Penguin Plushie](https://www.bloomycocoon.com/products/penguin-plushie) (Starting from ₹499): A rounded penguin plushie made for tiny shelves and warm gifting.
+- [Dinosaur Plushie](https://www.bloomycocoon.com/products/dinosaur-plushie) (Starting from ₹599): A friendly dinosaur plushie with handmade spikes and custom colors.
+- [Octopus Plushie](https://www.bloomycocoon.com/products/octopus-plushie) (Starting from ₹399): A tiny octopus plushie with soft tentacles and cheerful detail.
+- [Custom Animal Plushie](https://www.bloomycocoon.com/products/custom-animal-plushie) (Starting from ₹699): A made-to-order animal plushie inspired by your idea, with size, colors and final quote confirmed on WhatsApp.
+- [Mini Pocket Plushies](https://www.bloomycocoon.com/products/mini-pocket-plushies) (Starting from ₹299): Small pocket plushies for tiny gifting, students, desk friends and surprise add-ons.
 
 ### Keychains
 
-- **Heart Keychain** (Starting from ₹149): A soft heart charm for keys, bags, hampers, and little add-ons.
-  - URL: https://www.bloomycocoon.com/products/heart-keychain
-- **Flower Keychain** (Starting from ₹149): A cheerful flower charm made in your preferred yarn shade.
-  - URL: https://www.bloomycocoon.com/products/flower-keychain
-- **Mushroom Keychain** (Starting from ₹199): A whimsical mushroom keychain for playful bag and key styling.
-  - URL: https://www.bloomycocoon.com/products/mushroom-keychain
-- **Teddy Keychain** (Starting from ₹249): A tiny teddy charm with a soft handmade finish.
-  - URL: https://www.bloomycocoon.com/products/teddy-keychain
-- **Bunny Keychain** (Starting from ₹249): A bunny keychain with petite ears and cozy yarn texture.
-  - URL: https://www.bloomycocoon.com/products/bunny-keychain
-- **Cat Keychain** (Starting from ₹249): A cat charm made for bags, keys, and custom gift boxes.
-  - URL: https://www.bloomycocoon.com/products/cat-keychain
-- **Duck Keychain** (Starting from ₹249): A cheerful duck charm with bright handmade personality.
-  - URL: https://www.bloomycocoon.com/products/duck-keychain
-- **Initial Letter Keychain** (Starting from ₹199): A custom initial keychain for names, students, couples and handmade gift hampers.
-  - URL: https://www.bloomycocoon.com/products/initial-letter-keychain
-- **Couple Keychain Set** (Starting from ₹399): A coordinated pair for couple gifts, friendship surprises and anniversary add-ons.
-  - URL: https://www.bloomycocoon.com/products/couple-keychain-set
-- **Custom Character Keychain** (Starting from ₹349): A character-inspired charm based on your idea or theme, with final details confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/custom-character-keychain
-- **Strawberry Keychain** (Starting from ₹199): A fruity strawberry charm for bags, keys, student gifts and playful handmade surprises.
-  - URL: https://www.bloomycocoon.com/products/strawberry-keychain
+- [Heart Keychain](https://www.bloomycocoon.com/products/heart-keychain) (Starting from ₹149): A soft heart charm for keys, bags, hampers, and little add-ons.
+- [Flower Keychain](https://www.bloomycocoon.com/products/flower-keychain) (Starting from ₹149): A cheerful flower charm made in your preferred yarn shade.
+- [Mushroom Keychain](https://www.bloomycocoon.com/products/mushroom-keychain) (Starting from ₹199): A whimsical mushroom keychain for playful bag and key styling.
+- [Teddy Keychain](https://www.bloomycocoon.com/products/teddy-keychain) (Starting from ₹249): A tiny teddy charm with a soft handmade finish.
+- [Bunny Keychain](https://www.bloomycocoon.com/products/bunny-keychain) (Starting from ₹249): A bunny keychain with petite ears and cozy yarn texture.
+- [Cat Keychain](https://www.bloomycocoon.com/products/cat-keychain) (Starting from ₹249): A cat charm made for bags, keys, and custom gift boxes.
+- [Duck Keychain](https://www.bloomycocoon.com/products/duck-keychain) (Starting from ₹249): A cheerful duck charm with bright handmade personality.
+- [Initial Letter Keychain](https://www.bloomycocoon.com/products/initial-letter-keychain) (Starting from ₹199): A custom initial keychain for names, students, couples and handmade gift hampers.
+- [Couple Keychain Set](https://www.bloomycocoon.com/products/couple-keychain-set) (Starting from ₹399): A coordinated pair for couple gifts, friendship surprises and anniversary add-ons.
+- [Custom Character Keychain](https://www.bloomycocoon.com/products/custom-character-keychain) (Starting from ₹349): A character-inspired charm based on your idea or theme, with final details confirmed on WhatsApp.
+- [Strawberry Keychain](https://www.bloomycocoon.com/products/strawberry-keychain) (Starting from ₹199): A fruity strawberry charm for bags, keys, student gifts and playful handmade surprises.
 
 ### Baby gifts
 
-- **Baby Booties** (Starting from ₹399): Soft crochet booties for newborn gifting and baby showers, with gentle shades confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/baby-booties
-- **Baby Cap** (Starting from ₹399): A cozy handmade baby cap with custom color and sizing options.
-  - URL: https://www.bloomycocoon.com/products/baby-cap
-- **Baby Mittens** (Starting from ₹299): Tiny mittens stitched for comfort, softness, and newborn gifting.
-  - URL: https://www.bloomycocoon.com/products/baby-mittens
-- **Baby Booties + Cap Set** (Starting from ₹799): A coordinated baby set with booties and cap in matching yarn shades.
-  - URL: https://www.bloomycocoon.com/products/baby-booties-cap-set
-- **Baby Rattle** (Starting from ₹349): A soft crochet rattle for a sweet baby shower or newborn gift.
-  - URL: https://www.bloomycocoon.com/products/baby-rattle
-- **Baby Name Garland** (Starting from ₹799): A custom name garland for nurseries, baby showers and keepsake corners, with final quote confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/baby-name-garland
-- **Baby Bunny Plushie** (Starting from ₹499): A gentle baby bunny plushie in soft yarn and nursery-friendly colors.
-  - URL: https://www.bloomycocoon.com/products/baby-bunny-plushie
-- **Baby Bear Plushie** (Starting from ₹499): A soft baby bear plushie for newborn hampers and first keepsakes.
-  - URL: https://www.bloomycocoon.com/products/baby-bear-plushie
-- **Baby Shower Mini Set** (Starting from ₹1299): A curated mini baby set for shower tables, hampers and family gifting.
-  - URL: https://www.bloomycocoon.com/products/baby-shower-mini-set
-- **Newborn Gift Hamper** (Starting from ₹1999): A larger newborn hamper with baby pieces, plush details and packaging, finalized personally on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/newborn-gift-hamper
+- [Baby Booties](https://www.bloomycocoon.com/products/baby-booties) (Starting from ₹399): Soft crochet booties for newborn gifting and baby showers, with gentle shades confirmed on WhatsApp.
+- [Baby Cap](https://www.bloomycocoon.com/products/baby-cap) (Starting from ₹399): A cozy handmade baby cap with custom color and sizing options.
+- [Baby Mittens](https://www.bloomycocoon.com/products/baby-mittens) (Starting from ₹299): Tiny mittens stitched for comfort, softness, and newborn gifting.
+- [Baby Booties + Cap Set](https://www.bloomycocoon.com/products/baby-booties-cap-set) (Starting from ₹799): A coordinated baby set with booties and cap in matching yarn shades.
+- [Baby Rattle](https://www.bloomycocoon.com/products/baby-rattle) (Starting from ₹349): A soft crochet rattle for a sweet baby shower or newborn gift.
+- [Baby Name Garland](https://www.bloomycocoon.com/products/baby-name-garland) (Starting from ₹799): A custom name garland for nurseries, baby showers and keepsake corners, with final quote confirmed on WhatsApp.
+- [Baby Bunny Plushie](https://www.bloomycocoon.com/products/baby-bunny-plushie) (Starting from ₹499): A gentle baby bunny plushie in soft yarn and nursery-friendly colors.
+- [Baby Bear Plushie](https://www.bloomycocoon.com/products/baby-bear-plushie) (Starting from ₹499): A soft baby bear plushie for newborn hampers and first keepsakes.
+- [Baby Shower Mini Set](https://www.bloomycocoon.com/products/baby-shower-mini-set) (Starting from ₹1299): A curated mini baby set for shower tables, hampers and family gifting.
+- [Newborn Gift Hamper](https://www.bloomycocoon.com/products/newborn-gift-hamper) (Starting from ₹1999): A larger newborn hamper with baby pieces, plush details and packaging, finalized personally on WhatsApp.
 
 ### Accessories
 
-- **Crochet Bow Clip** (Starting from ₹149): A sweet bow clip for soft everyday styling, return gifts and custom shade requests.
-  - URL: https://www.bloomycocoon.com/products/crochet-bow-clip
-- **Crochet Scrunchie** (Starting from ₹149): A soft crochet scrunchie for gentle everyday wear.
-  - URL: https://www.bloomycocoon.com/products/crochet-scrunchie
-- **Crochet Hair Band** (Starting from ₹199): A handmade hair band with comfortable stretch and cozy texture.
-  - URL: https://www.bloomycocoon.com/products/crochet-hair-band
-- **Flower Brooch** (Starting from ₹199): A crochet flower brooch for bags, sarees, jackets, and gift wraps.
-  - URL: https://www.bloomycocoon.com/products/flower-brooch
-- **Crochet Bracelet** (Starting from ₹149): A lightweight crochet bracelet with soft color options.
-  - URL: https://www.bloomycocoon.com/products/crochet-bracelet
-- **Crochet Earrings** (Starting from ₹199): Delicate crochet earrings for a soft handmade accessory moment.
-  - URL: https://www.bloomycocoon.com/products/crochet-earrings
-- **Bag Charm** (Starting from ₹249): A playful charm for tote bags, backpacks, and custom hampers.
-  - URL: https://www.bloomycocoon.com/products/bag-charm
-- **Phone Charm** (Starting from ₹199): A tiny crochet phone charm for soft personal styling.
-  - URL: https://www.bloomycocoon.com/products/phone-charm
-- **Crochet Coin Pouch** (Starting from ₹399): A compact coin pouch for cards, coins, and small essentials.
-  - URL: https://www.bloomycocoon.com/products/crochet-coin-pouch
-- **Crochet Phone Sleeve** (Starting from ₹399): A protective crochet phone sleeve for daily use, soft styling and handmade gifting.
-  - URL: https://www.bloomycocoon.com/products/crochet-phone-sleeve
-- **Crochet Tote Bag** (Starting from ₹799): A roomy handmade tote for everyday styling, gifting and custom color requests.
-  - URL: https://www.bloomycocoon.com/products/crochet-tote-bag
+- [Crochet Bow Clip](https://www.bloomycocoon.com/products/crochet-bow-clip) (Starting from ₹149): A sweet bow clip for soft everyday styling, return gifts and custom shade requests.
+- [Crochet Scrunchie](https://www.bloomycocoon.com/products/crochet-scrunchie) (Starting from ₹149): A soft crochet scrunchie for gentle everyday wear.
+- [Crochet Hair Band](https://www.bloomycocoon.com/products/crochet-hair-band) (Starting from ₹199): A handmade hair band with comfortable stretch and cozy texture.
+- [Flower Brooch](https://www.bloomycocoon.com/products/flower-brooch) (Starting from ₹199): A crochet flower brooch for bags, sarees, jackets, and gift wraps.
+- [Crochet Bracelet](https://www.bloomycocoon.com/products/crochet-bracelet) (Starting from ₹149): A lightweight crochet bracelet with soft color options.
+- [Crochet Earrings](https://www.bloomycocoon.com/products/crochet-earrings) (Starting from ₹199): Delicate crochet earrings for a soft handmade accessory moment.
+- [Bag Charm](https://www.bloomycocoon.com/products/bag-charm) (Starting from ₹249): A playful charm for tote bags, backpacks, and custom hampers.
+- [Phone Charm](https://www.bloomycocoon.com/products/phone-charm) (Starting from ₹199): A tiny crochet phone charm for soft personal styling.
+- [Crochet Coin Pouch](https://www.bloomycocoon.com/products/crochet-coin-pouch) (Starting from ₹399): A compact coin pouch for cards, coins, and small essentials.
+- [Crochet Phone Sleeve](https://www.bloomycocoon.com/products/crochet-phone-sleeve) (Starting from ₹399): A protective crochet phone sleeve for daily use, soft styling and handmade gifting.
+- [Crochet Tote Bag](https://www.bloomycocoon.com/products/crochet-tote-bag) (Starting from ₹799): A roomy handmade tote for everyday styling, gifting and custom color requests.
 
 ### Home decor
 
-- **Crochet Coaster** (Starting from ₹149): A single handmade coaster for mugs, desks, and cozy corners.
-  - URL: https://www.bloomycocoon.com/products/crochet-coaster
-- **Mini Flower Pot** (Starting from ₹399): A mini crochet flower pot for desks, shelves, and small decor corners.
-  - URL: https://www.bloomycocoon.com/products/mini-flower-pot
-- **Car Hanging Charm** (Starting from ₹349): A soft hanging charm for cars, windows, and gifting.
-  - URL: https://www.bloomycocoon.com/products/car-hanging-charm
-- **Crochet Garland** (Starting from ₹799): A handmade garland for rooms, celebrations, nursery corners and gentle festive decor.
-  - URL: https://www.bloomycocoon.com/products/crochet-garland
-- **Table Decor Piece** (Starting from ₹599): A handcrafted decor accent for coffee tables, shelves, and gifting.
-  - URL: https://www.bloomycocoon.com/products/table-decor-piece
-- **Door Hanging** (Starting from ₹699): A soft door hanging for festive, nursery, or everyday decor.
-  - URL: https://www.bloomycocoon.com/products/door-hanging
-- **Custom Name Decor** (Starting from ₹999): A personalized crochet name decor piece for rooms, doors, baby gifting and keepsakes.
-  - URL: https://www.bloomycocoon.com/products/custom-name-decor
-- **Crochet Cushion Cover** (Starting from ₹699): A cozy cushion cover for warm corners, housewarming gifts and soft home decor.
-  - URL: https://www.bloomycocoon.com/products/crochet-cushion-cover
-- **Crochet Plant Holder** (Starting from ₹499): A cozy plant holder for shelves, windows and handmade home decor gifts.
-  - URL: https://www.bloomycocoon.com/products/crochet-plant-holder
-- **Wall Hanging** (Starting from ₹699): A crochet wall piece made to warm up rooms, doors, and blank walls.
-  - URL: https://www.bloomycocoon.com/products/wall-hanging
+- [Crochet Coaster](https://www.bloomycocoon.com/products/crochet-coaster) (Starting from ₹149): A single handmade coaster for mugs, desks, and cozy corners.
+- [Mini Flower Pot](https://www.bloomycocoon.com/products/mini-flower-pot) (Starting from ₹399): A mini crochet flower pot for desks, shelves, and small decor corners.
+- [Car Hanging Charm](https://www.bloomycocoon.com/products/car-hanging-charm) (Starting from ₹349): A soft hanging charm for cars, windows, and gifting.
+- [Crochet Garland](https://www.bloomycocoon.com/products/crochet-garland) (Starting from ₹799): A handmade garland for rooms, celebrations, nursery corners and gentle festive decor.
+- [Table Decor Piece](https://www.bloomycocoon.com/products/table-decor-piece) (Starting from ₹599): A handcrafted decor accent for coffee tables, shelves, and gifting.
+- [Door Hanging](https://www.bloomycocoon.com/products/door-hanging) (Starting from ₹699): A soft door hanging for festive, nursery, or everyday decor.
+- [Custom Name Decor](https://www.bloomycocoon.com/products/custom-name-decor) (Starting from ₹999): A personalized crochet name decor piece for rooms, doors, baby gifting and keepsakes.
+- [Crochet Cushion Cover](https://www.bloomycocoon.com/products/crochet-cushion-cover) (Starting from ₹699): A cozy cushion cover for warm corners, housewarming gifts and soft home decor.
+- [Crochet Plant Holder](https://www.bloomycocoon.com/products/crochet-plant-holder) (Starting from ₹499): A cozy plant holder for shelves, windows and handmade home decor gifts.
+- [Wall Hanging](https://www.bloomycocoon.com/products/wall-hanging) (Starting from ₹699): A crochet wall piece made to warm up rooms, doors, and blank walls.
 
 ### Gift combos
 
-- **Keychain + Flower Combo** (Starting from ₹399): A small gift pairing for students, friends and surprise notes, with colors confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/keychain-flower-combo
-- **Mini Bouquet + Note Card** (Starting from ₹499): A mini bouquet with a note card, best for birthdays, apologies and sweet surprise gifts.
-  - URL: https://www.bloomycocoon.com/products/mini-bouquet-note-card
-- **Plushie + Flower Combo** (Starting from ₹799): A cozy plushie paired with a handmade flower for birthdays, couple gifts and warm occasions.
-  - URL: https://www.bloomycocoon.com/products/plushie-flower-combo
-- **Birthday Mini Gift Box** (Starting from ₹999): A birthday-ready crochet gift box with soft add-ons, packaging and final details confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/birthday-mini-gift-box
-- **Couple Keychain Combo** (Starting from ₹499): A couple-friendly charm combo with coordinated handmade keychains.
-  - URL: https://www.bloomycocoon.com/products/couple-keychain-combo
-- **Couple Bouquet Combo** (Starting from ₹1199): A romantic combo for anniversaries, couple surprises and long-lasting bouquet gifts.
-  - URL: https://www.bloomycocoon.com/products/couple-bouquet-combo
-- **Baby Gift Combo** (Starting from ₹1499): A sweet baby gift combo with plush, accessory or nursery elements, finalized through WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/baby-gift-combo
-- **Anniversary Gift Box** (Starting from ₹1499): An anniversary box with crochet keepsakes, flowers and gift-ready packaging.
-  - URL: https://www.bloomycocoon.com/products/anniversary-gift-box
-- **Custom Crochet Hamper** (Starting from ₹1999): A fully custom hamper combining crochet pieces, notes, flowers and packaging, with final quote confirmed on WhatsApp.
-  - URL: https://www.bloomycocoon.com/products/custom-crochet-hamper
+- [Keychain + Flower Combo](https://www.bloomycocoon.com/products/keychain-flower-combo) (Starting from ₹399): A small gift pairing for students, friends and surprise notes, with colors confirmed on WhatsApp.
+- [Mini Bouquet + Note Card](https://www.bloomycocoon.com/products/mini-bouquet-note-card) (Starting from ₹499): A mini bouquet with a note card, best for birthdays, apologies and sweet surprise gifts.
+- [Plushie + Flower Combo](https://www.bloomycocoon.com/products/plushie-flower-combo) (Starting from ₹799): A cozy plushie paired with a handmade flower for birthdays, couple gifts and warm occasions.
+- [Birthday Mini Gift Box](https://www.bloomycocoon.com/products/birthday-mini-gift-box) (Starting from ₹999): A birthday-ready crochet gift box with soft add-ons, packaging and final details confirmed on WhatsApp.
+- [Couple Keychain Combo](https://www.bloomycocoon.com/products/couple-keychain-combo) (Starting from ₹499): A couple-friendly charm combo with coordinated handmade keychains.
+- [Couple Bouquet Combo](https://www.bloomycocoon.com/products/couple-bouquet-combo) (Starting from ₹1199): A romantic combo for anniversaries, couple surprises and long-lasting bouquet gifts.
+- [Baby Gift Combo](https://www.bloomycocoon.com/products/baby-gift-combo) (Starting from ₹1499): A sweet baby gift combo with plush, accessory or nursery elements, finalized through WhatsApp.
+- [Anniversary Gift Box](https://www.bloomycocoon.com/products/anniversary-gift-box) (Starting from ₹1499): An anniversary box with crochet keepsakes, flowers and gift-ready packaging.
+- [Custom Crochet Hamper](https://www.bloomycocoon.com/products/custom-crochet-hamper) (Starting from ₹1999): A fully custom hamper combining crochet pieces, notes, flowers and packaging, with final quote confirmed on WhatsApp.
 

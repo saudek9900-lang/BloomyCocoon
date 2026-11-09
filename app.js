@@ -1148,6 +1148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modal.classList.add('opacity-100');
+        modal.removeAttribute('inert');
         document.body.style.overflow = 'hidden';
 
         const escHandler = (e) => {
@@ -1164,6 +1165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!modal) return;
         modal.classList.remove('opacity-100');
         modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.setAttribute('inert', '');
         document.body.style.overflow = '';
     };
 
@@ -1812,6 +1814,11 @@ document.addEventListener('DOMContentLoaded', () => {
         sideCart.classList.toggle('translate-x-full', !isOpen);
         sideCart.classList.toggle('translate-x-0', isOpen);
         sideCart.setAttribute('aria-modal', isOpen ? 'true' : 'false');
+        if (isOpen) {
+            sideCart.removeAttribute('inert');
+        } else {
+            sideCart.setAttribute('inert', '');
+        }
         
         const backdrop = document.getElementById('cart-backdrop');
         if (backdrop) {
@@ -2778,6 +2785,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modal.classList.add('opacity-100', 'pointer-events-auto');
+        modal.removeAttribute('inert');
         modal.setAttribute('aria-hidden', 'false');
         if (dialog) {
             dialog.classList.remove('scale-95');
@@ -2792,6 +2800,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.add('opacity-0', 'pointer-events-none');
         modal.classList.remove('opacity-100', 'pointer-events-auto');
+        modal.setAttribute('inert', '');
         modal.setAttribute('aria-hidden', 'true');
         if (dialog) {
             dialog.classList.add('scale-95');

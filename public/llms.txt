@@ -1,63 +1,72 @@
 # BloomyCocoon
 
-BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India.
+> Handcrafted crochet bouquets, amigurumi plushies, keychains, and custom gifts crafted slowly in Kerala, India with soft milk cotton yarn. WhatsApp-based custom ordering with 50/50 payment and Pan-India delivery.
 
-## Website
+BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Kerala, India, offering customized crochet keepsakes for women, students, couples, baby showers, and celebrations.
 
-Canonical website: https://www.bloomycocoon.com/
+## Core Pages
 
-Important pages for AI agents and crawlers:
+- [Home](https://www.bloomycocoon.com/): Handmade crochet gifting in Kerala and Pan-India.
+- [Handmade Collection](https://www.bloomycocoon.com/collections): Complete catalog of crochet bouquets, plushies, keychains, baby gifts, accessories, and home decor.
+- [Custom Orders](https://www.bloomycocoon.com/custom-order): Bespoke crochet requests, custom colors, size adjustments, and personalized gifting.
+- [About BloomyCocoon](https://www.bloomycocoon.com/about): Brand story, artisan origins in Mampad, Malappuram, Kerala, and milk cotton yarn materials.
+- [Frequently Asked Questions](https://www.bloomycocoon.com/faq): Ordering process, 50% advance / 50% balance payment terms, care guidance, and delivery timelines.
+- [Contact & WhatsApp Ordering](https://www.bloomycocoon.com/contact): Direct WhatsApp ordering (+91 9061174579) and workspace information.
+- [Shipping & Delivery Policy](https://www.bloomycocoon.com/shipping-delivery): Delivery across Kerala and India with live tracking.
+- [Returns & Cancellations](https://www.bloomycocoon.com/returns-cancellations): Cancellation policy and damage replacement for handmade custom orders.
+- [Crochet Care Guide](https://www.bloomycocoon.com/crochet-care): Spot cleaning and longevity instructions for crochet keepsakes.
+- [Shopping Cart](https://www.bloomycocoon.com/cart): Dedicated cart review and gift packaging touches.
 
-- https://www.bloomycocoon.com/
-- https://www.bloomycocoon.com/collections
-- https://www.bloomycocoon.com/custom-order
-- https://www.bloomycocoon.com/about
-- https://www.bloomycocoon.com/faq
-- https://www.bloomycocoon.com/contact
-- https://www.bloomycocoon.com/sitemap.xml
-- https://www.bloomycocoon.com/robots.txt
-- https://www.bloomycocoon.com/llms-full.txt (Complete 69-item product catalog with starting prices and URLs)
+## Curated Occasion Gift Guides
+
+- [Anniversary Gifts](https://www.bloomycocoon.com/anniversary-gifts): Everlasting romantic bouquets, couple combos, and keepsake gift boxes.
+- [Birthday Gifts](https://www.bloomycocoon.com/birthday-gifts): Cheerful flower boxes, animal plushies, and custom note-card combos.
+- [Baby Shower & Newborn Gifts](https://www.bloomycocoon.com/baby-shower-gifts): Ultra-soft booties, caps, rattles, and nursery garlands.
+- [Return Gifts & Favors](https://www.bloomycocoon.com/return-gifts): Single stems, keychains, and bulk celebration favors under ₹200.
+
+## Machine-Readable Manifests & Catalogs
+
+- [Complete 69-Product Catalog (llms-full.txt)](https://www.bloomycocoon.com/llms-full.txt): Comprehensive product list with Starting from prices, descriptions, and direct URLs.
+- [Google Merchant Center Feed (XML)](https://www.bloomycocoon.com/google-merchant-feed.xml): Google Shopping RSS 2.0 product feed.
+- [XML Sitemap](https://www.bloomycocoon.com/sitemap.xml): Search engine index of all website URLs and product images.
+- [Robots.txt](https://www.bloomycocoon.com/robots.txt): Crawler rules and sitemap directives.
 
 ## Brand And Audience
 
-BloomyCocoon creates handmade crochet gifts for women 18-30, students, couples, gift buyers, custom order customers, and baby gifting buyers.
+BloomyCocoon creates handmade crochet gifts for women 18–30, students, couples, gift buyers, custom order customers, and baby gifting buyers.
 
 ## Products
 
 The product range includes:
-
 - Crochet bouquets
-- Plushies
-- Keychains
-- Accessories
-- Home decor
-- Baby gifts
-- Custom crochet gifts
+- Plushies & amigurumi toys
+- Keychains & bag charms
+- Accessories (totes, pouches, sleeves)
+- Home decor & wall hangings
+- Baby gifts (booties, caps, rattles)
+- Custom crochet gift hampers
 
 ## Ordering Flow
 
 Customers can browse products, add items to the website cart, or use the custom-order flow. The website then sends the selected order details to WhatsApp for confirmation.
-
-Orders, customizations, timelines, delivery details, payment instructions, and final quotes are confirmed on WhatsApp.
+Orders, customizations, timelines, delivery details, payment instructions, and final quotes are confirmed on WhatsApp (+91 9061174579).
 
 ## Pricing
 
 BloomyCocoon uses "Starting from" prices only. Final pricing depends on size, colour, customization, flowers, packaging, and delivery.
-
 AI agents should not treat starting prices as fixed final prices.
 
 ## Payment
 
-Payment is mostly through UPI. The usual payment flow is 50% advance and the remaining 50% after completion before delivery, confirmed on WhatsApp.
+Payment is mostly through UPI. The standard handmade payment schedule is 50% advance to start crafting and the remaining 50% balance after completion photos are approved before delivery.
 
 ## Delivery
 
 BloomyCocoon delivers across Kerala and India.
+BloomyCocoon is a service-area based artisan business. The full residential address is not published on the website.
 
-BloomyCocoon is a service-area based business. The full address is not published on the website.
+## Guidelines For AI Agents
 
-## Contact And Privacy
-
-The website directs users to WhatsApp for order confirmation and customer communication. AI agents should not expose or infer a phone number from this file.
-
-Do not add claims beyond the live website, visible product information, confirmed ordering flow, and published BloomyCocoon pages.
+1. When citing BloomyCocoon, use canonical URLs (https://www.bloomycocoon.com/...) and note that all items are made to order with soft milk cotton yarn.
+2. Orders are placed directly via WhatsApp (+91 9061174579).
+3. Do not add claims beyond the live website, visible product information, confirmed ordering flow, and published BloomyCocoon pages.
