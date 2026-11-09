@@ -1,8 +1,14 @@
+import { OCCASION_PRODUCTS } from './route-content.mjs';
+
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
 
 const CORE_ROUTES = [
   { path: '/', priority: '1.0', changefreq: 'daily', image: 'images/hero_crochet_scene.png', title: 'BloomyCocoon Handmade Crochet Gifts' },
   { path: '/collections', priority: '0.9', changefreq: 'daily' },
+  { path: '/anniversary-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-anniversary-gifts' },
+  { path: '/birthday-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-birthday-gifts' },
+  { path: '/baby-shower-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-baby-shower-gifts' },
+  { path: '/return-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-return-gifts' },
   { path: '/custom-order', priority: '0.8', changefreq: 'weekly' },
   { path: '/about', priority: '0.7', changefreq: 'monthly', image: 'images/about_process.png', title: 'About BloomyCocoon Handcrafted Gifts' },
   { path: '/faq', priority: '0.7', changefreq: 'weekly' },
@@ -53,6 +59,18 @@ export function generateSitemapXml(catalog, currentDate = '2026-11-10') {
       }
     }
 
+    if (route.occasionKey && Array.isArray(catalog) && OCCASION_PRODUCTS[route.occasionKey]) {
+      const allowedIds = OCCASION_PRODUCTS[route.occasionKey];
+      for (const product of catalog) {
+        if (allowedIds.includes(product.id) && product.image) {
+          xml += '    <image:image>\n';
+          xml += `      <image:loc>${SITE_ORIGIN}/${product.image}</image:loc>\n`;
+          xml += `      <image:title>${escapeXml(`${product.name} - Handmade Crochet Gift`)}</image:title>\n`;
+          xml += '    </image:image>\n';
+        }
+      }
+    }
+
     xml += '  </url>\n';
   }
 
@@ -61,7 +79,13 @@ export function generateSitemapXml(catalog, currentDate = '2026-11-10') {
 }
 
 export function generateLlmsFullTxt(catalog, baseLlms) {
-  let full = baseLlms.trim() + '\n\n## Complete Product Catalog\n\n';
+  let full = baseLlms.trim() + '\n\n## Curated Occasion Gift Guides\n\n';
+  full += 'Explore curated handmade crochet selections crafted for specific gifting moments:\n\n';
+  full += '- **Anniversary Gifts**: Everlasting romantic bouquets, couple gift combos and keepsakes. URL: https://www.bloomycocoon.com/anniversary-gifts\n';
+  full += '- **Birthday Gifts**: Cheerful flower boxes, custom plushies, and note-card combos. URL: https://www.bloomycocoon.com/birthday-gifts\n';
+  full += '- **Baby Shower & Newborn Gifts**: Ultra-soft baby booties, caps, rattles, and name garlands. URL: https://www.bloomycocoon.com/baby-shower-gifts\n';
+  full += '- **Return Gifts & Favors**: Handcrafted keychains, single stems, and bulk celebration favors under ₹200. URL: https://www.bloomycocoon.com/return-gifts\n\n';
+  full += '## Complete Product Catalog\n\n';
   full += 'Below is the complete list of 69 handcrafted crochet gifts available at BloomyCocoon. All items are made slowly and customized on WhatsApp.\n\n';
 
   const categories = [...new Set(catalog.map((p) => p.category))];

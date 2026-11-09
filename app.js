@@ -821,6 +821,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/privacy-policy') return 'screen-privacy-policy';
         if (cleanPath === '/order-terms') return 'screen-order-terms';
         if (cleanPath === '/crochet-care') return 'screen-crochet-care';
+        if (cleanPath === '/anniversary-gifts') return 'screen-anniversary-gifts';
+        if (cleanPath === '/birthday-gifts') return 'screen-birthday-gifts';
+        if (cleanPath === '/baby-shower-gifts') return 'screen-baby-shower-gifts';
+        if (cleanPath === '/return-gifts') return 'screen-return-gifts';
         return null;
     }
 

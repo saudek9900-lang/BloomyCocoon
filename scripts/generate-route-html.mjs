@@ -4,6 +4,7 @@ import {
   ROUTE_CONTENT,
   ROUTE_SCHEMA_ID,
   STATIC_ROUTE_SCREEN_IDS,
+  OCCASION_PRODUCTS,
   getRouteMetadata,
   getRouteSchemaGraph,
 } from '../src/route-content.mjs';
@@ -17,12 +18,32 @@ const CATALOG_PATH = path.resolve('src/catalog.json');
 const catalog = JSON.parse(await readFile(CATALOG_PATH, 'utf8'));
 const preRenderedProductsHtml = renderCollectionProductsHtml(catalog);
 
+const OCCASION_GRID_MAP = {
+  'screen-anniversary-gifts': 'anniversary-product-grid',
+  'screen-birthday-gifts': 'birthday-product-grid',
+  'screen-baby-shower-gifts': 'baby-shower-product-grid',
+  'screen-return-gifts': 'return-gifts-product-grid',
+};
+
 function injectPreRenderedProducts(html) {
   const pattern = /(<div\b[^>]*\bid=["']collection-product-grid["'][^>]*>)([\s\S]*?)(<\/div>)/i;
   if (!pattern.test(html)) {
     throw new Error('Could not find #collection-product-grid in HTML.');
   }
-  return html.replace(pattern, `$1\n${preRenderedProductsHtml}\n$3`);
+  let next = html.replace(pattern, `$1\n${preRenderedProductsHtml}\n$3`);
+
+  for (const [screenId, gridId] of Object.entries(OCCASION_GRID_MAP)) {
+    const productIds = OCCASION_PRODUCTS[screenId];
+    if (!productIds) continue;
+    const occasionCatalog = catalog.filter((p) => productIds.includes(p.id));
+    const occasionHtml = renderCollectionProductsHtml(occasionCatalog);
+    const gridPattern = new RegExp(`(<div\\b[^>]*\\bid=["']${gridId}["'][^>]*>)([\\s\\S]*?)(<\\/div>)`, 'i');
+    if (gridPattern.test(next)) {
+      next = next.replace(gridPattern, `$1\n${occasionHtml}\n$3`);
+    }
+  }
+
+  return next;
 }
 
 function escapeHtml(value) {
@@ -175,9 +196,18 @@ function extractFaqItems(html) {
   return items;
 }
 
+function extractFaqItemsForScreen(html, screenId) {
+  const sectionPattern = new RegExp(`<section\\b[^>]*\\bid=["']${screenId}["'][^>]*>([\\s\\S]*?)<\\/section>`, 'i');
+  const sectionMatch = html.match(sectionPattern);
+  if (!sectionMatch) return [];
+  return extractFaqItems(sectionMatch[1]);
+}
+
 function insertRouteSchema(html, screenId, baseHtml) {
   const route = ROUTE_CONTENT[screenId];
-  const faqItems = route.schemaType === 'FAQPage' ? extractFaqItems(baseHtml) : [];
+  const faqItems = route.schemaType === 'FAQPage'
+    ? extractFaqItems(baseHtml)
+    : extractFaqItemsForScreen(baseHtml, screenId);
   if (route.schemaType === 'FAQPage' && faqItems.length === 0) {
     throw new Error('Could not extract visible FAQ items from built HTML.');
   }

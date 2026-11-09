@@ -95,6 +95,92 @@ export const ROUTE_CONTENT = {
     schemaType: 'WebPage',
     breadcrumbName: 'Crochet Care Guide',
   },
+  'screen-anniversary-gifts': {
+    path: '/anniversary-gifts',
+    outputDir: 'anniversary-gifts',
+    title: 'Handmade Crochet Anniversary Gifts & Bouquets in Kerala | BloomyCocoon',
+    description: 'Celebrate love with everlasting handmade crochet anniversary flower bouquets, couple gift combos and romantic keepsakes from BloomyCocoon in Kerala. Custom orders on WhatsApp.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Anniversary Gifts',
+  },
+  'screen-birthday-gifts': {
+    path: '/birthday-gifts',
+    outputDir: 'birthday-gifts',
+    title: 'Handmade Crochet Birthday Gifts in Kerala & India | BloomyCocoon',
+    description: 'Discover heartwarming handmade crochet birthday gifts, custom plushies, flower boxes and note-card combos from BloomyCocoon in Kerala. WhatsApp ordering and delivery across India.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Birthday Gifts',
+  },
+  'screen-baby-shower-gifts': {
+    path: '/baby-shower-gifts',
+    outputDir: 'baby-shower-gifts',
+    title: 'Handmade Crochet Baby Shower & Newborn Gifts in Kerala | BloomyCocoon',
+    description: 'Soft, skin-safe handmade crochet baby booties, caps, rattles, name garlands and newborn gift hampers from BloomyCocoon in Mampad, Kerala. Delivery across India.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Baby Shower Gifts',
+  },
+  'screen-return-gifts': {
+    path: '/return-gifts',
+    outputDir: 'return-gifts',
+    title: 'Handmade Crochet Return Gifts & Favors in Kerala | BloomyCocoon',
+    description: 'Charming handmade crochet return gifts, keychains, single flower stems and party favors starting from ₹149 for birthdays and weddings in Kerala. Bulk quotes on WhatsApp.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Return Gifts & Favors',
+  },
+};
+
+export const OCCASION_PRODUCTS = {
+  'screen-anniversary-gifts': [
+    'couple-bouquet-combo',
+    'anniversary-gift-box',
+    'rose-bouquet',
+    'tulip-bouquet',
+    'custom-premium-bouquet',
+    'couple-keychain-set',
+    'couple-keychain-combo',
+    'lavender-bouquet',
+    'heart-keychain',
+    'custom-crochet-hamper',
+  ],
+  'screen-birthday-gifts': [
+    'birthday-mini-gift-box',
+    'plushie-flower-combo',
+    'mini-bouquet-note-card',
+    'single-sunflower-stem',
+    'bunny-plushie',
+    'mini-teddy-plushie',
+    'cat-plushie',
+    'strawberry-keychain',
+    'crochet-tote-bag',
+    'custom-animal-plushie',
+    'custom-crochet-hamper',
+  ],
+  'screen-baby-shower-gifts': [
+    'baby-shower-mini-set',
+    'newborn-gift-hamper',
+    'baby-booties-cap-set',
+    'baby-booties',
+    'baby-cap',
+    'baby-mittens',
+    'baby-rattle',
+    'baby-name-garland',
+    'baby-bunny-plushie',
+    'baby-bear-plushie',
+    'baby-gift-combo',
+  ],
+  'screen-return-gifts': [
+    'single-crochet-rose',
+    'single-crochet-tulip',
+    'strawberry-keychain',
+    'heart-keychain',
+    'flower-keychain',
+    'crochet-bow-clip',
+    'crochet-scrunchie',
+    'crochet-coaster',
+    'crochet-bracelet',
+    'mini-pocket-plushies',
+    'keychain-flower-combo',
+  ],
 };
 
 export const ROUTE_SCREEN_IDS = Object.keys(ROUTE_CONTENT);
@@ -260,13 +346,18 @@ export function getRoutePageSchema(screenId, { faqItems = [], products = [] } = 
   };
 
   if (route.schemaType === 'CollectionPage') {
-    if (products && products.length > 0) {
+    const isOccasion = Boolean(OCCASION_PRODUCTS[screenId]);
+    const filteredProducts = isOccasion
+      ? products.filter(p => OCCASION_PRODUCTS[screenId].includes(p.id))
+      : products;
+
+    if (filteredProducts && filteredProducts.length > 0) {
       page.mainEntity = {
         '@type': 'ItemList',
-        name: 'BloomyCocoon Handmade Crochet Gift Collection',
-        description: 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos from BloomyCocoon in Kerala, with custom orders available across India.',
-        numberOfItems: products.length,
-        itemListElement: products.map((product, index) => ({
+        name: isOccasion ? route.title : 'BloomyCocoon Handmade Crochet Gift Collection',
+        description: route.description,
+        numberOfItems: filteredProducts.length,
+        itemListElement: filteredProducts.map((product, index) => ({
           '@type': 'ListItem',
           position: index + 1,
           item: getProductSchema(product),
@@ -295,6 +386,17 @@ export function getRoutePageSchema(screenId, { faqItems = [], products = [] } = 
 }
 
 export function getRouteSchemaGraph(screenId, options = {}) {
-  return [getBreadcrumbList(screenId), getRoutePageSchema(screenId, options)];
+  const graph = [getBreadcrumbList(screenId), getRoutePageSchema(screenId, options)];
+  if (options.faqItems && options.faqItems.length > 0 && ROUTE_CONTENT[screenId]?.schemaType !== 'FAQPage') {
+    const canonical = getRouteCanonical(screenId);
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      url: canonical,
+      name: `${ROUTE_CONTENT[screenId]?.title || 'Gifting'} FAQ`,
+      mainEntity: options.faqItems,
+    });
+  }
+  return graph;
 }
 
