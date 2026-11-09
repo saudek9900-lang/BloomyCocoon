@@ -1369,6 +1369,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sideCart.classList.toggle('cart-visible', isOpen);
         sideCart.setAttribute('aria-modal', isOpen ? 'true' : 'false');
+        
+        const backdrop = document.getElementById('cart-backdrop');
+        if (backdrop) {
+            backdrop.classList.toggle('opacity-100', isOpen);
+            backdrop.classList.toggle('pointer-events-auto', isOpen);
+            backdrop.classList.toggle('opacity-0', !isOpen);
+            backdrop.classList.toggle('pointer-events-none', !isOpen);
+        }
+
         if (isOpen) {
             sideCart.focus({ preventScroll: true });
         }
@@ -1589,13 +1598,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <h4 class="font-label-md text-sm text-secondary truncate">${escapeHTML(item.name)}</h4>
                                 <p class="text-caption text-on-surface-variant">${escapeHTML(categoryLabel)}</p>
                                 <p class="text-caption text-on-surface-variant font-bold">Starting from ${formatStartingPrice(item.price)}</p>
-                                <div class="flex items-center gap-2 mt-xs">
-                                    <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">-</button>
-                                    <span class="font-body-md text-xs font-bold px-1" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                                    <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-xs hover:bg-secondary-container transition-colors">+</button>
+                                <div class="flex items-center gap-1.5 mt-2 bg-primary-container/40 rounded-full w-fit px-1 py-0.5 border border-outline-variant/20">
+                                    <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[32px] min-h-[32px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                                    <span class="font-body-md text-xs font-bold px-2 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
+                                    <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[32px] min-h-[32px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
                                 </div>
                             </div>
-                            <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn text-outline-variant hover:text-error transition-colors p-1">
+                            <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full hover:bg-error-container/30 text-outline-variant hover:text-error transition-all p-1">
                                 <span class="material-symbols-outlined text-[18px]">delete</span>
                             </button>
                         </div>
@@ -2129,7 +2138,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const productGrid = document.querySelector('#collection-product-grid');
         if (!productGrid) return;
 
-        productGrid.innerHTML = collectionProducts.map(getProductCardMarkup).join('');
+        if (productGrid.children.length === 0) {
+            productGrid.innerHTML = collectionProducts.map(getProductCardMarkup).join('');
+        }
         applyImageFallbacks(productGrid);
         setupProductCardAddToCartTriggers();
         updateCategoryDescription('all');
@@ -2185,7 +2196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }).filter(Boolean);
         }
 
-        const graph = getRouteSchemaGraph(screenId, { faqItems });
+        const graph = getRouteSchemaGraph(screenId, { faqItems, products: collectionProducts });
 
         const script = document.createElement('script');
         script.id = ROUTE_SCHEMA_ID;

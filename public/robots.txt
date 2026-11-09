@@ -1,4 +1,27 @@
+# BloomyCocoon robots.txt
 User-agent: *
 Allow: /
 
+# Explicit AI Search Engine Directives (GEO & LLM Agents)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Sitemaps & Machine-Readable Manifests
 Sitemap: https://www.bloomycocoon.com/sitemap.xml
+# LLMs: https://www.bloomycocoon.com/llms.txt
+# LLMs-Full: https://www.bloomycocoon.com/llms-full.txt
