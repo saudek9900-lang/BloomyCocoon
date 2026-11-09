@@ -1781,37 +1781,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 6. COLLECTION CATEGORY PILLS FILTERING
     // ----------------------------------------------------
-    const categoryToggleBaseClass = "w-10 h-10 shrink-0 rounded-full bg-primary-container text-secondary flex items-center justify-center hover:bg-secondary hover:text-on-secondary transition-colors";
-    const categoryToggleActiveClass = "w-10 h-10 shrink-0 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm transition-colors";
-    const categoryButtonBaseClass = "whitespace-nowrap px-6 py-2 rounded-full hover:bg-secondary/10 transition-colors font-label-md bg-primary-container text-on-primary-container";
-    const categoryButtonActiveClass = "whitespace-nowrap px-6 py-2 rounded-full font-label-md bg-secondary text-on-secondary shadow-sm";
+    const categoryToggleBaseClass = "hidden";
+    const categoryToggleActiveClass = "hidden";
+    const categoryButtonBaseClass = "whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm";
+    const categoryButtonActiveClass = "whitespace-nowrap px-5 py-2.5 rounded-full font-label-md text-sm bg-secondary text-on-secondary shadow-sm transition-all duration-200";
 
     function getCollectionFilterRoot(sourceEl) {
         return (sourceEl && sourceEl.closest('[data-collection-filters]')) || document.querySelector('#screen-collection [data-collection-filters]');
     }
 
     function setCollectionCategoryListOpen(root, isOpen) {
-        if (!root) return;
-        const list = root.querySelector('[data-category-filter-list]');
-        const toggle = root.querySelector('[data-category-filter-toggle]');
-        if (list) {
-            list.dataset.open = isOpen ? 'true' : 'false';
-            list.style.maxWidth = isOpen ? `${list.scrollWidth}px` : '0px';
-            list.style.opacity = isOpen ? '1' : '0';
-            list.style.transform = isOpen ? 'translateX(0)' : 'translateX(-12px)';
-            list.style.pointerEvents = isOpen ? 'auto' : 'none';
-        }
-        if (toggle) {
-            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            toggle.title = isOpen ? 'Hide categories' : 'Show categories';
-        }
+        // No-op now since categories are always visible
     }
 
     window.showAllCollectionCategories = function(buttonEl) {
-        const root = getCollectionFilterRoot(buttonEl);
-        const list = root ? root.querySelector('[data-category-filter-list]') : null;
-        const shouldOpen = !list || list.dataset.open !== 'true';
-        setCollectionCategoryListOpen(root, shouldOpen);
         filterCollectionCategory('all', buttonEl);
     };
 
@@ -1827,18 +1810,14 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCategoryDescription(activeCategory);
         trackEvent('category_filter_click', { category: activeCategory });
         const root = getCollectionFilterRoot(buttonEl);
-        if (buttonEl && root) {
+        if (root) {
             root.querySelectorAll('button[data-category-filter]').forEach(btn => {
-                btn.className = categoryButtonBaseClass;
+                if (btn.dataset.categoryFilter === activeCategory) {
+                    btn.className = categoryButtonActiveClass;
+                } else {
+                    btn.className = categoryButtonBaseClass;
+                }
             });
-            const toggle = root.querySelector('[data-category-filter-toggle]');
-            if (toggle) {
-                toggle.className = activeCategory === 'all' ? categoryToggleActiveClass : categoryToggleBaseClass;
-            }
-            if (buttonEl.matches('[data-category-filter]')) {
-                buttonEl.className = categoryButtonActiveClass;
-                setCollectionCategoryListOpen(root, true);
-            }
         }
 
         const productGrid = document.querySelector('#collection-product-grid');
@@ -2123,10 +2102,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="text-caption text-on-surface-variant font-label-md uppercase tracking-wide">${escapeHTML(categoryLabel)}</span>
                     <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">${escapeHTML(product.name)}</h3>
                     <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
-                    <div class="flex justify-between items-center gap-sm">
-                        <span class="font-body-md text-on-surface-variant font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-                        <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="w-10 h-10 shrink-0 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-                            <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                    <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
+                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>
+                        <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-xs">
+                            <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                            <span class="hidden sm:inline">Add</span>
                         </button>
                     </div>
                 </div>

@@ -170,6 +170,9 @@
         </div>
     </nav>
 
+    <!-- GLOBAL CART BACKDROP OVERLAY -->
+    <div id="cart-backdrop" onclick="closeCart()" class="fixed inset-0 bg-black/35 backdrop-blur-xs z-[55] opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
+
     <!-- GLOBAL CART SIDEBAR -->
     <aside class="fixed right-0 top-0 h-full w-80 bg-surface-container-low border-l border-outline-variant/30 shadow-xl z-[60] flex flex-col p-md translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1">
         <div class="flex justify-between items-start mb-lg">
@@ -192,16 +195,19 @@
         </div>
         
         <div class="pt-lg border-t border-outline-variant/20 space-y-sm">
-            <p class="text-caption text-on-surface-variant bg-white/55 border border-outline-variant/15 rounded-lg px-3 py-2" id="cart-checkout-note">Starting from prices are only a guide. Final quote, customization, payment and delivery are confirmed personally on WhatsApp.</p>
-            <p class="text-caption text-on-surface-variant bg-white/55 border border-outline-variant/15 rounded-lg px-3 py-2" id="cart-payment-note">Payment is confirmed on WhatsApp, mostly through UPI: 50% advance before making begins, and the remaining 50% after completion before delivery across Kerala and India.</p>
+            <p class="text-caption text-on-surface-variant bg-white/60 border border-outline-variant/15 rounded-lg px-3 py-2" id="cart-checkout-note">Starting from prices are only a guide. Final quote, customization, payment and delivery are confirmed personally on WhatsApp.</p>
+            <div class="flex items-center gap-2 bg-[#FAF5EE] border border-secondary/20 rounded-lg px-3 py-2 text-caption text-secondary">
+                <span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+                <span id="cart-payment-note">50% Advance via UPI upon confirmation &bull; 50% before dispatch</span>
+            </div>
             <div class="flex justify-between items-center mb-sm">
                 <span class="font-label-md text-on-surface-variant">Starting Total</span>
                 <span class="font-headline-sm text-secondary cart-total-price">Add items</span>
             </div>
-            <textarea id="cart-customer-note" class="w-full bg-surface-container-low border border-outline-variant/20 rounded-lg p-2 text-sm" rows="2" placeholder="Add colors, name, date, or delivery note (optional)" aria-label="Customization note" aria-describedby="cart-checkout-note cart-payment-note"></textarea>
-            <button disabled class="w-full bg-secondary text-white py-4 rounded-xl font-label-md flex items-center justify-center gap-base active:scale-95 transition-transform checkout-btn opacity-55 cursor-default" aria-label="Continue to WhatsApp to confirm final quote and order details" aria-describedby="cart-checkout-note cart-payment-note">
-                Continue on WhatsApp
-                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            <textarea id="cart-customer-note" class="w-full bg-surface-container-low border border-outline-variant/20 rounded-lg p-2 text-sm focus:ring-2 focus:ring-secondary/30 transition-all" rows="2" placeholder="Add colors, name, date, or delivery note (optional)" aria-label="Customization note" aria-describedby="cart-checkout-note cart-payment-note"></textarea>
+            <button disabled class="w-full bg-secondary text-white py-3.5 rounded-xl font-label-md text-sm md:text-base flex items-center justify-center gap-2 active:scale-95 transition-all checkout-btn opacity-55 cursor-default shadow-sm hover:shadow-md" aria-label="Continue to WhatsApp to confirm final quote and order details" aria-describedby="cart-checkout-note cart-payment-note">
+                <span>Continue on WhatsApp</span>
+                <span class="material-symbols-outlined text-[18px]">chat</span>
             </button>
         </div>
     </aside>
@@ -454,20 +460,16 @@
                 </section>
 
                 <!-- Filters category scroll -->
-                <section class="mb-6 md:mb-lg overflow-x-auto">
-                    <div class="flex gap-md pb-4 items-center" data-collection-filters>
-                        <button onclick="showAllCollectionCategories(this)" data-category-filter-toggle class="w-10 h-10 shrink-0 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm transition-colors" aria-label="Show categories" aria-expanded="false" title="Show categories">
-                            <span class="material-symbols-outlined">tune</span>
-                        </button>
-                        <div class="flex flex-nowrap gap-sm items-center overflow-x-auto whitespace-nowrap transition-all duration-300 ease-out" data-category-filter-list data-open="false" style="max-width: 0; width: max-content; opacity: 0; transform: translateX(-12px); pointer-events: none;">
-                            <button onclick="filterCollectionCategory('bouquets', this)" data-category-filter="bouquets" class="whitespace-nowrap px-6 py-2 rounded-full hover:bg-secondary/10 transition-colors font-label-md bg-primary-container text-on-primary-container">Bouquets</button>
-                            <button onclick="filterCollectionCategory('plushies', this)" data-category-filter="plushies" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Plushies</button>
-                            <button onclick="filterCollectionCategory('keychains', this)" data-category-filter="keychains" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Keychains</button>
-                            <button onclick="filterCollectionCategory('baby-gifts', this)" data-category-filter="baby-gifts" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Baby Gifts</button>
-                            <button onclick="filterCollectionCategory('accessories', this)" data-category-filter="accessories" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Accessories</button>
-                            <button onclick="filterCollectionCategory('home-decor', this)" data-category-filter="home-decor" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Home &amp; Decor</button>
-                            <button onclick="filterCollectionCategory('gift-combos', this)" data-category-filter="gift-combos" class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/10 transition-colors font-label-md">Gift Combos</button>
-                        </div>
+                <section class="mb-6 md:mb-lg sticky top-[72px] z-40 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-lg md:px-lg border-b border-outline-variant/15">
+                    <div class="flex gap-2 items-center overflow-x-auto no-scrollbar py-1" data-collection-filters>
+                        <button onclick="filterCollectionCategory('all', this)" data-category-filter="all" class="whitespace-nowrap px-5 py-2.5 rounded-full font-label-md text-sm bg-secondary text-on-secondary shadow-sm transition-all duration-200">All Items</button>
+                        <button onclick="filterCollectionCategory('bouquets', this)" data-category-filter="bouquets" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Bouquets 💐</button>
+                        <button onclick="filterCollectionCategory('plushies', this)" data-category-filter="plushies" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Plushies 🧸</button>
+                        <button onclick="filterCollectionCategory('keychains', this)" data-category-filter="keychains" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Keychains 🍓</button>
+                        <button onclick="filterCollectionCategory('baby-gifts', this)" data-category-filter="baby-gifts" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Baby Gifts 👶</button>
+                        <button onclick="filterCollectionCategory('accessories', this)" data-category-filter="accessories" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Accessories 👜</button>
+                        <button onclick="filterCollectionCategory('home-decor', this)" data-category-filter="home-decor" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Home &amp; Decor 🏡</button>
+                        <button onclick="filterCollectionCategory('gift-combos', this)" data-category-filter="gift-combos" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Gift Combos 🎁</button>
                     </div>
                 </section>
 

@@ -166,10 +166,11 @@ export function getProductCardMarkup(product) {
         <span class="text-caption text-on-surface-variant font-label-md uppercase tracking-wide">${escapeHTML(categoryLabel)}</span>
         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs">${escapeHTML(product.name)}</h3>
         <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
-        <div class="flex justify-between items-center gap-sm">
-          <span class="font-body-md text-on-surface-variant font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-          <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="w-10 h-10 shrink-0 rounded-full border border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-colors">
-            <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+        <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
+          <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>
+          <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-xs">
+            <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+            <span class="hidden sm:inline">Add</span>
           </button>
         </div>
       </div>
