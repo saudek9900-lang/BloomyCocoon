@@ -869,6 +869,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getScreenIdFromPath(pathname) {
         const cleanPath = trimTrailingSlash(pathname || '/');
         if (cleanPath === '/' || cleanPath === '/home') return 'screen-home';
+        if (cleanPath.startsWith('/products/') || cleanPath.startsWith('/product/')) return 'screen-product-detail';
         if (cleanPath === '/collections' || cleanPath === '/collection') return 'screen-collection';
         if (cleanPath === '/custom-order' || cleanPath === '/custom' || cleanPath === '/custom-orders') return 'screen-custom-orders';
         if (cleanPath === '/about') return 'screen-about';
@@ -892,7 +893,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return getScreenIdFromPath(normalizedPath) || 'screen-home';
     }
 
-    function getScreenPath(screenId) {
+    function getScreenPath(screenId, targetPath) {
+        if (screenId === 'screen-product-detail') {
+            const path = targetPath || window.location.pathname;
+            return path.startsWith('/products/') ? path : (path.startsWith('/product/') ? path.replace('/product/', '/products/') : '/products');
+        }
         return screenMetadata[screenId]?.path || '/';
     }
 
@@ -905,26 +910,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return isKnownCategory ? `?category=${encodeURIComponent(category)}` : '';
     }
 
-    function getRouteForScreen(screenId, search = window.location.search) {
-        const path = getScreenPath(screenId);
+    function getRouteForScreen(screenId, search = window.location.search, targetPath) {
+        const path = getScreenPath(screenId, targetPath);
         const cleanSearch = screenId === 'screen-collection' ? getCleanCollectionSearch(search) : '';
         return `${path}${cleanSearch}`;
     }
 
-    function getCanonicalForScreen(screenId) {
-        return `${SITE_ORIGIN}${getScreenPath(screenId)}`;
+    function getCanonicalForScreen(screenId, targetPath) {
+        return `${SITE_ORIGIN}${getScreenPath(screenId, targetPath)}`;
     }
 
     function absoluteUrl(path) {
         return `${SITE_ORIGIN}/${String(path).replace(/^\/+/, '')}`;
     }
 
-    function updateBrowserRoute(screenId, action = 'push', search = window.location.search) {
-        const route = getRouteForScreen(screenId, search);
+    function updateBrowserRoute(screenId, action = 'push', search = window.location.search, targetPath) {
+        const route = getRouteForScreen(screenId, search, targetPath);
         const currentRoute = `${window.location.pathname}${window.location.search}`;
         if (route === currentRoute) return;
         const method = action === 'replace' ? 'replaceState' : 'pushState';
-        window.history[method]({ screenId }, '', route);
+        window.history[method]({ screenId, targetPath }, '', route);
     }
 
     function getLegacyHashSearch(hash) {
@@ -940,7 +945,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    function syncScreenMetadata(screenId) {
+    function syncScreenMetadata(screenId, targetPath) {
+        if (screenId === 'screen-product-detail') {
+            const path = targetPath || window.location.pathname;
+            const match = path.match(/^\/products?\/([^/?#]+)/);
+            const slug = match ? match[1] : null;
+            const product = slug ? collectionProducts.find(p => p.id === slug) : null;
+            if (product) {
+                const safePrice = Number(product.startingPrice) || 149;
+                const pageTitle = `${product.name} - Handmade Crochet Gift in Kerala | BloomyCocoon`;
+                const pageDesc = `${product.description} Handcrafted in Kerala with soft milk cotton yarn. Starting from ₹${safePrice}. Order & customize on WhatsApp.`;
+                const canonicalUrl = `${SITE_ORIGIN}/products/${product.id}`;
+                const imageUrl = product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`;
+
+                document.title = pageTitle;
+                document.querySelector('meta[name="description"]')?.setAttribute('content', pageDesc);
+                document.querySelector('meta[property="og:title"]')?.setAttribute('content', pageTitle);
+                document.querySelector('meta[property="og:description"]')?.setAttribute('content', pageDesc);
+                document.querySelector('meta[property="og:image"]')?.setAttribute('content', imageUrl);
+                document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
+                document.querySelector('meta[property="og:type"]')?.setAttribute('content', 'product');
+                document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', pageTitle);
+                document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', pageDesc);
+                document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', imageUrl);
+                document.querySelector('meta[property="twitter:url"]')?.setAttribute('content', canonicalUrl);
+                document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
+                return;
+            }
+        }
+
         const metadata = screenMetadata[screenId] || screenMetadata['screen-home'];
         const canonicalUrl = getCanonicalForScreen(screenId);
         
@@ -954,6 +987,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const ogDesc = document.querySelector('meta[property="og:description"]');
         if (ogDesc) ogDesc.setAttribute('content', metadata.description);
+
+        const ogType = document.querySelector('meta[property="og:type"]');
+        if (ogType) ogType.setAttribute('content', 'website');
         
         const twitterTitle = document.querySelector('meta[name="twitter:title"]');
         if (twitterTitle) twitterTitle.setAttribute('content', metadata.title);
@@ -971,9 +1007,74 @@ document.addEventListener('DOMContentLoaded', () => {
         if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
     }
 
+    function renderProductDetailScreen(pathname = window.location.pathname) {
+        const match = pathname.match(/^\/products?\/([^/?#]+)/);
+        if (!match) return;
+        const slug = match[1];
+        const product = collectionProducts.find(p => p.id === slug);
+        if (!product) return;
+
+        const catLabel = getCategoryLabel(product.category);
+        const breadcrumbCat = document.getElementById('detail-breadcrumb-cat');
+        if (breadcrumbCat) {
+            breadcrumbCat.textContent = catLabel;
+            breadcrumbCat.setAttribute('href', `/collections?category=${encodeURIComponent(product.category)}`);
+        }
+        const breadcrumbName = document.getElementById('detail-breadcrumb-name');
+        if (breadcrumbName) breadcrumbName.textContent = product.name;
+
+        const imgEl = document.getElementById('detail-product-img');
+        const imagePath = getProductImage(product);
+        if (imgEl) {
+            imgEl.src = imagePath;
+            imgEl.alt = `${product.name} - Handmade crochet gift by BloomyCocoon`;
+        }
+
+        const badgeEl = document.getElementById('detail-product-badge');
+        if (badgeEl) {
+            if (product.badge) {
+                badgeEl.textContent = product.badge;
+                badgeEl.classList.remove('hidden');
+            } else {
+                badgeEl.classList.add('hidden');
+            }
+        }
+
+        const catEl = document.getElementById('detail-product-category');
+        if (catEl) catEl.textContent = catLabel;
+
+        const nameEl = document.getElementById('detail-product-name');
+        if (nameEl) nameEl.textContent = product.name;
+
+        const priceEl = document.getElementById('detail-product-price');
+        const safePrice = Number(product.startingPrice) || 149;
+        if (priceEl) priceEl.textContent = `Starting from ₹${safePrice}`;
+
+        const descEl = document.getElementById('detail-product-desc');
+        if (descEl) descEl.textContent = product.description || 'Handcrafted to order with premium yarn.';
+
+        const addBtn = document.getElementById('detail-add-to-cart-btn');
+        if (addBtn) addBtn.setAttribute('data-add-to-cart', product.id);
+
+        const waBtn = document.getElementById('detail-whatsapp-btn');
+        if (waBtn) {
+            const waMsg = encodeURIComponent(`Hi BloomyCocoon, I would like to order the ${product.name} (Starting from ₹${safePrice}). What colors and custom options are available?`);
+            waBtn.href = `https://wa.me/919061174579?text=${waMsg}`;
+        }
+
+        const relatedContainer = document.getElementById('detail-related-products-grid');
+        if (relatedContainer) {
+            const sameCategory = collectionProducts.filter(p => p.id !== product.id && p.category === product.category);
+            const otherCategory = collectionProducts.filter(p => p.id !== product.id && p.category !== product.category);
+            const related = [...sameCategory, ...otherCategory].slice(0, 4);
+            relatedContainer.innerHTML = related.map(p => getProductCardMarkup(p)).join('\n');
+        }
+    }
+
     // SPA ROUTER WITH DYNAMIC TRANSITIONS & SEO SYNCING
     window.navigateTo = function(targetScreenId, transitionType = 'push', options = {}) {
         const routeSearch = options.routeSearch ?? window.location.search;
+        const targetPath = options.targetPath;
         const shouldUpdateHistory = options.updateHistory !== false;
         const historyAction = options.replaceHistory ? 'replace' : 'push';
 
@@ -981,13 +1082,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (targetScreenId === currentScreen) {
             if (shouldUpdateHistory && !isRoutingFromHistory) {
-                updateBrowserRoute(targetScreenId, historyAction, routeSearch);
+                updateBrowserRoute(targetScreenId, historyAction, routeSearch, targetPath);
             }
-            syncScreenMetadata(targetScreenId);
+            syncScreenMetadata(targetScreenId, targetPath);
             syncDynamicStructuredData(targetScreenId);
             syncNavigationUI();
             if (targetScreenId === 'screen-collection') {
                 applyCollectionFilterFromUrl();
+            }
+            if (targetScreenId === 'screen-product-detail') {
+                renderProductDetailScreen(targetPath || window.location.pathname);
             }
             return;
         }
@@ -1000,7 +1104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        syncScreenMetadata(targetScreenId);
+        syncScreenMetadata(targetScreenId, targetPath);
         syncDynamicStructuredData(targetScreenId);
 
         inTransition = true;
@@ -1080,13 +1184,16 @@ document.addEventListener('DOMContentLoaded', () => {
             inTransition = false;
 
             if (shouldUpdateHistory && !isRoutingFromHistory) {
-                updateBrowserRoute(targetScreenId, historyAction, routeSearch);
+                updateBrowserRoute(targetScreenId, historyAction, routeSearch, targetPath);
             }
             
             // Re-sync nav highlights
             syncNavigationUI();
             if (targetScreenId === 'screen-collection') {
                 applyCollectionFilterFromUrl();
+            }
+            if (targetScreenId === 'screen-product-detail') {
+                renderProductDetailScreen(targetPath || window.location.pathname);
             }
 
             if (targetScreenId === 'screen-custom-orders') {
@@ -1161,7 +1268,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetScreenId === 'screen-collection') {
                 applyCollectionFilterFromUrl();
             }
-            syncScreenMetadata(targetScreenId);
+            if (targetScreenId === 'screen-product-detail') {
+                renderProductDetailScreen(window.location.pathname);
+            }
+            syncScreenMetadata(targetScreenId, window.location.pathname);
             return;
         }
 
@@ -1170,9 +1280,13 @@ document.addEventListener('DOMContentLoaded', () => {
         isRoutingFromHistory = true;
         navigateTo(targetScreenId, transitionType, {
             updateHistory: false,
-            routeSearch: window.location.search
+            routeSearch: window.location.search,
+            targetPath: window.location.pathname
         });
         isRoutingFromHistory = false;
+        if (targetScreenId === 'screen-product-detail') {
+            renderProductDetailScreen(window.location.pathname);
+        }
     });
 
     // Backward compatibility for old hash URLs.
@@ -1183,27 +1297,38 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetScreenId === 'screen-collection') {
                 applyCollectionFilterFromUrl();
             }
-            syncScreenMetadata(targetScreenId);
+            if (targetScreenId === 'screen-product-detail') {
+                renderProductDetailScreen(window.location.pathname);
+            }
+            syncScreenMetadata(targetScreenId, window.location.pathname);
             return;
         }
 
         const transitionType = getHistoryTransition(targetScreenId);
         navigateTo(targetScreenId, transitionType, {
             updateHistory: false,
-            routeSearch: window.location.search
+            routeSearch: window.location.search,
+            targetPath: window.location.pathname
         });
+        if (targetScreenId === 'screen-product-detail') {
+            renderProductDetailScreen(window.location.pathname);
+        }
     });
 
     // Handle deep-linking on page load
     normalizeLegacyHashRoute();
     const initialScreen = getScreenIdFromPath(window.location.pathname) || 'screen-home';
-    window.history.replaceState({ screenId: initialScreen }, '', getRouteForScreen(initialScreen, window.location.search));
-    syncScreenMetadata(initialScreen);
+    window.history.replaceState({ screenId: initialScreen, targetPath: window.location.pathname }, '', getRouteForScreen(initialScreen, window.location.search, window.location.pathname));
+    syncScreenMetadata(initialScreen, window.location.pathname);
     if (initialScreen !== 'screen-home') {
         navigateTo(initialScreen, 'instant', {
             updateHistory: false,
-            routeSearch: window.location.search
+            routeSearch: window.location.search,
+            targetPath: window.location.pathname
         });
+        if (initialScreen === 'screen-product-detail') {
+            renderProductDetailScreen(window.location.pathname);
+        }
     } else if (initialScreen === 'screen-collection') {
         applyCollectionFilterFromUrl();
     }
@@ -1307,7 +1432,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 transition = 'slide_up';
             }
 
-            navigateTo(targetScreen, transition, { routeSearch: url.search });
+            navigateTo(targetScreen, transition, { routeSearch: url.search, targetPath: url.pathname });
         }, true);
 
         document.addEventListener('click', (e) => {

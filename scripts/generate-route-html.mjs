@@ -7,8 +7,14 @@ import {
   OCCASION_PRODUCTS,
   getRouteMetadata,
   getRouteSchemaGraph,
+  getProductRouteMetadata,
+  getProductSchemaGraph,
 } from '../src/route-content.mjs';
-import { renderCollectionProductsHtml } from '../src/product-cards.mjs';
+import {
+  renderCollectionProductsHtml,
+  getProductImage,
+  getResponsiveWebpSrcset,
+} from '../src/product-cards.mjs';
 import { generateSitemapXml, generateLlmsFullTxt } from '../src/sitemap-generator.mjs';
 
 const DIST_DIR = path.resolve('dist');
@@ -147,15 +153,32 @@ function updateMetadata(html, metadata) {
     `<meta name="twitter:description" content="${description}">`,
     'twitter:description',
   );
+  if (metadata.image) {
+    next = next.replace(
+      /<meta\s+property=["']og:image["']\s+content=["'][^"']*["']\s*\/?>/i,
+      `<meta property="og:image" content="${escapeHtml(metadata.image)}">`,
+    );
+    next = next.replace(
+      /<meta\s+name=["']twitter:image["']\s+content=["'][^"']*["']\s*\/?>/i,
+      `<meta name="twitter:image" content="${escapeHtml(metadata.image)}">`,
+    );
+  }
+  const ogType = metadata.isProduct ? 'product' : 'website';
+  next = next.replace(
+    /<meta\s+property=["']og:type["']\s+content=["'][^"']*["']\s*\/?>/i,
+    `<meta property="og:type" content="${ogType}">`,
+  );
   return next;
 }
 
 function setInitialScreen(html, activeScreenId) {
   return html.replace(/<section\b[^>]*\bclass=["'][^"']*\bscreen\b[^"']*["'][^>]*>/gi, (sectionTag) => {
     const idMatch = sectionTag.match(/\bid=["']([^"']+)["']/i);
-    if (!idMatch || !ROUTE_CONTENT[idMatch[1]]) return sectionTag;
+    if (!idMatch) return sectionTag;
 
     const screenId = idMatch[1];
+    if (!ROUTE_CONTENT[screenId] && screenId !== 'screen-product-detail') return sectionTag;
+
     return sectionTag.replace(/\bclass=(["'])([^"']*)\1/i, (classAttr, quote, classValue) => {
       const classes = classValue
         .split(/\s+/)
@@ -241,6 +264,122 @@ async function writeRouteHtml(baseHtml, screenId) {
   await writeFile(path.join(outputDir, 'index.html'), routeHtml);
 }
 
+function injectProductDetail(html, product, catalog) {
+  const image = getProductImage(product);
+  const webpSrcset = getResponsiveWebpSrcset(image);
+  const safePrice = Number(product.startingPrice) || 149;
+  const categoryLabel = product.category ? (product.category.charAt(0).toUpperCase() + product.category.slice(1).replace('-', ' ')) : 'Handmade';
+  const waMessage = encodeURIComponent(`Hi BloomyCocoon, I would like to order the ${product.name} (Starting from ₹${safePrice}). What colors and custom options are available?`);
+
+  // Find 4 related products
+  const sameCategory = catalog.filter((p) => p.id !== product.id && p.category === product.category);
+  const otherCategory = catalog.filter((p) => p.id !== product.id && p.category !== product.category);
+  const relatedProducts = [...sameCategory, ...otherCategory].slice(0, 4);
+  const relatedHtml = renderCollectionProductsHtml(relatedProducts);
+
+  let next = html;
+
+  // 1. Breadcrumbs
+  const breadcrumbNav = `<nav aria-label="Breadcrumb" class="mb-6 text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5" id="detail-breadcrumbs">
+                    <a href="/" class="hover:text-secondary transition-colors">Home</a>
+                    <span class="text-outline-variant">/</span>
+                    <a href="/collections" class="hover:text-secondary transition-colors">Handmade Collection</a>
+                    <span class="text-outline-variant">/</span>
+                    <a href="/collections?category=${escapeHtml(product.category)}" id="detail-breadcrumb-cat" class="hover:text-secondary transition-colors">${escapeHtml(categoryLabel)}</a>
+                    <span class="text-outline-variant">/</span>
+                    <span id="detail-breadcrumb-name" class="text-on-surface font-semibold truncate max-w-[200px]">${escapeHtml(product.name)}</span>
+                </nav>`;
+  next = next.replace(/<nav\b[^>]*\bid=["']detail-breadcrumbs["'][^>]*>[\s\S]*?<\/nav>/i, breadcrumbNav);
+
+  // 2. Picture
+  const pictureMarkup = `<picture id="detail-product-picture" class="contents">
+                                <source srcset="${escapeHtml(webpSrcset)}" sizes="(min-width: 768px) 50vw, 100vw" type="image/webp">
+                                <img id="detail-product-img" src="${escapeHtml(image)}" alt="${escapeHtml(product.name)} - Handmade crochet gift by BloomyCocoon" class="w-full h-full object-cover" width="600" height="450" loading="eager">
+                            </picture>`;
+  next = next.replace(/<picture\b[^>]*\bid=["']detail-product-picture["'][^>]*>[\s\S]*?<\/picture>/i, pictureMarkup);
+
+  // 3. Badge
+  const badgeClass = product.badge
+    ? 'absolute top-4 left-4 bg-secondary text-white text-xs font-label-md px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm'
+    : 'absolute top-4 left-4 bg-secondary text-white text-xs font-label-md px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm hidden';
+  const badgeMarkup = `<span id="detail-product-badge" class="${badgeClass}">${escapeHtml(product.badge || '')}</span>`;
+  next = next.replace(/<span\b[^>]*\bid=["']detail-product-badge["'][^>]*>[\s\S]*?<\/span>/i, badgeMarkup);
+
+  // 4. Category
+  next = next.replace(
+    /(<span\b[^>]*\bid=["']detail-product-category["'][^>]*>)([\s\S]*?)(<\/span>)/i,
+    `$1${escapeHtml(categoryLabel)}$3`
+  );
+
+  // 5. Name
+  next = next.replace(
+    /(<h1\b[^>]*\bid=["']detail-product-name["'][^>]*>)([\s\S]*?)(<\/h1>)/i,
+    `$1${escapeHtml(product.name)}$3`
+  );
+
+  // 6. Price
+  next = next.replace(
+    /(<span\b[^>]*\bid=["']detail-product-price["'][^>]*>)([\s\S]*?)(<\/span>)/i,
+    `$1Starting from ₹${safePrice}$3`
+  );
+
+  // 7. Description
+  next = next.replace(
+    /(<p\b[^>]*\bid=["']detail-product-desc["'][^>]*>)([\s\S]*?)(<\/p>)/i,
+    `$1${escapeHtml(product.description || '')}$3`
+  );
+
+  // 8. Add to Cart button
+  next = next.replace(
+    /<button\b[^>]*\bid=["']detail-add-to-cart-btn["'][^>]*>([\s\S]*?)<\/button>/i,
+    `<button id="detail-add-to-cart-btn" data-add-to-cart="${escapeHtml(product.id)}" class="flex-1 bg-secondary text-white py-3.5 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm"><span class="material-symbols-outlined text-[20px]">add_shopping_cart</span><span>Add to Cart</span></button>`
+  );
+
+  // 9. WhatsApp button
+  next = next.replace(
+    /<a\b[^>]*\bid=["']detail-whatsapp-btn["'][^>]*>([\s\S]*?)<\/a>/i,
+    `<a id="detail-whatsapp-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="bg-[#25D366] text-white py-3.5 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:bg-[#20ba59] active:scale-95 transition-all shadow-sm"><span class="material-symbols-outlined text-[20px]">chat</span><span>Order on WhatsApp</span></a>`
+  );
+
+  // 10. Related products grid
+  next = next.replace(
+    /(<div\b[^>]*\bid=["']detail-related-products-grid["'][^>]*>)([\s\S]*?)(<\/div>)/i,
+    `$1\n${relatedHtml}\n$3`
+  );
+
+  return next;
+}
+
+function insertProductSchema(html, product, baseHtml) {
+  const faqItems = extractFaqItemsForScreen(baseHtml, 'screen-product-detail');
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': getProductSchemaGraph(product, { faqItems }),
+  };
+  const script = [
+    `    <script type="application/ld+json" id="${ROUTE_SCHEMA_ID}">`,
+    JSON.stringify(schema, null, 2)
+      .split('\n')
+      .map((line) => `    ${line}`)
+      .join('\n'),
+    '    </script>',
+  ].join('\n');
+
+  return replaceOne(html, /<\/head>/i, `${script}\n</head>`, 'closing head tag');
+}
+
+async function writeProductHtml(baseHtml, product, catalog) {
+  const metadata = getProductRouteMetadata(product);
+  metadata.isProduct = true;
+  const detailHtml = injectProductDetail(baseHtml, product, catalog);
+  const initialHtml = setInitialScreen(detailHtml, 'screen-product-detail');
+  const metaHtml = updateMetadata(initialHtml, metadata);
+  const finalHtml = insertProductSchema(metaHtml, product, baseHtml);
+  const outputDir = path.join(DIST_DIR, 'products', product.id);
+  await mkdir(outputDir, { recursive: true });
+  await writeFile(path.join(outputDir, 'index.html'), finalHtml);
+}
+
 const rawBaseHtml = restoreFaqFocusOutline(await readFile(INDEX_PATH, 'utf8'));
 const baseHtml = injectPreRenderedProducts(rawBaseHtml);
 await writeFile(
@@ -257,6 +396,11 @@ for (const screenId of STATIC_ROUTE_SCREEN_IDS) {
 }
 
 console.log(`Generated route HTML for ${STATIC_ROUTE_SCREEN_IDS.map((screenId) => ROUTE_CONTENT[screenId].path).join(', ')}`);
+
+for (const product of catalog) {
+  await writeProductHtml(baseHtml, product, catalog);
+}
+console.log(`Generated route HTML for ${catalog.length} standalone product pages under /products/`);
 
 // Generate sitemap.xml with image entries
 const sitemapXml = generateSitemapXml(catalog);

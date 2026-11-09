@@ -551,4 +551,694 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/single-crochet-rose</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_rose_bouquet_single-crochet-rose-landscape-generated.png</image:loc>
+      <image:title>Single Crochet Rose - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/single-crochet-tulip</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_tulip_bouquet_single-crochet-tulip-landscape-generated.png</image:loc>
+      <image:title>Single Crochet Tulip - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/single-sunflower-stem</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_sunflower_bouquet_single-sunflower-stem-generated.png</image:loc>
+      <image:title>Single Sunflower Stem - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/rose-bouquet</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_rose_bouquet_rose-bouquet.png</image:loc>
+      <image:title>Rose Bouquet - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/tulip-bouquet</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_tulip_bouquet_tulip-bouquet.png</image:loc>
+      <image:title>Tulip Bouquet - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/lavender-bouquet</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_lavender_bouquet_lavender-bouquet.png</image:loc>
+      <image:title>Lavender Bouquet - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/custom-premium-bouquet</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mixed_luxury_bouquet_custom-premium-bouquet.png</image:loc>
+      <image:title>Custom Premium Bouquet - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/mini-teddy-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/cozy_bear_plushie_mini-teddy-plushie.png</image:loc>
+      <image:title>Mini Teddy Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/bunny-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush_bunny-plushie.png</image:loc>
+      <image:title>Bunny Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/cat-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_cat_plushie_cat-plushie.png</image:loc>
+      <image:title>Cat Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/duck-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_duck_plushie_duck-plushie.png</image:loc>
+      <image:title>Duck Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/bee-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bee_plushie.png</image:loc>
+      <image:title>Bee Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/frog-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_frog_plushie.png</image:loc>
+      <image:title>Frog Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/penguin-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_penguin_plushie.png</image:loc>
+      <image:title>Penguin Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/dinosaur-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_dinosaur_plushie.png</image:loc>
+      <image:title>Dinosaur Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/octopus-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/cozy_bear_plushie_octopus-plushie-generated.png</image:loc>
+      <image:title>Octopus Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/custom-animal-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush_custom-animal-plushie.png</image:loc>
+      <image:title>Custom Animal Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/mini-pocket-plushies</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/cozy_bear_plushie_mini-pocket-plushies-generated.png</image:loc>
+      <image:title>Mini Pocket Plushies - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/heart-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/heart_keychain_heart-keychain.png</image:loc>
+      <image:title>Heart Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/flower-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_flower_keychain_flower-keychain.png</image:loc>
+      <image:title>Flower Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/mushroom-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_mushroom_keychain.png</image:loc>
+      <image:title>Mushroom Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/teddy-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mini_animal_keychain_teddy-keychain.png</image:loc>
+      <image:title>Teddy Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/bunny-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mini_animal_keychain_bunny-keychain-generated.png</image:loc>
+      <image:title>Bunny Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/cat-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mini_animal_keychain_cat-keychain-generated.png</image:loc>
+      <image:title>Cat Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/duck-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mini_animal_keychain_duck-keychain-generated.png</image:loc>
+      <image:title>Duck Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/initial-letter-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/heart_keychain_initial-letter-keychain-generated.png</image:loc>
+      <image:title>Initial Letter Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/couple-keychain-set</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_couple_keychains.png</image:loc>
+      <image:title>Couple Keychain Set - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/custom-character-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mini_animal_keychain_custom-character-keychain-generated.png</image:loc>
+      <image:title>Custom Character Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/strawberry-keychain</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/strawberry_keychain_strawberry-keychain.png</image:loc>
+      <image:title>Strawberry Keychain - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-booties</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush_baby-booties-generated.png</image:loc>
+      <image:title>Baby Booties - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-cap</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_headband_baby-cap-generated.png</image:loc>
+      <image:title>Baby Cap - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-mittens</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush_baby-mittens.png</image:loc>
+      <image:title>Baby Mittens - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-booties-cap-set</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush_baby-booties-cap-set.png</image:loc>
+      <image:title>Baby Booties + Cap Set - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-rattle</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_baby_rattle.png</image:loc>
+      <image:title>Baby Rattle - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-name-garland</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_wall_hanging_baby-name-garland-generated.png</image:loc>
+      <image:title>Baby Name Garland - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-bunny-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush_baby-bunny-plushie.png</image:loc>
+      <image:title>Baby Bunny Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-bear-plushie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/cozy_bear_plushie_baby-bear-plushie.png</image:loc>
+      <image:title>Baby Bear Plushie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-shower-mini-set</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush_baby-shower-mini-set-generated.png</image:loc>
+      <image:title>Baby Shower Mini Set - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/newborn-gift-hamper</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/hero_crochet_scene_newborn-gift-hamper-generated.png</image:loc>
+      <image:title>Newborn Gift Hamper - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-bow-clip</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_headband_crochet-bow-clip-generated.png</image:loc>
+      <image:title>Crochet Bow Clip - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-scrunchie</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_scrunchies_crochet-scrunchie.png</image:loc>
+      <image:title>Crochet Scrunchie - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-hair-band</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_headband_crochet-hair-band.png</image:loc>
+      <image:title>Crochet Hair Band - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/flower-brooch</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_flower_brooch.png</image:loc>
+      <image:title>Flower Brooch - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-bracelet</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bracelet_earrings.png</image:loc>
+      <image:title>Crochet Bracelet - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-earrings</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_flower_keychain_crochet-earrings-generated.png</image:loc>
+      <image:title>Crochet Earrings - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/bag-charm</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bag_charm_bag-charm.png</image:loc>
+      <image:title>Bag Charm - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/phone-charm</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bag_charm_phone-charm-generated.png</image:loc>
+      <image:title>Phone Charm - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-coin-pouch</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_coin_pouch_crochet-coin-pouch.png</image:loc>
+      <image:title>Crochet Coin Pouch - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-phone-sleeve</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_phone_sleeve_crochet-phone-sleeve.png</image:loc>
+      <image:title>Crochet Phone Sleeve - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-tote-bag</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_tote_bag_crochet-tote-bag.png</image:loc>
+      <image:title>Crochet Tote Bag - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-coaster</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/doily_table_decor_crochet-coaster.png</image:loc>
+      <image:title>Crochet Coaster - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/mini-flower-pot</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_mini_flower_pot.png</image:loc>
+      <image:title>Mini Flower Pot - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/car-hanging-charm</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_car_hanging.png</image:loc>
+      <image:title>Car Hanging Charm - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-garland</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_wall_hanging_crochet-garland-generated.png</image:loc>
+      <image:title>Crochet Garland - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/table-decor-piece</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/doily_table_decor_table-decor-piece.png</image:loc>
+      <image:title>Table Decor Piece - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/door-hanging</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_wall_hanging_door-hanging-generated.png</image:loc>
+      <image:title>Door Hanging - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/custom-name-decor</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_wall_hanging_custom-name-decor-generated.png</image:loc>
+      <image:title>Custom Name Decor - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-cushion-cover</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_cushion_cover_crochet-cushion-cover.png</image:loc>
+      <image:title>Crochet Cushion Cover - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/crochet-plant-holder</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_plant_holder_crochet-plant-holder.png</image:loc>
+      <image:title>Crochet Plant Holder - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/wall-hanging</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_wall_hanging_wall-hanging.png</image:loc>
+      <image:title>Wall Hanging - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/keychain-flower-combo</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_keychain_flower_combo.png</image:loc>
+      <image:title>Keychain + Flower Combo - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/mini-bouquet-note-card</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_rose_bouquet_mini-bouquet-note-card.png</image:loc>
+      <image:title>Mini Bouquet + Note Card - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/plushie-flower-combo</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_plushie_flower_combo.png</image:loc>
+      <image:title>Plushie + Flower Combo - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/birthday-mini-gift-box</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_birthday_gift_box.png</image:loc>
+      <image:title>Birthday Mini Gift Box - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/couple-keychain-combo</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/heart_keychain_couple-keychain-combo-generated.png</image:loc>
+      <image:title>Couple Keychain Combo - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/couple-bouquet-combo</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mixed_luxury_bouquet_couple-bouquet-combo.png</image:loc>
+      <image:title>Couple Bouquet Combo - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/baby-gift-combo</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush_baby-gift-combo.png</image:loc>
+      <image:title>Baby Gift Combo - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/anniversary-gift-box</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mixed_luxury_bouquet_anniversary-gift-box-generated.png</image:loc>
+      <image:title>Anniversary Gift Box - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/products/custom-crochet-hamper</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/hero_crochet_scene_custom-crochet-hamper-generated.png</image:loc>
+      <image:title>Custom Crochet Hamper - Handmade Crochet Gift</image:title>
+    </image:image>
+  </url>
 </urlset>

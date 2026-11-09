@@ -102,6 +102,11 @@
       "source": "/custom-orders",
       "destination": "/custom-order",
       "permanent": true
+    },
+    {
+      "source": "/product/:slug",
+      "destination": "/products/:slug",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -144,6 +149,26 @@
     {
       "source": "/crochet-care",
       "destination": "/crochet-care/index.html"
+    },
+    {
+      "source": "/anniversary-gifts",
+      "destination": "/anniversary-gifts/index.html"
+    },
+    {
+      "source": "/birthday-gifts",
+      "destination": "/birthday-gifts/index.html"
+    },
+    {
+      "source": "/baby-shower-gifts",
+      "destination": "/baby-shower-gifts/index.html"
+    },
+    {
+      "source": "/return-gifts",
+      "destination": "/return-gifts/index.html"
+    },
+    {
+      "source": "/products/:slug",
+      "destination": "/products/:slug/index.html"
     }
   ]
 }
