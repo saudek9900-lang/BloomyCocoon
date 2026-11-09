@@ -251,8 +251,58 @@ const CATEGORY_LABELS = {
   'gift-combos': 'Gift Combos',
 };
 
+export function getProductCanonical(productId) {
+  return `${SITE_ORIGIN}/products/${productId}`;
+}
+
+export function getProductRouteMetadata(product) {
+  const safePrice = Number(product.startingPrice) || 149;
+  const desc = product.description ? product.description.trim() : `Handmade crochet ${product.name} crafted in Kerala.`;
+  return {
+    title: `${product.name} - Handmade Crochet Gift in Kerala | BloomyCocoon`,
+    description: `${desc} Handcrafted in Kerala with soft milk cotton yarn. Starting from ₹${safePrice}. Order & customize on WhatsApp.`,
+    canonical: getProductCanonical(product.id),
+    image: product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`,
+    category: CATEGORY_LABELS[product.category] || 'Handmade Gift',
+  };
+}
+
+export function getProductBreadcrumbs(product) {
+  const categoryLabel = CATEGORY_LABELS[product.category] || 'Collection';
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': `${getProductCanonical(product.id)}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: CANONICAL_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Handmade Collection',
+        item: `${SITE_ORIGIN}/collections`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: categoryLabel,
+        item: `${SITE_ORIGIN}/collections?category=${product.category}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: product.name,
+        item: getProductCanonical(product.id),
+      },
+    ],
+  };
+}
+
 export function getProductSchema(product) {
-  const productUrl = `${SITE_ORIGIN}/collections#${product.id}`;
+  const productUrl = getProductCanonical(product.id);
   const imageUrl = product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`;
   const safePrice = Number(product.startingPrice) || 149;
 
@@ -395,6 +445,21 @@ export function getRouteSchemaGraph(screenId, options = {}) {
       url: canonical,
       name: `${ROUTE_CONTENT[screenId]?.title || 'Gifting'} FAQ`,
       mainEntity: options.faqItems,
+    });
+  }
+  return graph;
+}
+
+export function getProductSchemaGraph(product, { faqItems = [] } = {}) {
+  const graph = [getProductBreadcrumbs(product), getProductSchema(product)];
+  if (faqItems && faqItems.length > 0) {
+    const canonical = getProductCanonical(product.id);
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      url: canonical,
+      name: `${product.name} Care & Ordering FAQ`,
+      mainEntity: faqItems,
     });
   }
   return graph;

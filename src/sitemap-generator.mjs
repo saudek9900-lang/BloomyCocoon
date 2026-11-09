@@ -74,6 +74,23 @@ export function generateSitemapXml(catalog, currentDate = '2026-11-10') {
     xml += '  </url>\n';
   }
 
+  if (Array.isArray(catalog)) {
+    for (const product of catalog) {
+      xml += '  <url>\n';
+      xml += `    <loc>${SITE_ORIGIN}/products/${product.id}</loc>\n`;
+      xml += `    <lastmod>${currentDate}</lastmod>\n`;
+      xml += '    <changefreq>weekly</changefreq>\n';
+      xml += '    <priority>0.80</priority>\n';
+      if (product.image) {
+        xml += '    <image:image>\n';
+        xml += `      <image:loc>${SITE_ORIGIN}/${product.image}</image:loc>\n`;
+        xml += `      <image:title>${escapeXml(`${product.name} - Handmade Crochet Gift`)}</image:title>\n`;
+        xml += '    </image:image>\n';
+      }
+      xml += '  </url>\n';
+    }
+  }
+
   xml += '</urlset>\n';
   return xml;
 }
@@ -95,7 +112,7 @@ export function generateLlmsFullTxt(catalog, baseLlms) {
     const items = catalog.filter((p) => p.category === cat);
     for (const item of items) {
       full += `- **${item.name}** (Starting from ₹${item.startingPrice}): ${item.description}\n`;
-      full += `  - URL: ${SITE_ORIGIN}/collections#${item.id}\n`;
+      full += `  - URL: ${SITE_ORIGIN}/products/${item.id}\n`;
     }
     full += '\n';
   }

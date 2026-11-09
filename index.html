@@ -1872,6 +1872,186 @@
             <footer class="bg-surface-container py-10 border-t border-outline-variant/10"><div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg text-center"><a data-nav-logo class="nav-logo inline-flex justify-center" href="/"><span class="font-display-lg text-[36px] tracking-tight text-secondary font-serif"><span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span></span></a><nav class="flex flex-wrap justify-center gap-6 my-md" aria-label="Footer navigation"><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/">Home</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/collections">Handmade Collection</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/custom-order">Custom Orders</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/anniversary-gifts">Anniversary Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/birthday-gifts">Birthday Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/baby-shower-gifts">Baby Shower Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/return-gifts">Return Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/faq">FAQ</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/contact">Contact Us</a></nav><p class="font-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p></div></footer>
         </section>
 
+        <!-- ==================================================== -->
+        <!-- SCREEN 16: INDIVIDUAL STANDALONE PRODUCT DETAIL PAGE -->
+        <!-- ==================================================== -->
+        <section id="screen-product-detail" class="screen flex flex-col justify-between" role="region" aria-label="Product Details">
+            <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pt-6 md:pt-10 pb-16 flex-1 w-full">
+                <!-- Breadcrumbs -->
+                <nav aria-label="Breadcrumb" class="mb-6 text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5" id="detail-breadcrumbs">
+                    <a href="/" class="hover:text-secondary transition-colors">Home</a>
+                    <span class="text-outline-variant">/</span>
+                    <a href="/collections" class="hover:text-secondary transition-colors">Handmade Collection</a>
+                    <span class="text-outline-variant">/</span>
+                    <a href="/collections" id="detail-breadcrumb-cat" class="hover:text-secondary transition-colors">Category</a>
+                    <span class="text-outline-variant">/</span>
+                    <span id="detail-breadcrumb-name" class="text-on-surface font-semibold truncate max-w-[200px]">Product</span>
+                </nav>
+
+                <!-- Back button -->
+                <div class="mb-6">
+                    <a href="/collections" class="inline-flex items-center gap-1.5 text-xs font-label-md text-secondary hover:text-primary transition-colors bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant/15 shadow-2xs">
+                        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                        <span>Back to Handmade Collection</span>
+                    </a>
+                </div>
+
+                <!-- Product Showcase Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start mb-16">
+                    <!-- Visual Left Column -->
+                    <div class="md:col-span-6 lg:col-span-6 space-y-4">
+                        <div class="aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-primary-container relative border border-outline-variant/20 shadow-md">
+                            <picture id="detail-product-picture" class="contents">
+                                <img id="detail-product-img" src="/images/hero_crochet_scene.png" alt="Handmade crochet gift" class="w-full h-full object-cover" width="600" height="450" loading="eager">
+                            </picture>
+                            <span id="detail-product-badge" class="absolute top-4 left-4 bg-secondary text-white text-xs font-label-md px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm hidden"></span>
+                        </div>
+
+                        <!-- Craftsmanship seals -->
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs text-on-surface-variant font-label-md">
+                            <div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/15 flex flex-col items-center gap-1">
+                                <span class="material-symbols-outlined text-secondary text-[20px]">pan_tool</span>
+                                <span class="text-[11px] leading-tight font-medium">100% Handcrafted</span>
+                            </div>
+                            <div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/15 flex flex-col items-center gap-1">
+                                <span class="material-symbols-outlined text-secondary text-[20px]">spa</span>
+                                <span class="text-[11px] leading-tight font-medium">Never-Wilting Yarn</span>
+                            </div>
+                            <div class="bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/15 flex flex-col items-center gap-1">
+                                <span class="material-symbols-outlined text-secondary text-[20px]">palette</span>
+                                <span class="text-[11px] leading-tight font-medium">Custom Shades</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meta Right Column -->
+                    <div class="md:col-span-6 lg:col-span-6 space-y-5">
+                        <div>
+                            <span id="detail-product-category" class="text-xs uppercase tracking-wider text-secondary font-bold font-label-md">Bouquets</span>
+                            <h1 id="detail-product-name" class="font-headline-md text-3xl md:text-4xl text-primary font-bold mt-1">Handmade Crochet Gift</h1>
+                            <div class="flex items-baseline gap-2 mt-2">
+                                <span id="detail-product-price" class="text-2xl md:text-3xl font-bold font-headline-md text-secondary">Starting from ₹149</span>
+                                <span class="text-xs text-on-surface-variant/80 font-medium">• Crafted to order in Kerala</span>
+                            </div>
+                        </div>
+
+                        <p id="detail-product-desc" class="font-body-md text-on-surface-variant text-base leading-relaxed">
+                            Each piece is carefully hand-crocheted in Mampad, Malappuram with premium soft milk-cotton yarn.
+                        </p>
+
+                        <!-- Specifications Matrix -->
+                        <div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/15 space-y-2.5 text-xs text-on-surface-variant">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-wide text-secondary font-bold block">Craft Yarn</span>
+                                    <span class="font-medium text-on-surface">100% Soft Milk Cotton</span>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-wide text-secondary font-bold block">Durability</span>
+                                    <span class="font-medium text-on-surface">Everlasting / Spot Cleanable</span>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-wide text-secondary font-bold block">Dispatch Time</span>
+                                    <span class="font-medium text-on-surface">3–5 Days across India</span>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-wide text-secondary font-bold block">Origin</span>
+                                    <span class="font-medium text-on-surface">Mampad, Malappuram, Kerala</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gifting Packaging Banner -->
+                        <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-secondary/5 border border-secondary/20 text-xs text-on-surface-variant">
+                            <span class="material-symbols-outlined text-secondary text-2xl mt-0.5">redeem</span>
+                            <div class="flex-1">
+                                <strong class="text-secondary block font-bold">Gifting this item?</strong>
+                                <span class="text-[11px] leading-relaxed">You can add handwritten calligraphy cards, warm fairy lights, and keepsake display window boxes during checkout.</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="space-y-3 pt-2">
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <button id="detail-add-to-cart-btn" class="flex-1 bg-secondary text-white py-3.5 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                    <span>Add to Cart</span>
+                                </button>
+                                <a id="detail-whatsapp-btn" href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-[#25D366] text-white py-3.5 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:bg-[#20ba59] active:scale-95 transition-all shadow-sm">
+                                    <span class="material-symbols-outlined text-[20px]">chat</span>
+                                    <span>Order on WhatsApp</span>
+                                </a>
+                            </div>
+                            <p class="text-[11px] text-center text-on-surface-variant/75">
+                                Starting prices are a guide. Final quote &amp; color customization confirmed personally on WhatsApp.
+                            </p>
+                        </div>
+
+                        <!-- Trust Bar -->
+                        <div class="pt-4 border-t border-outline-variant/15 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-on-surface-variant">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary text-[18px]">local_shipping</span>
+                                <span>All-India Shipping</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+                                <span>Photo Confirmation</span>
+                            </div>
+                            <div class="flex items-center gap-2 col-span-2 sm:col-span-1">
+                                <span class="material-symbols-outlined text-secondary text-[18px]">savings</span>
+                                <span>50% Advance Booking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Care & FAQ Section -->
+                <section class="my-14 max-w-3xl mx-auto">
+                    <h2 class="font-headline-md text-2xl text-center mb-6 text-primary">Care &amp; Customization FAQs</h2>
+                    <div class="space-y-3" id="detail-faq-accordion">
+                        <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
+                            <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
+                                <span>How do I care for and clean this handcrafted crochet item?</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                            </summary>
+                            <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
+                                Spot clean gently using a damp cloth and mild soap if needed. Avoid machine washing or harsh soaking. Allow to air dry in the shade to preserve the vibrant yarn colors and structural shape.
+                            </p>
+                        </details>
+                        <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
+                            <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
+                                <span>Can I request custom yarn colors or personal gift tags?</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                            </summary>
+                            <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
+                                Yes! Every single piece is made slowly to order. Simply message us on WhatsApp (+91 9061174579) to select custom shades, personalized names, or handwritten calligraphy note cards.
+                            </p>
+                        </details>
+                        <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
+                            <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
+                                <span>How long does production and delivery take across Kerala and India?</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                            </summary>
+                            <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
+                                Small pieces and standard bouquets take 3–5 working days to craft. Delivery within Kerala typically arrives in 2–3 days, and 4–7 days for other Indian states with live courier tracking.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- You May Also Like Section -->
+                <section class="my-14">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="font-headline-md text-2xl text-primary">You May Also Like</h2>
+                        <a href="/collections" class="text-xs font-label-md text-secondary hover:underline">View All Collection &rarr;</a>
+                    </div>
+                    <div id="detail-related-products-grid" class="mobile-product-grid grid grid-cols-2 md:grid-cols-4 gap-4" aria-live="polite">
+                    </div>
+                </section>
+            </main>
+            <footer class="bg-surface-container py-10 border-t border-outline-variant/10"><div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg text-center"><a data-nav-logo class="nav-logo inline-flex justify-center" href="/"><span class="font-display-lg text-[36px] tracking-tight text-secondary font-serif"><span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span></span></a><nav class="flex flex-wrap justify-center gap-6 my-md" aria-label="Footer navigation"><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/">Home</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/collections">Handmade Collection</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/custom-order">Custom Orders</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/anniversary-gifts">Anniversary Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/birthday-gifts">Birthday Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/baby-shower-gifts">Baby Shower Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/return-gifts">Return Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/faq">FAQ</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/contact">Contact Us</a></nav><p class="font-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p></div></footer>
+        </section>
+
     </div>
 
     <!-- Global Floating WhatsApp Button -->

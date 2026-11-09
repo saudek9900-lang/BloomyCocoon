@@ -723,6 +723,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeSearchQuery = '';
     window.collectionProducts = collectionProducts;
     window.cartGiftAddons = cartGiftAddons;
+    window.buildCartWhatsAppMessage = buildCartWhatsAppMessage;
+    window.getCartGrandTotal = getCartGrandTotal;
 
     function buildWhatsAppUrl(message) {
         return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
