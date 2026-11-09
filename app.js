@@ -694,13 +694,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return Number.isFinite(value) && value > 0 ? value : 0;
     }
 
+    const cartGiftAddons = {
+        card: { enabled: false, price: 49, message: '' },
+        fairyLights: { enabled: false, price: 79 },
+        windowBox: { enabled: false, price: 149 },
+        aromaMist: { enabled: false, scent: 'none' } // 'none', 'lavender', 'vanilla'
+    };
+
+    function getGiftAddonsTotal() {
+        let sum = 0;
+        if (cartGiftAddons.card.enabled) sum += cartGiftAddons.card.price;
+        if (cartGiftAddons.fairyLights.enabled) sum += cartGiftAddons.fairyLights.price;
+        if (cartGiftAddons.windowBox.enabled) sum += cartGiftAddons.windowBox.price;
+        return sum;
+    }
+
     function getCartSubtotal() {
         return cart.reduce((sum, item) => sum + (getSafePrice(item.price) * item.qty), 0);
+    }
+
+    function getCartGrandTotal() {
+        const itemsTotal = getCartSubtotal();
+        if (itemsTotal === 0) return 0;
+        return itemsTotal + getGiftAddonsTotal();
     }
 
     let activeFilterCategory = 'all';
     let activeSearchQuery = '';
     window.collectionProducts = collectionProducts;
+    window.cartGiftAddons = cartGiftAddons;
 
     function buildWhatsAppUrl(message) {
         return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -772,11 +794,45 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `\n`;
         });
 
-        const subtotal = getCartSubtotal();
-        const advanceAmount = Math.round(subtotal * 0.5);
-        const balanceAmount = subtotal - advanceAmount;
+        const itemsSubtotal = getCartSubtotal();
+        const addonsTotal = getGiftAddonsTotal();
+        const grandTotal = itemsSubtotal + addonsTotal;
+        const advanceAmount = Math.round(grandTotal * 0.5);
+        const balanceAmount = grandTotal - advanceAmount;
 
-        message += `*Starting Total:* ₹${formatPrice(subtotal)}\n`;
+        const hasAddons = cartGiftAddons.card.enabled || 
+                          cartGiftAddons.fairyLights.enabled || 
+                          cartGiftAddons.windowBox.enabled || 
+                          (cartGiftAddons.aromaMist.enabled && cartGiftAddons.aromaMist.scent !== 'none');
+
+        if (hasAddons) {
+            message += `🎁 *Gift Packaging & Add-ons:*\n`;
+            if (cartGiftAddons.card.enabled) {
+                message += `• Handwritten Calligraphy Card (+₹${cartGiftAddons.card.price})\n`;
+                if (cartGiftAddons.card.message && cartGiftAddons.card.message.trim()) {
+                    message += `  Card Message: "${cartGiftAddons.card.message.trim()}"\n`;
+                }
+            }
+            if (cartGiftAddons.fairyLights.enabled) {
+                message += `• Warm Fairy Lights String (+₹${cartGiftAddons.fairyLights.price})\n`;
+            }
+            if (cartGiftAddons.windowBox.enabled) {
+                message += `• Keepsake Display Window Box (+₹${cartGiftAddons.windowBox.price})\n`;
+            }
+            if (cartGiftAddons.aromaMist.enabled && cartGiftAddons.aromaMist.scent !== 'none') {
+                const scentLabel = cartGiftAddons.aromaMist.scent === 'lavender' ? 'French Lavender 🪻' : 'Warm Vanilla 🍦';
+                message += `• Cozy Aroma Yarn Mist: ${scentLabel} (Complimentary)\n`;
+            }
+            message += `\n`;
+        }
+
+        if (addonsTotal > 0) {
+            message += `*Items Subtotal:* ₹${formatPrice(itemsSubtotal)}\n`;
+            message += `*Gifting Add-ons:* ₹${formatPrice(addonsTotal)}\n`;
+            message += `*Total Estimated Order:* ₹${formatPrice(grandTotal)}\n`;
+        } else {
+            message += `*Starting Total:* ₹${formatPrice(itemsSubtotal)}\n`;
+        }
         message += `• 50% Advance via UPI (to start crafting): ₹${formatPrice(advanceAmount)}\n`;
         message += `• 50% Balance (before dispatch): ₹${formatPrice(balanceAmount)}\n\n`;
 
@@ -1614,12 +1670,48 @@ document.addEventListener('DOMContentLoaded', () => {
     window.removeFromCart = function(id) {
         const removed = cart.find(i => i.id === id);
         cart = cart.filter(i => i.id !== id);
+        if (cart.length === 0) {
+            cartGiftAddons.card.enabled = false;
+            cartGiftAddons.card.message = '';
+            cartGiftAddons.fairyLights.enabled = false;
+            cartGiftAddons.windowBox.enabled = false;
+            cartGiftAddons.aromaMist.enabled = false;
+            cartGiftAddons.aromaMist.scent = 'none';
+        }
         renderCart();
         if (removed) {
             showToast(`Removed "${removed.name}" from cart.`);
         } else {
             showToast("Unravelled item from cart.");
         }
+    };
+
+    window.toggleGiftAddon = function(type) {
+        if (cartGiftAddons[type]) {
+            cartGiftAddons[type].enabled = !cartGiftAddons[type].enabled;
+            renderCart();
+            trackEvent('toggle_gift_addon', {
+                addon: type,
+                enabled: cartGiftAddons[type].enabled
+            });
+        }
+    };
+
+    window.updateGiftCardMessage = function(msg) {
+        if (cartGiftAddons.card) {
+            cartGiftAddons.card.message = msg;
+            const counter = document.getElementById('gift-card-chars');
+            if (counter) {
+                counter.textContent = `${msg.length}/150`;
+            }
+        }
+    };
+
+    window.setAromaMist = function(scent) {
+        cartGiftAddons.aromaMist.scent = scent;
+        cartGiftAddons.aromaMist.enabled = (scent !== 'none');
+        renderCart();
+        trackEvent('set_aroma_mist', { scent });
     };
 
     function renderCart() {
@@ -1633,9 +1725,11 @@ document.addEventListener('DOMContentLoaded', () => {
             totalQty += item.qty;
         });
 
-        const subtotal = getCartSubtotal();
-        const advanceAmount = Math.round(subtotal * 0.5);
-        const balanceAmount = subtotal - advanceAmount;
+        const itemsSubtotal = getCartSubtotal();
+        const addonsTotal = getGiftAddonsTotal();
+        const grandTotal = totalQty > 0 ? itemsSubtotal + addonsTotal : 0;
+        const advanceAmount = Math.round(grandTotal * 0.5);
+        const balanceAmount = grandTotal - advanceAmount;
 
         // Update header count and breakdown
         const headerCount = document.getElementById('cart-header-count');
@@ -1655,6 +1749,20 @@ document.addEventListener('DOMContentLoaded', () => {
             balanceEl.textContent = totalQty > 0 ? `₹${formatPrice(balanceAmount)}` : '₹0';
         }
 
+        // Update addons row in breakdown
+        const addonsRow = document.getElementById('cart-addons-row');
+        const addonsAmountEl = document.getElementById('cart-addons-amount');
+        if (addonsRow && addonsAmountEl) {
+            if (addonsTotal > 0 && totalQty > 0) {
+                addonsRow.classList.remove('hidden');
+                addonsRow.classList.add('flex');
+                addonsAmountEl.textContent = `+₹${formatPrice(addonsTotal)}`;
+            } else {
+                addonsRow.classList.add('hidden');
+                addonsRow.classList.remove('flex');
+            }
+        }
+
         // Update badge counters
         cartBadge.forEach(badge => {
             badge.innerText = totalQty;
@@ -1672,7 +1780,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Render subtotal texts
         cartTotalText.forEach(el => {
-            el.innerText = totalQty > 0 ? `₹${formatPrice(subtotal)}` : 'Add items';
+            el.innerText = totalQty > 0 ? `₹${formatPrice(grandTotal)}` : 'Add items';
         });
 
         // Enable/Disable checkout button
@@ -1707,6 +1815,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `;
             } else {
+                const prevScrollTop = container.scrollTop;
                 let html = '<div class="cart-items-list space-y-3 pb-2">';
                 cart.forEach(item => {
                     const categoryLabel = getCategoryLabel(item.category);
@@ -1763,7 +1872,89 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                 });
                 html += '</div>';
+
+                // Append Gifting Add-ons & Packaging Section
+                html += `
+                    <div class="cart-gifting-section bg-surface-container/70 border border-outline-variant/25 rounded-2xl p-3.5 space-y-3 mt-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary text-[18px]">redeem</span>
+                                <span class="font-label-md text-xs font-bold text-on-surface">Make It Extra Special 🎁</span>
+                            </div>
+                            <span class="text-[10px] text-secondary font-semibold bg-white/80 px-2 py-0.5 rounded-full border border-secondary/15">Gift Touches</span>
+                        </div>
+                        
+                        <div class="space-y-2">
+                            <!-- 1. Calligraphy Card -->
+                            <div class="gift-addon-item bg-white/90 rounded-xl p-2.5 border transition-all ${cartGiftAddons.card.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
+                                <label class="flex items-start gap-2.5 cursor-pointer">
+                                    <input type="checkbox" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-label-md text-xs font-bold text-on-surface">✍️ Handwritten Calligraphy Card</span>
+                                            <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.card.price}</span>
+                                        </div>
+                                        <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Written on craft cardstock with custom wax seal stamp</p>
+                                    </div>
+                                </label>
+                                ${cartGiftAddons.card.enabled ? `
+                                    <div class="mt-2.5 pt-2 border-t border-secondary/15 animate-fadeIn">
+                                        <textarea maxlength="150" rows="2" oninput="updateGiftCardMessage(this.value)" placeholder="Enter message for recipient (e.g., Happy 25th Birthday Ammu! Always blooming ❤️ - Rahul)" class="w-full bg-white border border-outline-variant/30 rounded-lg p-2 text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-secondary/40 focus:border-secondary transition-all">${escapeHTML(cartGiftAddons.card.message || '')}</textarea>
+                                        <div class="flex justify-between items-center text-[10px] text-on-surface-variant/70 mt-1">
+                                            <span>Tucked securely inside your order</span>
+                                            <span id="gift-card-chars">${(cartGiftAddons.card.message || '').length}/150</span>
+                                        </div>
+                                    </div>
+                                ` : ''}
+                            </div>
+
+                            <!-- 2. Warm Fairy Lights -->
+                            <div class="gift-addon-item bg-white/90 rounded-xl p-2.5 border transition-all ${cartGiftAddons.fairyLights.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
+                                <label class="flex items-start gap-2.5 cursor-pointer">
+                                    <input type="checkbox" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-label-md text-xs font-bold text-on-surface">💡 Warm Fairy Lights String</span>
+                                            <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.fairyLights.price}</span>
+                                        </div>
+                                        <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Micro-LED copper wire woven into flowers (includes battery)</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- 3. Keepsake Window Display Box -->
+                            <div class="gift-addon-item bg-white/90 rounded-xl p-2.5 border transition-all ${cartGiftAddons.windowBox.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
+                                <label class="flex items-start gap-2.5 cursor-pointer">
+                                    <input type="checkbox" onchange="toggleGiftAddon('windowBox')" ${cartGiftAddons.windowBox.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <span class="font-label-md text-xs font-bold text-on-surface">🎁 Keepsake Display Window Box</span>
+                                            <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.windowBox.price}</span>
+                                        </div>
+                                        <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Rigid clear display showcase with satin ribbon handle</p>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- 4. Cozy Aroma Spritz (Free) -->
+                            <div class="gift-addon-item bg-white/90 rounded-xl p-2.5 border border-outline-variant/20">
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <span class="font-label-md text-xs font-bold text-on-surface">🌿 Cozy Aroma Yarn Mist</span>
+                                    <span class="text-[10px] font-bold text-tertiary bg-tertiary-container/80 px-2 py-0.5 rounded-full">Complimentary</span>
+                                </div>
+                                <p class="text-[11px] text-on-surface-variant/80 mb-2">Soothing aroma lightly spritzed on yarn before packaging</p>
+                                <div class="grid grid-cols-3 gap-1.5">
+                                    <button type="button" onclick="setAromaMist('none')" class="text-[11px] py-1 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'none' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">None</button>
+                                    <button type="button" onclick="setAromaMist('lavender')" class="text-[11px] py-1 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'lavender' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">Lavender 🪻</button>
+                                    <button type="button" onclick="setAromaMist('vanilla')" class="text-[11px] py-1 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'vanilla' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">Vanilla 🍦</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
                 container.innerHTML = html;
+                container.scrollTop = prevScrollTop;
             }
         });
 

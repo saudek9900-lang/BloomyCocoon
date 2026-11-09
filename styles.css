@@ -342,6 +342,30 @@ body.cart-open {
     background-color: var(--color-tertiary);
 }
 
+/* Gifting Addons Styles */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.gift-addon-item {
+    transition: all 0.2s ease;
+}
+
+.gift-addon-item:hover {
+    box-shadow: 0 2px 8px rgba(114, 88, 82, 0.06);
+}
+
 /* Toast notifier */
 #toast-container {
     position: fixed;

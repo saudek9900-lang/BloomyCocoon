@@ -213,6 +213,13 @@
                     <span>Estimated Total (<span id="cart-summary-items-count">0 items</span>)</span>
                     <span class="font-semibold text-on-surface cart-total-price">₹0</span>
                 </div>
+                <div id="cart-addons-row" class="hidden justify-between text-secondary text-[11px] pt-1 border-t border-outline-variant/10">
+                    <span class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">redeem</span>
+                        <span>Gift Packaging &amp; Add-ons</span>
+                    </span>
+                    <span class="font-bold" id="cart-addons-amount">+₹0</span>
+                </div>
                 <div class="flex justify-between text-secondary pt-1 border-t border-outline-variant/10">
                     <span class="flex items-center gap-1">
                         <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
@@ -229,7 +236,7 @@
                 </div>
             </div>
 
-            <textarea id="cart-customer-note" class="w-full bg-white/70 border border-outline-variant/20 rounded-xl p-2.5 text-xs text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all placeholder:text-on-surface-variant/60" rows="2" placeholder="Overall notes, gift message, or delivery date (optional)" aria-label="Customization note" aria-describedby="cart-checkout-note cart-payment-note"></textarea>
+            <textarea id="cart-customer-note" class="w-full bg-white/70 border border-outline-variant/20 rounded-xl p-2.5 text-xs text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all placeholder:text-on-surface-variant/60" rows="2" placeholder="Overall notes or special delivery instructions (optional)" aria-label="Customization note" aria-describedby="cart-checkout-note cart-payment-note"></textarea>
             
             <button disabled class="w-full bg-secondary text-white py-3 sm:py-3.5 rounded-xl font-label-md text-sm md:text-base flex items-center justify-center gap-2 active:scale-95 transition-all checkout-btn opacity-55 cursor-default shadow-sm hover:shadow-md" aria-label="Continue to WhatsApp to confirm final quote and order details" aria-describedby="cart-checkout-note cart-payment-note">
                 <span>Continue on WhatsApp</span>
@@ -265,6 +272,11 @@
                             <span>Care &amp; Keepsake</span>
                         </div>
                         <p>100% slow handcrafted yarn. Spot clean gently with damp cloth. Made to last forever unlike real flowers.</p>
+                    </div>
+
+                    <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/15 text-xs text-on-surface-variant">
+                        <span class="material-symbols-outlined text-secondary text-[18px]">redeem</span>
+                        <span><strong class="text-secondary">Gifting this?</strong> Calligraphy cards, warm fairy lights &amp; display window boxes can be added in cart!</span>
                     </div>
 
                     <div class="pt-2 flex flex-col sm:flex-row gap-2">
