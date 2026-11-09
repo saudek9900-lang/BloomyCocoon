@@ -290,7 +290,7 @@ button:disabled:focus-visible {
     height: 100vh;
     height: 100dvh;
     max-height: 100dvh;
-    max-width: min(100vw, 26.5rem);
+    max-width: min(100vw, 30rem);
     overflow: hidden;
     overflow-wrap: anywhere;
     overscroll-behavior: contain;

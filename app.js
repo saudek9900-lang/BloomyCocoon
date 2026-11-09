@@ -697,9 +697,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const cartGiftAddons = {
         card: { enabled: false, price: 49, message: '' },
-        fairyLights: { enabled: false, price: 79 },
-        windowBox: { enabled: false, price: 149 },
-        aromaMist: { enabled: false, scent: 'none' } // 'none', 'lavender', 'vanilla'
+        fairyLights: { enabled: false, price: 89 },
+        windowBox: { enabled: false, price: 129 }
     };
 
     function getGiftAddonsTotal() {
@@ -805,8 +804,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const hasAddons = cartGiftAddons.card.enabled || 
                           cartGiftAddons.fairyLights.enabled || 
-                          cartGiftAddons.windowBox.enabled || 
-                          (cartGiftAddons.aromaMist.enabled && cartGiftAddons.aromaMist.scent !== 'none');
+                          cartGiftAddons.windowBox.enabled;
 
         if (hasAddons) {
             message += `🎁 *Gift Packaging & Add-ons:*\n`;
@@ -821,10 +819,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (cartGiftAddons.windowBox.enabled) {
                 message += `• Keepsake Display Window Box (+₹${cartGiftAddons.windowBox.price})\n`;
-            }
-            if (cartGiftAddons.aromaMist.enabled && cartGiftAddons.aromaMist.scent !== 'none') {
-                const scentLabel = cartGiftAddons.aromaMist.scent === 'lavender' ? 'French Lavender 🪻' : 'Warm Vanilla 🍦';
-                message += `• Cozy Aroma Yarn Mist: ${scentLabel} (Complimentary)\n`;
             }
             message += `\n`;
         }
@@ -2013,8 +2007,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cartGiftAddons.card.message = '';
             cartGiftAddons.fairyLights.enabled = false;
             cartGiftAddons.windowBox.enabled = false;
-            cartGiftAddons.aromaMist.enabled = false;
-            cartGiftAddons.aromaMist.scent = 'none';
         }
         renderCart();
         if (removed) {
@@ -2043,13 +2035,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 counter.textContent = `${msg.length}/150`;
             }
         }
-    };
-
-    window.setAromaMist = function(scent) {
-        cartGiftAddons.aromaMist.scent = scent;
-        cartGiftAddons.aromaMist.enabled = (scent !== 'none');
-        renderCart();
-        trackEvent('set_aroma_mist', { scent });
     };
 
     function buildGiftingTouchesHtml(isDrawer = true) {
@@ -2113,20 +2098,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Rigid clear display showcase with satin ribbon handle for dust-free display</p>
                             </div>
                         </label>
-                    </div>
-
-                    <!-- 4. Cozy Aroma Spritz (Free) -->
-                    <div class="gift-addon-item bg-white/95 rounded-xl p-3 border border-outline-variant/20">
-                        <div class="flex items-center justify-between mb-1">
-                            <span class="font-label-md text-xs font-bold text-on-surface">🌿 Cozy Aroma Yarn Mist</span>
-                            <span class="text-[10px] font-bold text-tertiary bg-tertiary-container/80 px-2 py-0.5 rounded-full">Complimentary</span>
-                        </div>
-                        <p class="text-[11px] text-on-surface-variant/80 mb-2">Soothing aroma lightly spritzed on milk cotton yarn before packaging</p>
-                        <div class="grid grid-cols-3 gap-2">
-                            <button type="button" onclick="setAromaMist('none')" class="text-xs py-1.5 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'none' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">None</button>
-                            <button type="button" onclick="setAromaMist('lavender')" class="text-xs py-1.5 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'lavender' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">Lavender 🪻</button>
-                            <button type="button" onclick="setAromaMist('vanilla')" class="text-xs py-1.5 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'vanilla' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">Vanilla 🍦</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -2387,60 +2358,73 @@ document.addEventListener('DOMContentLoaded', () => {
                     const categoryLabel = getCategoryLabel(item.category);
                     const catalogItem = collectionProducts.find(p => p.id === item.id);
                     const badge = item.badge || catalogItem?.badge || '';
-                    const desc = item.description || catalogItem?.description || '';
                     const lineSubtotal = getSafePrice(item.price) * item.qty;
 
                     html += `
-                        <div class="bg-surface-container-lowest p-3 rounded-2xl border border-outline-variant/15 soft-glow space-y-2.5 transition-all">
-                            <!-- Top row: Image, title, badge, remove -->
-                            <div class="flex items-start gap-3">
-                                <div class="relative group cursor-pointer shrink-0" onclick="openQuickLook('${item.id}')" title="View details of ${escapeHTML(item.name)}">
-                                    <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-16 h-16 object-cover rounded-xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="64" height="64" loading="lazy">
-                                    <div class="absolute inset-0 bg-black/20 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white">
-                                        <span class="material-symbols-outlined text-[18px]">zoom_in</span>
+                        <div class="bg-surface-container-lowest p-3.5 sm:p-4 rounded-2xl border border-outline-variant/20 shadow-2xs hover:border-secondary/30 space-y-2.5 transition-all">
+                            <!-- Top row: Large Thumbnail, Title, Badge, Remove -->
+                            <div class="flex items-start gap-3.5">
+                                <a href="/products/${item.id}" onclick="closeCart()" class="relative group cursor-pointer shrink-0 block" title="View details of ${escapeHTML(item.name)}">
+                                    <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-22 sm:h-22 object-cover rounded-xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="88" height="88" loading="lazy">
+                                    <div class="absolute inset-0 bg-black/15 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white">
+                                        <span class="material-symbols-outlined text-[18px]">visibility</span>
                                     </div>
-                                </div>
+                                </a>
                                 <div class="flex-1 min-w-0">
                                     <div class="flex items-start justify-between gap-1">
                                         <div class="min-w-0 pr-1">
-                                            <h4 class="font-label-md text-sm text-secondary font-bold leading-snug cursor-pointer hover:underline truncate" onclick="openQuickLook('${item.id}')">${escapeHTML(item.name)}</h4>
+                                            <a href="/products/${item.id}" onclick="closeCart()" class="font-headline-sm text-sm sm:text-base text-primary font-bold leading-snug hover:text-secondary hover:underline transition-colors block truncate" title="${escapeHTML(item.name)}">${escapeHTML(item.name)}</a>
                                             <div class="flex items-center gap-1.5 flex-wrap mt-0.5">
-                                                <span class="text-[11px] text-on-surface-variant font-medium">${escapeHTML(categoryLabel)}</span>
+                                                <span class="text-xs text-on-surface-variant font-medium">${escapeHTML(categoryLabel)}</span>
                                                 ${badge ? `<span class="bg-secondary/10 text-secondary text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(badge)}</span>` : ''}
                                             </div>
                                         </div>
-                                        <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn min-w-[28px] min-h-[28px] flex items-center justify-center rounded-full hover:bg-error-container/30 text-outline-variant hover:text-error transition-all p-1 shrink-0">
-                                            <span class="material-symbols-outlined text-[17px]">delete</span>
+                                        <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-8 h-8 flex items-center justify-center rounded-full hover:bg-error-container/30 text-outline-variant hover:text-error transition-all shrink-0" title="Remove item">
+                                            <span class="material-symbols-outlined text-[18px]">delete</span>
                                         </button>
                                     </div>
-                                    ${desc ? `<p class="text-[11px] text-on-surface-variant/80 line-clamp-2 mt-1 leading-relaxed">${escapeHTML(desc)}</p>` : ''}
-                                </div>
-                            </div>
 
-                            <!-- Middle row: Quantity stepper & Price breakdown -->
-                            <div class="flex items-center justify-between pt-1 border-t border-outline-variant/10">
-                                <div class="flex items-center gap-1 bg-primary-container/40 rounded-full px-1 py-0.5 border border-outline-variant/20">
-                                    <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[28px] min-h-[28px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
-                                    <span class="font-body-md text-xs font-bold px-2 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                                    <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[28px] min-h-[28px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
-                                </div>
-                                <div class="text-right">
-                                    <div class="font-headline-sm text-sm text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
-                                    ${item.qty > 1 ? `<div class="text-[10px] text-on-surface-variant font-medium">(₹${formatPrice(item.price)} each)</div>` : `<div class="text-[10px] text-on-surface-variant font-medium">Starting price</div>`}
-                                </div>
-                            </div>
+                                    <!-- Price & Quantity Stepper -->
+                                    <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-outline-variant/10">
+                                        <div class="flex items-center gap-1 bg-primary-container/40 rounded-full p-0.5 border border-outline-variant/20">
+                                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[32px] min-h-[32px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                                            <span class="font-body-md text-xs font-bold px-2.5 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
+                                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[32px] min-h-[32px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="font-headline-sm text-sm sm:text-base text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
+                                            ${item.qty > 1 ? `<div class="text-[10px] text-on-surface-variant font-medium">(₹${formatPrice(item.price)} each)</div>` : ''}
+                                        </div>
+                                    </div>
 
-                            <!-- Bottom row: Item-specific customization note/color wish -->
-                            <div class="pt-1">
-                                <input type="text" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom color or note for this item..." class="w-full bg-surface-container-low/60 border border-outline-variant/15 rounded-lg px-2.5 py-1 text-[11px] text-on-surface placeholder:text-on-surface-variant/50 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Color or customization note for ${escapeHTML(item.name)}">
+                                    ${item.itemNote ? `
+                                        <div class="mt-2 text-[11px] text-secondary bg-secondary/8 rounded-lg px-2.5 py-1 flex items-center gap-1.5 border border-secondary/15">
+                                            <span class="material-symbols-outlined text-[13px]">palette</span>
+                                            <span class="truncate">${escapeHTML(item.itemNote)}</span>
+                                        </div>
+                                    ` : ''}
+                                </div>
                             </div>
                         </div>
                     `;
                 });
                 html += '</div>';
 
-                // Append Gifting Add-ons & Packaging Section
-                html += buildGiftingTouchesHtml(true);
+                // Sleek callout to full cart page for gifting touches
+                html += `
+                    <div class="pt-1">
+                        <a href="/cart" onclick="closeCart()" class="block p-3 rounded-2xl bg-secondary/8 border border-secondary/20 hover:bg-secondary/15 transition-all text-xs group">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-secondary flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[18px]">redeem</span>
+                                    <span>Add Gift Card, Box &amp; Fairy Lights</span>
+                                </span>
+                                <span class="material-symbols-outlined text-[16px] text-secondary group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                            </div>
+                            <p class="text-[11px] text-on-surface-variant/80 mt-1">Personalize with hand-calligraphed cards and keepsake gift boxes on the full cart page.</p>
+                        </a>
+                    </div>
+                `;
 
                 container.innerHTML = html;
                 container.scrollTop = prevScrollTop;
