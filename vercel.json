@@ -80,6 +80,15 @@
           "value": "public, max-age=3600"
         }
       ]
+    },
+    {
+      "source": "/google-merchant-feed.xml",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -165,6 +174,10 @@
     {
       "source": "/return-gifts",
       "destination": "/return-gifts/index.html"
+    },
+    {
+      "source": "/cart",
+      "destination": "/cart/index.html"
     },
     {
       "source": "/products/:slug",

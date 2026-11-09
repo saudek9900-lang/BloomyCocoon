@@ -118,6 +118,14 @@ function updateMetadata(html, metadata) {
     `<link rel="canonical" href="${canonical}">`,
     'canonical link',
   );
+  next = next.replace(
+    /<link\s+rel=["']alternate["']\s+hreflang=["']en-IN["']\s+href=["'][^"']*["']\s*\/?>/i,
+    `<link rel="alternate" hreflang="en-IN" href="${canonical}">`,
+  );
+  next = next.replace(
+    /<link\s+rel=["']alternate["']\s+hreflang=["']x-default["']\s+href=["'][^"']*["']\s*\/?>/i,
+    `<link rel="alternate" hreflang="x-default" href="${canonical}">`,
+  );
   next = replaceOne(
     next,
     /<meta\s+property=["']og:url["']\s+content=["'][^"']*["']\s*\/?>/i,

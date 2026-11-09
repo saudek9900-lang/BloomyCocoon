@@ -2941,21 +2941,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function applyCollectionFilterFromUrl() {
-        const category = new URLSearchParams(window.location.search).get('category');
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+        const searchQuery = urlParams.get('search') || urlParams.get('q');
         const toggle = document.querySelector('#screen-collection [data-category-filter-toggle]');
-        if (!category) {
-            if (toggle) {
+
+        if (category) {
+            const activeCategory = legacyFilterMap[category] || category;
+            const btn = document.querySelector(`#screen-collection button[data-category-filter="${activeCategory}"]`);
+            if (btn) {
+                setCollectionCategoryListOpen(getCollectionFilterRoot(btn), true);
+                filterCollectionCategory(activeCategory, btn);
+            } else if (toggle) {
                 filterCollectionCategory('all', toggle);
             }
-            return;
-        }
-        const activeCategory = legacyFilterMap[category] || category;
-        const btn = document.querySelector(`#screen-collection button[data-category-filter="${activeCategory}"]`);
-        if (btn) {
-            setCollectionCategoryListOpen(getCollectionFilterRoot(btn), true);
-            filterCollectionCategory(activeCategory, btn);
         } else if (toggle) {
             filterCollectionCategory('all', toggle);
+        }
+
+        if (searchQuery) {
+            const searchInput = document.getElementById('collection-search-input');
+            if (searchInput) {
+                searchInput.value = searchQuery;
+            }
+            if (typeof window.handleCollectionSearch === 'function') {
+                window.handleCollectionSearch(searchQuery);
+            }
         }
     }
 

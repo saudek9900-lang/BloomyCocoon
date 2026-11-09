@@ -233,7 +233,20 @@ export function getBreadcrumbList(screenId) {
     },
   ];
 
-  if (screenId !== 'screen-home') {
+  if (OCCASION_PRODUCTS[screenId]) {
+    itemListElement.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Handmade Collection',
+      item: `${SITE_ORIGIN}/collections`,
+    });
+    itemListElement.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: route.breadcrumbName,
+      item: getRouteCanonical(screenId),
+    });
+  } else if (screenId !== 'screen-home') {
     itemListElement.push({
       '@type': 'ListItem',
       position: 2,
@@ -357,11 +370,22 @@ function getProductReviewMeta(product) {
   };
 }
 
+const CATEGORY_MATERIALS = {
+  bouquets: 'Milk Cotton Yarn, Floral Craft Wire, Keepsake Wrapping Paper',
+  plushies: 'Milk Cotton Yarn, Hypoallergenic Polyester Fiberfill, Safety Eyes',
+  keychains: 'Milk Cotton Yarn, Stainless Steel Keychain Ring, Polyester Fiberfill',
+  'baby-gifts': 'Skin-Safe Milk Cotton Yarn, Baby-Friendly Hypoallergenic Fiberfill',
+  accessories: 'Durable Milk Cotton Yarn, Fabric Lining, Metal Hardware',
+  'home-decor': 'Milk Cotton Yarn, Wooden Craft Ring, Premium Macrame Cord',
+  'gift-combos': 'Milk Cotton Yarn, Floral Keepsake Wrapping, Gift Box Packaging',
+};
+
 export function getProductSchema(product) {
   const productUrl = getProductCanonical(product.id);
   const imageUrl = product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`;
   const safePrice = Number(product.startingPrice) || 149;
   const reviewMeta = getProductReviewMeta(product);
+  const material = CATEGORY_MATERIALS[product.category] || 'Soft Milk Cotton Yarn';
 
   return {
     '@type': 'Product',
@@ -370,6 +394,8 @@ export function getProductSchema(product) {
     description: product.description || `Handmade crochet ${product.name} crafted in Kerala by BloomyCocoon.`,
     image: imageUrl,
     sku: product.id,
+    mpn: product.id,
+    material,
     category: CATEGORY_LABELS[product.category] || 'Handmade',
     brand: {
       '@type': 'Brand',
@@ -405,6 +431,7 @@ export function getProductSchema(product) {
       price: String(safePrice),
       priceCurrency: 'INR',
       availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
       url: productUrl,
       priceValidUntil: '2027-12-31',
       seller: {
@@ -415,6 +442,33 @@ export function getProductSchema(product) {
         applicableCountry: 'IN',
         returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
         merchantReturnLink: `${SITE_ORIGIN}/returns-cancellations`,
+      },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          value: '0',
+          currency: 'INR',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'IN',
+        },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 2,
+            maxValue: 5,
+            unitCode: 'DAY',
+          },
+          transitTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 3,
+            maxValue: 5,
+            unitCode: 'DAY',
+          },
+        },
       },
     },
   };
