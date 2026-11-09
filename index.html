@@ -151,10 +151,10 @@
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contact">Contact Us</a>
             </div>
             <div class="flex items-center gap-md">
-                <button onclick="toggleCart(this)" class="p-2 text-on-surface-variant hover:bg-primary-container/50 rounded-full transition-all duration-300 relative cart-trigger" aria-label="Open cart" aria-controls="sideCart" aria-expanded="false">
+                <a href="/cart" class="p-2 text-on-surface-variant hover:bg-primary-container/50 rounded-full transition-all duration-300 relative cart-trigger" aria-label="Open shopping cart" aria-controls="sideCart" aria-expanded="false">
                     <span class="material-symbols-outlined">shopping_bag</span>
                     <span class="absolute top-1 right-1 w-4 h-4 bg-secondary text-white text-[10px] rounded-full flex items-center justify-center font-bold cart-badge hidden" aria-live="polite">0</span>
-                </button>
+                </a>
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-on-surface-variant" aria-label="Open mobile menu" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
@@ -164,6 +164,10 @@
         <div id="mobile-menu" class="hidden md:hidden px-6 py-sm border-t border-outline-variant/20 bg-surface flex flex-col gap-sm">
             <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/collections">Handmade Collection</a>
             <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/custom-order">Custom Orders</a>
+            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md flex items-center justify-between" href="/cart">
+                <span>Shopping Cart</span>
+                <span class="cart-badge bg-secondary text-white text-[10px] px-2 py-0.5 rounded-full font-bold hidden">0</span>
+            </a>
             <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/about">About Us</a>
             <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/faq">FAQ</a>
             <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/contact">Contact Us</a>
@@ -178,14 +182,20 @@
         <div class="flex justify-between items-start mb-3 sm:mb-md pb-3 border-b border-outline-variant/15">
             <div>
                 <div class="flex items-center gap-2">
-                    <h2 class="font-headline-sm text-headline-sm text-primary" id="cart-title">Cart</h2>
-                    <span id="cart-header-count" class="bg-secondary/10 text-secondary text-xs font-label-md px-2 py-0.5 rounded-full font-bold">0 items</span>
+                    <h2 class="font-headline-sm text-headline-sm text-primary" id="cart-title">Your Basket</h2>
+                    <span id="cart-header-count" class="cart-header-count bg-secondary/10 text-secondary text-xs font-label-md px-2 py-0.5 rounded-full font-bold">0 items</span>
                 </div>
-                <p class="font-caption text-caption text-on-surface-variant italic mt-0.5" id="cart-description">Your handmade picks before WhatsApp confirmation</p>
+                <p class="font-caption text-caption text-on-surface-variant italic mt-0.5" id="cart-description">Handmade picks before WhatsApp confirmation</p>
             </div>
-            <button class="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-primary-container/40 cart-close-btn" onclick="closeCart()" aria-label="Close cart drawer">
-                <span class="material-symbols-outlined">close</span>
-            </button>
+            <div class="flex items-center gap-1.5">
+                <a href="/cart" onclick="closeCart()" class="text-xs text-secondary font-semibold hover:text-primary transition-colors flex items-center gap-0.5 bg-primary-container/60 hover:bg-primary-container px-2.5 py-1 rounded-full border border-secondary/15" aria-label="Open full cart page">
+                    <span>Full Page</span>
+                    <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                </a>
+                <button class="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-primary-container/40 cart-close-btn" onclick="closeCart()" aria-label="Close cart drawer">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
         </div>
 
         <!-- Craft reassurance banner -->
@@ -213,26 +223,26 @@
                     <span>Estimated Total (<span id="cart-summary-items-count">0 items</span>)</span>
                     <span class="font-semibold text-on-surface cart-total-price">₹0</span>
                 </div>
-                <div id="cart-addons-row" class="hidden justify-between text-secondary text-[11px] pt-1 border-t border-outline-variant/10">
+                <div id="cart-addons-row" class="cart-addons-row hidden justify-between text-secondary text-[11px] pt-1 border-t border-outline-variant/10">
                     <span class="flex items-center gap-1">
                         <span class="material-symbols-outlined text-[14px]">redeem</span>
                         <span>Gift Packaging &amp; Add-ons</span>
                     </span>
-                    <span class="font-bold" id="cart-addons-amount">+₹0</span>
+                    <span class="font-bold cart-addons-amount" id="cart-addons-amount">+₹0</span>
                 </div>
                 <div class="flex justify-between text-secondary pt-1 border-t border-outline-variant/10">
                     <span class="flex items-center gap-1">
                         <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
                         <span id="cart-payment-note">50% Advance via UPI <span class="text-[10px] opacity-75">(on booking)</span></span>
                     </span>
-                    <span class="font-bold" id="cart-advance-amount">₹0</span>
+                    <span class="font-bold cart-advance-amount" id="cart-advance-amount">₹0</span>
                 </div>
                 <div class="flex justify-between text-on-surface-variant/80 text-[11px]">
                     <span class="flex items-center gap-1">
                         <span class="w-1.5 h-1.5 rounded-full bg-outline-variant/60"></span>
                         <span>50% Balance <span class="text-[10px] opacity-75">(before dispatch)</span></span>
                     </span>
-                    <span class="font-medium" id="cart-balance-amount">₹0</span>
+                    <span class="font-medium cart-balance-amount" id="cart-balance-amount">₹0</span>
                 </div>
             </div>
 
@@ -242,6 +252,12 @@
                 <span>Continue on WhatsApp</span>
                 <span class="material-symbols-outlined text-[18px]">chat</span>
             </button>
+
+            <a href="/cart" onclick="closeCart()" class="w-full text-center py-1 text-xs font-semibold text-secondary hover:text-primary transition-colors flex items-center justify-center gap-1">
+                <span>Open Full Cart Page &amp; Gift Touches</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+
             <p class="text-[10px] text-center text-on-surface-variant/75" id="cart-checkout-note">Starting from prices are a guide. Final quote &amp; customizations confirmed on WhatsApp.</p>
         </div>
     </aside>
@@ -1870,6 +1886,285 @@
                 </section>
             </main>
             <footer class="bg-surface-container py-10 border-t border-outline-variant/10"><div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg text-center"><a data-nav-logo class="nav-logo inline-flex justify-center" href="/"><span class="font-display-lg text-[36px] tracking-tight text-secondary font-serif"><span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span></span></a><nav class="flex flex-wrap justify-center gap-6 my-md" aria-label="Footer navigation"><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/">Home</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/collections">Handmade Collection</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/custom-order">Custom Orders</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/anniversary-gifts">Anniversary Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/birthday-gifts">Birthday Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/baby-shower-gifts">Baby Shower Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/return-gifts">Return Gifts</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/faq">FAQ</a><a class="font-body-md text-on-surface-variant hover:text-secondary" href="/contact">Contact Us</a></nav><p class="font-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p></div></footer>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- SCREEN: STANDALONE SHOPPING CART & CHECKOUT PREPARATION -->
+        <!-- ==================================================== -->
+        <section id="screen-cart" class="screen hidden flex flex-col justify-between relative" role="region" aria-label="Shopping Cart">
+            <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pt-6 md:pt-10 pb-28 md:pb-16 flex-1 w-full">
+                <!-- Breadcrumbs -->
+                <nav aria-label="Breadcrumb" class="mb-6 text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5" id="cart-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">Home</span></a>
+                        <meta itemprop="position" content="1">
+                    </span>
+                    <span class="text-outline-variant" aria-hidden="true">/</span>
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="/collections" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">Handmade Collection</span></a>
+                        <meta itemprop="position" content="2">
+                    </span>
+                    <span class="text-outline-variant" aria-hidden="true">/</span>
+                    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span itemprop="name" class="text-on-surface font-semibold">Shopping Cart</span>
+                        <meta itemprop="position" content="3">
+                    </span>
+                </nav>
+
+                <!-- Page Header & Artisanal Guarantee Strip -->
+                <div class="mb-6 md:mb-8">
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-3 border-b border-outline-variant/15">
+                        <div class="flex items-center gap-3">
+                            <h1 class="font-display-lg text-display-lg-mobile md:text-3xl text-primary font-serif font-bold tracking-tight">Your Handcrafted Basket</h1>
+                            <span class="cart-badge bg-secondary/10 text-secondary text-xs font-label-md px-2.5 py-0.5 rounded-full font-bold hidden">0</span>
+                        </div>
+                        <a href="/collections" class="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                            <span>Continue Shopping</span>
+                        </a>
+                    </div>
+
+                    <!-- Reassurance banner -->
+                    <div class="mt-4 flex flex-wrap items-center justify-between gap-3 bg-surface-container-low/80 border border-outline-variant/20 rounded-2xl px-4 py-3 text-xs text-on-surface-variant">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-secondary text-[18px]">eco</span>
+                            <span class="font-medium text-on-surface">100% Handcrafted to order in Mampad, Kerala</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-[11px] text-on-surface-variant">
+                            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 3–7 crafting days</span>
+                            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Photo proof before dispatch</span>
+                            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Safe all-India shipping</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Cart Grid: Left Items List & Gifting vs Right Sticky Summary -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                    
+                    <!-- LEFT COLUMN: Items List + Gifting touches + Notes (8 cols) -->
+                    <div class="lg:col-span-7 xl:col-span-8 space-y-6">
+                        
+                        <!-- Dynamic items container -->
+                        <div id="cart-page-items-wrapper" class="cart-page-items-container space-y-6" aria-live="polite">
+                            <!-- Rendered by JS or pre-rendered static fallback: empty basket with popular handcrafted blooms -->
+                            <div class="text-center py-12 px-6 rounded-3xl bg-surface-container-low/70 border border-outline-variant/20 flex flex-col items-center gap-3">
+                                <div class="w-16 h-16 rounded-full bg-primary-container/70 flex items-center justify-center text-secondary">
+                                    <span class="material-symbols-outlined text-3xl">shopping_basket</span>
+                                </div>
+                                <h2 class="font-headline-sm text-xl text-primary font-bold">Your basket is waiting for blooms</h2>
+                                <p class="font-body-md text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">Explore our slow-crafted bouquets, cute plushies, and forever keepsakes made with love in Mampad, Kerala.</p>
+                                <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs">
+                                    <span>Browse Handmade Collection</span>
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                </a>
+                            </div>
+
+                            <div class="bg-surface-container-low/50 border border-outline-variant/20 rounded-3xl p-5 sm:p-6 space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="font-headline-sm text-base text-primary font-bold">Popular Handcrafted Blooms</h3>
+                                        <p class="text-xs text-on-surface-variant">Tap to explore or add directly to basket</p>
+                                    </div>
+                                    <a href="/collections" class="text-xs font-semibold text-secondary hover:underline flex items-center gap-0.5">
+                                        <span>View All</span>
+                                        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                    </a>
+                                </div>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
+                                        <a href="/products/single-crochet-rose" class="relative block mb-2" title="Single Crochet Rose">
+                                            <img src="/images/crochet_rose_bouquet_single-crochet-rose-landscape-generated.png" alt="Single Crochet Rose" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Popular Fav</span>
+                                        </a>
+                                        <div>
+                                            <a href="/products/single-crochet-rose" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">Single Crochet Rose</a>
+                                            <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
+                                                <span>Crochet Bouquets</span>
+                                                <span class="font-bold text-secondary">Starting ₹149</span>
+                                            </div>
+                                        </div>
+                                        <a href="/products/single-crochet-rose" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 text-center">
+                                            <span class="material-symbols-outlined text-[15px]">visibility</span>
+                                            <span>View Bloom</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
+                                        <a href="/products/bunny-plushie" class="relative block mb-2" title="Bunny Plushie">
+                                            <img src="/images/crochet_bunny_plush_bunny-plushie.png" alt="Bunny Plushie" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Bestseller</span>
+                                        </a>
+                                        <div>
+                                            <a href="/products/bunny-plushie" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">Bunny Plushie</a>
+                                            <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
+                                                <span>Amigurumi Plushies</span>
+                                                <span class="font-bold text-secondary">Starting ₹499</span>
+                                            </div>
+                                        </div>
+                                        <a href="/products/bunny-plushie" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 text-center">
+                                            <span class="material-symbols-outlined text-[15px]">visibility</span>
+                                            <span>View Bloom</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
+                                        <a href="/products/strawberry-keychain" class="relative block mb-2" title="Strawberry Keychain">
+                                            <img src="/images/strawberry_keychain_strawberry-keychain.png" alt="Strawberry Keychain" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Pocket Love</span>
+                                        </a>
+                                        <div>
+                                            <a href="/products/strawberry-keychain" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">Strawberry Keychain</a>
+                                            <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
+                                                <span>Everyday Keychains</span>
+                                                <span class="font-bold text-secondary">Starting ₹199</span>
+                                            </div>
+                                        </div>
+                                        <a href="/products/strawberry-keychain" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 text-center">
+                                            <span class="material-symbols-outlined text-[15px]">visibility</span>
+                                            <span>View Bloom</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
+                                        <a href="/products/couple-bouquet-combo" class="relative block mb-2" title="Couple Bouquet Combo">
+                                            <img src="/images/mixed_luxury_bouquet_couple-bouquet-combo.png" alt="Couple Bouquet Combo" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Anniversary</span>
+                                        </a>
+                                        <div>
+                                            <a href="/products/couple-bouquet-combo" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">Couple Bouquet Combo</a>
+                                            <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
+                                                <span>Crochet Bouquets</span>
+                                                <span class="font-bold text-secondary">Starting ₹1,199</span>
+                                            </div>
+                                        </div>
+                                        <a href="/products/couple-bouquet-combo" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 text-center">
+                                            <span class="material-symbols-outlined text-[15px]">visibility</span>
+                                            <span>View Bloom</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Special Delivery Instructions / Overall Customer Notes -->
+                        <div id="cart-page-notes-card" class="bg-surface-container-low/70 border border-outline-variant/20 rounded-2xl p-4 sm:p-5 space-y-2">
+                            <label for="cart-page-customer-note" class="font-label-md text-xs font-bold text-on-surface flex items-center justify-between">
+                                <span class="flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[16px] text-secondary">edit_note</span>
+                                    <span>Special Delivery Instructions or Overall Notes (Optional)</span>
+                                </span>
+                                <span class="text-[10px] text-on-surface-variant font-normal">Sent with your WhatsApp quote</span>
+                            </label>
+                            <textarea id="cart-page-customer-note" rows="2" class="w-full bg-white/90 border border-outline-variant/20 rounded-xl p-3 text-xs text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all placeholder:text-on-surface-variant/60" placeholder="e.g. Please deliver before Sunday for a birthday gift, preferred petal shades, or surprise delivery instructions..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Sticky Order Summary Card (4 cols) -->
+                    <div class="lg:col-span-5 xl:col-span-4 sticky top-24 space-y-4">
+                        <div class="bg-surface-container-low border border-outline-variant/25 rounded-3xl p-5 sm:p-6 shadow-sm space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-outline-variant/15">
+                                <h2 class="font-headline-sm text-lg text-primary font-bold">Order Summary</h2>
+                                <span class="bg-secondary/10 text-secondary text-xs font-label-md px-2.5 py-0.5 rounded-full font-bold cart-header-count">0 items</span>
+                            </div>
+
+                            <!-- Cost Breakdown -->
+                            <div class="space-y-2.5 text-xs">
+                                <div class="flex justify-between text-on-surface-variant">
+                                    <span>Items Subtotal</span>
+                                    <span class="font-semibold text-on-surface cart-items-subtotal">₹0</span>
+                                </div>
+                                <div class="cart-addons-row hidden justify-between text-secondary text-xs pt-1 border-t border-outline-variant/10">
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[15px]">redeem</span>
+                                        <span>Gift Packaging &amp; Add-ons</span>
+                                    </span>
+                                    <span class="font-bold cart-addons-amount">+₹0</span>
+                                </div>
+                                <div class="flex justify-between text-on-surface-variant text-[11px] pt-1 border-t border-outline-variant/10">
+                                    <span>Delivery Charge</span>
+                                    <span class="font-medium text-secondary">Confirmed on WhatsApp</span>
+                                </div>
+                                <div class="flex justify-between text-base font-bold text-primary pt-2 border-t border-outline-variant/20">
+                                    <span>Estimated Total</span>
+                                    <span class="cart-total-price text-secondary font-headline-sm">₹0</span>
+                                </div>
+                            </div>
+
+                            <!-- 50/50 Handcrafted Payment Schedule -->
+                            <div class="bg-white/80 rounded-2xl p-3.5 border border-outline-variant/20 space-y-2">
+                                <div class="flex items-center justify-between text-[11px] font-bold text-secondary uppercase tracking-wider">
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[14px]">account_balance_wallet</span>
+                                        <span>Handmade Payment Schedule</span>
+                                    </span>
+                                    <span class="text-[10px] bg-secondary/10 px-2 py-0.5 rounded-full font-semibold">UPI</span>
+                                </div>
+                                <div class="flex justify-between items-center text-xs pt-1 border-t border-outline-variant/10">
+                                    <span class="flex items-center gap-1.5 text-secondary">
+                                        <span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
+                                        <span>50% Advance on Booking</span>
+                                    </span>
+                                    <span class="font-bold text-secondary cart-advance-amount">₹0</span>
+                                </div>
+                                <div class="flex justify-between items-center text-[11px] text-on-surface-variant pt-1 border-t border-outline-variant/10">
+                                    <span class="flex items-center gap-1.5">
+                                        <span class="w-2 h-2 rounded-full bg-outline-variant/60 shrink-0"></span>
+                                        <span>50% Balance Before Dispatch</span>
+                                    </span>
+                                    <span class="font-medium cart-balance-amount">₹0</span>
+                                </div>
+                                <p class="text-[10px] text-on-surface-variant/75 pt-1 italic">Advance is paid via UPI once colors and details are finalized on WhatsApp. Balance is paid after you approve completion photos.</p>
+                            </div>
+
+                            <!-- WhatsApp Checkout Action -->
+                            <button disabled class="checkout-btn w-full bg-secondary text-white py-3.5 sm:py-4 rounded-2xl font-label-md text-sm md:text-base flex items-center justify-center gap-2 active:scale-95 transition-all opacity-55 cursor-default shadow-md hover:shadow-lg" aria-label="Continue to WhatsApp to confirm final quote and order details">
+                                <span>Continue on WhatsApp</span>
+                                <span class="material-symbols-outlined text-[20px]">chat</span>
+                            </button>
+                            <p class="text-[10px] text-center text-on-surface-variant/75 leading-relaxed">Starting from prices are a guide. Final quote, customized colors, packaging, and delivery confirmed directly on WhatsApp.</p>
+
+                            <!-- Trust & Care Assurances -->
+                            <div class="pt-3 border-t border-outline-variant/15 space-y-2 text-[11px] text-on-surface-variant">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+                                    <span>Direct chat with artisan maker</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px] text-secondary">photo_camera</span>
+                                    <span>Work-in-progress photos before packing</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px] text-secondary">inventory_2</span>
+                                    <span>Secure bubble wrapped packaging</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Standard Shared Footer -->
+            <footer class="bg-surface-container py-10 border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg text-center">
+                    <a data-nav-logo class="nav-logo inline-flex justify-center" href="/">
+                        <span class="font-display-lg text-[36px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <nav class="flex flex-wrap justify-center gap-6 my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary" href="/contact">Contact Us</a>
+                    </nav>
+                    <p class="font-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- ==================================================== -->

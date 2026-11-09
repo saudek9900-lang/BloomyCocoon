@@ -127,6 +127,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: 'Return Gifts & Favors',
   },
+  'screen-cart': {
+    path: '/cart',
+    outputDir: 'cart',
+    title: 'Shopping Cart | BloomyCocoon Handmade Crochet Gifts',
+    description: 'Review your handcrafted crochet bouquets, plushies, and custom gifts in your cart. Add personalized notes and gift packaging before WhatsApp order confirmation.',
+    schemaType: 'CheckoutPage',
+    breadcrumbName: 'Shopping Cart',
+  },
 };
 
 export const OCCASION_PRODUCTS = {

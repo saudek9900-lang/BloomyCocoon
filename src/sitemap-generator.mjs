@@ -18,6 +18,7 @@ const CORE_ROUTES = [
   { path: '/privacy-policy', priority: '0.4', changefreq: 'yearly' },
   { path: '/order-terms', priority: '0.5', changefreq: 'monthly' },
   { path: '/crochet-care', priority: '0.5', changefreq: 'monthly' },
+  { path: '/cart', priority: '0.6', changefreq: 'weekly' },
 ];
 
 function escapeXml(str) {

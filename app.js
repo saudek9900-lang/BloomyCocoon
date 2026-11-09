@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cart state
     let cart = [];
+    let sharedCartNote = '';
 
     const collectionCategories = [
   {
@@ -777,7 +778,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function buildCartWhatsAppMessage() {
-        const note = document.getElementById('cart-customer-note')?.value.trim();
+        const note = (sharedCartNote || document.getElementById('cart-page-customer-note')?.value || document.getElementById('cart-customer-note')?.value || '').trim();
         let message = "Hello BloomyCocoon! 🌸 I would like to place an order for these handmade crochet items:\n\n";
 
         cart.forEach((item, index) => {
@@ -870,6 +871,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cleanPath = trimTrailingSlash(pathname || '/');
         if (cleanPath === '/' || cleanPath === '/home') return 'screen-home';
         if (cleanPath.startsWith('/products/') || cleanPath.startsWith('/product/')) return 'screen-product-detail';
+        if (cleanPath === '/cart' || cleanPath === '/basket') return 'screen-cart';
         if (cleanPath === '/collections' || cleanPath === '/collection') return 'screen-collection';
         if (cleanPath === '/custom-order' || cleanPath === '/custom' || cleanPath === '/custom-orders') return 'screen-custom-orders';
         if (cleanPath === '/about') return 'screen-about';
@@ -1289,6 +1291,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetScreenId === 'screen-product-detail') {
                 renderProductDetailScreen(targetPath || window.location.pathname);
             }
+            if (targetScreenId === 'screen-cart') {
+                renderCart();
+            }
             return;
         }
 
@@ -1390,6 +1395,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (targetScreenId === 'screen-product-detail') {
                 renderProductDetailScreen(targetPath || window.location.pathname);
+            }
+            if (targetScreenId === 'screen-cart') {
+                renderCart();
             }
 
             if (targetScreenId === 'screen-custom-orders') {
@@ -1524,6 +1532,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (initialScreen === 'screen-product-detail') {
             renderProductDetailScreen(window.location.pathname);
+        }
+        if (initialScreen === 'screen-cart') {
+            renderCart();
         }
     } else if (initialScreen === 'screen-collection') {
         applyCollectionFilterFromUrl();
@@ -1966,10 +1977,12 @@ document.addEventListener('DOMContentLoaded', () => {
             currency: 'INR'
         });
         
-        // Automatically slide open the drawer
-        const sideCart = document.getElementById('sideCart');
-        if (sideCart && !sideCart.classList.contains('cart-visible')) {
-            setCartOpen(true);
+        // Automatically slide open the drawer if not already on the dedicated cart screen
+        if (currentScreen !== 'screen-cart') {
+            const sideCart = document.getElementById('sideCart');
+            if (sideCart && !sideCart.classList.contains('cart-visible')) {
+                setCartOpen(true);
+            }
         }
     };
 
@@ -2039,8 +2052,223 @@ document.addEventListener('DOMContentLoaded', () => {
         trackEvent('set_aroma_mist', { scent });
     };
 
+    function buildGiftingTouchesHtml(isDrawer = true) {
+        return `
+            <div class="cart-gifting-section bg-surface-container/70 border border-outline-variant/25 rounded-2xl ${isDrawer ? 'p-3.5 space-y-3 mt-3' : 'p-5 sm:p-6 space-y-4 mt-6 shadow-xs'}">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-secondary text-[20px]">redeem</span>
+                        <span class="font-label-md ${isDrawer ? 'text-xs' : 'text-sm'} font-bold text-on-surface">Make It Extra Special 🎁</span>
+                    </div>
+                    <span class="text-[10px] text-secondary font-semibold bg-white/80 px-2.5 py-0.5 rounded-full border border-secondary/15">Artisan Touches</span>
+                </div>
+                
+                <div class="space-y-2.5">
+                    <!-- 1. Calligraphy Card -->
+                    <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.card.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-label-md text-xs font-bold text-on-surface">✍️ Handwritten Calligraphy Card</span>
+                                    <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.card.price}</span>
+                                </div>
+                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Written on craft cardstock with custom wax seal stamp</p>
+                            </div>
+                        </label>
+                        ${cartGiftAddons.card.enabled ? `
+                            <div class="mt-2.5 pt-2 border-t border-secondary/15 animate-fadeIn">
+                                <textarea maxlength="150" rows="2" oninput="updateGiftCardMessage(this.value)" placeholder="Enter message for recipient (e.g., Happy 25th Birthday Ammu! Always blooming ❤️ - Rahul)" class="w-full bg-white border border-outline-variant/30 rounded-lg p-2.5 text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-secondary/40 focus:border-secondary transition-all">${escapeHTML(cartGiftAddons.card.message || '')}</textarea>
+                                <div class="flex justify-between items-center text-[10px] text-on-surface-variant/70 mt-1">
+                                    <span>Tucked securely inside your order</span>
+                                    <span class="gift-card-chars">${(cartGiftAddons.card.message || '').length}/150</span>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- 2. Warm Fairy Lights -->
+                    <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.fairyLights.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-label-md text-xs font-bold text-on-surface">💡 Warm Fairy Lights String</span>
+                                    <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.fairyLights.price}</span>
+                                </div>
+                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Micro-LED warm copper wire woven through flowers (includes battery)</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 3. Keepsake Window Display Box -->
+                    <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.windowBox.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" onchange="toggleGiftAddon('windowBox')" ${cartGiftAddons.windowBox.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-label-md text-xs font-bold text-on-surface">🎁 Keepsake Display Window Box</span>
+                                    <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.windowBox.price}</span>
+                                </div>
+                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Rigid clear display showcase with satin ribbon handle for dust-free display</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- 4. Cozy Aroma Spritz (Free) -->
+                    <div class="gift-addon-item bg-white/95 rounded-xl p-3 border border-outline-variant/20">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-label-md text-xs font-bold text-on-surface">🌿 Cozy Aroma Yarn Mist</span>
+                            <span class="text-[10px] font-bold text-tertiary bg-tertiary-container/80 px-2 py-0.5 rounded-full">Complimentary</span>
+                        </div>
+                        <p class="text-[11px] text-on-surface-variant/80 mb-2">Soothing aroma lightly spritzed on milk cotton yarn before packaging</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" onclick="setAromaMist('none')" class="text-xs py-1.5 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'none' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">None</button>
+                            <button type="button" onclick="setAromaMist('lavender')" class="text-xs py-1.5 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'lavender' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">Lavender 🪻</button>
+                            <button type="button" onclick="setAromaMist('vanilla')" class="text-xs py-1.5 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'vanilla' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">Vanilla 🍦</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderPageEmptyCart() {
+        const popularPicks = [
+            { id: 'single-crochet-rose', name: 'Single Crochet Rose', category: 'bouquets', price: 149, badge: 'Popular Fav' },
+            { id: 'bunny-plushie', name: 'Bunny Plushie', category: 'plushies', price: 499, badge: 'Bestseller' },
+            { id: 'strawberry-keychain', name: 'Strawberry Keychain', category: 'keychains', price: 199, badge: 'Pocket Love' },
+            { id: 'couple-bouquet-combo', name: 'Couple Bouquet Combo', category: 'bouquets', price: 1199, badge: 'Anniversary' }
+        ];
+
+        let picksHtml = '';
+        popularPicks.forEach(pick => {
+            const catalogItem = collectionProducts.find(p => p.id === pick.id) || pick;
+            const img = getProductImage(catalogItem);
+            const safePrice = getSafePrice(catalogItem.startingPrice || catalogItem.price);
+            const categoryLabel = getCategoryLabel(catalogItem.category);
+
+            picksHtml += `
+                <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-sm transition-all group">
+                    <div class="relative cursor-pointer mb-2" onclick="openQuickLook('${catalogItem.id}')">
+                        <img src="${img}" alt="${escapeHTML(catalogItem.name)}" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                        ${catalogItem.badge ? `<span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(catalogItem.badge)}</span>` : ''}
+                    </div>
+                    <div>
+                        <a href="/products/${catalogItem.id}" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">${escapeHTML(catalogItem.name)}</a>
+                        <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
+                            <span>${escapeHTML(categoryLabel)}</span>
+                            <span class="font-bold text-secondary">Starting ₹${formatPrice(safePrice)}</span>
+                        </div>
+                    </div>
+                    <button onclick="addToCart('${catalogItem.id}', '${escapeHTML(catalogItem.name)}', '${catalogItem.category}', ${safePrice}, '${img}', '${catalogItem.badge || ''}', '${escapeHTML(catalogItem.description || '')}')" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95">
+                        <span class="material-symbols-outlined text-[15px]">add</span>
+                        <span>Add to Basket</span>
+                    </button>
+                </div>
+            `;
+        });
+
+        return `
+            <div class="space-y-6">
+                <div class="text-center py-12 px-6 rounded-3xl bg-surface-container-low/70 border border-outline-variant/20 flex flex-col items-center gap-3">
+                    <div class="w-16 h-16 rounded-full bg-primary-container/70 flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined text-3xl">shopping_basket</span>
+                    </div>
+                    <h2 class="font-headline-sm text-xl text-primary font-bold">Your basket is waiting for blooms</h2>
+                    <p class="font-body-md text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">Explore our slow-crafted bouquets, cute plushies, and forever keepsakes made with love in Mampad, Kerala.</p>
+                    <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs">
+                        <span>Browse Handmade Collection</span>
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="bg-surface-container-low/50 border border-outline-variant/20 rounded-3xl p-5 sm:p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-headline-sm text-base text-primary font-bold">Popular Handcrafted Blooms</h3>
+                            <p class="text-xs text-on-surface-variant">Tap to add directly to your basket</p>
+                        </div>
+                        <a href="/collections" class="text-xs font-semibold text-secondary hover:underline flex items-center gap-0.5">
+                            <span>View All</span>
+                            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                        ${picksHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderPageCartItems() {
+        let html = '<div class="space-y-3.5">';
+        cart.forEach(item => {
+            const categoryLabel = getCategoryLabel(item.category);
+            const catalogItem = collectionProducts.find(p => p.id === item.id);
+            const badge = item.badge || catalogItem?.badge || '';
+            const desc = item.description || catalogItem?.description || '';
+            const lineSubtotal = getSafePrice(item.price) * item.qty;
+
+            html += `
+                <div class="cart-page-item-card bg-surface-container-lowest p-4 sm:p-5 rounded-3xl border border-outline-variant/20 shadow-xs space-y-3 transition-all">
+                    <!-- Top row: Image, title, badge, remove -->
+                    <div class="flex items-start gap-4">
+                        <a href="/products/${item.id}" class="relative group shrink-0" title="View details of ${escapeHTML(item.name)}">
+                            <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="96" height="96" loading="lazy">
+                        </a>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="min-w-0">
+                                    <a href="/products/${item.id}" class="font-headline-sm text-base sm:text-lg text-primary font-bold leading-snug hover:text-secondary hover:underline transition-colors block truncate">${escapeHTML(item.name)}</a>
+                                    <div class="flex items-center gap-2 flex-wrap mt-1">
+                                        <span class="text-xs text-on-surface-variant font-medium">${escapeHTML(categoryLabel)}</span>
+                                        ${badge ? `<span class="bg-secondary/10 text-secondary text-[11px] font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(badge)}</span>` : ''}
+                                    </div>
+                                </div>
+                                <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-9 h-9 flex items-center justify-center rounded-full hover:bg-error-container/40 text-outline-variant hover:text-error transition-all shrink-0" title="Remove item">
+                                    <span class="material-symbols-outlined text-[19px]">delete</span>
+                                </button>
+                            </div>
+                            ${desc ? `<p class="text-xs text-on-surface-variant/80 mt-1.5 leading-relaxed line-clamp-2">${escapeHTML(desc)}</p>` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Middle row: Quantity Stepper & Price Breakdown -->
+                    <div class="flex items-center justify-between pt-2 border-t border-outline-variant/10">
+                        <div class="flex items-center gap-1.5 bg-primary-container/40 rounded-full p-1 border border-outline-variant/20">
+                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[34px] min-h-[34px] sm:min-w-[36px] sm:min-h-[36px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                            <span class="font-body-md text-xs sm:text-sm font-bold px-3 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
+                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[34px] min-h-[34px] sm:min-w-[36px] sm:min-h-[36px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-headline-sm text-base sm:text-lg text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
+                            <div class="text-[11px] text-on-surface-variant font-medium">${item.qty > 1 ? `(₹${formatPrice(item.price)} each)` : 'Starting price'}</div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom row: Custom color or note for this item -->
+                    <div class="pt-1.5">
+                        <div class="relative">
+                            <span class="material-symbols-outlined text-outline-variant text-[16px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">palette</span>
+                            <input type="text" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colors or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="w-full bg-surface-container-low/70 border border-outline-variant/20 rounded-xl pl-8 pr-3 py-2 text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom color or personalization wish for ${escapeHTML(item.name)}">
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        html += '</div>';
+
+        // Append Gifting Touches station
+        html += buildGiftingTouchesHtml(false);
+
+        return html;
+    }
+
     function renderCart() {
-        const cartContainers = document.querySelectorAll('.cart-items-container');
+        const drawerContainers = document.querySelectorAll('#sideCart .cart-items-container');
+        const pageContainers = document.querySelectorAll('.cart-page-items-container, #cart-page-items-wrapper');
         const cartBadge = document.querySelectorAll('.cart-badge');
         const cartTotalText = document.querySelectorAll('.cart-total-price');
         const checkoutBtn = document.querySelectorAll('.checkout-btn');
@@ -2056,37 +2284,40 @@ document.addEventListener('DOMContentLoaded', () => {
         const advanceAmount = Math.round(grandTotal * 0.5);
         const balanceAmount = grandTotal - advanceAmount;
 
-        // Update header count and breakdown
-        const headerCount = document.getElementById('cart-header-count');
-        if (headerCount) {
-            headerCount.textContent = `${totalQty} item${totalQty === 1 ? '' : 's'}`;
-        }
-        const summaryCount = document.getElementById('cart-summary-items-count');
-        if (summaryCount) {
-            summaryCount.textContent = `${totalQty} item${totalQty === 1 ? '' : 's'}`;
-        }
-        const advanceEl = document.getElementById('cart-advance-amount');
-        if (advanceEl) {
-            advanceEl.textContent = totalQty > 0 ? `₹${formatPrice(advanceAmount)}` : '₹0';
-        }
-        const balanceEl = document.getElementById('cart-balance-amount');
-        if (balanceEl) {
-            balanceEl.textContent = totalQty > 0 ? `₹${formatPrice(balanceAmount)}` : '₹0';
-        }
+        // Update header counts
+        document.querySelectorAll('.cart-header-count, #cart-header-count').forEach(el => {
+            el.textContent = `${totalQty} item${totalQty === 1 ? '' : 's'}`;
+        });
+        document.querySelectorAll('.cart-summary-items-count, #cart-summary-items-count').forEach(el => {
+            el.textContent = `${totalQty} item${totalQty === 1 ? '' : 's'}`;
+        });
+
+        // Update subtotal & payment breakdown
+        document.querySelectorAll('.cart-items-subtotal').forEach(el => {
+            el.textContent = totalQty > 0 ? `₹${formatPrice(itemsSubtotal)}` : '₹0';
+        });
+        document.querySelectorAll('.cart-advance-amount, #cart-advance-amount').forEach(el => {
+            el.textContent = totalQty > 0 ? `₹${formatPrice(advanceAmount)}` : '₹0';
+        });
+        document.querySelectorAll('.cart-balance-amount, #cart-balance-amount').forEach(el => {
+            el.textContent = totalQty > 0 ? `₹${formatPrice(balanceAmount)}` : '₹0';
+        });
 
         // Update addons row in breakdown
-        const addonsRow = document.getElementById('cart-addons-row');
-        const addonsAmountEl = document.getElementById('cart-addons-amount');
-        if (addonsRow && addonsAmountEl) {
+        const addonsRows = document.querySelectorAll('.cart-addons-row, #cart-addons-row');
+        const addonsAmountEls = document.querySelectorAll('.cart-addons-amount, #cart-addons-amount');
+        addonsRows.forEach(row => {
             if (addonsTotal > 0 && totalQty > 0) {
-                addonsRow.classList.remove('hidden');
-                addonsRow.classList.add('flex');
-                addonsAmountEl.textContent = `+₹${formatPrice(addonsTotal)}`;
+                row.classList.remove('hidden');
+                row.classList.add('flex');
             } else {
-                addonsRow.classList.add('hidden');
-                addonsRow.classList.remove('flex');
+                row.classList.add('hidden');
+                row.classList.remove('flex');
             }
-        }
+        });
+        addonsAmountEls.forEach(el => {
+            el.textContent = `+₹${formatPrice(addonsTotal)}`;
+        });
 
         // Update badge counters
         cartBadge.forEach(badge => {
@@ -2100,15 +2331,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
-            btn.setAttribute('aria-label', totalQty > 0 ? `Open cart, ${totalQty} item${totalQty === 1 ? '' : 's'} selected` : 'Open cart');
+            btn.setAttribute('aria-label', totalQty > 0 ? `Open shopping cart, ${totalQty} item${totalQty === 1 ? '' : 's'} selected` : 'Open shopping cart');
         });
 
-        // Render subtotal texts
+        // Render total texts
         cartTotalText.forEach(el => {
             el.innerText = totalQty > 0 ? `₹${formatPrice(grandTotal)}` : 'Add items';
         });
 
-        // Enable/Disable checkout button
+        // Enable/Disable checkout buttons
         checkoutBtn.forEach(btn => {
             if (totalQty > 0) {
                 btn.disabled = false;
@@ -2121,8 +2352,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // HTML list rendering
-        cartContainers.forEach(container => {
+        // Sync notes inputs
+        const drawerNote = document.getElementById('cart-customer-note');
+        const pageNote = document.getElementById('cart-page-customer-note');
+        if (drawerNote && sharedCartNote && drawerNote.value !== sharedCartNote) {
+            drawerNote.value = sharedCartNote;
+        }
+        if (pageNote && sharedCartNote && pageNote.value !== sharedCartNote) {
+            pageNote.value = sharedCartNote;
+        }
+
+        // 1. Render Drawer Items
+        drawerContainers.forEach(container => {
             if (cart.length === 0) {
                 container.innerHTML = `
                     <div class="text-center py-12 flex flex-col items-center gap-3">
@@ -2154,7 +2395,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <!-- Top row: Image, title, badge, remove -->
                             <div class="flex items-start gap-3">
                                 <div class="relative group cursor-pointer shrink-0" onclick="openQuickLook('${item.id}')" title="View details of ${escapeHTML(item.name)}">
-                                    <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-16 h-16 object-cover rounded-xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="64" height="64" loading="lazy" decoding="async">
+                                    <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-16 h-16 object-cover rounded-xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="64" height="64" loading="lazy">
                                     <div class="absolute inset-0 bg-black/20 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white">
                                         <span class="material-symbols-outlined text-[18px]">zoom_in</span>
                                     </div>
@@ -2199,87 +2440,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 html += '</div>';
 
                 // Append Gifting Add-ons & Packaging Section
-                html += `
-                    <div class="cart-gifting-section bg-surface-container/70 border border-outline-variant/25 rounded-2xl p-3.5 space-y-3 mt-3">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-secondary text-[18px]">redeem</span>
-                                <span class="font-label-md text-xs font-bold text-on-surface">Make It Extra Special 🎁</span>
-                            </div>
-                            <span class="text-[10px] text-secondary font-semibold bg-white/80 px-2 py-0.5 rounded-full border border-secondary/15">Gift Touches</span>
-                        </div>
-                        
-                        <div class="space-y-2">
-                            <!-- 1. Calligraphy Card -->
-                            <div class="gift-addon-item bg-white/90 rounded-xl p-2.5 border transition-all ${cartGiftAddons.card.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
-                                <label class="flex items-start gap-2.5 cursor-pointer">
-                                    <input type="checkbox" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="font-label-md text-xs font-bold text-on-surface">✍️ Handwritten Calligraphy Card</span>
-                                            <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.card.price}</span>
-                                        </div>
-                                        <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Written on craft cardstock with custom wax seal stamp</p>
-                                    </div>
-                                </label>
-                                ${cartGiftAddons.card.enabled ? `
-                                    <div class="mt-2.5 pt-2 border-t border-secondary/15 animate-fadeIn">
-                                        <textarea maxlength="150" rows="2" oninput="updateGiftCardMessage(this.value)" placeholder="Enter message for recipient (e.g., Happy 25th Birthday Ammu! Always blooming ❤️ - Rahul)" class="w-full bg-white border border-outline-variant/30 rounded-lg p-2 text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-secondary/40 focus:border-secondary transition-all">${escapeHTML(cartGiftAddons.card.message || '')}</textarea>
-                                        <div class="flex justify-between items-center text-[10px] text-on-surface-variant/70 mt-1">
-                                            <span>Tucked securely inside your order</span>
-                                            <span id="gift-card-chars">${(cartGiftAddons.card.message || '').length}/150</span>
-                                        </div>
-                                    </div>
-                                ` : ''}
-                            </div>
-
-                            <!-- 2. Warm Fairy Lights -->
-                            <div class="gift-addon-item bg-white/90 rounded-xl p-2.5 border transition-all ${cartGiftAddons.fairyLights.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
-                                <label class="flex items-start gap-2.5 cursor-pointer">
-                                    <input type="checkbox" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="font-label-md text-xs font-bold text-on-surface">💡 Warm Fairy Lights String</span>
-                                            <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.fairyLights.price}</span>
-                                        </div>
-                                        <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Micro-LED copper wire woven into flowers (includes battery)</p>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <!-- 3. Keepsake Window Display Box -->
-                            <div class="gift-addon-item bg-white/90 rounded-xl p-2.5 border transition-all ${cartGiftAddons.windowBox.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
-                                <label class="flex items-start gap-2.5 cursor-pointer">
-                                    <input type="checkbox" onchange="toggleGiftAddon('windowBox')" ${cartGiftAddons.windowBox.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
-                                    <div class="flex-1 min-w-0">
-                                        <div class="flex items-center justify-between">
-                                            <span class="font-label-md text-xs font-bold text-on-surface">🎁 Keepsake Display Window Box</span>
-                                            <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.windowBox.price}</span>
-                                        </div>
-                                        <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Rigid clear display showcase with satin ribbon handle</p>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <!-- 4. Cozy Aroma Spritz (Free) -->
-                            <div class="gift-addon-item bg-white/90 rounded-xl p-2.5 border border-outline-variant/20">
-                                <div class="flex items-center justify-between mb-1.5">
-                                    <span class="font-label-md text-xs font-bold text-on-surface">🌿 Cozy Aroma Yarn Mist</span>
-                                    <span class="text-[10px] font-bold text-tertiary bg-tertiary-container/80 px-2 py-0.5 rounded-full">Complimentary</span>
-                                </div>
-                                <p class="text-[11px] text-on-surface-variant/80 mb-2">Soothing aroma lightly spritzed on yarn before packaging</p>
-                                <div class="grid grid-cols-3 gap-1.5">
-                                    <button type="button" onclick="setAromaMist('none')" class="text-[11px] py-1 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'none' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">None</button>
-                                    <button type="button" onclick="setAromaMist('lavender')" class="text-[11px] py-1 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'lavender' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">Lavender 🪻</button>
-                                    <button type="button" onclick="setAromaMist('vanilla')" class="text-[11px] py-1 px-2 rounded-lg font-medium border transition-all ${cartGiftAddons.aromaMist.scent === 'vanilla' ? 'bg-secondary text-white border-secondary shadow-2xs font-bold' : 'bg-surface-container-low text-on-surface border-outline-variant/25 hover:bg-white'}">Vanilla 🍦</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                html += buildGiftingTouchesHtml(true);
 
                 container.innerHTML = html;
                 container.scrollTop = prevScrollTop;
+            }
+        });
+
+        // 2. Render Dedicated Page Items
+        pageContainers.forEach(container => {
+            if (cart.length === 0) {
+                container.innerHTML = renderPageEmptyCart();
+            } else {
+                container.innerHTML = renderPageCartItems();
             }
         });
 
@@ -3037,22 +3210,34 @@ document.addEventListener('DOMContentLoaded', () => {
         notesInput.addEventListener('input', updateLivePreview);
     }
 
-    // Setup click listener for checkout button to proceed to WhatsApp
-    document.querySelectorAll('.checkout-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (cart.length === 0) {
-                showToast("Please add at least one item before continuing to WhatsApp.");
-                return;
+    // Two-way synchronization between drawer notes and standalone cart page notes
+    document.addEventListener('input', (e) => {
+        if (e.target.id === 'cart-customer-note' || e.target.id === 'cart-page-customer-note') {
+            sharedCartNote = e.target.value;
+            const otherId = e.target.id === 'cart-customer-note' ? 'cart-page-customer-note' : 'cart-customer-note';
+            const otherEl = document.getElementById(otherId);
+            if (otherEl && otherEl.value !== sharedCartNote) {
+                otherEl.value = sharedCartNote;
             }
+        }
+    });
 
-            trackEvent('whatsapp_checkout_click', {
-                value: getCartSubtotal(),
-                currency: 'INR',
-                item_count: cart.reduce((sum, item) => sum + item.qty, 0)
-            });
-            openWhatsAppMessage(buildCartWhatsAppMessage());
+    // Delegated click listener for all checkout buttons (drawer & standalone cart page) to proceed to WhatsApp
+    document.addEventListener('click', (e) => {
+        const checkoutTrigger = e.target.closest('.checkout-btn');
+        if (!checkoutTrigger) return;
+        e.preventDefault();
+        if (cart.length === 0) {
+            showToast("Please add at least one item before continuing to WhatsApp.");
+            return;
+        }
+
+        trackEvent('whatsapp_checkout_click', {
+            value: getCartSubtotal(),
+            currency: 'INR',
+            item_count: cart.reduce((sum, item) => sum + item.qty, 0)
         });
+        openWhatsAppMessage(buildCartWhatsAppMessage());
     });
 
     renderCollectionProducts();

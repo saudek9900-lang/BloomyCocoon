@@ -592,3 +592,29 @@ button[onclick="navigateBack()"] span {
     padding-bottom: max(10px, env(safe-area-inset-bottom));
 }
 
+/* Standalone Cart Page & Gifting Touch Styles */
+.cart-page-item-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cart-page-item-card:hover {
+    border-color: rgba(var(--color-secondary-rgb, 128, 70, 70), 0.3);
+}
+
+.gift-addon-item {
+    transition: all 0.2s ease-in-out;
+}
+
+.gift-addon-item:focus-within {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 1px;
+}
+
+@media (max-width: 640px) {
+    .cart-quantity-btn {
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+}
+
+
