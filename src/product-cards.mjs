@@ -120,8 +120,8 @@ export function getProductCardMarkup(product) {
               <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
             </picture>
           </a>
-          <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-3 right-3 bg-surface/95 backdrop-blur-xs text-secondary text-xs font-label-md px-3.5 py-2 min-h-[44px] rounded-full shadow-sm flex items-center gap-1.5 opacity-95 md:opacity-0 md:group-hover/img:opacity-100 focus-visible:opacity-100 transition-opacity cursor-pointer border border-outline-variant/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
-            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
+          <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-3 right-3 bg-white/90 hover:bg-white backdrop-blur-sm text-secondary text-xs font-label-md px-3.5 py-2 min-h-[44px] rounded-full shadow-sm flex items-center justify-center gap-1.5 opacity-95 md:opacity-0 md:group-hover/img:opacity-100 focus-visible:opacity-100 transition-opacity cursor-pointer border border-secondary/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
+            <span class="material-symbols-outlined text-[18px] leading-none" aria-hidden="true">visibility</span>
             <span>Quick Look</span>
           </button>
           <div class="absolute top-md right-md flex flex-col gap-2 items-end pointer-events-none">
@@ -157,8 +157,8 @@ export function getProductCardMarkup(product) {
             <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
           </picture>
         </a>
-        <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-2 right-2 bg-surface/95 backdrop-blur-xs text-secondary text-xs font-label-md px-3 py-1.5 min-w-[44px] min-h-[44px] rounded-full shadow-sm flex items-center justify-center gap-1 opacity-95 md:opacity-0 md:group-hover/img:opacity-100 focus-visible:opacity-100 transition-opacity cursor-pointer border border-outline-variant/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
-          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">visibility</span>
+        <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-2 right-2 bg-white/90 hover:bg-white backdrop-blur-sm text-secondary text-xs font-label-md w-11 h-11 min-w-[44px] min-h-[44px] p-0 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-full shadow-sm flex items-center justify-center gap-1.5 opacity-95 md:opacity-0 md:group-hover/img:opacity-100 focus-visible:opacity-100 transition-opacity cursor-pointer border border-secondary/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
+          <span class="material-symbols-outlined text-[20px] leading-none" aria-hidden="true">visibility</span>
           <span class="hidden sm:inline">Quick Look</span>
         </button>
         <div class="absolute top-base left-base pointer-events-none">

@@ -99,22 +99,26 @@ button:disabled:focus-visible {
     box-shadow: none;
 }
 
-.material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-weight: 400;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 1em;
-    direction: ltr;
-    font-feature-settings: 'liga';
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
+@layer components {
+    .material-symbols-outlined {
+        font-family: 'Material Symbols Outlined';
+        font-weight: 400;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 1em;
+        box-sizing: content-box;
+        flex-shrink: 0;
+        direction: ltr;
+        font-feature-settings: 'liga';
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+    }
 }
 
 /* Custom visual styling */
@@ -612,7 +616,7 @@ button[onclick="navigateBack()"] span {
     .product-card .p-md, .product-card .p-6 { padding: 12px !important; }
     .product-card h3 { font-size: 15px !important; line-height: 1.18 !important; margin-bottom: 6px !important; }
     .product-card p { display: none; }
-    .product-card .absolute span { font-size: 11px !important; line-height: 1.15 !important; padding: 4px 8px !important; }
+    .product-card .pointer-events-none span { font-size: 11px !important; line-height: 1.15 !important; padding: 4px 8px !important; }
     .product-card button { min-height: 44px; min-width: 44px; }
     #screen-about main > section:first-of-type { height: 52vh !important; min-height: 360px; }
     #screen-about main > section:first-of-type p { padding: 10px 14px !important; }

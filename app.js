@@ -2295,8 +2295,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img src="${escapeHTML(getThumbnailImage(img))}" alt="${escapeHTML(catalogItem.name)}" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
                         </a>
                         ${catalogItem.badge ? `<span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider pointer-events-none">${escapeHTML(catalogItem.badge)}</span>` : ''}
-                        <button type="button" onclick="openQuickLook('${catalogItem.id}', this)" class="absolute bottom-2 right-2 min-w-[44px] min-h-[44px] rounded-full bg-surface/95 hover:bg-surface text-secondary border border-outline-variant/25 shadow-xs flex items-center justify-center transition-all cursor-pointer" aria-label="Quick look at ${escapeHTML(catalogItem.name)}">
-                            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">visibility</span>
+                        <button type="button" onclick="openQuickLook('${catalogItem.id}', this)" class="absolute bottom-2 right-2 w-11 h-11 min-w-[44px] min-h-[44px] p-0 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm text-secondary border border-secondary/20 shadow-sm flex items-center justify-center transition-all cursor-pointer" aria-label="Quick look at ${escapeHTML(catalogItem.name)}">
+                            <span class="material-symbols-outlined text-[20px] leading-none" aria-hidden="true">visibility</span>
                         </button>
                     </div>
                     <div>
@@ -3299,8 +3299,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
                             </picture>
                         </a>
-                        <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-3 right-3 z-10 min-w-[44px] min-h-[44px] px-3.5 py-2 rounded-full bg-surface/95 hover:bg-surface text-secondary border border-outline-variant/25 backdrop-blur-xs shadow-sm flex items-center gap-1.5 text-xs font-label-md md:opacity-0 md:group-hover/img:opacity-100 md:focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
-                            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
+                        <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-3 right-3 z-10 min-w-[44px] min-h-[44px] px-3.5 py-2 rounded-full bg-white/90 hover:bg-white text-secondary border border-secondary/20 backdrop-blur-sm shadow-sm flex items-center justify-center gap-1.5 text-xs font-label-md opacity-95 md:opacity-0 md:group-hover/img:opacity-100 md:focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
+                            <span class="material-symbols-outlined text-[18px] leading-none" aria-hidden="true">visibility</span>
                             <span>Quick Look</span>
                         </button>
                         <div class="absolute top-md right-md flex flex-col gap-2 items-end pointer-events-none">
@@ -3336,8 +3336,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
                         </picture>
                     </a>
-                    <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-2 right-2 z-10 min-w-[44px] min-h-[44px] px-2.5 sm:px-3 py-1.5 rounded-full bg-surface/95 hover:bg-surface text-secondary border border-outline-variant/25 backdrop-blur-xs shadow-xs flex items-center gap-1 text-xs font-label-md md:opacity-0 md:group-hover/img:opacity-100 md:focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
-                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">visibility</span>
+                    <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-2 right-2 z-10 w-11 h-11 min-w-[44px] min-h-[44px] p-0 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-full bg-white/90 hover:bg-white text-secondary border border-secondary/20 backdrop-blur-sm shadow-sm flex items-center justify-center gap-1.5 text-xs font-label-md opacity-95 md:opacity-0 md:group-hover/img:opacity-100 md:focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
+                        <span class="material-symbols-outlined text-[20px] leading-none" aria-hidden="true">visibility</span>
                         <span class="hidden sm:inline">Quick Look</span>
                     </button>
                     <div class="absolute top-base left-base pointer-events-none">
