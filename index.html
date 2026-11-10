@@ -214,7 +214,7 @@
             <div class="flex items-center gap-md">
                 <a href="/cart" class="relative inline-flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-full text-on-surface-variant hover:bg-primary-container/50 transition-all duration-300 cart-trigger" aria-label="Open shopping cart" aria-controls="sideCart" aria-expanded="false">
                     <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
-                    <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center pointer-events-none shadow-xs cart-badge hidden" aria-live="polite">0</span>
+                    <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center pointer-events-none shadow-sm cart-badge hidden" aria-live="polite">0</span>
                 </a>
                 <button onclick="toggleMobileMenu()" class="md:hidden min-w-[44px] min-h-[44px] p-2 flex items-center justify-center text-on-surface-variant rounded-full active:bg-primary-container/40" aria-label="Open mobile menu" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="material-symbols-outlined">menu</span>
@@ -236,7 +236,7 @@
     </nav>
 
     <!-- GLOBAL CART BACKDROP OVERLAY -->
-    <div id="cart-backdrop" onclick="closeCart()" class="fixed inset-0 bg-black/35 backdrop-blur-xs z-[75] opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
+    <div id="cart-backdrop" onclick="closeCart()" class="fixed inset-0 bg-black/35 backdrop-blur-sm z-[75] opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
 
     <!-- GLOBAL CART SIDEBAR -->
     <aside class="fixed right-0 top-0 h-full w-full max-w-full sm:max-w-[460px] md:max-w-[480px] bg-surface-container-low border-l border-outline-variant/30 shadow-2xl z-[80] flex flex-col p-4 sm:p-5 translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1" inert>
@@ -249,7 +249,7 @@
                 <p class="font-caption text-xs text-on-surface-variant italic mt-0.5" id="cart-description">Handmade picks before WhatsApp confirmation</p>
             </div>
             <div class="flex items-center gap-2">
-                <a href="/cart" onclick="closeCart()" class="text-xs text-secondary font-semibold hover:text-primary transition-colors flex items-center gap-1 bg-primary-container/70 hover:bg-primary-container px-3.5 py-2 rounded-full border border-secondary/20 shadow-2xs min-h-[44px]" aria-label="Open full cart page">
+                <a href="/cart" onclick="closeCart()" class="text-xs text-secondary font-semibold hover:text-primary transition-colors flex items-center gap-1 bg-primary-container/70 hover:bg-primary-container px-3.5 py-2 rounded-full border border-secondary/20 shadow-sm min-h-[44px]" aria-label="Open full cart page">
                     <span>Full Page</span>
                     <span class="material-symbols-outlined text-[15px]" aria-hidden="true">open_in_new</span>
                 </a>
@@ -324,7 +324,7 @@
     <div id="quick-look-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" inert>
         <div class="fixed inset-0 bg-black/45 backdrop-blur-sm" onclick="closeQuickLook()"></div>
         <div class="relative bg-surface rounded-3xl max-w-2xl w-full shadow-2xl border border-outline-variant/20 z-10 overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col max-h-[88dvh] md:max-h-[90vh]" id="quick-look-dialog">
-            <button id="quick-look-close-btn" type="button" onclick="closeQuickLook()" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-surface-container-low/95 hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors z-20 shadow-xs" aria-label="Close details">
+            <button id="quick-look-close-btn" type="button" onclick="closeQuickLook()" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-surface-container-low/95 hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors z-20 shadow-sm" aria-label="Close details">
                 <span class="material-symbols-outlined text-[20px]" aria-hidden="true">close</span>
             </button>
             <div class="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 md:p-8">
@@ -1533,7 +1533,7 @@
                                     <div>
                                         <label class="font-label-md text-xs uppercase tracking-wider text-secondary block mb-2 font-semibold">Suggested Palettes</label>
                                         <div class="flex flex-wrap gap-2" id="custom-color-swatches">
-                                            <button type="button" onclick="selectCustomColor('Blush Pink', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-secondary bg-secondary text-white text-xs font-label-md transition-all shadow-2xs">
+                                            <button type="button" onclick="selectCustomColor('Blush Pink', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-secondary bg-secondary text-white text-xs font-label-md transition-all shadow-sm">
                                                 <span class="w-3 h-3 rounded-full bg-[#f8b4ab] border border-white"></span>
                                                 Blush Pink
                                             </button>
@@ -1554,7 +1554,7 @@
                                                 Buttercup
                                             </button>
                                             <button type="button" onclick="selectCustomColor('Custom Mix', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
-                                                <span class="w-3 h-3 rounded-full bg-linear-to-r from-pink-300 to-amber-200 border border-white"></span>
+                                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-pink-300 to-amber-200 border border-white"></span>
                                                 Custom Mix
                                             </button>
                                         </div>
@@ -1565,7 +1565,7 @@
                                     </div>
                                     <div class="flex justify-between items-center pt-md">
                                         <button onclick="prevOrderStep()" class="border border-outline text-on-surface-variant px-6 py-2.5 rounded-full font-label-md text-sm hover:bg-primary-container/20">Back</button>
-                                        <button onclick="nextOrderStep()" class="bg-secondary text-white px-8 py-2.5 rounded-full font-label-md text-sm hover:opacity-90 active:scale-95 transition-transform flex items-center gap-xs shadow-xs">
+                                        <button onclick="nextOrderStep()" class="bg-secondary text-white px-8 py-2.5 rounded-full font-label-md text-sm hover:opacity-90 active:scale-95 transition-transform flex items-center gap-xs shadow-sm">
                                             Next Step <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
                                         </button>
                                     </div>
@@ -1605,7 +1605,7 @@
                                     </p>
                                     <p class="text-caption text-on-surface-variant">Opening WhatsApp to confirm your final quote, payment, timeline and delivery...</p>
                                     <div class="pt-md">
-                                        <button onclick="resetCustomOrder()" class="bg-secondary text-white px-8 py-3 rounded-full font-label-md text-sm shadow-xs">Create Another Order</button>
+                                        <button onclick="resetCustomOrder()" class="bg-secondary text-white px-8 py-3 rounded-full font-label-md text-sm shadow-sm">Create Another Order</button>
                                     </div>
                                 </div>
                             </div>
@@ -1620,7 +1620,7 @@
                                 <div class="bg-white rounded-2xl p-sm soft-glow border border-outline-variant/15 my-md">
                                     <div class="aspect-square rounded-xl overflow-hidden mb-sm bg-primary-container relative">
                                         <picture class="contents"><source id="preview-webp-source" srcset="/assets/mixed_luxury_bouquet-4RArEmw5-320.webp 320w, /assets/mixed_luxury_bouquet-4RArEmw5-480.webp 480w, /assets/mixed_luxury_bouquet-4RArEmw5-640.webp 640w, /assets/mixed_luxury_bouquet-4RArEmw5.webp 1024w" sizes="(min-width: 768px) 33vw, 100vw" type="image/webp"><img id="preview-image" alt="Custom crochet gift preview by BloomyCocoon" class="w-full h-full object-cover transition-all duration-500" src="/assets/mixed_luxury_bouquet-4RArEmw5.png" loading="lazy" width="400" height="500" decoding="async"></picture>
-                                        <span class="absolute top-2 left-2 bg-secondary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-xs">Custom Build</span>
+                                        <span class="absolute top-2 left-2 bg-secondary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-sm">Custom Build</span>
                                     </div>
                                     <div class="space-y-1">
                                         <h4 id="preview-type" class="font-headline-sm text-secondary text-lg">Bouquet</h4>
@@ -2572,7 +2572,7 @@
                                 </div>
                                 <h2 class="font-headline-sm text-xl text-primary font-bold">Your basket is waiting for blooms</h2>
                                 <p class="font-body-md text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">Explore our slow-crafted bouquets, cute plushies, and forever keepsakes made with love in Mampad, Kerala.</p>
-                                <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs">
+                                <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-sm">
                                     <span>Browse Handmade Collection</span>
                                     <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                                 </a>
@@ -2590,9 +2590,9 @@
                                     </a>
                                 </div>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
+                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-sm transition-all group">
                                         <a href="/products/single-crochet-rose" class="relative block mb-2" title="Single Crochet Rose">
-                                            <img src="/images/crochet_rose_bouquet_single-crochet-rose-landscape-generated-320.webp" srcset="/images/crochet_rose_bouquet_single-crochet-rose-landscape-generated-320.webp 320w, /images/crochet_rose_bouquet_single-crochet-rose-landscape-generated-480.webp 480w" sizes="(min-width: 640px) 180px, 42vw" alt="Single Crochet Rose" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <img src="/images/crochet_rose_bouquet_single-crochet-rose-landscape-generated-320.webp" srcset="/images/crochet_rose_bouquet_single-crochet-rose-landscape-generated-320.webp 320w, /images/crochet_rose_bouquet_single-crochet-rose-landscape-generated-480.webp 480w" sizes="(min-width: 640px) 180px, 42vw" alt="Single Crochet Rose" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-105 transition-transform" width="200" height="150" loading="lazy">
                                             <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Popular Fav</span>
                                         </a>
                                         <div>
@@ -2602,15 +2602,15 @@
                                                 <span class="font-bold text-secondary">Starting ₹149</span>
                                             </div>
                                         </div>
-                                        <a href="/products/single-crochet-rose" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 text-center min-h-[44px]">
+                                        <a href="/products/single-crochet-rose" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 text-center min-h-[44px]">
                                             <span class="material-symbols-outlined text-[15px]" aria-hidden="true">visibility</span>
                                             <span>View Bloom</span>
                                         </a>
                                     </div>
 
-                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
+                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-sm transition-all group">
                                         <a href="/products/bunny-plushie" class="relative block mb-2" title="Bunny Plushie">
-                                            <img src="/images/crochet_bunny_plush_bunny-plushie-320.webp" srcset="/images/crochet_bunny_plush_bunny-plushie-320.webp 320w, /images/crochet_bunny_plush_bunny-plushie-480.webp 480w" sizes="(min-width: 640px) 180px, 42vw" alt="Bunny Plushie" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <img src="/images/crochet_bunny_plush_bunny-plushie-320.webp" srcset="/images/crochet_bunny_plush_bunny-plushie-320.webp 320w, /images/crochet_bunny_plush_bunny-plushie-480.webp 480w" sizes="(min-width: 640px) 180px, 42vw" alt="Bunny Plushie" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-105 transition-transform" width="200" height="150" loading="lazy">
                                             <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Bestseller</span>
                                         </a>
                                         <div>
@@ -2620,15 +2620,15 @@
                                                 <span class="font-bold text-secondary">Starting ₹499</span>
                                             </div>
                                         </div>
-                                        <a href="/products/bunny-plushie" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 text-center min-h-[44px]">
+                                        <a href="/products/bunny-plushie" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 text-center min-h-[44px]">
                                             <span class="material-symbols-outlined text-[15px]" aria-hidden="true">visibility</span>
                                             <span>View Bloom</span>
                                         </a>
                                     </div>
 
-                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
+                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-sm transition-all group">
                                         <a href="/products/strawberry-keychain" class="relative block mb-2" title="Strawberry Keychain">
-                                            <img src="/images/strawberry_keychain_strawberry-keychain-320.webp" srcset="/images/strawberry_keychain_strawberry-keychain-320.webp 320w, /images/strawberry_keychain_strawberry-keychain-480.webp 480w" sizes="(min-width: 640px) 180px, 42vw" alt="Strawberry Keychain" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <img src="/images/strawberry_keychain_strawberry-keychain-320.webp" srcset="/images/strawberry_keychain_strawberry-keychain-320.webp 320w, /images/strawberry_keychain_strawberry-keychain-480.webp 480w" sizes="(min-width: 640px) 180px, 42vw" alt="Strawberry Keychain" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-105 transition-transform" width="200" height="150" loading="lazy">
                                             <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Pocket Love</span>
                                         </a>
                                         <div>
@@ -2638,15 +2638,15 @@
                                                 <span class="font-bold text-secondary">Starting ₹199</span>
                                             </div>
                                         </div>
-                                        <a href="/products/strawberry-keychain" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 text-center min-h-[44px]">
+                                        <a href="/products/strawberry-keychain" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 text-center min-h-[44px]">
                                             <span class="material-symbols-outlined text-[15px]" aria-hidden="true">visibility</span>
                                             <span>View Bloom</span>
                                         </a>
                                     </div>
 
-                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
+                                    <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-sm transition-all group">
                                         <a href="/products/couple-bouquet-combo" class="relative block mb-2" title="Couple Bouquet Combo">
-                                            <img src="/images/mixed_luxury_bouquet_couple-bouquet-combo-320.webp" srcset="/images/mixed_luxury_bouquet_couple-bouquet-combo-320.webp 320w, /images/mixed_luxury_bouquet_couple-bouquet-combo-480.webp 480w" sizes="(min-width: 640px) 180px, 42vw" alt="Couple Bouquet Combo" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <img src="/images/mixed_luxury_bouquet_couple-bouquet-combo-320.webp" srcset="/images/mixed_luxury_bouquet_couple-bouquet-combo-320.webp 320w, /images/mixed_luxury_bouquet_couple-bouquet-combo-480.webp 480w" sizes="(min-width: 640px) 180px, 42vw" alt="Couple Bouquet Combo" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-105 transition-transform" width="200" height="150" loading="lazy">
                                             <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Anniversary</span>
                                         </a>
                                         <div>
@@ -2656,7 +2656,7 @@
                                                 <span class="font-bold text-secondary">Starting ₹1,199</span>
                                             </div>
                                         </div>
-                                        <a href="/products/couple-bouquet-combo" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 text-center min-h-[44px]">
+                                        <a href="/products/couple-bouquet-combo" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 text-center min-h-[44px]">
                                             <span class="material-symbols-outlined text-[15px]" aria-hidden="true">visibility</span>
                                             <span>View Bloom</span>
                                         </a>
@@ -2816,7 +2816,7 @@
 
                 <!-- Back navigation pill -->
                 <div class="mb-6 flex items-center justify-between">
-                    <a href="/collections" class="inline-flex items-center gap-1.5 text-xs font-label-md text-secondary hover:text-primary transition-all bg-surface-container-low px-3.5 py-2 rounded-full border border-outline-variant/20 shadow-2xs hover:shadow-xs active:scale-95">
+                    <a href="/collections" class="inline-flex items-center gap-1.5 text-xs font-label-md text-secondary hover:text-primary transition-all bg-surface-container-low px-3.5 py-2 rounded-full border border-outline-variant/20 shadow-sm active:scale-95">
                         <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
                         <span>Back to Handmade Collection</span>
                     </a>
@@ -2937,7 +2937,7 @@
                         <div class="space-y-3 pt-2">
                             <!-- Stepper Row -->
                             <div class="flex items-center gap-3">
-                                <div class="flex items-center border border-outline-variant/30 rounded-full bg-surface-container-low p-1 shadow-2xs">
+                                <div class="flex items-center border border-outline-variant/30 rounded-full bg-surface-container-low p-1 shadow-sm">
                                     <button type="button" id="detail-qty-minus" onclick="changeProductDetailQty(-1)" class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center text-on-surface hover:bg-secondary/10 active:scale-95 transition-all cursor-pointer" aria-label="Decrease quantity">
                                         <span class="material-symbols-outlined text-[18px]" aria-hidden="true">remove</span>
                                     </button>
@@ -3047,11 +3047,11 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
-                    <button type="button" id="detail-sticky-add-btn" data-add-to-cart="sticky" aria-controls="sideCart" onclick="handleDetailAddToCart()" class="bg-secondary text-white px-4 py-2.5 rounded-full font-label-md text-xs flex items-center gap-1.5 active:scale-95 transition-all shadow-xs min-h-[44px]">
+                    <button type="button" id="detail-sticky-add-btn" data-add-to-cart="sticky" aria-controls="sideCart" onclick="handleDetailAddToCart()" class="bg-secondary text-white px-4 py-2.5 rounded-full font-label-md text-xs flex items-center gap-1.5 active:scale-95 transition-all shadow-sm min-h-[44px]">
                         <span id="detail-sticky-add-icon" class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span>
                         <span id="detail-sticky-add-text">Add</span>
                     </button>
-                    <a id="detail-sticky-wa-btn" href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-[#075E54] hover:bg-[#064e46] text-white w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-all shadow-xs min-h-[44px] min-w-[44px]" aria-label="Order on WhatsApp">
+                    <a id="detail-sticky-wa-btn" href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-[#075E54] hover:bg-[#064e46] text-white w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-all shadow-sm min-h-[44px] min-w-[44px]" aria-label="Order on WhatsApp">
                         <span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span>
                     </a>
                 </div>

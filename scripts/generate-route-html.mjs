@@ -459,7 +459,7 @@ function injectProductDetail(html, product, catalog) {
   );
   next = next.replace(
     /<a\b[^>]*\bid=["']detail-sticky-wa-btn["'][^>]*>([\s\S]*?)<\/a>/i,
-    `<a id="detail-sticky-wa-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="bg-[#075E54] hover:bg-[#064e46] text-white w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-all shadow-xs min-h-[44px] min-w-[44px]" aria-label="Order on WhatsApp"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span></a>`
+    `<a id="detail-sticky-wa-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="bg-[#075E54] hover:bg-[#064e46] text-white w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-all shadow-sm min-h-[44px] min-w-[44px]" aria-label="Order on WhatsApp"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span></a>`
   );
 
   // 11. Lightbox Image

@@ -2295,7 +2295,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function buildGiftingTouchesHtml(isDrawer = true) {
         return `
-            <div class="cart-gifting-section bg-surface-container/70 border border-outline-variant/25 rounded-2xl ${isDrawer ? 'p-3.5 space-y-3 mt-3' : 'p-5 sm:p-6 space-y-4 mt-6 shadow-xs'}">
+            <div class="cart-gifting-section bg-surface-container/70 border border-outline-variant/25 rounded-2xl ${isDrawer ? 'p-3.5 space-y-3 mt-3' : 'p-5 sm:p-6 space-y-4 mt-6 shadow-sm'}">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-secondary text-[20px]">redeem</span>
@@ -2379,7 +2379,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-sm transition-all group">
                     <div class="relative mb-2">
                         <a href="/products/${catalogItem.id}" class="block">
-                            <img src="${escapeHTML(getThumbnailImage(img))}" alt="${escapeHTML(catalogItem.name)}" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                            <img src="${escapeHTML(getThumbnailImage(img))}" alt="${escapeHTML(catalogItem.name)}" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-105 transition-transform" width="200" height="150" loading="lazy">
                         </a>
                         ${catalogItem.badge ? `<span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider pointer-events-none">${escapeHTML(catalogItem.badge)}</span>` : ''}
                         <button type="button" data-quick-look="${catalogItem.id}" class="quick-look-btn absolute bottom-2 right-2 w-11 h-11 min-w-[44px] min-h-[44px] p-0 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm text-secondary border border-secondary/20 shadow-sm flex items-center justify-center focus-visible:opacity-100 transition-all cursor-pointer" aria-label="Quick look at ${escapeHTML(catalogItem.name)}">
@@ -2393,7 +2393,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="font-bold text-secondary">Starting ₹${formatPrice(safePrice)}</span>
                         </div>
                     </div>
-                    <button type="button" data-add-to-cart="${catalogItem.id}" aria-controls="sideCart" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 min-h-[44px]">
+                    <button type="button" data-add-to-cart="${catalogItem.id}" aria-controls="sideCart" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 min-h-[44px]">
                         <span class="material-symbols-outlined text-[15px]" aria-hidden="true">add</span>
                         <span>Add to Basket</span>
                     </button>
@@ -2409,7 +2409,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <h2 class="font-headline-sm text-xl text-primary font-bold">Your basket is waiting for blooms</h2>
                     <p class="font-body-md text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">Explore our slow-crafted bouquets, cute plushies, and forever keepsakes made with love in Mampad, Kerala.</p>
-                    <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs min-h-[44px]">
+                    <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-sm min-h-[44px]">
                         <span>Browse Handmade Collection</span>
                         <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
                     </a>
@@ -2444,11 +2444,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const lineSubtotal = getSafePrice(item.price) * item.qty;
 
             html += `
-                <div class="cart-page-item-card bg-surface-container-lowest p-4 sm:p-5 rounded-3xl border border-outline-variant/20 shadow-xs space-y-3 transition-all">
+                <div class="cart-page-item-card bg-surface-container-lowest p-4 sm:p-5 rounded-3xl border border-outline-variant/20 shadow-sm space-y-3 transition-all">
                     <!-- Top row: Image, title, badge, remove -->
                     <div class="flex items-start gap-4">
                         <a href="/products/${item.id}" class="relative group shrink-0" title="View details of ${escapeHTML(item.name)}">
-                            <img src="${escapeHTML(getThumbnailImage(item.img))}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="96" height="96" loading="lazy">
+                            <img src="${escapeHTML(getThumbnailImage(item.img))}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border border-outline-variant/20 shadow-sm group-hover:scale-105 transition-transform" width="96" height="96" loading="lazy">
                         </a>
                         <div class="flex-1 min-w-0">
                             <div class="flex items-start justify-between gap-2">
@@ -2470,9 +2470,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Middle row: Quantity Stepper & Price Breakdown -->
                     <div class="flex items-center justify-between pt-2 border-t border-outline-variant/10">
                         <div class="flex items-center gap-1.5 bg-primary-container/40 rounded-full p-1 border border-outline-variant/20">
-                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-sm hover:bg-secondary-container active:scale-95 transition-all">-</button>
                             <span class="font-body-md text-xs sm:text-sm font-bold px-3 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-sm hover:bg-secondary-container active:scale-95 transition-all">+</button>
                         </div>
                         <div class="text-right">
                             <div class="font-headline-sm text-base sm:text-lg text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
@@ -2606,7 +2606,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="font-headline-sm text-lg text-secondary font-semibold">Your basket is waiting for blooms</p>
                             <p class="font-body-md text-xs text-on-surface-variant max-w-[220px] mx-auto mt-1">Explore our slow-crafted bouquets, cute plushies, and forever gifts.</p>
                         </div>
-                        <a href="/collections" onclick="setCartOpen(false)" class="mt-2 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs min-h-[44px]">
+                        <a href="/collections" onclick="setCartOpen(false)" class="mt-2 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-sm min-h-[44px]">
                             <span>Browse Collection</span>
                             <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
                         </a>
@@ -2622,11 +2622,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lineSubtotal = getSafePrice(item.price) * item.qty;
 
                     html += `
-                        <div class="bg-surface-container-lowest p-3.5 sm:p-4 rounded-2xl border border-outline-variant/20 shadow-2xs hover:border-secondary/30 space-y-2.5 transition-all">
+                        <div class="bg-surface-container-lowest p-3.5 sm:p-4 rounded-2xl border border-outline-variant/20 shadow-sm hover:border-secondary/30 space-y-2.5 transition-all">
                             <!-- Top row: Large Thumbnail, Title, Badge, Remove -->
                             <div class="flex items-start gap-3.5">
                                 <a href="/products/${item.id}" onclick="closeCart()" class="relative group cursor-pointer shrink-0 block" title="View details of ${escapeHTML(item.name)}">
-                                    <img src="${escapeHTML(getThumbnailImage(item.img))}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-22 sm:h-22 object-cover rounded-xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="88" height="88" loading="lazy">
+                                    <img src="${escapeHTML(getThumbnailImage(item.img))}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-22 sm:h-22 object-cover rounded-xl border border-outline-variant/20 shadow-sm group-hover:scale-105 transition-transform" width="88" height="88" loading="lazy">
                                     <div class="absolute inset-0 bg-black/15 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white" aria-hidden="true">
                                         <span class="material-symbols-outlined text-[18px]">visibility</span>
                                     </div>
@@ -2648,9 +2648,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <!-- Price & Quantity Stepper -->
                                     <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-outline-variant/10">
                                         <div class="flex items-center gap-1 bg-primary-container/40 rounded-full p-0.5 border border-outline-variant/20">
-                                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-sm hover:bg-secondary-container active:scale-95 transition-all">-</button>
                                             <span class="font-body-md text-xs font-bold px-2.5 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-sm hover:bg-secondary-container active:scale-95 transition-all">+</button>
                                         </div>
                                         <div class="text-right">
                                             <div class="font-headline-sm text-sm sm:text-base text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
@@ -2805,12 +2805,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.selectCustomColor = function(colorName, buttonEl) {
         orderData.color = colorName;
         document.querySelectorAll('.color-swatch-btn').forEach(btn => {
-            btn.classList.remove('bg-secondary', 'text-white', 'border-secondary', 'shadow-2xs');
+            btn.classList.remove('bg-secondary', 'text-white', 'border-secondary', 'shadow-sm');
             btn.classList.add('bg-white', 'text-on-surface', 'border-outline-variant/30');
         });
         if (buttonEl) {
             buttonEl.classList.remove('bg-white', 'text-on-surface', 'border-outline-variant/30');
-            buttonEl.classList.add('bg-secondary', 'text-white', 'border-secondary', 'shadow-2xs');
+            buttonEl.classList.add('bg-secondary', 'text-white', 'border-secondary', 'shadow-sm');
         }
         updateLivePreview();
     };
@@ -3445,7 +3445,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
                     <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
                         <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-                        <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-xs">
+                        <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-sm">
                             <span class="material-symbols-outlined text-[18px]" data-icon="add" aria-hidden="true">add</span>
                             <span class="hidden sm:inline">Add</span>
                         </button>
