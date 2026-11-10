@@ -14,8 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 1. STATE MANAGEMENT & SPA ROUTING
     // ----------------------------------------------------
-    let currentScreen = 'screen-home';
-    const screenHistory = ['screen-home'];
+    const activeScreenElement = document.querySelector('section.screen.active');
+    let currentScreen = activeScreenElement ? activeScreenElement.id : 'screen-home';
+    const screenHistory = [currentScreen];
     let inTransition = false;
     let isRoutingFromHistory = false;
     let shouldFocusCustomOrder = false;
@@ -1293,11 +1294,24 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const currentScreenEl = document.getElementById(currentScreen);
         const targetScreenEl = document.getElementById(targetScreenId);
 
-        if (!currentScreenEl || !targetScreenEl) {
-            console.error(`Router error: Screen not found. Current: ${currentScreen}, Target: ${targetScreenId}`);
+        if (!targetScreenEl) {
+            const destUrl = getRouteForScreen(targetScreenId, routeSearch, targetPath);
+            if (destUrl) {
+                window.location.href = destUrl;
+            }
+            return;
+        }
+
+        const currentScreenEl = document.getElementById(currentScreen);
+        if (!currentScreenEl) {
+            targetScreenEl.classList.remove('hidden');
+            targetScreenEl.classList.add('active');
+            currentScreen = targetScreenId;
+            syncScreenMetadata(targetScreenId, targetPath);
+            syncDynamicStructuredData(targetScreenId);
+            syncNavigationUI();
             return;
         }
 
@@ -1464,6 +1478,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Popstate listener to coordinate browser forward/backward operations
     window.addEventListener('popstate', () => {
         const targetScreenId = getScreenIdFromPath(window.location.pathname) || 'screen-home';
+        if (!document.getElementById(targetScreenId)) {
+            window.location.reload();
+            return;
+        }
         if (targetScreenId === currentScreen) {
             if (targetScreenId === 'screen-collection') {
                 applyCollectionFilterFromUrl();
@@ -1493,6 +1511,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('hashchange', () => {
         if (!normalizeLegacyHashRoute()) return;
         const targetScreenId = getScreenIdFromPath(window.location.pathname) || 'screen-home';
+        if (!document.getElementById(targetScreenId)) {
+            window.location.reload();
+            return;
+        }
         if (targetScreenId === currentScreen) {
             if (targetScreenId === 'screen-collection') {
                 applyCollectionFilterFromUrl();
@@ -1517,22 +1539,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle deep-linking on page load
     normalizeLegacyHashRoute();
-    const initialScreen = getScreenIdFromPath(window.location.pathname) || 'screen-home';
+    const initialScreen = getScreenIdFromPath(window.location.pathname) || currentScreen || 'screen-home';
     window.history.replaceState({ screenId: initialScreen, targetPath: window.location.pathname }, '', getRouteForScreen(initialScreen, window.location.search, window.location.pathname));
     syncScreenMetadata(initialScreen, window.location.pathname);
-    if (initialScreen !== 'screen-home') {
+    if (initialScreen !== currentScreen && document.getElementById(initialScreen)) {
         navigateTo(initialScreen, 'instant', {
             updateHistory: false,
             routeSearch: window.location.search,
             targetPath: window.location.pathname
         });
-        if (initialScreen === 'screen-product-detail') {
-            renderProductDetailScreen(window.location.pathname);
-        }
-        if (initialScreen === 'screen-cart') {
-            renderCart();
-        }
-    } else if (initialScreen === 'screen-collection') {
+    }
+    if (initialScreen === 'screen-product-detail') {
+        renderProductDetailScreen(window.location.pathname);
+    }
+    if (initialScreen === 'screen-cart') {
+        renderCart();
+    }
+    if (initialScreen === 'screen-collection') {
         applyCollectionFilterFromUrl();
     }
 
@@ -1564,6 +1587,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function bindNav(selector, targetScreen, transition = 'push') {
         queryElements(selector).forEach(el => {
             el.addEventListener('click', (e) => {
+                if (!document.getElementById(targetScreen)) {
+                    if (el.tagName === 'A' && el.getAttribute('href')) return;
+                }
                 e.preventDefault();
                 if (targetScreen === 'screen-home' && currentScreen === 'screen-home') {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1619,6 +1645,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetScreen = getScreenIdFromPath(url.pathname);
             if (!targetScreen) return;
 
+            // If the target screen is not in current DOM, allow native link navigation
+            if (!document.getElementById(targetScreen)) return;
+
             e.preventDefault();
             e.stopImmediatePropagation();
             closeMobileMenu();
@@ -1641,6 +1670,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('click', (e) => {
             const logo = e.target.closest('[data-nav-logo]');
             if (!logo) return;
+
+            if (!document.getElementById('screen-home')) return;
 
             e.preventDefault();
             e.stopImmediatePropagation();
@@ -1672,6 +1703,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (text === 'BloomyCocoon') {
                 el.style.cursor = 'pointer';
                 el.addEventListener('click', (e) => {
+                    if (!document.getElementById('screen-home')) {
+                        if (el.tagName === 'A' && el.getAttribute('href')) return;
+                        window.location.href = '/';
+                        return;
+                    }
                     e.preventDefault();
                     if (currentScreen !== 'screen-home') {
                         navigateTo('screen-home', 'push_back');

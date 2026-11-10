@@ -427,9 +427,10 @@ export function getProductSchema(product) {
       },
     ],
     offers: {
-      '@type': 'Offer',
-      price: String(safePrice),
+      '@type': 'AggregateOffer',
+      lowPrice: String(safePrice),
       priceCurrency: 'INR',
+      offerCount: '1',
       availability: 'https://schema.org/InStock',
       itemCondition: 'https://schema.org/NewCondition',
       url: productUrl,

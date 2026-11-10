@@ -1,24 +1,40 @@
+import { execSync } from 'node:child_process';
+import { statSync } from 'node:fs';
 import { OCCASION_PRODUCTS } from './route-content.mjs';
 
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
 
+function getFileLastModDate(filePath, defaultDate = new Date().toISOString().split('T')[0]) {
+  try {
+    const gitDate = execSync(`git log -1 --format=%cs -- "${filePath}"`, { encoding: 'utf8' }).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(gitDate)) {
+      return gitDate;
+    }
+  } catch {}
+  try {
+    const stat = statSync(filePath);
+    return stat.mtime.toISOString().split('T')[0];
+  } catch {}
+  return defaultDate;
+}
+
 const CORE_ROUTES = [
-  { path: '/', priority: '1.0', changefreq: 'daily', image: 'images/hero_crochet_scene.png', title: 'BloomyCocoon Handmade Crochet Gifts' },
-  { path: '/collections', priority: '0.9', changefreq: 'daily' },
-  { path: '/anniversary-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-anniversary-gifts' },
-  { path: '/birthday-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-birthday-gifts' },
-  { path: '/baby-shower-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-baby-shower-gifts' },
-  { path: '/return-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-return-gifts' },
-  { path: '/custom-order', priority: '0.8', changefreq: 'weekly' },
-  { path: '/about', priority: '0.7', changefreq: 'monthly', image: 'images/about_process.png', title: 'About BloomyCocoon Handcrafted Gifts' },
-  { path: '/faq', priority: '0.7', changefreq: 'weekly' },
-  { path: '/contact', priority: '0.7', changefreq: 'monthly', image: 'images/contact_workspace.png', title: 'BloomyCocoon Workspace' },
-  { path: '/shipping-delivery', priority: '0.5', changefreq: 'monthly' },
-  { path: '/returns-cancellations', priority: '0.5', changefreq: 'monthly' },
-  { path: '/privacy-policy', priority: '0.4', changefreq: 'yearly' },
-  { path: '/order-terms', priority: '0.5', changefreq: 'monthly' },
-  { path: '/crochet-care', priority: '0.5', changefreq: 'monthly' },
-  { path: '/cart', priority: '0.6', changefreq: 'weekly' },
+  { path: '/', priority: '1.0', changefreq: 'daily', image: 'images/hero_crochet_scene.png', title: 'BloomyCocoon Handmade Crochet Gifts', sourceFile: 'index.html' },
+  { path: '/collections', priority: '0.9', changefreq: 'daily', sourceFile: 'src/catalog.json' },
+  { path: '/anniversary-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-anniversary-gifts', sourceFile: 'src/route-content.mjs' },
+  { path: '/birthday-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-birthday-gifts', sourceFile: 'src/route-content.mjs' },
+  { path: '/baby-shower-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-baby-shower-gifts', sourceFile: 'src/route-content.mjs' },
+  { path: '/return-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-return-gifts', sourceFile: 'src/route-content.mjs' },
+  { path: '/custom-order', priority: '0.8', changefreq: 'weekly', sourceFile: 'index.html' },
+  { path: '/about', priority: '0.7', changefreq: 'monthly', image: 'images/about_process.png', title: 'About BloomyCocoon Handcrafted Gifts', sourceFile: 'index.html' },
+  { path: '/faq', priority: '0.7', changefreq: 'weekly', sourceFile: 'index.html' },
+  { path: '/contact', priority: '0.7', changefreq: 'monthly', image: 'images/contact_workspace.png', title: 'BloomyCocoon Workspace', sourceFile: 'index.html' },
+  { path: '/shipping-delivery', priority: '0.5', changefreq: 'monthly', sourceFile: 'index.html' },
+  { path: '/returns-cancellations', priority: '0.5', changefreq: 'monthly', sourceFile: 'index.html' },
+  { path: '/privacy-policy', priority: '0.4', changefreq: 'yearly', sourceFile: 'index.html' },
+  { path: '/order-terms', priority: '0.5', changefreq: 'monthly', sourceFile: 'index.html' },
+  { path: '/crochet-care', priority: '0.5', changefreq: 'monthly', sourceFile: 'index.html' },
+  { path: '/cart', priority: '0.6', changefreq: 'weekly', sourceFile: 'index.html' },
 ];
 
 function escapeXml(str) {
@@ -30,15 +46,24 @@ function escapeXml(str) {
     .replace(/'/g, '&apos;');
 }
 
-export function generateSitemapXml(catalog, currentDate = '2026-11-10') {
+export function generateSitemapXml(catalog, defaultDate = new Date().toISOString().split('T')[0]) {
+  const catalogLastMod = getFileLastModDate('src/catalog.json', defaultDate);
+  const routeContentLastMod = getFileLastModDate('src/route-content.mjs', defaultDate);
+  const indexHtmlLastMod = getFileLastModDate('index.html', defaultDate);
+
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
   xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
 
   for (const route of CORE_ROUTES) {
+    let routeLastMod = defaultDate;
+    if (route.sourceFile === 'src/catalog.json') routeLastMod = catalogLastMod;
+    else if (route.sourceFile === 'src/route-content.mjs') routeLastMod = routeContentLastMod;
+    else if (route.sourceFile === 'index.html') routeLastMod = indexHtmlLastMod;
+
     xml += '  <url>\n';
     xml += `    <loc>${SITE_ORIGIN}${route.path}</loc>\n`;
-    xml += `    <lastmod>${currentDate}</lastmod>\n`;
+    xml += `    <lastmod>${routeLastMod}</lastmod>\n`;
     xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
     xml += `    <priority>${route.priority}</priority>\n`;
 
@@ -79,7 +104,7 @@ export function generateSitemapXml(catalog, currentDate = '2026-11-10') {
     for (const product of catalog) {
       xml += '  <url>\n';
       xml += `    <loc>${SITE_ORIGIN}/products/${product.id}</loc>\n`;
-      xml += `    <lastmod>${currentDate}</lastmod>\n`;
+      xml += `    <lastmod>${catalogLastMod}</lastmod>\n`;
       xml += '    <changefreq>weekly</changefreq>\n';
       xml += '    <priority>0.80</priority>\n';
       if (product.image) {

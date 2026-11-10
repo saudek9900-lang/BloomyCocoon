@@ -194,23 +194,58 @@ function updateMetadata(html, metadata) {
   return next;
 }
 
-function setInitialScreen(html, activeScreenId) {
-  return html.replace(/<section\b[^>]*\bclass=["'][^"']*\bscreen\b[^"']*["'][^>]*>/gi, (sectionTag) => {
-    const idMatch = sectionTag.match(/\bid=["']([^"']+)["']/i);
-    if (!idMatch) return sectionTag;
+function isolateScreen(html, activeScreenId) {
+  const screenBounds = [];
+  const regex = /<section\b[^>]*\bid=["'](screen-[^"']+)["'][^>]*>/gi;
+  let match;
+  while ((match = regex.exec(html)) !== null) {
+    const id = match[1];
+    const start = match.index;
+    let depth = 0;
+    const tagRegex = /<\/?section\b[^>]*>/gi;
+    tagRegex.lastIndex = start;
+    let tagMatch;
+    let end = -1;
+    while ((tagMatch = tagRegex.exec(html)) !== null) {
+      if (tagMatch[0].startsWith('</')) {
+        depth--;
+        if (depth === 0) {
+          end = tagMatch.index + tagMatch[0].length;
+          break;
+        }
+      } else {
+        depth++;
+      }
+    }
+    if (end > start) {
+      screenBounds.push({ id, start, end });
+    }
+  }
 
-    const screenId = idMatch[1];
-    if (!ROUTE_CONTENT[screenId] && screenId !== 'screen-product-detail') return sectionTag;
+  screenBounds.sort((a, b) => b.start - a.start);
 
-    return sectionTag.replace(/\bclass=(["'])([^"']*)\1/i, (classAttr, quote, classValue) => {
-      const classes = classValue
-        .split(/\s+/)
-        .filter(Boolean)
-        .filter((className) => className !== 'active' && className !== 'hidden');
-      classes.push(screenId === activeScreenId ? 'active' : 'hidden');
-      return `class=${quote}${classes.join(' ')}${quote}`;
-    });
-  });
+  let next = html;
+  for (const screen of screenBounds) {
+    if (screen.id !== activeScreenId) {
+      next = next.slice(0, screen.start) + next.slice(screen.end);
+    } else {
+      const screenChunk = next.slice(screen.start, screen.end);
+      const updatedChunk = screenChunk.replace(
+        /(<section\b[^>]*\bclass=["'])([^"']*)(["'][^>]*>)/i,
+        (m, prefix, classList, suffix) => {
+          const classes = classList
+            .split(/\s+/)
+            .filter(Boolean)
+            .filter((c) => c !== 'hidden' && c !== 'active');
+          classes.push('active');
+          return `${prefix}${classes.join(' ')}${suffix}`;
+        }
+      );
+      next = next.slice(0, screen.start) + updatedChunk + next.slice(screen.end);
+    }
+  }
+
+  return next;
 }
 
 function restoreFaqFocusOutline(html) {
@@ -252,9 +287,7 @@ function extractFaqItemsForScreen(html, screenId) {
 
 function insertRouteSchema(html, screenId, baseHtml) {
   const route = ROUTE_CONTENT[screenId];
-  const faqItems = route.schemaType === 'FAQPage'
-    ? extractFaqItems(baseHtml)
-    : extractFaqItemsForScreen(baseHtml, screenId);
+  const faqItems = extractFaqItemsForScreen(baseHtml, screenId);
   if (route.schemaType === 'FAQPage' && faqItems.length === 0) {
     throw new Error('Could not extract visible FAQ items from built HTML.');
   }
@@ -278,7 +311,7 @@ function insertRouteSchema(html, screenId, baseHtml) {
 async function writeRouteHtml(baseHtml, screenId) {
   const route = ROUTE_CONTENT[screenId];
   const routeHtml = insertRouteSchema(
-    updateMetadata(setInitialScreen(baseHtml, screenId), getRouteMetadata(screenId)),
+    updateMetadata(isolateScreen(baseHtml, screenId), getRouteMetadata(screenId)),
     screenId,
     baseHtml,
   );
@@ -431,7 +464,7 @@ async function writeProductHtml(baseHtml, product, catalog) {
   const metadata = getProductRouteMetadata(product);
   metadata.isProduct = true;
   const detailHtml = injectProductDetail(baseHtml, product, catalog);
-  const initialHtml = setInitialScreen(detailHtml, 'screen-product-detail');
+  const initialHtml = isolateScreen(detailHtml, 'screen-product-detail');
   const metaHtml = updateMetadata(initialHtml, metadata);
   const finalHtml = insertProductSchema(metaHtml, product, baseHtml);
   const outputDir = path.join(DIST_DIR, 'products', product.id);
@@ -444,7 +477,7 @@ const baseHtml = injectPreRenderedProducts(rawBaseHtml);
 await writeFile(
   INDEX_PATH,
   insertRouteSchema(
-    updateMetadata(setInitialScreen(baseHtml, 'screen-home'), getRouteMetadata('screen-home')),
+    updateMetadata(isolateScreen(baseHtml, 'screen-home'), getRouteMetadata('screen-home')),
     'screen-home',
     baseHtml,
   ),
