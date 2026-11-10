@@ -193,6 +193,34 @@
       "destination": "/return-gifts/index.html"
     },
     {
+      "source": "/crochet-bouquets",
+      "destination": "/crochet-bouquets/index.html"
+    },
+    {
+      "source": "/crochet-plushies",
+      "destination": "/crochet-plushies/index.html"
+    },
+    {
+      "source": "/crochet-keychains",
+      "destination": "/crochet-keychains/index.html"
+    },
+    {
+      "source": "/crochet-baby-gifts",
+      "destination": "/crochet-baby-gifts/index.html"
+    },
+    {
+      "source": "/crochet-accessories",
+      "destination": "/crochet-accessories/index.html"
+    },
+    {
+      "source": "/crochet-home-decor",
+      "destination": "/crochet-home-decor/index.html"
+    },
+    {
+      "source": "/crochet-gift-combos",
+      "destination": "/crochet-gift-combos/index.html"
+    },
+    {
       "source": "/cart",
       "destination": "/cart/index.html"
     },

@@ -1,7 +1,9 @@
 import {
+    CATEGORY_PAGES,
     ROUTE_CONTENT,
     ROUTE_SCHEMA_ID,
     SITE_ORIGIN,
+    getCategoryPath,
     getRouteSchemaGraph
 } from './src/route-content.mjs';
 
@@ -921,6 +923,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/birthday-gifts') return 'screen-birthday-gifts';
         if (cleanPath === '/baby-shower-gifts') return 'screen-baby-shower-gifts';
         if (cleanPath === '/return-gifts') return 'screen-return-gifts';
+        if (cleanPath === '/crochet-bouquets') return 'screen-crochet-bouquets';
+        if (cleanPath === '/crochet-plushies') return 'screen-crochet-plushies';
+        if (cleanPath === '/crochet-keychains') return 'screen-crochet-keychains';
+        if (cleanPath === '/crochet-baby-gifts') return 'screen-crochet-baby-gifts';
+        if (cleanPath === '/crochet-accessories') return 'screen-crochet-accessories';
+        if (cleanPath === '/crochet-home-decor') return 'screen-crochet-home-decor';
+        if (cleanPath === '/crochet-gift-combos') return 'screen-crochet-gift-combos';
         return null;
     }
 
@@ -1250,8 +1259,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const catLabel = getCategoryLabel(product.category);
         const breadcrumbCat = document.getElementById('detail-breadcrumb-cat');
         if (breadcrumbCat) {
-            breadcrumbCat.textContent = catLabel;
-            breadcrumbCat.setAttribute('href', `/collections?category=${encodeURIComponent(product.category)}`);
+            const catNameSpan = breadcrumbCat.querySelector('[itemprop="name"]');
+            if (catNameSpan) {
+                catNameSpan.textContent = catLabel;
+            } else {
+                breadcrumbCat.textContent = catLabel;
+            }
+            breadcrumbCat.setAttribute('href', getCategoryPath(product.category));
         }
         const breadcrumbName = document.getElementById('detail-breadcrumb-name');
         if (breadcrumbName) breadcrumbName.textContent = product.name;
@@ -1463,7 +1477,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-sync nav highlights
             syncNavigationUI();
             if (targetScreenId === 'screen-collection') {
-                applyCollectionFilterFromUrl();
+                const productGrid = document.querySelector('#collection-product-grid');
+                if (productGrid && productGrid.children.length === 0) {
+                    renderCollectionProducts();
+                } else {
+                    applyCollectionFilterFromUrl();
+                }
+            }
+            if (CATEGORY_PAGES[targetScreenId]) {
+                renderCategoryLandingGrid(targetScreenId);
             }
             if (targetScreenId === 'screen-product-detail') {
                 renderProductDetailScreen(targetPath || window.location.pathname);
@@ -3421,6 +3443,32 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
+    const CATEGORY_GRID_IDS = {
+        'screen-crochet-bouquets': 'crochet-bouquets-product-grid',
+        'screen-crochet-plushies': 'crochet-plushies-product-grid',
+        'screen-crochet-keychains': 'crochet-keychains-product-grid',
+        'screen-crochet-baby-gifts': 'crochet-baby-gifts-product-grid',
+        'screen-crochet-accessories': 'crochet-accessories-product-grid',
+        'screen-crochet-home-decor': 'crochet-home-decor-product-grid',
+        'screen-crochet-gift-combos': 'crochet-gift-combos-product-grid',
+    };
+
+    function renderCategoryLandingGrid(screenId) {
+        const categoryId = CATEGORY_PAGES[screenId];
+        const gridId = CATEGORY_GRID_IDS[screenId];
+        if (!categoryId || !gridId) return;
+        const grid = document.getElementById(gridId);
+        if (!grid) return;
+
+        if (grid.children.length === 0) {
+            grid.innerHTML = collectionProducts
+                .filter(product => product.category === categoryId)
+                .map(getProductCardMarkup)
+                .join('');
+        }
+        applyImageFallbacks(grid);
+    }
+
     function renderCollectionProducts() {
         const productGrid = document.querySelector('#collection-product-grid');
         if (!productGrid) return;
@@ -3540,6 +3588,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only render full collection product grid if collection screen is active on load
     if (currentScreen === 'screen-collection') {
         renderCollectionProducts();
+    }
+    if (CATEGORY_PAGES[currentScreen]) {
+        renderCategoryLandingGrid(currentScreen);
     }
 
     // Defer dynamic structured data syncing to idle time so it does not block main-thread FCP/TBT

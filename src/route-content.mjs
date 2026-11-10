@@ -127,6 +127,62 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: 'Return Gifts & Favors',
   },
+  'screen-crochet-bouquets': {
+    path: '/crochet-bouquets',
+    outputDir: 'crochet-bouquets',
+    title: 'Handmade Crochet Bouquets & Stems | BloomyCocoon',
+    description: 'Shop handmade crochet rose, tulip, sunflower and lavender bouquets starting from ₹149 at BloomyCocoon. Custom flower shades confirmed on WhatsApp.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Bouquets',
+  },
+  'screen-crochet-plushies': {
+    path: '/crochet-plushies',
+    outputDir: 'crochet-plushies',
+    title: 'Handmade Crochet Plushies & Amigurumi | BloomyCocoon',
+    description: 'Discover soft handmade crochet plushies including teddy, bunny, cat, duck, bee, frog, penguin and dinosaur keepsakes starting from ₹299 on WhatsApp.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Plushies',
+  },
+  'screen-crochet-keychains': {
+    path: '/crochet-keychains',
+    outputDir: 'crochet-keychains',
+    title: 'Handmade Crochet Keychains & Charms | BloomyCocoon',
+    description: 'Shop cute handmade crochet keychains in strawberry, heart, flower, teddy, bunny, cat, duck and initial letter designs starting from ₹149 at BloomyCocoon.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Keychains',
+  },
+  'screen-crochet-baby-gifts': {
+    path: '/crochet-baby-gifts',
+    outputDir: 'crochet-baby-gifts',
+    title: 'Handmade Crochet Baby Gifts & Sets | BloomyCocoon',
+    description: 'Shop soft handmade crochet baby booties, caps, mittens, rattles, name garlands and newborn gift hampers starting from ₹299 at BloomyCocoon.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Baby Gifts',
+  },
+  'screen-crochet-accessories': {
+    path: '/crochet-accessories',
+    outputDir: 'crochet-accessories',
+    title: 'Handmade Crochet Accessories & Totes | BloomyCocoon',
+    description: 'Explore handmade crochet bow clips, scrunchies, hair bands, brooches, bracelets, pouches, phone sleeves and tote bags starting from ₹149 on WhatsApp.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Accessories',
+  },
+  'screen-crochet-home-decor': {
+    path: '/crochet-home-decor',
+    outputDir: 'crochet-home-decor',
+    title: 'Handmade Crochet Home Decor Pieces | BloomyCocoon',
+    description: 'Warm up desks, shelves and rooms with handmade crochet coasters, mini flower pots, plant holders, garlands, cushion covers and wall hangings from ₹149.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Home & Decor',
+  },
+  'screen-crochet-gift-combos': {
+    path: '/crochet-gift-combos',
+    outputDir: 'crochet-gift-combos',
+    title: 'Handmade Crochet Gift Combos & Hampers | BloomyCocoon',
+    description: 'Explore curated crochet gift combos, plushie flower pairings, anniversary gift boxes, birthday mini boxes and custom hampers from ₹399 at BloomyCocoon.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Gift Combos',
+  },
   'screen-cart': {
     path: '/cart',
     outputDir: 'cart',
@@ -192,6 +248,20 @@ export const OCCASION_PRODUCTS = {
   ],
 };
 
+export const CATEGORY_PAGES = {
+  'screen-crochet-bouquets': 'bouquets',
+  'screen-crochet-plushies': 'plushies',
+  'screen-crochet-keychains': 'keychains',
+  'screen-crochet-baby-gifts': 'baby-gifts',
+  'screen-crochet-accessories': 'accessories',
+  'screen-crochet-home-decor': 'home-decor',
+  'screen-crochet-gift-combos': 'gift-combos',
+};
+
+const CATEGORY_SCREEN_BY_ID = Object.fromEntries(
+  Object.entries(CATEGORY_PAGES).map(([screenId, categoryId]) => [categoryId, screenId]),
+);
+
 export const ROUTE_SCREEN_IDS = Object.keys(ROUTE_CONTENT);
 export const STATIC_ROUTE_SCREEN_IDS = ROUTE_SCREEN_IDS.filter(screenId => screenId !== 'screen-home');
 
@@ -235,7 +305,7 @@ export function getBreadcrumbList(screenId) {
     },
   ];
 
-  if (OCCASION_PRODUCTS[screenId]) {
+  if (OCCASION_PRODUCTS[screenId] || CATEGORY_PAGES[screenId]) {
     itemListElement.push({
       '@type': 'ListItem',
       position: 2,
@@ -273,6 +343,15 @@ const CATEGORY_LABELS = {
   'home-decor': 'Home & Decor',
   'gift-combos': 'Gift Combos',
 };
+
+export function getCategoryLabel(categoryId) {
+  return CATEGORY_LABELS[categoryId] || 'Handmade';
+}
+
+export function getCategoryPath(categoryId) {
+  const screenId = CATEGORY_SCREEN_BY_ID[categoryId];
+  return screenId && ROUTE_CONTENT[screenId] ? ROUTE_CONTENT[screenId].path : '/collections';
+}
 
 export function getProductCanonical(productId) {
   return `${SITE_ORIGIN}/products/${productId}`;
@@ -314,7 +393,7 @@ export function getProductBreadcrumbs(product) {
         '@type': 'ListItem',
         position: 3,
         name: categoryLabel,
-        item: `${SITE_ORIGIN}/collections?category=${product.category}`,
+        item: `${SITE_ORIGIN}${getCategoryPath(product.category)}`,
       },
       {
         '@type': 'ListItem',
@@ -442,14 +521,15 @@ export function getRoutePageSchema(screenId, { faqItems = [], products = [], has
 
   if (route.schemaType === 'CollectionPage') {
     const isOccasion = Boolean(OCCASION_PRODUCTS[screenId]);
+    const categoryId = CATEGORY_PAGES[screenId];
     const filteredProducts = isOccasion
       ? products.filter(p => OCCASION_PRODUCTS[screenId].includes(p.id))
-      : products;
+      : (categoryId ? products.filter(p => p.category === categoryId) : products);
 
     if (filteredProducts && filteredProducts.length > 0) {
       page.mainEntity = {
         '@type': 'ItemList',
-        name: isOccasion ? route.title : 'BloomyCocoon Handmade Crochet Gift Collection',
+        name: (isOccasion || categoryId) ? route.title : 'BloomyCocoon Handmade Crochet Gift Collection',
         description: route.description,
         numberOfItems: filteredProducts.length,
         itemListElement: filteredProducts.map((product, index) => (

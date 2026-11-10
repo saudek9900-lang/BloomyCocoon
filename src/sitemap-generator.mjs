@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import { existsSync, statSync } from 'node:fs';
 import path from 'node:path';
-import { OCCASION_PRODUCTS } from './route-content.mjs';
+import { CATEGORY_PAGES, OCCASION_PRODUCTS } from './route-content.mjs';
 
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
 
@@ -31,6 +31,13 @@ function getFileLastModDate(filePath, defaultDate = new Date().toISOString().spl
 const CORE_ROUTES = [
   { path: '/', priority: '1.0', changefreq: 'daily', image: 'images/hero_crochet_scene.png', title: 'BloomyCocoon Handmade Crochet Gifts', sourceFile: 'index.html' },
   { path: '/collections', priority: '0.9', changefreq: 'daily', sourceFile: 'src/catalog.json' },
+  { path: '/crochet-bouquets', priority: '0.85', changefreq: 'weekly', categoryKey: 'screen-crochet-bouquets', sourceFile: 'src/route-content.mjs' },
+  { path: '/crochet-plushies', priority: '0.85', changefreq: 'weekly', categoryKey: 'screen-crochet-plushies', sourceFile: 'src/route-content.mjs' },
+  { path: '/crochet-keychains', priority: '0.85', changefreq: 'weekly', categoryKey: 'screen-crochet-keychains', sourceFile: 'src/route-content.mjs' },
+  { path: '/crochet-baby-gifts', priority: '0.85', changefreq: 'weekly', categoryKey: 'screen-crochet-baby-gifts', sourceFile: 'src/route-content.mjs' },
+  { path: '/crochet-accessories', priority: '0.85', changefreq: 'weekly', categoryKey: 'screen-crochet-accessories', sourceFile: 'src/route-content.mjs' },
+  { path: '/crochet-home-decor', priority: '0.85', changefreq: 'weekly', categoryKey: 'screen-crochet-home-decor', sourceFile: 'src/route-content.mjs' },
+  { path: '/crochet-gift-combos', priority: '0.85', changefreq: 'weekly', categoryKey: 'screen-crochet-gift-combos', sourceFile: 'src/route-content.mjs' },
   { path: '/anniversary-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-anniversary-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/birthday-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-birthday-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/baby-shower-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-baby-shower-gifts', sourceFile: 'src/route-content.mjs' },
@@ -89,6 +96,18 @@ export function generateSitemapXml(catalog, defaultDate = new Date().toISOString
           xml += '    <image:image>\n';
           xml += `      <image:loc>${resolveSitemapImageUrl(product.image)}</image:loc>\n`;
           xml += `      <image:title>${escapeXml(`${product.name} - Handmade Crochet ${product.category}`)}</image:title>\n`;
+          xml += '    </image:image>\n';
+        }
+      }
+    }
+
+    if (route.categoryKey && Array.isArray(catalog) && CATEGORY_PAGES[route.categoryKey]) {
+      const targetCategory = CATEGORY_PAGES[route.categoryKey];
+      for (const product of catalog) {
+        if (product.category === targetCategory && product.image) {
+          xml += '    <image:image>\n';
+          xml += `      <image:loc>${resolveSitemapImageUrl(product.image)}</image:loc>\n`;
+          xml += `      <image:title>${escapeXml(`${product.name} - Handmade Crochet Gift`)}</image:title>\n`;
           xml += '    </image:image>\n';
         }
       }

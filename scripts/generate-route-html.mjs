@@ -6,6 +6,9 @@ import {
   ROUTE_SCHEMA_ID,
   STATIC_ROUTE_SCREEN_IDS,
   OCCASION_PRODUCTS,
+  CATEGORY_PAGES,
+  getCategoryLabel,
+  getCategoryPath,
   getRouteMetadata,
   getRouteSchemaGraph,
   getProductRouteMetadata,
@@ -34,6 +37,16 @@ const OCCASION_GRID_MAP = {
   'screen-return-gifts': 'return-gifts-product-grid',
 };
 
+const CATEGORY_GRID_MAP = {
+  'screen-crochet-bouquets': 'crochet-bouquets-product-grid',
+  'screen-crochet-plushies': 'crochet-plushies-product-grid',
+  'screen-crochet-keychains': 'crochet-keychains-product-grid',
+  'screen-crochet-baby-gifts': 'crochet-baby-gifts-product-grid',
+  'screen-crochet-accessories': 'crochet-accessories-product-grid',
+  'screen-crochet-home-decor': 'crochet-home-decor-product-grid',
+  'screen-crochet-gift-combos': 'crochet-gift-combos-product-grid',
+};
+
 function injectPreRenderedProducts(html) {
   const pattern = /(<div\b[^>]*\bid=["']collection-product-grid["'][^>]*>)([\s\S]*?)(<\/div>)/i;
   if (!pattern.test(html)) {
@@ -49,6 +62,17 @@ function injectPreRenderedProducts(html) {
     const gridPattern = new RegExp(`(<div\\b[^>]*\\bid=["']${gridId}["'][^>]*>)([\\s\\S]*?)(<\\/div>)`, 'i');
     if (gridPattern.test(next)) {
       next = next.replace(gridPattern, `$1\n${occasionHtml}\n$3`);
+    }
+  }
+
+  for (const [screenId, gridId] of Object.entries(CATEGORY_GRID_MAP)) {
+    const categoryId = CATEGORY_PAGES[screenId];
+    if (!categoryId) continue;
+    const categoryCatalog = catalog.filter((p) => p.category === categoryId);
+    const categoryHtml = renderCollectionProductsHtml(categoryCatalog);
+    const gridPattern = new RegExp(`(<div\\b[^>]*\\bid=["']${gridId}["'][^>]*>)([\\s\\S]*?)(<\\/div>)`, 'i');
+    if (gridPattern.test(next)) {
+      next = next.replace(gridPattern, `$1\n${categoryHtml}\n$3`);
     }
   }
 
@@ -332,7 +356,8 @@ function injectProductDetail(html, product, catalog) {
   const image = getProductImage(product);
   const webpSrcset = getResponsiveWebpSrcset(image);
   const safePrice = Number(product.startingPrice) || 149;
-  const categoryLabel = product.category ? (product.category.charAt(0).toUpperCase() + product.category.slice(1).replace('-', ' ')) : 'Handmade';
+  const categoryLabel = getCategoryLabel(product.category);
+  const categoryPath = getCategoryPath(product.category);
   const waMessage = encodeURIComponent(`Hi BloomyCocoon, I would like to order the ${product.name} (Starting from ₹${safePrice}). What colors and custom options are available?`);
 
   // Find 4 related products
@@ -356,7 +381,7 @@ function injectProductDetail(html, product, catalog) {
                     </span>
                     <span class="text-outline-variant" aria-hidden="true">/</span>
                     <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a href="/collections?category=${escapeHtml(product.category)}" id="detail-breadcrumb-cat" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">${escapeHtml(categoryLabel)}</span></a>
+                        <a href="${escapeHtml(categoryPath)}" id="detail-breadcrumb-cat" itemprop="item" class="hover:text-secondary transition-colors"><span itemprop="name">${escapeHtml(categoryLabel)}</span></a>
                         <meta itemprop="position" content="3">
                     </span>
                     <span class="text-outline-variant" aria-hidden="true">/</span>
