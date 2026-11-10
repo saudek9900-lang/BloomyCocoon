@@ -702,6 +702,42 @@ document.addEventListener('DOMContentLoaded', () => {
         windowBox: { enabled: false, price: 129 }
     };
 
+    function loadCartFromStorage() {
+        try {
+            const stored = localStorage.getItem('bloomy_cart');
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed)) cart = parsed;
+            }
+            const storedNote = localStorage.getItem('bloomy_cart_note');
+            if (typeof storedNote === 'string') sharedCartNote = storedNote;
+
+            const storedAddons = localStorage.getItem('bloomy_cart_addons');
+            if (storedAddons) {
+                const parsedAddons = JSON.parse(storedAddons);
+                if (parsedAddons && typeof parsedAddons === 'object') {
+                    if (parsedAddons.card) Object.assign(cartGiftAddons.card, parsedAddons.card);
+                    if (parsedAddons.fairyLights) Object.assign(cartGiftAddons.fairyLights, parsedAddons.fairyLights);
+                    if (parsedAddons.windowBox) Object.assign(cartGiftAddons.windowBox, parsedAddons.windowBox);
+                }
+            }
+        } catch (e) {
+            console.warn('Could not read cart from localStorage', e);
+        }
+    }
+
+    function saveCartToStorage() {
+        try {
+            localStorage.setItem('bloomy_cart', JSON.stringify(cart));
+            localStorage.setItem('bloomy_cart_note', sharedCartNote);
+            localStorage.setItem('bloomy_cart_addons', JSON.stringify(cartGiftAddons));
+        } catch (e) {
+            console.warn('Could not save cart to localStorage', e);
+        }
+    }
+
+    loadCartFromStorage();
+
     function getGiftAddonsTotal() {
         let sum = 0;
         if (cartGiftAddons.card.enabled) sum += cartGiftAddons.card.price;
@@ -2027,6 +2063,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = cart.find(i => i.id === id);
         if (item) {
             item.itemNote = note;
+            saveCartToStorage();
         }
     };
 
@@ -2073,6 +2110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updateGiftCardMessage = function(msg) {
         if (cartGiftAddons.card) {
             cartGiftAddons.card.message = msg;
+            saveCartToStorage();
             const counter = document.getElementById('gift-card-chars');
             if (counter) {
                 counter.textContent = `${msg.length}/150`;
@@ -2484,6 +2522,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         updateContextualWhatsAppFloat();
+        saveCartToStorage();
     }
 
     // ----------------------------------------------------
@@ -3116,7 +3155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="text-right">
                                 <span class="font-headline-sm text-secondary block font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-                                <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm">
+                                <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
                                     Add to Cart <span class="material-symbols-outlined" data-icon="add">add</span>
                                 </button>
                             </div>
@@ -3259,6 +3298,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (otherEl && otherEl.value !== sharedCartNote) {
                 otherEl.value = sharedCartNote;
             }
+            saveCartToStorage();
         }
     });
 
@@ -3280,6 +3320,24 @@ document.addEventListener('DOMContentLoaded', () => {
         openWhatsAppMessage(buildCartWhatsAppMessage());
     });
 
-    renderCollectionProducts();
-    syncDynamicStructuredData(getScreenIdFromPath(window.location.pathname) || currentScreen);
+    // Render cart on startup to sync header badge and drawer state from localStorage
+    renderCart();
+
+    if (sharedCartNote) {
+        const noteEl = document.getElementById('cart-customer-note');
+        if (noteEl) noteEl.value = sharedCartNote;
+        const pageNoteEl = document.getElementById('cart-page-customer-note');
+        if (pageNoteEl) pageNoteEl.value = sharedCartNote;
+    }
+
+    // Only render full collection product grid if collection screen is active on load
+    if (currentScreen === 'screen-collection') {
+        renderCollectionProducts();
+    }
+
+    // Defer dynamic structured data syncing to idle time so it does not block main-thread FCP/TBT
+    const scheduleIdleTask = window.requestIdleCallback || ((fn) => setTimeout(fn, 150));
+    scheduleIdleTask(() => {
+        syncDynamicStructuredData(getScreenIdFromPath(window.location.pathname) || currentScreen);
+    });
 });

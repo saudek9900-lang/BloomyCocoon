@@ -60,6 +60,25 @@ body {
     scroll-behavior: smooth;
 }
 
+/* WCAG 1.4.1: Ensure inline text links in blocks are distinguishable by more than color alone */
+p a:not([class*="btn"]):not([class*="button"]):not([data-nav-logo]):not(.nav-logo),
+article a:not([class*="btn"]):not([class*="button"]):not([data-nav-logo]):not(.nav-logo),
+li a:not([class*="btn"]):not([class*="button"]):not([data-nav-logo]):not(.nav-logo) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+}
+
+/* WCAG 2.3.3: Respect user reduced-motion preferences for vestibular safety */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible,

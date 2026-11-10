@@ -206,11 +206,11 @@
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contact">Contact Us</a>
             </div>
             <div class="flex items-center gap-md">
-                <a href="/cart" class="relative inline-flex items-center justify-center w-10 h-10 rounded-full text-on-surface-variant hover:bg-primary-container/50 transition-all duration-300 cart-trigger" aria-label="Open shopping cart" aria-controls="sideCart" aria-expanded="false">
+                <a href="/cart" class="relative inline-flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-full text-on-surface-variant hover:bg-primary-container/50 transition-all duration-300 cart-trigger" aria-label="Open shopping cart" aria-controls="sideCart" aria-expanded="false">
                     <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
                     <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center pointer-events-none shadow-xs cart-badge hidden" aria-live="polite">0</span>
                 </a>
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-on-surface-variant" aria-label="Open mobile menu" aria-controls="mobile-menu" aria-expanded="false">
+                <button onclick="toggleMobileMenu()" class="md:hidden min-w-[44px] min-h-[44px] p-2 flex items-center justify-center text-on-surface-variant rounded-full active:bg-primary-container/40" aria-label="Open mobile menu" aria-controls="mobile-menu" aria-expanded="false">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
             </div>
@@ -243,11 +243,11 @@
                 <p class="font-caption text-xs text-on-surface-variant italic mt-0.5" id="cart-description">Handmade picks before WhatsApp confirmation</p>
             </div>
             <div class="flex items-center gap-2">
-                <a href="/cart" onclick="closeCart()" class="text-xs text-secondary font-semibold hover:text-primary transition-colors flex items-center gap-1 bg-primary-container/70 hover:bg-primary-container px-3 py-1.5 rounded-full border border-secondary/20 shadow-2xs" aria-label="Open full cart page">
+                <a href="/cart" onclick="closeCart()" class="text-xs text-secondary font-semibold hover:text-primary transition-colors flex items-center gap-1 bg-primary-container/70 hover:bg-primary-container px-3 py-1.5 rounded-full border border-secondary/20 shadow-2xs min-h-[36px]" aria-label="Open full cart page">
                     <span>Full Page</span>
                     <span class="material-symbols-outlined text-[15px]">open_in_new</span>
                 </a>
-                <button class="text-on-surface-variant hover:text-primary w-8 h-8 rounded-full hover:bg-primary-container/40 flex items-center justify-center cart-close-btn transition-colors" onclick="closeCart()" aria-label="Close cart drawer">
+                <button class="text-on-surface-variant hover:text-primary min-w-[44px] min-h-[44px] w-11 h-11 rounded-full hover:bg-primary-container/40 flex items-center justify-center cart-close-btn transition-colors" onclick="closeCart()" aria-label="Close cart drawer">
                     <span class="material-symbols-outlined text-[20px]">close</span>
                 </button>
             </div>
@@ -318,7 +318,7 @@
     <div id="quick-look-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" inert>
         <div class="fixed inset-0 bg-black/45 backdrop-blur-xs" onclick="closeQuickLook()"></div>
         <div class="relative bg-surface rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-outline-variant/20 z-10 overflow-hidden transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="quick-look-dialog">
-            <button onclick="closeQuickLook()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-surface-container-low hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors z-20" aria-label="Close details">
+            <button onclick="closeQuickLook()" class="absolute top-4 right-4 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-surface-container-low hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors z-20" aria-label="Close details">
                 <span class="material-symbols-outlined text-[20px]">close</span>
             </button>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
@@ -393,7 +393,7 @@
                         </div>
                         <div class="mobile-hero-media md:col-span-6 mt-lg md:mt-0 relative h-[260px] md:h-[600px]">
                             <div class="absolute inset-0 bg-secondary-fixed-dim/20 rounded-[4rem] -rotate-3 translate-x-4"></div>
-                            <picture class="contents"><source srcset="/assets/hero_crochet_scene-DkLWzVp4-320.webp 320w, /assets/hero_crochet_scene-DkLWzVp4-480.webp 480w, /assets/hero_crochet_scene-DkLWzVp4-640.webp 640w, /assets/hero_crochet_scene-DkLWzVp4.webp 1024w" sizes="(min-width: 1024px) 600px, (min-width: 768px) 50vw, 100vw" type="image/webp"><img alt="Handmade crochet gifts arranged by BloomyCocoon" class="w-full h-full object-cover rounded-[4rem] shadow-2xl relative z-10" src="/assets/hero_crochet_scene-DkLWzVp4.png" fetchpriority="high" width="600" height="600" decoding="async"></picture>
+                            <picture class="contents"><source srcset="/assets/hero_crochet_scene-DkLWzVp4-320.webp 320w, /assets/hero_crochet_scene-DkLWzVp4-480.webp 480w, /assets/hero_crochet_scene-DkLWzVp4-640.webp 640w, /assets/hero_crochet_scene-DkLWzVp4.webp 1024w" sizes="(min-width: 1024px) 600px, (min-width: 768px) 50vw, 92vw" type="image/webp"><img alt="Handmade crochet gifts arranged by BloomyCocoon" class="w-full h-full object-cover rounded-[4rem] shadow-2xl relative z-10" src="/assets/hero_crochet_scene-DkLWzVp4.png" fetchpriority="high" width="600" height="600" decoding="async"></picture>
                             <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl z-20 hidden sm:flex items-center gap-base">
                                 <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-secondary">redeem</span>
@@ -659,20 +659,20 @@
                 <section class="mb-6 md:mb-lg sticky top-[72px] z-40 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-lg md:px-lg border-b border-outline-variant/15 space-y-2">
                     <div class="relative max-w-md">
                         <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] pointer-events-none">search</span>
-                        <input type="text" id="collection-search-input" oninput="handleCollectionSearch(this.value)" placeholder="Search roses, plushies, keychains, gifts..." class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-9 py-2 text-sm font-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-secondary/25 focus:border-secondary transition-all" aria-label="Search handmade crochet collection">
-                        <button id="collection-search-clear" onclick="clearCollectionSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5 rounded-full" aria-label="Clear search">
+                        <input type="text" id="collection-search-input" oninput="handleCollectionSearch(this.value)" placeholder="Search roses, plushies, keychains, gifts..." class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-10 py-2 text-sm font-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-secondary/25 focus:border-secondary transition-all" aria-label="Search handmade crochet collection">
+                        <button id="collection-search-clear" onclick="clearCollectionSearch()" class="hidden absolute right-1 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full" aria-label="Clear search">
                             <span class="material-symbols-outlined text-[18px]">close</span>
                         </button>
                     </div>
                     <div class="flex gap-2 items-center overflow-x-auto no-scrollbar py-1" data-collection-filters>
-                        <button onclick="filterCollectionCategory('all', this)" data-category-filter="all" class="whitespace-nowrap px-5 py-2.5 rounded-full font-label-md text-sm bg-secondary text-on-secondary shadow-sm transition-all duration-200">All Items</button>
-                        <button onclick="filterCollectionCategory('bouquets', this)" data-category-filter="bouquets" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Bouquets 💐</button>
-                        <button onclick="filterCollectionCategory('plushies', this)" data-category-filter="plushies" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Plushies 🧸</button>
-                        <button onclick="filterCollectionCategory('keychains', this)" data-category-filter="keychains" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Keychains 🍓</button>
-                        <button onclick="filterCollectionCategory('baby-gifts', this)" data-category-filter="baby-gifts" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Baby Gifts 👶</button>
-                        <button onclick="filterCollectionCategory('accessories', this)" data-category-filter="accessories" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Accessories 👜</button>
-                        <button onclick="filterCollectionCategory('home-decor', this)" data-category-filter="home-decor" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Home &amp; Decor 🏡</button>
-                        <button onclick="filterCollectionCategory('gift-combos', this)" data-category-filter="gift-combos" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm">Gift Combos 🎁</button>
+                        <button onclick="filterCollectionCategory('all', this)" data-category-filter="all" class="whitespace-nowrap px-5 py-2.5 rounded-full font-label-md text-sm bg-secondary text-on-secondary shadow-sm transition-all duration-200 min-h-[40px]">All Items</button>
+                        <button onclick="filterCollectionCategory('bouquets', this)" data-category-filter="bouquets" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[40px]">Bouquets <span aria-hidden="true">💐</span></button>
+                        <button onclick="filterCollectionCategory('plushies', this)" data-category-filter="plushies" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[40px]">Plushies <span aria-hidden="true">🧸</span></button>
+                        <button onclick="filterCollectionCategory('keychains', this)" data-category-filter="keychains" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[40px]">Keychains <span aria-hidden="true">🍓</span></button>
+                        <button onclick="filterCollectionCategory('baby-gifts', this)" data-category-filter="baby-gifts" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[40px]">Baby Gifts <span aria-hidden="true">👶</span></button>
+                        <button onclick="filterCollectionCategory('accessories', this)" data-category-filter="accessories" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[40px]">Accessories <span aria-hidden="true">👜</span></button>
+                        <button onclick="filterCollectionCategory('home-decor', this)" data-category-filter="home-decor" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[40px]">Home &amp; Decor <span aria-hidden="true">🏡</span></button>
+                        <button onclick="filterCollectionCategory('gift-combos', this)" data-category-filter="gift-combos" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[40px]">Gift Combos <span aria-hidden="true">🎁</span></button>
                     </div>
                 </section>
 
@@ -2025,7 +2025,7 @@
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                                     <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
                                         <a href="/products/single-crochet-rose" class="relative block mb-2" title="Single Crochet Rose">
-                                            <img src="/images/crochet_rose_bouquet_single-crochet-rose-landscape-generated.png" alt="Single Crochet Rose" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <img src="/images/crochet_rose_bouquet_single-crochet-rose-landscape-generated.webp" alt="Single Crochet Rose" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
                                             <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Popular Fav</span>
                                         </a>
                                         <div>
@@ -2043,7 +2043,7 @@
 
                                     <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
                                         <a href="/products/bunny-plushie" class="relative block mb-2" title="Bunny Plushie">
-                                            <img src="/images/crochet_bunny_plush_bunny-plushie.png" alt="Bunny Plushie" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <img src="/images/crochet_bunny_plush_bunny-plushie.webp" alt="Bunny Plushie" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
                                             <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Bestseller</span>
                                         </a>
                                         <div>
@@ -2061,7 +2061,7 @@
 
                                     <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
                                         <a href="/products/strawberry-keychain" class="relative block mb-2" title="Strawberry Keychain">
-                                            <img src="/images/strawberry_keychain_strawberry-keychain.png" alt="Strawberry Keychain" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <img src="/images/strawberry_keychain_strawberry-keychain.webp" alt="Strawberry Keychain" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
                                             <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Pocket Love</span>
                                         </a>
                                         <div>
@@ -2079,7 +2079,7 @@
 
                                     <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-xs transition-all group">
                                         <a href="/products/couple-bouquet-combo" class="relative block mb-2" title="Couple Bouquet Combo">
-                                            <img src="/images/mixed_luxury_bouquet_couple-bouquet-combo.png" alt="Couple Bouquet Combo" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                                            <img src="/images/mixed_luxury_bouquet_couple-bouquet-combo.webp" alt="Couple Bouquet Combo" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
                                             <span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Anniversary</span>
                                         </a>
                                         <div>
@@ -2265,7 +2265,7 @@
                     <div class="md:col-span-6 lg:col-span-6 space-y-4">
                         <div class="aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-primary-container relative border border-outline-variant/20 shadow-md group">
                             <picture id="detail-product-picture" class="contents">
-                                <img id="detail-product-img" src="/images/hero_crochet_scene.png" alt="Handmade crochet gift" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="600" height="450" loading="eager">
+                                <img id="detail-product-img" src="/images/hero_crochet_scene-640.webp" alt="Handmade crochet gift" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="600" height="450" loading="lazy">
                             </picture>
                             <span id="detail-product-badge" class="absolute top-4 left-4 bg-secondary text-white text-xs font-label-md px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm hidden"></span>
                             
@@ -2473,7 +2473,7 @@
             <!-- Sticky Mobile Purchase Bar (Fixed Bottom on Mobile) -->
             <div id="detail-sticky-bar" class="fixed bottom-0 inset-x-0 z-40 bg-surface/95 backdrop-blur-md border-t border-outline-variant/20 px-4 py-2.5 shadow-[0_-4px_24px_rgba(42,22,17,0.08)] flex md:hidden items-center justify-between gap-3 transition-transform duration-300">
                 <div class="flex items-center gap-2.5 min-w-0 flex-1">
-                    <img id="detail-sticky-img" src="/images/hero_crochet_scene.png" alt="" class="w-11 h-11 rounded-xl object-cover border border-outline-variant/20 shrink-0" width="44" height="44">
+                    <img id="detail-sticky-img" src="/images/hero_crochet_scene-320.webp" alt="" class="w-11 h-11 rounded-xl object-cover border border-outline-variant/20 shrink-0" width="44" height="44" loading="lazy">
                     <div class="min-w-0 flex-1">
                         <span id="detail-sticky-name" class="font-label-md text-xs font-semibold text-on-surface truncate block">Product</span>
                         <span id="detail-sticky-price" class="text-xs font-bold text-secondary font-headline-md block">Starting from ₹149</span>
