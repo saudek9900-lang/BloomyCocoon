@@ -34,7 +34,6 @@ const CORE_ROUTES = [
   { path: '/privacy-policy', priority: '0.4', changefreq: 'yearly', sourceFile: 'index.html' },
   { path: '/order-terms', priority: '0.5', changefreq: 'monthly', sourceFile: 'index.html' },
   { path: '/crochet-care', priority: '0.5', changefreq: 'monthly', sourceFile: 'index.html' },
-  { path: '/cart', priority: '0.6', changefreq: 'weekly', sourceFile: 'index.html' },
 ];
 
 function escapeXml(str) {

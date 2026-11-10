@@ -1,21 +1,7 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+
 const responsiveImageWidths = [320, 480, 640];
-const responsiveImagePaths = new Set([
-  'images/hero_crochet_scene.png',
-  'images/mixed_luxury_bouquet.png',
-  'images/mixed_luxury_bouquet_custom-premium-bouquet.png',
-  'images/mixed_luxury_bouquet_couple-bouquet-combo.png',
-  'images/crochet_cat_plushie.png',
-  'images/crochet_cat_plushie_cat-plushie.png',
-  'images/strawberry_keychain.png',
-  'images/strawberry_keychain_strawberry-keychain.png',
-  'images/crochet_tote_bag.png',
-  'images/crochet_tote_bag_crochet-tote-bag.png',
-  'images/crochet_wall_hanging.png',
-  'images/crochet_wall_hanging_wall-hanging.png',
-  'images/about_process.png',
-  'images/yarn_storage.png',
-  'images/contact_workspace.png'
-]);
 
 const collectionCategories = [
   { id: 'bouquets', label: 'Bouquets' },
@@ -74,18 +60,18 @@ function getWebpImagePath(imagePath) {
 }
 
 export function getResponsiveWebpSrcset(imagePath) {
-  const cleanPath = imagePath.replace(/^\//, '');
   const webpPath = getWebpImagePath(imagePath);
-  if (!responsiveImagePaths.has(cleanPath)) return webpPath;
   const basePath = webpPath.replace(/\.webp$/i, '');
-  return [
-    ...responsiveImageWidths.map(width => `${basePath}-${width}.webp ${width}w`),
-    `${webpPath} 1024w`
-  ].join(', ');
+  const srcset = responsiveImageWidths
+    .filter(width => existsSync(path.resolve('public', `${basePath.replace(/^\//, '')}-${width}.webp`)))
+    .map(width => `${basePath}-${width}.webp ${width}w`);
+  if (srcset.length === 0) return webpPath;
+  srcset.push(`${webpPath} 1024w`);
+  return srcset.join(', ');
 }
 
 function getProductImageSizes(isFeatured) {
-  return isFeatured ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 100vw';
+  return isFeatured ? '(min-width: 768px) 66vw, 92vw' : '(min-width: 768px) 33vw, 46vw';
 }
 
 function getProductCategoryIds(product) {
@@ -123,7 +109,7 @@ export function getProductCardMarkup(product) {
 
   if (product.featured) {
     const tagMarkup = product.tag
-      ? `<span class="bg-[#A8B5A2] text-white px-4 py-1 rounded-full font-label-md text-sm">${escapeHTML(product.tag)}</span>`
+      ? `<span class="bg-tertiary text-on-tertiary px-4 py-1 rounded-full font-label-md text-sm">${escapeHTML(product.tag)}</span>`
       : '';
     return `
       <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
@@ -134,11 +120,9 @@ export function getProductCardMarkup(product) {
               <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
             </picture>
           </a>
-          <button type="button" onclick="openQuickLook('${product.id}')" class="absolute inset-0 bg-secondary/15 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
-            <span class="bg-surface/90 backdrop-blur-xs text-secondary text-xs font-label-md px-3.5 py-2 rounded-full shadow-sm flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-[18px]">visibility</span>
-              <span>Quick Look</span>
-            </span>
+          <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-3 right-3 bg-surface/95 backdrop-blur-xs text-secondary text-xs font-label-md px-3.5 py-2 min-h-[44px] rounded-full shadow-sm flex items-center gap-1.5 opacity-95 md:opacity-0 md:group-hover/img:opacity-100 focus-visible:opacity-100 transition-opacity cursor-pointer border border-outline-variant/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
+            <span>Quick Look</span>
           </button>
           <div class="absolute top-md right-md flex flex-col gap-2 items-end pointer-events-none">
             ${product.badge ? `<span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">${escapeHTML(product.badge)}</span>` : ''}
@@ -155,7 +139,7 @@ export function getProductCardMarkup(product) {
             <div class="text-right">
               <span class="font-headline-sm text-secondary block font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
               <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
-                Add to Cart <span class="material-symbols-outlined" data-icon="add">add</span>
+                Add to Cart <span class="material-symbols-outlined" data-icon="add" aria-hidden="true">add</span>
               </button>
             </div>
           </div>
@@ -173,11 +157,9 @@ export function getProductCardMarkup(product) {
             <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
           </picture>
         </a>
-        <button type="button" onclick="openQuickLook('${product.id}')" class="absolute inset-0 bg-secondary/15 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
-          <span class="bg-surface/90 backdrop-blur-xs text-secondary text-xs font-label-md px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[16px]">visibility</span>
-            <span>Quick Look</span>
-          </span>
+        <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-2 right-2 bg-surface/95 backdrop-blur-xs text-secondary text-xs font-label-md px-3 py-1.5 min-w-[44px] min-h-[44px] rounded-full shadow-sm flex items-center justify-center gap-1 opacity-95 md:opacity-0 md:group-hover/img:opacity-100 focus-visible:opacity-100 transition-opacity cursor-pointer border border-outline-variant/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">visibility</span>
+          <span class="hidden sm:inline">Quick Look</span>
         </button>
         <div class="absolute top-base left-base pointer-events-none">
           ${badgeMarkup}

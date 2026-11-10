@@ -191,6 +191,12 @@ function updateMetadata(html, metadata) {
     /<meta\s+property=["']og:type["']\s+content=["'][^"']*["']\s*\/?>/i,
     ogTypeMarkup,
   );
+  if (metadata.robots) {
+    next = next.replace(
+      /<meta\s+name=["']robots["']\s+content=["'][^"']*["']\s*\/?>/i,
+      `<meta name="robots" content="${escapeHtml(metadata.robots)}">`,
+    );
+  }
   return next;
 }
 
@@ -311,7 +317,7 @@ function insertRouteSchema(html, screenId, baseHtml) {
 async function writeRouteHtml(baseHtml, screenId) {
   const route = ROUTE_CONTENT[screenId];
   const routeHtml = insertRouteSchema(
-    updateMetadata(isolateScreen(baseHtml, screenId), getRouteMetadata(screenId)),
+    updateMetadata(ensureUnifiedFooter(isolateScreen(baseHtml, screenId)), getRouteMetadata(screenId)),
     screenId,
     baseHtml,
   );
@@ -360,9 +366,11 @@ function injectProductDetail(html, product, catalog) {
   next = next.replace(/<nav\b[^>]*\bid=["']detail-breadcrumbs["'][^>]*>[\s\S]*?<\/nav>/i, breadcrumbNav);
 
   // 2. Picture
+  const webpFull = `/${image.replace(/^\//, '').replace(/\.png$/i, '.webp')}`;
+  const webpThumb = `/${image.replace(/^\//, '').replace(/\.png$/i, '-320.webp')}`;
   const pictureMarkup = `<picture id="detail-product-picture" class="contents">
-                                <source srcset="${escapeHtml(webpSrcset)}" sizes="(min-width: 768px) 50vw, 100vw" type="image/webp">
-                                <img id="detail-product-img" src="${escapeHtml(image)}" alt="${escapeHtml(product.name)} - Handmade crochet gift by BloomyCocoon" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="600" height="450" loading="eager">
+                                <source srcset="${escapeHtml(webpSrcset)}" sizes="(min-width: 768px) 50vw, 92vw" type="image/webp">
+                                <img id="detail-product-img" src="${escapeHtml(webpFull)}" alt="${escapeHtml(product.name)} - Handmade crochet gift by BloomyCocoon" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="600" height="450" loading="eager" fetchpriority="high" decoding="async">
                             </picture>`;
   next = next.replace(/<picture\b[^>]*\bid=["']detail-product-picture["'][^>]*>[\s\S]*?<\/picture>/i, pictureMarkup);
 
@@ -406,13 +414,13 @@ function injectProductDetail(html, product, catalog) {
   // 9. WhatsApp button
   next = next.replace(
     /<a\b[^>]*\bid=["']detail-whatsapp-btn["'][^>]*>([\s\S]*?)<\/a>/i,
-    `<a id="detail-whatsapp-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="min-h-[48px] bg-[#25D366] text-white py-3 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:bg-[#20ba59] active:scale-95 transition-all shadow-sm cursor-pointer"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span><span>Order on WhatsApp</span></a>`
+    `<a id="detail-whatsapp-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="min-h-[48px] bg-[#075E54] text-white py-3 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:bg-[#064e46] active:scale-95 transition-all shadow-sm cursor-pointer"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span><span>Order on WhatsApp</span></a>`
   );
 
   // 10. Sticky Mobile Bar
   next = next.replace(
     /<img\b[^>]*\bid=["']detail-sticky-img["'][^>]*>/i,
-    `<img id="detail-sticky-img" src="${escapeHtml(image)}" alt="${escapeHtml(product.name)}" class="w-11 h-11 rounded-xl object-cover border border-outline-variant/20 shrink-0" width="44" height="44">`
+    `<img id="detail-sticky-img" src="${escapeHtml(webpThumb)}" alt="${escapeHtml(product.name)}" class="w-11 h-11 rounded-xl object-cover border border-outline-variant/20 shrink-0" width="44" height="44" loading="lazy" decoding="async">`
   );
   next = next.replace(
     /(<span\b[^>]*\bid=["']detail-sticky-name["'][^>]*>)([\s\S]*?)(<\/span>)/i,
@@ -424,13 +432,13 @@ function injectProductDetail(html, product, catalog) {
   );
   next = next.replace(
     /<a\b[^>]*\bid=["']detail-sticky-wa-btn["'][^>]*>([\s\S]*?)<\/a>/i,
-    `<a id="detail-sticky-wa-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="bg-[#25D366] text-white w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-all shadow-xs min-h-[44px] min-w-[44px]" aria-label="Order on WhatsApp"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span></a>`
+    `<a id="detail-sticky-wa-btn" href="https://wa.me/919061174579?text=${waMessage}" target="_blank" rel="noopener" class="bg-[#075E54] hover:bg-[#064e46] text-white w-11 h-11 rounded-full flex items-center justify-center active:scale-95 transition-all shadow-xs min-h-[44px] min-w-[44px]" aria-label="Order on WhatsApp"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span></a>`
   );
 
   // 11. Lightbox Image
   next = next.replace(
     /<img\b[^>]*\bid=["']lightbox-img["'][^>]*>/i,
-    `<img id="lightbox-img" src="${escapeHtml(image)}" alt="${escapeHtml(product.name)} - Handcrafted crochet stitch detail" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300">`
+    `<img id="lightbox-img" src="${escapeHtml(webpFull)}" alt="${escapeHtml(product.name)} - Handcrafted crochet stitch detail" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300" loading="lazy" decoding="async">`
   );
 
   // 12. Related products grid
@@ -440,6 +448,41 @@ function injectProductDetail(html, product, catalog) {
   );
 
   return next;
+}
+
+const UNIFIED_FOOTER_HTML = `<footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
+                        <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
+                        <a data-policy-footer-links class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/shipping-delivery">Shipping &amp; Delivery</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/returns-cancellations">Returns &amp; Cancellations</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
+                    </nav>
+                    <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>`;
+
+function ensureUnifiedFooter(html) {
+  return html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/gi, UNIFIED_FOOTER_HTML);
 }
 
 function insertProductSchema(html, product, baseHtml) {
@@ -464,7 +507,7 @@ async function writeProductHtml(baseHtml, product, catalog) {
   const metadata = getProductRouteMetadata(product);
   metadata.isProduct = true;
   const detailHtml = injectProductDetail(baseHtml, product, catalog);
-  const initialHtml = isolateScreen(detailHtml, 'screen-product-detail');
+  const initialHtml = ensureUnifiedFooter(isolateScreen(detailHtml, 'screen-product-detail'));
   const metaHtml = updateMetadata(initialHtml, metadata);
   const finalHtml = insertProductSchema(metaHtml, product, baseHtml);
   const outputDir = path.join(DIST_DIR, 'products', product.id);
@@ -477,7 +520,7 @@ const baseHtml = injectPreRenderedProducts(rawBaseHtml);
 await writeFile(
   INDEX_PATH,
   insertRouteSchema(
-    updateMetadata(isolateScreen(baseHtml, 'screen-home'), getRouteMetadata('screen-home')),
+    updateMetadata(ensureUnifiedFooter(isolateScreen(baseHtml, 'screen-home')), getRouteMetadata('screen-home')),
     'screen-home',
     baseHtml,
   ),

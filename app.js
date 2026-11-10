@@ -71,23 +71,27 @@ document.addEventListener('DOMContentLoaded', () => {
   "default": "images/hero_crochet_scene.png"
 };
     const responsiveImageWidths = [320, 480, 640];
-    const responsiveImagePaths = new Set([
-  "images/hero_crochet_scene.png",
-  "images/mixed_luxury_bouquet.png",
-  "images/mixed_luxury_bouquet_custom-premium-bouquet.png",
-  "images/mixed_luxury_bouquet_couple-bouquet-combo.png",
-  "images/crochet_cat_plushie.png",
-  "images/crochet_cat_plushie_cat-plushie.png",
-  "images/strawberry_keychain.png",
-  "images/strawberry_keychain_strawberry-keychain.png",
-  "images/crochet_tote_bag.png",
-  "images/crochet_tote_bag_crochet-tote-bag.png",
-  "images/crochet_wall_hanging.png",
-  "images/crochet_wall_hanging_wall-hanging.png",
-  "images/about_process.png",
-  "images/yarn_storage.png",
-  "images/contact_workspace.png"
-]);
+    const staticResponsiveImagePaths = [
+        "images/about_process.png",
+        "images/yarn_storage.png",
+        "images/contact_workspace.png"
+    ];
+    let responsiveImagePathsCache = null;
+
+    function getResponsiveImagePathsSet() {
+        if (responsiveImagePathsCache) return responsiveImagePathsCache;
+        const paths = new Set();
+        const addNormalizedPath = (p) => {
+            if (!p) return;
+            const clean = String(p).replace(/^\//, '').replace(/\.(png|webp)$/i, '');
+            if (clean) paths.add(clean);
+        };
+        staticResponsiveImagePaths.forEach(addNormalizedPath);
+        Object.values(categoryFallbackImages).forEach(addNormalizedPath);
+        collectionProducts.forEach((p) => addNormalizedPath(p.image));
+        responsiveImagePathsCache = paths;
+        return paths;
+    }
     const collectionProducts = [
   {
     "id": "single-crochet-rose",
@@ -1173,7 +1177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.openProductLightbox = function(src, alt) {
+    window.openProductLightbox = function(src, alt, triggerEl = document.activeElement) {
         const modal = document.getElementById('product-lightbox-modal');
         const img = document.getElementById('lightbox-img');
         if (!modal || !img) return;
@@ -1185,16 +1189,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modal.classList.add('opacity-100');
-        modal.removeAttribute('inert');
-        document.body.style.overflow = 'hidden';
-
-        const escHandler = (e) => {
-            if (e.key === 'Escape') {
-                closeProductLightbox();
-                window.removeEventListener('keydown', escHandler);
-            }
-        };
-        window.addEventListener('keydown', escHandler);
+        openAccessibleOverlay(modal, {
+            triggerEl,
+            initialFocusEl: document.getElementById('lightbox-close-btn') || modal,
+            onClose: window.closeProductLightbox
+        });
     };
 
     window.closeProductLightbox = function() {
@@ -1202,9 +1201,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!modal) return;
         modal.classList.remove('opacity-100');
         modal.classList.add('opacity-0', 'pointer-events-none');
-        modal.setAttribute('inert', '');
-        document.body.style.overflow = '';
+        closeAccessibleOverlay(modal);
     };
+
+    function focusScreenHeading(screenEl) {
+        if (!screenEl) return;
+        const heading = screenEl.querySelector('h1');
+        if (!heading) return;
+        if (!heading.hasAttribute('tabindex')) {
+            heading.setAttribute('tabindex', '-1');
+        }
+        heading.style.outline = 'none';
+        heading.focus({ preventScroll: true });
+    }
 
     function renderProductDetailScreen(pathname = window.location.pathname) {
         const match = pathname.match(/^\/products?\/([^/?#]+)/);
@@ -1236,8 +1245,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const breadcrumbName = document.getElementById('detail-breadcrumb-name');
         if (breadcrumbName) breadcrumbName.textContent = product.name;
 
+        const pictureEl = document.getElementById('detail-product-picture');
         const imgEl = document.getElementById('detail-product-img');
         const imagePath = getProductImage(product);
+        if (pictureEl) {
+            let sourceEl = pictureEl.querySelector('source');
+            if (!sourceEl) {
+                sourceEl = document.createElement('source');
+                sourceEl.type = 'image/webp';
+                pictureEl.insertBefore(sourceEl, imgEl || null);
+            }
+            sourceEl.srcset = getResponsiveWebpSrcset(imagePath);
+            sourceEl.sizes = '(min-width: 768px) 50vw, 92vw';
+        }
         if (imgEl) {
             imgEl.src = imagePath;
             imgEl.alt = `${product.name} - Handmade crochet gift by BloomyCocoon`;
@@ -1278,7 +1298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Sticky bar sync
         const stickyImg = document.getElementById('detail-sticky-img');
         if (stickyImg) {
-            stickyImg.src = imagePath;
+            stickyImg.src = getThumbnailImage(imagePath);
             stickyImg.alt = product.name;
         }
         const stickyName = document.getElementById('detail-sticky-name');
@@ -1318,6 +1338,7 @@ document.addEventListener('DOMContentLoaded', () => {
             syncScreenMetadata(targetScreenId, targetPath);
             syncDynamicStructuredData(targetScreenId);
             syncNavigationUI();
+            syncWhatsAppFloatVisibility(targetScreenId);
             if (targetScreenId === 'screen-collection') {
                 applyCollectionFilterFromUrl();
             }
@@ -1348,6 +1369,8 @@ document.addEventListener('DOMContentLoaded', () => {
             syncScreenMetadata(targetScreenId, targetPath);
             syncDynamicStructuredData(targetScreenId);
             syncNavigationUI();
+            syncWhatsAppFloatVisibility(targetScreenId);
+            focusScreenHeading(targetScreenEl);
             return;
         }
 
@@ -1357,15 +1380,7 @@ document.addEventListener('DOMContentLoaded', () => {
         inTransition = true;
         
         // Toggle global WhatsApp button visibility based on target screen
-        const whatsappFloat = document.getElementById('whatsapp-global-float');
-        if (whatsappFloat) {
-            if (targetScreenId === 'screen-custom-orders') {
-                whatsappFloat.classList.add('whatsapp-hidden');
-            } else {
-                whatsappFloat.classList.remove('whatsapp-hidden');
-                updateContextualWhatsAppFloat(targetScreenId);
-            }
-        }
+        syncWhatsAppFloatVisibility(targetScreenId);
 
         // Open drawer logic or cleanup
         if (targetScreenId !== 'screen-collection') {
@@ -1446,13 +1461,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderCart();
             }
 
-            if (targetScreenId === 'screen-custom-orders') {
-                whatsappFloat?.classList.add('whatsapp-hidden');
-            }
+            syncWhatsAppFloatVisibility(targetScreenId);
 
             if (targetScreenId === 'screen-custom-orders' && shouldFocusCustomOrder) {
                 shouldFocusCustomOrder = false;
                 setTimeout(() => scrollToCustomOrderForm(), 80);
+            } else {
+                focusScreenHeading(targetScreenEl);
             }
         }, animTime);
     };
@@ -1807,33 +1822,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 4. INTERACTIVE SHOPPING BASKET
     // ----------------------------------------------------
-    function setPageBehindCartInert(isInert) {
-        const pageRegions = [
-            document.querySelector('nav'),
-            document.getElementById('app-viewport'),
-            document.getElementById('whatsapp-global-float')
-        ].filter(Boolean);
+    const activeOverlays = [];
+    const overlayStateMap = new WeakMap();
 
-        pageRegions.forEach(region => {
-            if (isInert) {
-                if (!region.hasAttribute('inert')) {
-                    region.dataset.cartInertApplied = 'true';
-                    region.setAttribute('inert', '');
-                    region.setAttribute('aria-hidden', 'true');
-                }
-                return;
-            }
-
-            if (region.dataset.cartInertApplied === 'true') {
-                region.removeAttribute('inert');
-                region.removeAttribute('aria-hidden');
-                delete region.dataset.cartInertApplied;
-            }
-        });
-    }
-
-    function getCartFocusableElements(sideCart) {
-        return Array.from(sideCart.querySelectorAll([
+    function getFocusableElements(container) {
+        return Array.from(container.querySelectorAll([
             'a[href]',
             'button:not([disabled])',
             'textarea:not([disabled])',
@@ -1846,20 +1839,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function keepFocusInsideCart(event, sideCart) {
+    function trapFocusInContainer(event, container) {
         if (event.key !== 'Tab') return;
 
-        const focusableElements = getCartFocusableElements(sideCart);
+        const focusableElements = getFocusableElements(container);
         if (focusableElements.length === 0) {
             event.preventDefault();
-            sideCart.focus({ preventScroll: true });
+            container.focus({ preventScroll: true });
             return;
         }
 
         const firstFocusable = focusableElements[0];
         const lastFocusable = focusableElements[focusableElements.length - 1];
 
-        if (!sideCart.contains(document.activeElement)) {
+        if (!container.contains(document.activeElement)) {
             event.preventDefault();
             firstFocusable.focus({ preventScroll: true });
             return;
@@ -1871,6 +1864,107 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (!event.shiftKey && document.activeElement === lastFocusable) {
             event.preventDefault();
             firstFocusable.focus({ preventScroll: true });
+        }
+    }
+
+    function setBackgroundInertForOverlay(overlayEl, shouldInert, state) {
+        if (!overlayEl) return;
+        if (shouldInert) {
+            const inerted = [];
+            let cur = overlayEl;
+            while (cur && cur !== document.body) {
+                const parent = cur.parentElement;
+                if (!parent) break;
+                Array.from(parent.children).forEach(sibling => {
+                    if (sibling === cur) return;
+                    const tag = sibling.tagName;
+                    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'LINK' || tag === 'TEMPLATE') return;
+                    if (!sibling.hasAttribute('inert')) {
+                        sibling.setAttribute('inert', '');
+                        sibling.setAttribute('aria-hidden', 'true');
+                        inerted.push(sibling);
+                    }
+                });
+                cur = parent;
+            }
+            state.inerted = inerted;
+            return;
+        }
+
+        if (Array.isArray(state.inerted)) {
+            state.inerted.forEach(el => {
+                el.removeAttribute('inert');
+                el.removeAttribute('aria-hidden');
+            });
+            state.inerted = [];
+        }
+    }
+
+    function openAccessibleOverlay(overlayEl, { triggerEl = document.activeElement, initialFocusEl = null, onClose = null, lockScroll = true } = {}) {
+        if (!overlayEl) return;
+        let state = overlayStateMap.get(overlayEl);
+        if (!state) {
+            state = { inerted: [], triggerEl: null, onClose: null, lockScroll: true };
+            overlayStateMap.set(overlayEl, state);
+        }
+
+        if (triggerEl instanceof HTMLElement && !overlayEl.contains(triggerEl)) {
+            state.triggerEl = triggerEl;
+        }
+        state.onClose = onClose;
+        state.lockScroll = lockScroll;
+
+        overlayEl.removeAttribute('inert');
+        overlayEl.setAttribute('aria-modal', 'true');
+        overlayEl.setAttribute('aria-hidden', 'false');
+
+        if (!activeOverlays.includes(overlayEl)) {
+            activeOverlays.push(overlayEl);
+        }
+
+        setBackgroundInertForOverlay(overlayEl, true, state);
+
+        if (lockScroll && activeOverlays.length === 1) {
+            state.prevOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+        }
+
+        const targetFocus = initialFocusEl || getFocusableElements(overlayEl)[0] || overlayEl;
+        requestAnimationFrame(() => {
+            targetFocus?.focus({ preventScroll: true });
+        });
+    }
+
+    function closeAccessibleOverlay(overlayEl) {
+        if (!overlayEl) return;
+        const state = overlayStateMap.get(overlayEl);
+        overlayEl.setAttribute('inert', '');
+        overlayEl.setAttribute('aria-hidden', 'true');
+
+        const idx = activeOverlays.indexOf(overlayEl);
+        if (idx !== -1) activeOverlays.splice(idx, 1);
+
+        if (state) {
+            setBackgroundInertForOverlay(overlayEl, false, state);
+            if (state.lockScroll && activeOverlays.length === 0) {
+                document.body.style.overflow = state.prevOverflow || '';
+            }
+            const trigger = state.triggerEl;
+            state.triggerEl = null;
+            if (trigger && document.contains(trigger)) {
+                requestAnimationFrame(() => trigger.focus({ preventScroll: true }));
+            }
+        }
+    }
+
+    function syncWhatsAppFloatVisibility(screenId = currentScreen) {
+        const whatsappFloat = document.getElementById('whatsapp-global-float');
+        if (!whatsappFloat) return;
+        const isCartOpen = document.getElementById('sideCart')?.classList.contains('cart-visible');
+        whatsappFloat.classList.toggle('whatsapp-hidden', isCartOpen || screenId === 'screen-custom-orders');
+        whatsappFloat.classList.toggle('whatsapp-product-mobile-hide', screenId === 'screen-product-detail');
+        if (!isCartOpen && screenId !== 'screen-custom-orders') {
+            updateContextualWhatsAppFloat(screenId);
         }
     }
 
@@ -1886,12 +1980,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sideCart.classList.toggle('translate-x-full', !isOpen);
         sideCart.classList.toggle('translate-x-0', isOpen);
         sideCart.setAttribute('aria-modal', isOpen ? 'true' : 'false');
-        if (isOpen) {
-            sideCart.removeAttribute('inert');
-        } else {
-            sideCart.setAttribute('inert', '');
-        }
-        
+
         const backdrop = document.getElementById('cart-backdrop');
         if (backdrop) {
             backdrop.classList.toggle('opacity-100', isOpen);
@@ -1899,14 +1988,6 @@ document.addEventListener('DOMContentLoaded', () => {
             backdrop.classList.toggle('opacity-0', !isOpen);
             backdrop.classList.toggle('pointer-events-none', !isOpen);
         }
-
-        if (isOpen) {
-            sideCart.focus({ preventScroll: true });
-        }
-        setPageBehindCartInert(isOpen);
-        document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
-            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
 
         if (isOpen && !document.body.classList.contains('cart-open')) {
             cartScrollY = window.scrollY;
@@ -1918,21 +1999,23 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: cartScrollY, behavior: 'instant' });
         }
 
-        const whatsappFloat = document.getElementById('whatsapp-global-float');
-        if (whatsappFloat) {
-            if (isOpen) {
-                whatsappFloat.classList.add('whatsapp-hidden');
-            } else if (currentScreen !== 'screen-custom-orders') {
-                whatsappFloat.classList.remove('whatsapp-hidden');
-            }
-        }
-
         if (isOpen) {
             const closeBtn = sideCart.querySelector('.cart-close-btn');
-            requestAnimationFrame(() => (closeBtn || sideCart).focus({ preventScroll: true }));
-        } else if (lastCartTrigger && document.contains(lastCartTrigger)) {
-            lastCartTrigger.focus({ preventScroll: true });
+            openAccessibleOverlay(sideCart, {
+                triggerEl: triggerEl || lastCartTrigger,
+                initialFocusEl: closeBtn || sideCart,
+                onClose: window.closeCart,
+                lockScroll: false
+            });
+        } else {
+            closeAccessibleOverlay(sideCart);
         }
+
+        document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        syncWhatsAppFloatVisibility(currentScreen);
     }
 
     function closeMobileMenu() {
@@ -1994,12 +2077,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('keydown', (e) => {
-        const sideCart = document.getElementById('sideCart');
-        if (sideCart?.classList.contains('cart-visible')) {
+        if (activeOverlays.length > 0) {
+            const topOverlay = activeOverlays[activeOverlays.length - 1];
+            const state = overlayStateMap.get(topOverlay);
             if (e.key === 'Escape') {
-                window.closeCart();
-            } else {
-                keepFocusInsideCart(e, sideCart);
+                e.preventDefault();
+                state?.onClose?.();
+                return;
+            }
+            if (e.key === 'Tab') {
+                trapFocusInContainer(e, topOverlay);
+                return;
             }
         }
 
@@ -2136,7 +2224,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-label-md text-xs font-bold text-on-surface">✍️ Handwritten Calligraphy Card</span>
+                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">✍️</span> Handwritten Calligraphy Card</span>
                                     <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.card.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Written on craft cardstock with custom wax seal stamp</p>
@@ -2144,7 +2232,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </label>
                         ${cartGiftAddons.card.enabled ? `
                             <div class="mt-2.5 pt-2 border-t border-secondary/15 animate-fadeIn">
-                                <textarea maxlength="150" rows="2" oninput="updateGiftCardMessage(this.value)" placeholder="Enter message for recipient (e.g., Happy 25th Birthday Ammu! Always blooming ❤️ - Rahul)" class="w-full bg-white border border-outline-variant/30 rounded-lg p-2.5 text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-secondary/40 focus:border-secondary transition-all">${escapeHTML(cartGiftAddons.card.message || '')}</textarea>
+                                <textarea maxlength="150" rows="2" oninput="updateGiftCardMessage(this.value)" placeholder="Enter message for recipient (e.g., Happy 25th Birthday Ammu! Always blooming ❤️ - Rahul)" class="w-full bg-white border border-outline-variant/30 rounded-lg p-2.5 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-secondary/40 focus:border-secondary transition-all">${escapeHTML(cartGiftAddons.card.message || '')}</textarea>
                                 <div class="flex justify-between items-center text-[10px] text-on-surface-variant/70 mt-1">
                                     <span>Tucked securely inside your order</span>
                                     <span class="gift-card-chars">${(cartGiftAddons.card.message || '').length}/150</span>
@@ -2159,7 +2247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-label-md text-xs font-bold text-on-surface">💡 Warm Fairy Lights String</span>
+                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">💡</span> Warm Fairy Lights String</span>
                                     <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.fairyLights.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Micro-LED warm copper wire woven through flowers (includes battery)</p>
@@ -2173,7 +2261,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" onchange="toggleGiftAddon('windowBox')" ${cartGiftAddons.windowBox.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-label-md text-xs font-bold text-on-surface">🎁 Keepsake Display Window Box</span>
+                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">🎁</span> Keepsake Display Window Box</span>
                                     <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.windowBox.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Rigid clear display showcase with satin ribbon handle for dust-free display</p>
@@ -2202,9 +2290,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             picksHtml += `
                 <div class="bg-white/90 border border-outline-variant/20 rounded-2xl p-3 flex flex-col justify-between hover:shadow-sm transition-all group">
-                    <div class="relative cursor-pointer mb-2" onclick="openQuickLook('${catalogItem.id}')">
-                        <img src="${img}" alt="${escapeHTML(catalogItem.name)}" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
-                        ${catalogItem.badge ? `<span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(catalogItem.badge)}</span>` : ''}
+                    <div class="relative mb-2">
+                        <a href="/products/${catalogItem.id}" class="block">
+                            <img src="${escapeHTML(getThumbnailImage(img))}" alt="${escapeHTML(catalogItem.name)}" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
+                        </a>
+                        ${catalogItem.badge ? `<span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider pointer-events-none">${escapeHTML(catalogItem.badge)}</span>` : ''}
+                        <button type="button" onclick="openQuickLook('${catalogItem.id}', this)" class="absolute bottom-2 right-2 min-w-[44px] min-h-[44px] rounded-full bg-surface/95 hover:bg-surface text-secondary border border-outline-variant/25 shadow-xs flex items-center justify-center transition-all cursor-pointer" aria-label="Quick look at ${escapeHTML(catalogItem.name)}">
+                            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">visibility</span>
+                        </button>
                     </div>
                     <div>
                         <a href="/products/${catalogItem.id}" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">${escapeHTML(catalogItem.name)}</a>
@@ -2213,8 +2306,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="font-bold text-secondary">Starting ₹${formatPrice(safePrice)}</span>
                         </div>
                     </div>
-                    <button onclick="addToCart('${catalogItem.id}', '${escapeHTML(catalogItem.name)}', '${catalogItem.category}', ${safePrice}, '${img}', '${catalogItem.badge || ''}', '${escapeHTML(catalogItem.description || '')}')" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95">
-                        <span class="material-symbols-outlined text-[15px]">add</span>
+                    <button onclick="addToCart('${catalogItem.id}', '${escapeHTML(catalogItem.name)}', '${catalogItem.category}', ${safePrice}, '${img}', '${catalogItem.badge || ''}', '${escapeHTML(catalogItem.description || '')}')" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 min-h-[44px]">
+                        <span class="material-symbols-outlined text-[15px]" aria-hidden="true">add</span>
                         <span>Add to Basket</span>
                     </button>
                 </div>
@@ -2225,13 +2318,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="space-y-6">
                 <div class="text-center py-12 px-6 rounded-3xl bg-surface-container-low/70 border border-outline-variant/20 flex flex-col items-center gap-3">
                     <div class="w-16 h-16 rounded-full bg-primary-container/70 flex items-center justify-center text-secondary">
-                        <span class="material-symbols-outlined text-3xl">shopping_basket</span>
+                        <span class="material-symbols-outlined text-3xl" aria-hidden="true">shopping_basket</span>
                     </div>
                     <h2 class="font-headline-sm text-xl text-primary font-bold">Your basket is waiting for blooms</h2>
                     <p class="font-body-md text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">Explore our slow-crafted bouquets, cute plushies, and forever keepsakes made with love in Mampad, Kerala.</p>
-                    <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs">
+                    <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs min-h-[44px]">
                         <span>Browse Handmade Collection</span>
-                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
                     </a>
                 </div>
 
@@ -2243,7 +2336,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <a href="/collections" class="text-xs font-semibold text-secondary hover:underline flex items-center gap-0.5">
                             <span>View All</span>
-                            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                            <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span>
                         </a>
                     </div>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
@@ -2268,7 +2361,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Top row: Image, title, badge, remove -->
                     <div class="flex items-start gap-4">
                         <a href="/products/${item.id}" class="relative group shrink-0" title="View details of ${escapeHTML(item.name)}">
-                            <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="96" height="96" loading="lazy">
+                            <img src="${escapeHTML(getThumbnailImage(item.img))}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="96" height="96" loading="lazy">
                         </a>
                         <div class="flex-1 min-w-0">
                             <div class="flex items-start justify-between gap-2">
@@ -2279,8 +2372,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         ${badge ? `<span class="bg-secondary/10 text-secondary text-[11px] font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(badge)}</span>` : ''}
                                     </div>
                                 </div>
-                                <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-9 h-9 flex items-center justify-center rounded-full hover:bg-error-container/40 text-outline-variant hover:text-error transition-all shrink-0" title="Remove item">
-                                    <span class="material-symbols-outlined text-[19px]">delete</span>
+                                <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-error-container/40 text-outline-variant hover:text-error transition-all shrink-0" title="Remove item">
+                                    <span class="material-symbols-outlined text-[19px]" aria-hidden="true">delete</span>
                                 </button>
                             </div>
                             ${desc ? `<p class="text-xs text-on-surface-variant/80 mt-1.5 leading-relaxed line-clamp-2">${escapeHTML(desc)}</p>` : ''}
@@ -2290,9 +2383,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Middle row: Quantity Stepper & Price Breakdown -->
                     <div class="flex items-center justify-between pt-2 border-t border-outline-variant/10">
                         <div class="flex items-center gap-1.5 bg-primary-container/40 rounded-full p-1 border border-outline-variant/20">
-                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[34px] min-h-[34px] sm:min-w-[36px] sm:min-h-[36px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
                             <span class="font-body-md text-xs sm:text-sm font-bold px-3 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[34px] min-h-[34px] sm:min-w-[36px] sm:min-h-[36px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
                         </div>
                         <div class="text-right">
                             <div class="font-headline-sm text-base sm:text-lg text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
@@ -2303,8 +2396,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Bottom row: Custom color or note for this item -->
                     <div class="pt-1.5">
                         <div class="relative">
-                            <span class="material-symbols-outlined text-outline-variant text-[16px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">palette</span>
-                            <input type="text" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colors or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="w-full bg-surface-container-low/70 border border-outline-variant/20 rounded-xl pl-8 pr-3 py-2 text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom color or personalization wish for ${escapeHTML(item.name)}">
+                            <span class="material-symbols-outlined text-outline-variant text-[16px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">palette</span>
+                            <input type="text" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colors or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="w-full bg-surface-container-low/70 border border-outline-variant/20 rounded-xl pl-8 pr-3 py-2 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom color or personalization wish for ${escapeHTML(item.name)}">
                         </div>
                     </div>
                 </div>
@@ -2420,15 +2513,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.innerHTML = `
                     <div class="text-center py-12 flex flex-col items-center gap-3">
                         <div class="w-16 h-16 rounded-full bg-primary-container/70 flex items-center justify-center text-secondary">
-                            <span class="material-symbols-outlined text-3xl">shopping_basket</span>
+                            <span class="material-symbols-outlined text-3xl" aria-hidden="true">shopping_basket</span>
                         </div>
                         <div>
                             <p class="font-headline-sm text-lg text-secondary font-semibold">Your basket is waiting for blooms</p>
                             <p class="font-body-md text-xs text-on-surface-variant max-w-[220px] mx-auto mt-1">Explore our slow-crafted bouquets, cute plushies, and forever gifts.</p>
                         </div>
-                        <a href="/collections" onclick="setCartOpen(false)" class="mt-2 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs">
+                        <a href="/collections" onclick="setCartOpen(false)" class="mt-2 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-xs min-h-[44px]">
                             <span>Browse Collection</span>
-                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
                         </a>
                     </div>
                 `;
@@ -2446,8 +2539,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <!-- Top row: Large Thumbnail, Title, Badge, Remove -->
                             <div class="flex items-start gap-3.5">
                                 <a href="/products/${item.id}" onclick="closeCart()" class="relative group cursor-pointer shrink-0 block" title="View details of ${escapeHTML(item.name)}">
-                                    <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-22 sm:h-22 object-cover rounded-xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="88" height="88" loading="lazy">
-                                    <div class="absolute inset-0 bg-black/15 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white">
+                                    <img src="${escapeHTML(getThumbnailImage(item.img))}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-22 sm:h-22 object-cover rounded-xl border border-outline-variant/20 shadow-2xs group-hover:scale-105 transition-transform" width="88" height="88" loading="lazy">
+                                    <div class="absolute inset-0 bg-black/15 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white" aria-hidden="true">
                                         <span class="material-symbols-outlined text-[18px]">visibility</span>
                                     </div>
                                 </a>
@@ -2460,17 +2553,17 @@ document.addEventListener('DOMContentLoaded', () => {
                                                 ${badge ? `<span class="bg-secondary/10 text-secondary text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(badge)}</span>` : ''}
                                             </div>
                                         </div>
-                                        <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-8 h-8 flex items-center justify-center rounded-full hover:bg-error-container/30 text-outline-variant hover:text-error transition-all shrink-0" title="Remove item">
-                                            <span class="material-symbols-outlined text-[18px]">delete</span>
+                                        <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-error-container/30 text-outline-variant hover:text-error transition-all shrink-0" title="Remove item">
+                                            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">delete</span>
                                         </button>
                                     </div>
 
                                     <!-- Price & Quantity Stepper -->
                                     <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-outline-variant/10">
                                         <div class="flex items-center gap-1 bg-primary-container/40 rounded-full p-0.5 border border-outline-variant/20">
-                                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[32px] min-h-[32px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">-</button>
                                             <span class="font-body-md text-xs font-bold px-2.5 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[32px] min-h-[32px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-2xs hover:bg-secondary-container active:scale-95 transition-all">+</button>
                                         </div>
                                         <div class="text-right">
                                             <div class="font-headline-sm text-sm sm:text-base text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
@@ -2480,7 +2573,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                     ${item.itemNote ? `
                                         <div class="mt-2 text-[11px] text-secondary bg-secondary/8 rounded-lg px-2.5 py-1 flex items-center gap-1.5 border border-secondary/15">
-                                            <span class="material-symbols-outlined text-[13px]">palette</span>
+                                            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">palette</span>
                                             <span class="truncate">${escapeHTML(item.itemNote)}</span>
                                         </div>
                                     ` : ''}
@@ -2497,10 +2590,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a href="/cart" onclick="closeCart()" class="block p-3 rounded-2xl bg-secondary/8 border border-secondary/20 hover:bg-secondary/15 transition-all text-xs group">
                             <div class="flex items-center justify-between">
                                 <span class="font-bold text-secondary flex items-center gap-1.5">
-                                    <span class="material-symbols-outlined text-[18px]">redeem</span>
+                                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">redeem</span>
                                     <span>Add Gift Card, Box &amp; Fairy Lights</span>
                                 </span>
-                                <span class="material-symbols-outlined text-[16px] text-secondary group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                                <span class="material-symbols-outlined text-[16px] text-secondary group-hover:translate-x-0.5 transition-transform" aria-hidden="true">arrow_forward</span>
                             </div>
                             <p class="text-[11px] text-on-surface-variant/80 mt-1">Personalize with hand-calligraphed cards and keepsake gift boxes on the full cart page.</p>
                         </a>
@@ -2545,6 +2638,38 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLivePreview();
     };
 
+    function focusStepHeading(stepNumber) {
+        const heading = document.querySelector(`#step-card-${stepNumber} h3`);
+        if (!heading) return;
+        if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1');
+        heading.style.outline = 'none';
+        heading.focus({ preventScroll: true });
+    }
+
+    function showFieldError(inputEl, errorId, message) {
+        if (!inputEl) return;
+        inputEl.setAttribute('aria-invalid', 'true');
+        inputEl.classList.add('border-error', 'ring-1', 'ring-error/30');
+        inputEl.classList.remove('border-outline-variant/30');
+        const errEl = document.getElementById(errorId);
+        if (errEl) {
+            errEl.textContent = message;
+            errEl.classList.remove('hidden');
+        }
+    }
+
+    window.clearFieldError = function(inputEl, errorId) {
+        if (!inputEl) return;
+        inputEl.removeAttribute('aria-invalid');
+        inputEl.classList.remove('border-error', 'ring-1', 'ring-error/30');
+        inputEl.classList.add('border-outline-variant/30');
+        const errEl = document.getElementById(errorId);
+        if (errEl) {
+            errEl.textContent = '';
+            errEl.classList.add('hidden');
+        }
+    };
+
     window.nextOrderStep = function() {
         if (orderStep === 2) {
             // Validate step 2 notes
@@ -2559,6 +2684,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             updateStepIndicatorUI();
             updateLivePreview();
+            requestAnimationFrame(() => focusStepHeading(orderStep));
         }
     };
 
@@ -2570,6 +2696,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             updateStepIndicatorUI();
             updateLivePreview();
+            requestAnimationFrame(() => focusStepHeading(orderStep));
         }
     };
 
@@ -2642,12 +2769,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.submitCustomRequest = function(event) {
         event.preventDefault();
         
-        const nameVal = document.getElementById('order-name').value.trim();
+        const nameInput = document.getElementById('order-name');
+        const nameVal = nameInput ? nameInput.value.trim() : '';
 
         if (!nameVal) {
-            showToast("Please fill in your Name.");
+            showFieldError(nameInput, 'order-name-error', 'Please enter your full name so we can personalize your WhatsApp request.');
+            nameInput?.focus();
+            showToast("Please enter your full name.");
             return;
         }
+        window.clearFieldError(nameInput, 'order-name-error');
 
         orderData.name = nameVal;
         orderData.notes = document.getElementById('custom-notes').value.trim();
@@ -2692,7 +2823,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Reset values
         document.getElementById('custom-notes').value = '';
-        document.getElementById('order-name').value = '';
+        const orderNameInput = document.getElementById('order-name');
+        if (orderNameInput) {
+            orderNameInput.value = '';
+            window.clearFieldError(orderNameInput, 'order-name-error');
+        }
         
         orderData.type = 'Bouquet';
         orderData.color = 'Blush Pink';
@@ -2811,7 +2946,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     let currentModalProduct = null;
 
-    window.openQuickLook = function(productId) {
+    window.openQuickLook = function(productId, triggerEl = document.activeElement) {
         const product = collectionProducts.find(item => item.id === productId);
         if (!product) return;
 
@@ -2860,12 +2995,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modal.classList.add('opacity-100', 'pointer-events-auto');
-        modal.removeAttribute('inert');
-        modal.setAttribute('aria-hidden', 'false');
         if (dialog) {
             dialog.classList.remove('scale-95');
             dialog.classList.add('scale-100');
         }
+        openAccessibleOverlay(modal, {
+            triggerEl,
+            initialFocusEl: document.getElementById('quick-look-close-btn') || dialog || modal,
+            onClose: window.closeQuickLook
+        });
     };
 
     window.closeQuickLook = function() {
@@ -2875,23 +3013,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.classList.add('opacity-0', 'pointer-events-none');
         modal.classList.remove('opacity-100', 'pointer-events-auto');
-        modal.setAttribute('inert', '');
-        modal.setAttribute('aria-hidden', 'true');
         if (dialog) {
             dialog.classList.add('scale-95');
             dialog.classList.remove('scale-100');
         }
         currentModalProduct = null;
+        closeAccessibleOverlay(modal);
     };
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('quick-look-modal');
-            if (modal && !modal.classList.contains('pointer-events-none')) {
-                closeQuickLook();
-            }
-        }
-    });
 
     // ----------------------------------------------------
     // 7. TOAST MESSENGER AND MICRO-INTERACTIONS
@@ -2930,12 +3058,38 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         
         const form = event.target;
-        const name = form.querySelector('input[type="text"]').value.trim();
-        const email = form.querySelector('input[type="email"]').value.trim();
-        const msg = form.querySelector('textarea').value.trim();
+        const nameInput = form.querySelector('#contact-name, input[type="text"]');
+        const emailInput = form.querySelector('#contact-email, input[type="email"]');
+        const msgInput = form.querySelector('#contact-message, textarea');
+        const name = nameInput ? nameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const msg = msgInput ? msgInput.value.trim() : '';
 
-        if (!name || !email || !msg) {
-            showToast("Please fill in all the message fields.");
+        let firstInvalid = null;
+        if (!name) {
+            showFieldError(nameInput, 'contact-name-error', 'Please enter your name.');
+            firstInvalid = firstInvalid || nameInput;
+        } else {
+            window.clearFieldError(nameInput, 'contact-name-error');
+        }
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showFieldError(emailInput, 'contact-email-error', 'Please enter a valid email address.');
+            firstInvalid = firstInvalid || emailInput;
+        } else {
+            window.clearFieldError(emailInput, 'contact-email-error');
+        }
+
+        if (!msg) {
+            showFieldError(msgInput, 'contact-message-error', 'Please tell us about your gift idea or enquiry.');
+            firstInvalid = firstInvalid || msgInput;
+        } else {
+            window.clearFieldError(msgInput, 'contact-message-error');
+        }
+
+        if (firstInvalid) {
+            firstInvalid.focus();
+            showToast("Please complete the highlighted fields.");
             return;
         }
 
@@ -2957,6 +3111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const icon = document.createElement('span');
         icon.className = 'material-symbols-outlined text-3xl';
+        icon.setAttribute('aria-hidden', 'true');
         icon.textContent = 'done';
         iconWrapper.appendChild(icon);
 
@@ -3065,14 +3220,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getWebpImagePath(imagePath) {
-        const clean = imagePath.replace(/^\//, '');
+        const clean = String(imagePath || '').replace(/^\//, '');
         return `/${clean.replace(/\.png$/i, '.webp')}`;
     }
 
+    function getNormalizedAssetKey(imagePath) {
+        return String(imagePath || '').replace(/^\//, '').replace(/\.(png|webp)$/i, '');
+    }
+
     function getResponsiveWebpSrcset(imagePath) {
-        const cleanPath = imagePath.replace(/^\//, '');
         const webpPath = getWebpImagePath(imagePath);
-        if (!responsiveImagePaths.has(cleanPath)) return webpPath;
+        if (!getResponsiveImagePathsSet().has(getNormalizedAssetKey(imagePath))) return webpPath;
         const basePath = webpPath.replace(/\.webp$/i, '');
         return [
             ...responsiveImageWidths.map(width => `${basePath}-${width}.webp ${width}w`),
@@ -3080,8 +3238,14 @@ document.addEventListener('DOMContentLoaded', () => {
         ].join(', ');
     }
 
+    function getThumbnailImage(imagePath) {
+        const webpPath = getWebpImagePath(imagePath);
+        if (!getResponsiveImagePathsSet().has(getNormalizedAssetKey(imagePath))) return webpPath;
+        return webpPath.replace(/\.webp$/i, '-320.webp');
+    }
+
     function getProductImageSizes(isFeatured) {
-        return isFeatured ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 100vw';
+        return isFeatured ? '(min-width: 768px) 66vw, 92vw' : '(min-width: 768px) 33vw, 46vw';
     }
 
     function getProductCategoryIds(product) {
@@ -3125,7 +3289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const productAlt = getProductAltText(product);
 
         if (product.featured) {
-            const tagMarkup = product.tag ? `<span class="bg-[#A8B5A2] text-white px-4 py-1 rounded-full font-label-md text-sm">${escapeHTML(product.tag)}</span>` : '';
+            const tagMarkup = product.tag ? `<span class="bg-tertiary text-on-tertiary px-4 py-1 rounded-full font-label-md text-sm">${escapeHTML(product.tag)}</span>` : '';
             return `
                 <article data-product-id="${product.id}" data-category="${product.category}" data-filter-categories="${filterCategories}" class="col-span-2 md:col-span-8 group product-card relative overflow-hidden bg-primary-container rounded-xl soft-glow transition-all duration-500">
                     <div class="relative h-[260px] md:h-[420px] overflow-hidden group/img">
@@ -3135,11 +3299,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
                             </picture>
                         </a>
-                        <button type="button" onclick="openQuickLook('${product.id}')" class="absolute inset-0 bg-secondary/15 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
-                            <span class="bg-surface/90 backdrop-blur-xs text-secondary text-xs font-label-md px-3.5 py-2 rounded-full shadow-sm flex items-center gap-1.5">
-                                <span class="material-symbols-outlined text-[18px]">visibility</span>
-                                <span>Quick Look</span>
-                            </span>
+                        <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-3 right-3 z-10 min-w-[44px] min-h-[44px] px-3.5 py-2 rounded-full bg-surface/95 hover:bg-surface text-secondary border border-outline-variant/25 backdrop-blur-xs shadow-sm flex items-center gap-1.5 text-xs font-label-md md:opacity-0 md:group-hover/img:opacity-100 md:focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
+                            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
+                            <span>Quick Look</span>
                         </button>
                         <div class="absolute top-md right-md flex flex-col gap-2 items-end pointer-events-none">
                             ${product.badge ? `<span class="bg-secondary text-on-secondary px-4 py-1 rounded-full font-label-md text-sm uppercase tracking-wider">${escapeHTML(product.badge)}</span>` : ''}
@@ -3156,7 +3318,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="text-right">
                                 <span class="font-headline-sm text-secondary block font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
                                 <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
-                                    Add to Cart <span class="material-symbols-outlined" data-icon="add">add</span>
+                                    Add to Cart <span class="material-symbols-outlined" data-icon="add" aria-hidden="true">add</span>
                                 </button>
                             </div>
                         </div>
@@ -3174,11 +3336,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
                         </picture>
                     </a>
-                    <button type="button" onclick="openQuickLook('${product.id}')" class="absolute inset-0 bg-secondary/15 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
-                        <span class="bg-surface/90 backdrop-blur-xs text-secondary text-xs font-label-md px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
-                            <span class="material-symbols-outlined text-[16px]">visibility</span>
-                            <span>Quick Look</span>
-                        </span>
+                    <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-2 right-2 z-10 min-w-[44px] min-h-[44px] px-2.5 sm:px-3 py-1.5 rounded-full bg-surface/95 hover:bg-surface text-secondary border border-outline-variant/25 backdrop-blur-xs shadow-xs flex items-center gap-1 text-xs font-label-md md:opacity-0 md:group-hover/img:opacity-100 md:focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">visibility</span>
+                        <span class="hidden sm:inline">Quick Look</span>
                     </button>
                     <div class="absolute top-base left-base pointer-events-none">
                         ${badgeMarkup}
@@ -3191,7 +3351,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
                         <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>
                         <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-xs">
-                            <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                            <span class="material-symbols-outlined text-[18px]" data-icon="add" aria-hidden="true">add</span>
                             <span class="hidden sm:inline">Add</span>
                         </button>
                     </div>
@@ -3278,6 +3438,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------------------------------------------
     initNavigationBindings();
+    syncWhatsAppFloatVisibility(currentScreen);
     setupPolicyFooterLinks();
     hydrateExternalConversionLinks();
     setupProductCardAddToCartTriggers();

@@ -347,8 +347,8 @@ body.cart-open {
 .cart-quantity-btn,
 .cart-remove-btn,
 .cart-close-btn {
-    min-width: 36px;
-    min-height: 36px;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Header Cart Trigger & Counter Badge Lock */
@@ -357,8 +357,10 @@ body.cart-open {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 40px !important;
-    height: 40px !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
     flex-shrink: 0 !important;
 }
 
@@ -518,7 +520,12 @@ button[onclick="navigateBack()"] span {
 
 @media (max-width: 767px) {
     #app-viewport { padding-top: 64px; }
-    body { font-size: 14px; }
+    body { font-size: 15px; }
+    input, textarea, select { font-size: 16px !important; }
+    body:has(#screen-product-detail.active) #whatsapp-global-float,
+    #whatsapp-global-float.whatsapp-product-mobile-hide {
+        display: none !important;
+    }
     #sideCart {
         width: min(100vw, 24rem) !important;
         padding: 14px !important;
@@ -556,14 +563,14 @@ button[onclick="navigateBack()"] span {
     .cart-quantity-btn,
     .cart-remove-btn,
     .cart-close-btn {
-        min-width: 40px !important;
-        min-height: 40px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
     }
     nav > div { padding-top: 12px !important; padding-bottom: 12px !important; }
     nav .text-headline-sm { font-size: 21px !important; }
     .text-display-lg-mobile { font-size: 30px !important; line-height: 1.08 !important; letter-spacing: 0 !important; }
     .text-headline-sm { font-size: 17px !important; line-height: 1.25 !important; }
-    .text-body-md, .text-body-lg { font-size: 14px !important; line-height: 1.45 !important; }
+    .text-body-md, .text-body-lg { font-size: 15px !important; line-height: 1.5 !important; }
     .text-label-md { font-size: 12px !important; line-height: 1.2 !important; }
     .text-2xl { font-size: 22px !important; line-height: 1.18 !important; }
     .text-lg { font-size: 15px !important; }
@@ -592,7 +599,6 @@ button[onclick="navigateBack()"] span {
     .mobile-card-grid { gap: 12px !important; }
     .mobile-card-grid > .group p { display: none; }
     .mobile-card-grid .aspect-\[4\/5\] { margin-bottom: 10px !important; }
-    .mobile-card-grid .w-10, .mobile-card-grid .h-10, .product-card .w-10, .product-card .h-10 { width: 32px !important; height: 32px !important; }
     .mobile-feature-panel { padding: 12px !important; }
     .mobile-feature-panel > div:first-child { max-height: 190px; }
     .mobile-feature-panel h2 br { display: none; }
@@ -606,8 +612,8 @@ button[onclick="navigateBack()"] span {
     .product-card .p-md, .product-card .p-6 { padding: 12px !important; }
     .product-card h3 { font-size: 15px !important; line-height: 1.18 !important; margin-bottom: 6px !important; }
     .product-card p { display: none; }
-    .product-card .absolute span { font-size: 10px !important; line-height: 1.1 !important; padding: 4px 8px !important; }
-    .product-card button { min-height: 32px; }
+    .product-card .absolute span { font-size: 11px !important; line-height: 1.15 !important; padding: 4px 8px !important; }
+    .product-card button { min-height: 44px; min-width: 44px; }
     #screen-about main > section:first-of-type { height: 52vh !important; min-height: 360px; }
     #screen-about main > section:first-of-type p { padding: 10px 14px !important; }
     #screen-about img.h-\[280px\] { height: 210px !important; }
@@ -624,12 +630,12 @@ button[onclick="navigateBack()"] span {
     .mobile-contact-grid a { padding: 12px 8px !important; border-radius: 14px !important; min-width: 0; }
     .mobile-contact-grid .w-16, .mobile-contact-grid .h-16 { width: 42px !important; height: 42px !important; margin-bottom: 8px !important; }
     .mobile-contact-grid .material-symbols-outlined { font-size: 22px !important; }
-    .mobile-contact-grid p { font-size: 11px !important; line-height: 1.25 !important; overflow-wrap: anywhere; }
-    .mobile-contact-grid span.font-label-md { font-size: 10px !important; padding: 4px 8px !important; }
+    .mobile-contact-grid p { font-size: 12px !important; line-height: 1.25 !important; overflow-wrap: anywhere; }
+    .mobile-contact-grid span.font-label-md { font-size: 11px !important; padding: 4px 8px !important; }
     .compact-process-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 10px !important; }
     .compact-process-grid .w-48, .compact-process-grid .h-48 { width: 88px !important; height: 88px !important; margin-bottom: 10px !important; border-width: 3px !important; }
     .compact-process-grid h3 { font-size: 14px !important; line-height: 1.2 !important; }
-    .compact-process-grid p { font-size: 11px !important; line-height: 1.35 !important; }
+    .compact-process-grid p { font-size: 12px !important; line-height: 1.35 !important; }
     #custom-builder-section { padding-top: 32px !important; padding-bottom: 32px !important; }
     #custom-builder-section .rounded-3xl { border-radius: 16px !important; }
     #custom-builder-section .type-pill { padding: 10px 8px !important; }

@@ -1,6 +1,7 @@
 # BloomyCocoon robots.txt
 User-agent: *
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 # Primary Search Engine Crawlers
 User-agent: Googlebot
