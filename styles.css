@@ -24,6 +24,8 @@
     --color-tertiary-container: #ebf8e3;
     --color-outline: #79776f;
     --color-outline-variant: #c9c6bd;
+    --header-height: 93px;
+    --sticky-filter-height: 0px;
 }
 
 /* Custom Scrollbars */
@@ -57,6 +59,7 @@ body {
     color: var(--color-on-surface);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    overflow-x: clip;
     scroll-behavior: smooth;
 }
 
@@ -183,7 +186,16 @@ button:disabled:focus-visible {
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
-    padding-top: 80px; /* Buffer for global fixed header */
+    overflow-x: clip;
+    padding-top: var(--header-height); /* Buffer for measured global fixed header */
+}
+
+.collection-sticky-bar {
+    top: var(--header-height);
+}
+
+.cart-sticky-summary {
+    top: calc(var(--header-height) + 12px);
 }
 
 /* Screen state structure */
@@ -518,7 +530,27 @@ body.cart-open {
 /* Base HTML overflow protection during active layout transitions */
 html {
     overflow-x: hidden;
+    overflow-x: clip;
     width: 100%;
+    scroll-padding-top: calc(var(--header-height) + var(--sticky-filter-height, 0px) + 16px);
+    scroll-padding-bottom: 96px;
+}
+
+.cart-badge,
+.cart-header-count,
+.cart-summary-items-count,
+.cart-total-price,
+.cart-items-subtotal,
+.cart-advance-amount,
+.cart-balance-amount,
+.cart-addons-amount,
+.gift-card-chars,
+#cart-summary-items-count,
+#detail-product-price,
+#detail-qty-val,
+#detail-sticky-price,
+.tabular-nums {
+    font-variant-numeric: tabular-nums;
 }
 
 /* Micro-animations for Back Buttons */
@@ -556,7 +588,7 @@ button[onclick="navigateBack()"] span {
 }
 
 @media (max-width: 767px) {
-    #app-viewport { padding-top: 64px; }
+    :root { --header-height: 69px; }
     body { font-size: 15px; }
     input, textarea, select { font-size: 16px !important; }
     body:has(#screen-product-detail.active) #whatsapp-global-float,

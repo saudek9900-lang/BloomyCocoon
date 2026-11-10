@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cart state
     let cart = [];
     let sharedCartNote = '';
+    let hasInitializedCartLiveStatus = false;
+    let lastAnnouncedCartStatus = '';
 
     const collectionCategories = [
   {
@@ -1400,9 +1402,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         syncScreenMetadata(targetScreenId, targetPath);
+        const prefersReducedMotion = Boolean(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        const skipAnimation = prefersReducedMotion || transitionType === 'instant';
+
         syncDynamicStructuredData(targetScreenId);
 
-        inTransition = true;
+        inTransition = !skipAnimation;
         
         // Toggle global WhatsApp button visibility based on target screen
         syncWhatsAppFloatVisibility(targetScreenId);
@@ -1415,46 +1420,43 @@ document.addEventListener('DOMContentLoaded', () => {
         // Keep page position clean
         window.scrollTo({ top: 0, behavior: 'instant' });
 
-        // Setup elements for transition
-        currentScreenEl.classList.add('in-transition', 'will-change-transform');
-        targetScreenEl.classList.add('in-transition', 'will-change-transform');
-        targetScreenEl.classList.remove('hidden');
+        let animTime = 0;
+        if (!skipAnimation) {
+            // Setup elements for transition
+            currentScreenEl.classList.add('in-transition', 'will-change-transform');
+            targetScreenEl.classList.add('in-transition', 'will-change-transform');
+            targetScreenEl.classList.remove('hidden');
 
-        // Apply transition animation classes
-        let animTime = 380;
-        if (transitionType === 'push') {
-            currentScreenEl.classList.add('animate-push-exit');
-            targetScreenEl.classList.add('animate-push-enter');
-        } else if (transitionType === 'push_back') {
-            currentScreenEl.classList.add('animate-push-back-exit');
-            targetScreenEl.classList.add('animate-push-back-enter');
-        } else if (transitionType === 'slide_up') {
-            animTime = 420;
-            targetScreenEl.classList.add('animate-slide-up-enter');
-            targetScreenEl.style.zIndex = '30';
-        } else if (transitionType === 'slide_down') {
-            animTime = 420;
-            currentScreenEl.classList.add('animate-slide-up-exit');
-            currentScreenEl.style.zIndex = '30';
-        } else if (transitionType === 'instant') {
-            animTime = 0;
+            // Apply transition animation classes
+            animTime = 380;
+            if (transitionType === 'push') {
+                currentScreenEl.classList.add('animate-push-exit');
+                targetScreenEl.classList.add('animate-push-enter');
+            } else if (transitionType === 'push_back') {
+                currentScreenEl.classList.add('animate-push-back-exit');
+                targetScreenEl.classList.add('animate-push-back-enter');
+            } else if (transitionType === 'slide_up') {
+                animTime = 420;
+                targetScreenEl.classList.add('animate-slide-up-enter');
+                targetScreenEl.style.zIndex = '30';
+            } else if (transitionType === 'slide_down') {
+                animTime = 420;
+                currentScreenEl.classList.add('animate-slide-up-exit');
+                currentScreenEl.style.zIndex = '30';
+            }
         }
 
-        setTimeout(() => {
+        const completeTransition = () => {
             // Remove active styles and hide previous screen
             currentScreenEl.classList.remove(
                 'active', 'in-transition', 'will-change-transform',
                 'animate-push-exit', 'animate-push-back-exit', 'animate-slide-up-exit'
             );
-            if (transitionType !== 'slide_up' && transitionType !== 'instant') {
-                currentScreenEl.classList.add('hidden');
-            } else if (transitionType === 'instant') {
-                currentScreenEl.classList.add('hidden');
-            }
+            currentScreenEl.classList.add('hidden');
 
             // Target screen becomes active
             targetScreenEl.classList.remove(
-                'in-transition', 'will-change-transform',
+                'hidden', 'in-transition', 'will-change-transform',
                 'animate-push-enter', 'animate-push-back-enter', 'animate-slide-up-enter'
             );
             targetScreenEl.classList.add('active');
@@ -1474,8 +1476,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateBrowserRoute(targetScreenId, historyAction, routeSearch, targetPath);
             }
             
-            // Re-sync nav highlights
+            // Re-sync nav highlights and measured header/sticky offsets
             syncNavigationUI();
+            syncLayoutOffsets();
             if (targetScreenId === 'screen-collection') {
                 const productGrid = document.querySelector('#collection-product-grid');
                 if (productGrid && productGrid.children.length === 0) {
@@ -1498,12 +1501,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (targetScreenId === 'screen-custom-orders' && shouldFocusCustomOrder) {
                 shouldFocusCustomOrder = false;
-                setTimeout(() => scrollToCustomOrderForm(), 80);
+                if (skipAnimation) {
+                    scrollToCustomOrderForm('instant');
+                } else {
+                    setTimeout(() => scrollToCustomOrderForm(), 80);
+                }
             } else {
                 focusScreenHeading(targetScreenEl);
             }
-        }, animTime);
+        };
+
+        if (skipAnimation) {
+            completeTransition();
+        } else {
+            setTimeout(completeTransition, animTime);
+        }
     };
+
+    function syncLayoutOffsets() {
+        const root = document.documentElement;
+        const header = document.getElementById('site-header') || document.querySelector('body > nav');
+        if (header) {
+            const topRow = header.firstElementChild || header;
+            const borderBottom = parseFloat(window.getComputedStyle(header).borderBottomWidth) || 0;
+            const headerHeight = Math.round(topRow.getBoundingClientRect().height + borderBottom);
+            if (headerHeight > 0) {
+                root.style.setProperty('--header-height', `${headerHeight}px`);
+            }
+        }
+        const collectionScreen = document.getElementById('screen-collection');
+        const stickyBar = document.getElementById('collection-sticky-bar');
+        let filterHeight = 0;
+        if (collectionScreen && stickyBar && !collectionScreen.classList.contains('hidden')) {
+            filterHeight = Math.round(stickyBar.getBoundingClientRect().height);
+        }
+        root.style.setProperty('--sticky-filter-height', `${filterHeight}px`);
+    }
 
     // Global helper for going back
     window.navigateBack = function() {
@@ -1515,40 +1548,59 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function syncNavigationUI() {
-        const routeMapping = {
-            'screen-home': 'home',
-            'screen-collection': 'collection',
-            'screen-about': 'about',
-            'screen-faq': 'faq',
-            'screen-contact': 'contact'
-        };
+        const currentPath = (getRouteForScreen(currentScreen, '', window.location.pathname) || '/').replace(/\/+$/, '') || '/';
 
-        const activeItem = routeMapping[currentScreen];
-        
-        // Update all nav menus across screens
-        document.querySelectorAll('nav').forEach(nav => {
-            nav.querySelectorAll('a').forEach(link => {
-                const text = link.innerText.toLowerCase();
+        document.querySelectorAll('[data-primary-nav] a[data-nav-item]').forEach(link => {
+            const href = link.getAttribute('href');
+            let linkPath = '';
+            if (href) {
+                try {
+                    linkPath = new URL(href, window.location.origin).pathname.replace(/\/+$/, '') || '/';
+                } catch {
+                    linkPath = '';
+                }
+            }
 
-                if (link.matches('[data-nav-logo], .nav-logo') || text.trim() === 'bloomycocoon') {
-                    return;
+            const isActive = Boolean(linkPath) && linkPath === currentPath;
+            const isTopLevel = link.hasAttribute('data-nav-top');
+
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+                link.classList.remove('text-on-surface-variant');
+                link.classList.add('text-primary');
+                if (isTopLevel) {
+                    link.classList.add('border-b', 'border-secondary', 'pb-1');
+                } else {
+                    link.classList.add('bg-secondary-container/40', 'font-semibold');
                 }
-                
-                // Clear original classes
-                link.className = "text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md";
-                
-                if (text.includes('collection') && activeItem === 'collection') {
-                    link.className = "text-primary border-b border-secondary pb-1 font-label-md text-label-md";
-                } else if (text.includes('custom') && currentScreen === 'screen-custom-orders') {
-                    link.className = "text-primary border-b border-secondary pb-1 font-label-md text-label-md";
-                } else if (text.includes('about') && activeItem === 'about') {
-                    link.className = "text-primary border-b border-secondary pb-1 font-label-md text-label-md";
-                } else if (text.includes('faq') && activeItem === 'faq') {
-                    link.className = "text-primary border-b border-secondary pb-1 font-label-md text-label-md";
-                } else if (text.includes('contact') && activeItem === 'contact') {
-                    link.className = "text-primary border-b border-secondary pb-1 font-label-md text-label-md";
+            } else {
+                link.removeAttribute('aria-current');
+                link.classList.remove('text-primary', 'border-b', 'border-secondary', 'pb-1', 'bg-secondary-container/40');
+                if (!isTopLevel && link.getAttribute('href') !== '/collections') {
+                    link.classList.remove('font-semibold');
                 }
-            });
+                link.classList.add('text-on-surface-variant');
+            }
+        });
+
+        document.querySelectorAll('[data-primary-nav] [data-nav-dropdown]').forEach(dropdown => {
+            const trigger = dropdown.querySelector('[data-nav-dropdown-trigger]');
+            const panel = dropdown.querySelector('[data-nav-dropdown-panel]');
+            if (!trigger || !panel) return;
+            const hasActiveChild = Boolean(panel.querySelector('a[data-nav-item][aria-current="page"]'));
+            trigger.classList.toggle('text-primary', hasActiveChild);
+            trigger.classList.toggle('font-semibold', hasActiveChild);
+            trigger.classList.toggle('text-on-surface-variant', !hasActiveChild);
+        });
+
+        document.querySelectorAll('[data-mobile-accordion-trigger]').forEach(trigger => {
+            const panelId = trigger.getAttribute('data-mobile-accordion-trigger') || trigger.getAttribute('aria-controls');
+            const panel = panelId ? document.getElementById(panelId) : null;
+            if (!panel) return;
+            const hasActiveChild = Boolean(panel.querySelector('a[data-nav-item][aria-current="page"]'));
+            trigger.classList.toggle('text-primary', hasActiveChild);
+            trigger.classList.toggle('font-semibold', hasActiveChild);
+            trigger.classList.toggle('text-on-surface-variant', !hasActiveChild);
         });
     }
 
@@ -1626,6 +1678,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initialScreen = getScreenIdFromPath(window.location.pathname) || currentScreen || 'screen-home';
     window.history.replaceState({ screenId: initialScreen, targetPath: window.location.pathname }, '', getRouteForScreen(initialScreen, window.location.search, window.location.pathname));
     syncScreenMetadata(initialScreen, window.location.pathname);
+    syncNavigationUI();
     if (initialScreen !== currentScreen && document.getElementById(initialScreen)) {
         navigateTo(initialScreen, 'instant', {
             updateHistory: false,
@@ -1693,7 +1746,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function scrollToCustomOrderForm(behavior = 'smooth') {
         const customBuilder = document.getElementById('custom-builder-section');
         if (customBuilder) {
-            const headerOffset = 96;
+            const measuredHeader = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
+            const headerOffset = (Number.isFinite(measuredHeader) && measuredHeader > 0 ? measuredHeader : 80) + 12;
             const targetTop = customBuilder.getBoundingClientRect().top + window.scrollY - headerOffset;
             window.scrollTo({ top: Math.max(0, targetTop), behavior });
         }
@@ -1739,6 +1793,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             e.stopImmediatePropagation();
             closeMobileMenu();
+            closeAllNavDropdowns({ restoreFocus: false });
             openCustomOrderFlow();
         }, true);
 
@@ -1760,6 +1815,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             e.stopImmediatePropagation();
             closeMobileMenu();
+            closeAllNavDropdowns({ restoreFocus: false });
 
             if (targetScreen === 'screen-home' && currentScreen === 'screen-home') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1785,6 +1841,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.preventDefault();
             e.stopImmediatePropagation();
+            closeMobileMenu();
+            closeAllNavDropdowns({ restoreFocus: false });
             if (currentScreen === 'screen-home') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
@@ -2074,12 +2132,84 @@ document.addEventListener('DOMContentLoaded', () => {
         syncWhatsAppFloatVisibility(currentScreen);
     }
 
-    function closeMobileMenu() {
+    function closeNavDropdown(dropdown, { restoreFocus = false } = {}) {
+        if (!dropdown) return false;
+        const trigger = dropdown.querySelector('[data-nav-dropdown-trigger]');
+        const panel = dropdown.querySelector('[data-nav-dropdown-panel]');
+        const isOpen = Boolean(panel && !panel.classList.contains('hidden'));
+        if (panel) panel.classList.add('hidden');
+        if (trigger) {
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.querySelector('[data-nav-chevron]')?.classList.remove('rotate-180');
+        }
+        if (isOpen && restoreFocus && trigger) {
+            trigger.focus({ preventScroll: true });
+        }
+        return isOpen;
+    }
+
+    function closeAllNavDropdowns({ except = null, restoreFocus = false } = {}) {
+        let closedAny = false;
+        document.querySelectorAll('[data-primary-nav] [data-nav-dropdown]').forEach(dropdown => {
+            if (except && dropdown === except) return;
+            if (closeNavDropdown(dropdown, { restoreFocus })) {
+                closedAny = true;
+            }
+        });
+        return closedAny;
+    }
+
+    function openNavDropdown(dropdown, { focusTarget = null } = {}) {
+        if (!dropdown) return;
+        const trigger = dropdown.querySelector('[data-nav-dropdown-trigger]');
+        const panel = dropdown.querySelector('[data-nav-dropdown-panel]');
+        if (!trigger || !panel) return;
+        closeMobileMenu();
+        closeAllNavDropdowns({ except: dropdown });
+        panel.classList.remove('hidden');
+        trigger.setAttribute('aria-expanded', 'true');
+        trigger.querySelector('[data-nav-chevron]')?.classList.add('rotate-180');
+        if (focusTarget) {
+            const items = Array.from(panel.querySelectorAll('a[data-nav-item]'));
+            const targetEl = focusTarget === 'last' ? items[items.length - 1] : items[0];
+            if (targetEl) {
+                targetEl.focus({ preventScroll: true });
+            }
+        }
+    }
+
+    function toggleMobileAccordion(trigger) {
+        if (!trigger) return;
+        const panelId = trigger.getAttribute('data-mobile-accordion-trigger') || trigger.getAttribute('aria-controls');
+        const panel = panelId ? document.getElementById(panelId) : null;
+        if (!panel) return;
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        const nextOpen = !isOpen;
+        trigger.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+        panel.classList.toggle('hidden', !nextOpen);
+        trigger.querySelector('[data-nav-chevron]')?.classList.toggle('rotate-180', nextOpen);
+    }
+
+    function closeMobileMenu({ restoreFocus = false } = {}) {
         const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu) mobileMenu.classList.add('hidden');
-        document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
+        const wasOpen = Boolean(mobileMenu && !mobileMenu.classList.contains('hidden'));
+        if (mobileMenu) {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.querySelectorAll('[data-mobile-accordion-trigger]').forEach(trigger => {
+                trigger.setAttribute('aria-expanded', 'false');
+                trigger.querySelector('[data-nav-chevron]')?.classList.remove('rotate-180');
+            });
+            mobileMenu.querySelectorAll('[data-mobile-accordion-panel]').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+        }
+        const toggleButtons = document.querySelectorAll('[aria-controls="mobile-menu"]');
+        toggleButtons.forEach(btn => {
             btn.setAttribute('aria-expanded', 'false');
         });
+        if (wasOpen && restoreFocus) {
+            toggleButtons[0]?.focus({ preventScroll: true });
+        }
     }
 
     window.toggleCart = function(triggerEl = document.activeElement) {
@@ -2103,22 +2233,141 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenu) {
             const shouldOpen = mobileMenu.classList.contains('hidden');
+            if (shouldOpen) closeAllNavDropdowns({ restoreFocus: false });
             mobileMenu.classList.toggle('hidden', !shouldOpen);
             document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
                 btn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
             });
             if (shouldOpen) {
-                requestAnimationFrame(() => mobileMenu.querySelector('a')?.focus({ preventScroll: true }));
+                requestAnimationFrame(() => mobileMenu.querySelector('button, a')?.focus({ preventScroll: true }));
             }
         }
     };
 
-    // Delegate Quick Look & card Add-to-Cart clicks, and auto-close menu/cart on outside taps
+    const primaryNavEl = document.querySelector('[data-primary-nav]');
+    if (primaryNavEl) {
+        primaryNavEl.addEventListener('keydown', (e) => {
+            const dropdown = e.target.closest('[data-nav-dropdown]');
+            if (dropdown) {
+                const trigger = dropdown.querySelector('[data-nav-dropdown-trigger]');
+                const panel = dropdown.querySelector('[data-nav-dropdown-panel]');
+                if (!trigger || !panel) return;
+                const isOpen = !panel.classList.contains('hidden');
+
+                if (e.target === trigger || trigger.contains(e.target)) {
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        openNavDropdown(dropdown, { focusTarget: 'first' });
+                        return;
+                    }
+                    if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        openNavDropdown(dropdown, { focusTarget: 'last' });
+                        return;
+                    }
+                    if (e.key === 'Escape' && isOpen) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        closeNavDropdown(dropdown, { restoreFocus: true });
+                        return;
+                    }
+                } else if (panel.contains(e.target)) {
+                    const items = Array.from(panel.querySelectorAll('a[data-nav-item]'));
+                    const currentIdx = items.indexOf(e.target.closest('a[data-nav-item]'));
+                    if (e.key === 'ArrowDown' && items.length > 0) {
+                        e.preventDefault();
+                        const nextIdx = currentIdx >= 0 ? (currentIdx + 1) % items.length : 0;
+                        items[nextIdx].focus({ preventScroll: true });
+                        return;
+                    }
+                    if (e.key === 'ArrowUp' && items.length > 0) {
+                        e.preventDefault();
+                        const prevIdx = currentIdx >= 0 ? (currentIdx - 1 + items.length) % items.length : items.length - 1;
+                        items[prevIdx].focus({ preventScroll: true });
+                        return;
+                    }
+                    if (e.key === 'Home' && items.length > 0) {
+                        e.preventDefault();
+                        items[0].focus({ preventScroll: true });
+                        return;
+                    }
+                    if (e.key === 'End' && items.length > 0) {
+                        e.preventDefault();
+                        items[items.length - 1].focus({ preventScroll: true });
+                        return;
+                    }
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        closeNavDropdown(dropdown, { restoreFocus: true });
+                        return;
+                    }
+                }
+            }
+
+            if (e.key === 'Escape') {
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeMobileMenu({ restoreFocus: true });
+                }
+            }
+        });
+
+        primaryNavEl.querySelectorAll('[data-nav-dropdown]').forEach(dropdown => {
+            dropdown.addEventListener('focusout', () => {
+                requestAnimationFrame(() => {
+                    if (!dropdown.contains(document.activeElement)) {
+                        closeNavDropdown(dropdown, { restoreFocus: false });
+                    }
+                });
+            });
+        });
+    }
+
+    document.addEventListener('focusin', (e) => {
+        document.querySelectorAll('[data-primary-nav] [data-nav-dropdown]').forEach(dropdown => {
+            if (!dropdown.contains(e.target)) {
+                closeNavDropdown(dropdown, { restoreFocus: false });
+            }
+        });
+    });
+
+    // Delegate Dropdown Triggers, Mobile Accordions, Quick Look & Add-to-Cart, and outside-click closing
     document.addEventListener('click', (e) => {
+        const dropdownTrigger = e.target.closest?.('[data-nav-dropdown-trigger]');
+        if (dropdownTrigger) {
+            const dropdown = dropdownTrigger.closest('[data-nav-dropdown]');
+            const panel = dropdown?.querySelector('[data-nav-dropdown-panel]');
+            if (dropdown && panel) {
+                if (panel.classList.contains('hidden')) {
+                    openNavDropdown(dropdown);
+                } else {
+                    closeNavDropdown(dropdown, { restoreFocus: false });
+                }
+            }
+            return;
+        }
+
+        const accordionTrigger = e.target.closest?.('[data-mobile-accordion-trigger]');
+        if (accordionTrigger) {
+            toggleMobileAccordion(accordionTrigger);
+            return;
+        }
+
+        if (!e.target.closest?.('[data-nav-dropdown]')) {
+            closeAllNavDropdowns({ restoreFocus: false });
+        }
+        if (!e.target.closest?.('[data-primary-nav]')) {
+            closeMobileMenu();
+        }
+
         const clickedMobileMenuLink = e.target.closest?.('#mobile-menu a');
         const clickedNavLink = e.target.closest?.('nav a');
         if (clickedMobileMenuLink || clickedNavLink) {
             closeMobileMenu();
+            closeAllNavDropdowns({ restoreFocus: false });
         }
 
         const qlBtn = e.target.closest?.('[data-quick-look]');
@@ -2179,7 +2428,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (e.key === 'Escape') {
-            closeMobileMenu();
+            if (closeAllNavDropdowns({ restoreFocus: true })) {
+                e.preventDefault();
+                return;
+            }
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                e.preventDefault();
+                closeMobileMenu({ restoreFocus: true });
+            }
         }
     });
 
@@ -2242,7 +2499,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    function captureCartFocusTarget() {
+        const activeEl = document.activeElement;
+        if (!activeEl) return null;
+        const scopeEl = activeEl.closest('#sideCart, .cart-page-items-container, #cart-page-items-wrapper');
+        if (!scopeEl) return null;
+        const scopeSelector = scopeEl.id === 'sideCart' ? '#sideCart' : '#cart-page-items-wrapper';
+        if (activeEl.dataset.qtyBtn !== undefined) {
+            return { scopeSelector, kind: 'qty', id: activeEl.dataset.qtyBtn, delta: activeEl.dataset.qtyDelta };
+        }
+        if (activeEl.dataset.giftAddon) {
+            return { scopeSelector, kind: 'addon', addon: activeEl.dataset.giftAddon };
+        }
+        if (activeEl.dataset.removeBtn !== undefined) {
+            return { scopeSelector, kind: 'remove', id: activeEl.dataset.removeBtn };
+        }
+        if (activeEl.dataset.itemNote !== undefined) {
+            return { scopeSelector, kind: 'note', id: activeEl.dataset.itemNote };
+        }
+        if (activeEl.dataset.giftCardMessage) {
+            return { scopeSelector, kind: 'gift-message' };
+        }
+        return null;
+    }
+
+    function restoreCartFocusTarget(focusMeta) {
+        if (!focusMeta) return;
+        const scope = document.querySelector(focusMeta.scopeSelector);
+        if (!scope) return;
+        let nextEl = null;
+        if (focusMeta.kind === 'qty') {
+            const qtyBtns = Array.from(scope.querySelectorAll('button[data-qty-btn]'));
+            nextEl = qtyBtns.find(el => el.dataset.qtyBtn === focusMeta.id && el.dataset.qtyDelta === String(focusMeta.delta)) ||
+                qtyBtns.find(el => el.dataset.qtyBtn === focusMeta.id) ||
+                qtyBtns[0] ||
+                scope.querySelector('.cart-close-btn, a[href="/collections"]');
+        } else if (focusMeta.kind === 'addon') {
+            nextEl = Array.from(scope.querySelectorAll('input[data-gift-addon]'))
+                .find(el => el.dataset.giftAddon === focusMeta.addon);
+        } else if (focusMeta.kind === 'remove') {
+            nextEl = scope.querySelector('button[data-remove-btn]') ||
+                scope.querySelector('button[data-qty-btn]') ||
+                scope.querySelector('.cart-close-btn, a[href="/collections"]');
+        } else if (focusMeta.kind === 'note') {
+            nextEl = Array.from(scope.querySelectorAll('input[data-item-note]'))
+                .find(el => el.dataset.itemNote === focusMeta.id);
+        } else if (focusMeta.kind === 'gift-message') {
+            nextEl = scope.querySelector('textarea[data-gift-card-message]');
+        }
+        if (nextEl && typeof nextEl.focus === 'function') {
+            nextEl.focus({ preventScroll: true });
+        }
+    }
+
     window.updateQty = function(id, delta) {
+        const preservedFocus = captureCartFocusTarget();
         const item = cart.find(i => i.id === id);
         if (!item) return;
 
@@ -2251,10 +2562,11 @@ document.addEventListener('DOMContentLoaded', () => {
             cart = cart.filter(i => i.id !== id);
         }
 
-        renderCart();
+        renderCart(preservedFocus);
     };
 
     window.removeFromCart = function(id) {
+        const preservedFocus = captureCartFocusTarget();
         const removed = cart.find(i => i.id === id);
         cart = cart.filter(i => i.id !== id);
         if (cart.length === 0) {
@@ -2263,7 +2575,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cartGiftAddons.fairyLights.enabled = false;
             cartGiftAddons.windowBox.enabled = false;
         }
-        renderCart();
+        renderCart(preservedFocus);
         if (removed) {
             showToast(`Removed "${removed.name}" from cart.`);
         } else {
@@ -2273,8 +2585,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.toggleGiftAddon = function(type) {
         if (cartGiftAddons[type]) {
+            const preservedFocus = captureCartFocusTarget();
             cartGiftAddons[type].enabled = !cartGiftAddons[type].enabled;
-            renderCart();
+            renderCart(preservedFocus);
             trackEvent('toggle_gift_addon', {
                 addon: type,
                 enabled: cartGiftAddons[type].enabled
@@ -2286,10 +2599,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cartGiftAddons.card) {
             cartGiftAddons.card.message = msg;
             saveCartToStorage();
-            const counter = document.getElementById('gift-card-chars');
-            if (counter) {
+            document.querySelectorAll('.gift-card-chars, #gift-card-chars').forEach(counter => {
                 counter.textContent = `${msg.length}/150`;
-            }
+            });
         }
     };
 
@@ -2298,7 +2610,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="cart-gifting-section bg-surface-container/70 border border-outline-variant/25 rounded-2xl ${isDrawer ? 'p-3.5 space-y-3 mt-3' : 'p-5 sm:p-6 space-y-4 mt-6 shadow-sm'}">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-secondary text-[20px]">redeem</span>
+                        <span class="material-symbols-outlined text-secondary text-[20px]" aria-hidden="true">redeem</span>
                         <span class="font-label-md ${isDrawer ? 'text-xs' : 'text-sm'} font-bold text-on-surface">Make It Extra Special 🎁</span>
                     </div>
                     <span class="text-[10px] text-secondary font-semibold bg-white/80 px-2.5 py-0.5 rounded-full border border-secondary/15">Artisan Touches</span>
@@ -2308,21 +2620,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- 1. Calligraphy Card -->
                     <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.card.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
                         <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                            <input type="checkbox" data-gift-addon="card" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
                                     <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">✍️</span> Handwritten Calligraphy Card</span>
-                                    <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.card.price}</span>
+                                    <span class="text-xs font-bold text-secondary tabular-nums">+₹${cartGiftAddons.card.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Written on craft cardstock with custom wax seal stamp</p>
                             </div>
                         </label>
                         ${cartGiftAddons.card.enabled ? `
                             <div class="mt-2.5 pt-2 border-t border-secondary/15 animate-fadeIn">
-                                <textarea maxlength="150" rows="2" oninput="updateGiftCardMessage(this.value)" placeholder="Enter message for recipient (e.g., Happy 25th Birthday Ammu! Always blooming ❤️ - Rahul)" class="w-full bg-white border border-outline-variant/30 rounded-lg p-2.5 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-secondary/40 focus:border-secondary transition-all">${escapeHTML(cartGiftAddons.card.message || '')}</textarea>
-                                <div class="flex justify-between items-center text-[10px] text-on-surface-variant/70 mt-1">
+                                <textarea data-gift-card-message="true" maxlength="150" rows="2" oninput="updateGiftCardMessage(this.value)" placeholder="Enter message for recipient (e.g., Happy 25th Birthday Ammu! Always blooming ❤️ - Rahul)" class="w-full bg-white border border-outline-variant/30 rounded-lg p-2.5 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/75 focus:ring-1 focus:ring-secondary/40 focus:border-secondary transition-all">${escapeHTML(cartGiftAddons.card.message || '')}</textarea>
+                                <div class="flex justify-between items-center text-[10px] text-on-surface-variant/80 mt-1">
                                     <span>Tucked securely inside your order</span>
-                                    <span class="gift-card-chars">${(cartGiftAddons.card.message || '').length}/150</span>
+                                    <span class="gift-card-chars tabular-nums">${(cartGiftAddons.card.message || '').length}/150</span>
                                 </div>
                             </div>
                         ` : ''}
@@ -2331,11 +2643,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- 2. Warm Fairy Lights -->
                     <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.fairyLights.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
                         <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                            <input type="checkbox" data-gift-addon="fairyLights" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
                                     <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">💡</span> Warm Fairy Lights String</span>
-                                    <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.fairyLights.price}</span>
+                                    <span class="text-xs font-bold text-secondary tabular-nums">+₹${cartGiftAddons.fairyLights.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Micro-LED warm copper wire woven through flowers (includes battery)</p>
                             </div>
@@ -2345,11 +2657,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- 3. Keepsake Window Display Box -->
                     <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.windowBox.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
                         <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" onchange="toggleGiftAddon('windowBox')" ${cartGiftAddons.windowBox.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                            <input type="checkbox" data-gift-addon="windowBox" onchange="toggleGiftAddon('windowBox')" ${cartGiftAddons.windowBox.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
                                     <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">🎁</span> Keepsake Display Window Box</span>
-                                    <span class="text-xs font-bold text-secondary">+₹${cartGiftAddons.windowBox.price}</span>
+                                    <span class="text-xs font-bold text-secondary tabular-nums">+₹${cartGiftAddons.windowBox.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Rigid clear display showcase with satin ribbon handle for dust-free display</p>
                             </div>
@@ -2390,7 +2702,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a href="/products/${catalogItem.id}" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">${escapeHTML(catalogItem.name)}</a>
                         <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
                             <span>${escapeHTML(categoryLabel)}</span>
-                            <span class="font-bold text-secondary">Starting ₹${formatPrice(safePrice)}</span>
+                            <span class="font-bold text-secondary tabular-nums">Starting ₹${formatPrice(safePrice)}</span>
                         </div>
                     </div>
                     <button type="button" data-add-to-cart="${catalogItem.id}" aria-controls="sideCart" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 min-h-[44px]">
@@ -2459,7 +2771,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         ${badge ? `<span class="bg-secondary/10 text-secondary text-[11px] font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(badge)}</span>` : ''}
                                     </div>
                                 </div>
-                                <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-error-container/40 text-outline-variant hover:text-error transition-all shrink-0" title="Remove item">
+                                <button data-remove-btn="${escapeHTML(item.id)}" onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-error-container/40 text-on-surface-variant hover:text-error transition-all shrink-0" title="Remove item">
                                     <span class="material-symbols-outlined text-[19px]" aria-hidden="true">delete</span>
                                 </button>
                             </div>
@@ -2470,21 +2782,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     <!-- Middle row: Quantity Stepper & Price Breakdown -->
                     <div class="flex items-center justify-between pt-2 border-t border-outline-variant/10">
                         <div class="flex items-center gap-1.5 bg-primary-container/40 rounded-full p-1 border border-outline-variant/20">
-                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-sm hover:bg-secondary-container active:scale-95 transition-all">-</button>
-                            <span class="font-body-md text-xs sm:text-sm font-bold px-3 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-sm hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                            <button data-qty-btn="${escapeHTML(item.id)}" data-qty-delta="-1" onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-sm hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                            <span class="font-body-md text-xs sm:text-sm font-bold px-3 text-on-surface tabular-nums" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
+                            <button data-qty-btn="${escapeHTML(item.id)}" data-qty-delta="1" onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-sm shadow-sm hover:bg-secondary-container active:scale-95 transition-all">+</button>
                         </div>
                         <div class="text-right">
-                            <div class="font-headline-sm text-base sm:text-lg text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
-                            <div class="text-[11px] text-on-surface-variant font-medium">${item.qty > 1 ? `(₹${formatPrice(item.price)} each)` : 'Starting price'}</div>
+                            <div class="font-headline-sm text-base sm:text-lg text-secondary font-bold tabular-nums">₹${formatPrice(lineSubtotal)}</div>
+                            <div class="text-[11px] text-on-surface-variant font-medium tabular-nums">${item.qty > 1 ? `(₹${formatPrice(item.price)} each)` : 'Starting price'}</div>
                         </div>
                     </div>
 
                     <!-- Bottom row: Custom color or note for this item -->
                     <div class="pt-1.5">
                         <div class="relative">
-                            <span class="material-symbols-outlined text-outline-variant text-[16px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">palette</span>
-                            <input type="text" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colors or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="w-full bg-surface-container-low/70 border border-outline-variant/20 rounded-xl pl-8 pr-3 py-2 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/50 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom color or personalization wish for ${escapeHTML(item.name)}">
+                            <span class="material-symbols-outlined text-on-surface-variant text-[16px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">palette</span>
+                            <input type="text" data-item-note="${escapeHTML(item.id)}" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colors or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="w-full bg-white border border-outline-variant/25 rounded-xl pl-8 pr-3 py-2 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/75 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom color or personalization wish for ${escapeHTML(item.name)}">
                         </div>
                     </div>
                 </div>
@@ -2498,7 +2810,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return html;
     }
 
-    function renderCart() {
+    function renderCart(preservedFocus = null) {
+        const focusToRestore = preservedFocus || captureCartFocusTarget();
         const drawerContainers = document.querySelectorAll('#sideCart .cart-items-container');
         const pageContainers = document.querySelectorAll('.cart-page-items-container, #cart-page-items-wrapper');
         const cartBadge = document.querySelectorAll('.cart-badge');
@@ -2554,7 +2867,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update badge counters
         cartBadge.forEach(badge => {
             badge.innerText = totalQty;
-            badge.setAttribute('aria-label', `${totalQty} item${totalQty === 1 ? '' : 's'} in cart`);
+            badge.setAttribute('aria-hidden', 'true');
             if (totalQty > 0) {
                 badge.classList.remove('hidden');
             } else {
@@ -2565,6 +2878,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
             btn.setAttribute('aria-label', totalQty > 0 ? `Open shopping cart, ${totalQty} item${totalQty === 1 ? '' : 's'} selected` : 'Open shopping cart');
         });
+        document.querySelectorAll('#mobile-menu a[href="/cart"]').forEach(link => {
+            link.setAttribute('aria-label', totalQty > 0 ? `Shopping Cart, ${totalQty} item${totalQty === 1 ? '' : 's'}` : 'Shopping Cart');
+        });
+
+        const liveCartStatusText = totalQty > 0
+            ? `Cart: ${totalQty} item${totalQty === 1 ? '' : 's'}`
+            : 'Cart is empty';
+        if (!hasInitializedCartLiveStatus) {
+            hasInitializedCartLiveStatus = true;
+            lastAnnouncedCartStatus = liveCartStatusText;
+        } else if (liveCartStatusText !== lastAnnouncedCartStatus) {
+            lastAnnouncedCartStatus = liveCartStatusText;
+            const liveStatusEl = document.getElementById('cart-live-status');
+            if (liveStatusEl) {
+                liveStatusEl.textContent = liveCartStatusText;
+            }
+        }
 
         // Render total texts
         cartTotalText.forEach(el => {
@@ -2628,7 +2958,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <a href="/products/${item.id}" onclick="closeCart()" class="relative group cursor-pointer shrink-0 block" title="View details of ${escapeHTML(item.name)}">
                                     <img src="${escapeHTML(getThumbnailImage(item.img))}" alt="${escapeHTML(item.name)}" class="w-20 h-20 sm:w-22 sm:h-22 object-cover rounded-xl border border-outline-variant/20 shadow-sm group-hover:scale-105 transition-transform" width="88" height="88" loading="lazy">
                                     <div class="absolute inset-0 bg-black/15 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity text-white" aria-hidden="true">
-                                        <span class="material-symbols-outlined text-[18px]">visibility</span>
+                                        <span class="material-symbols-outlined text-[18px]" aria-hidden="true">visibility</span>
                                     </div>
                                 </a>
                                 <div class="flex-1 min-w-0">
@@ -2640,70 +2970,71 @@ document.addEventListener('DOMContentLoaded', () => {
                                                 ${badge ? `<span class="bg-secondary/10 text-secondary text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(badge)}</span>` : ''}
                                             </div>
                                         </div>
-                                        <button onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-error-container/30 text-outline-variant hover:text-error transition-all shrink-0" title="Remove item">
-                                            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">delete</span>
-                                        </button>
-                                    </div>
+                                        <button data-remove-btn="${escapeHTML(item.id)}" onclick="removeFromCart('${item.id}')" aria-label="Remove ${escapeHTML(item.name)} from cart" class="cart-remove-btn w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-error-container/30 text-on-surface-variant hover:text-error transition-all shrink-0" title="Remove item">
+                                             <span class="material-symbols-outlined text-[18px]" aria-hidden="true">delete</span>
+                                         </button>
+                                     </div>
 
-                                    <!-- Price & Quantity Stepper -->
-                                    <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-outline-variant/10">
-                                        <div class="flex items-center gap-1 bg-primary-container/40 rounded-full p-0.5 border border-outline-variant/20">
-                                            <button onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-sm hover:bg-secondary-container active:scale-95 transition-all">-</button>
-                                            <span class="font-body-md text-xs font-bold px-2.5 text-on-surface" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
-                                            <button onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-sm hover:bg-secondary-container active:scale-95 transition-all">+</button>
-                                        </div>
-                                        <div class="text-right">
-                                            <div class="font-headline-sm text-sm sm:text-base text-secondary font-bold">₹${formatPrice(lineSubtotal)}</div>
-                                            ${item.qty > 1 ? `<div class="text-[10px] text-on-surface-variant font-medium">(₹${formatPrice(item.price)} each)</div>` : ''}
-                                        </div>
-                                    </div>
+                                     <!-- Price & Quantity Stepper -->
+                                     <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-outline-variant/10">
+                                         <div class="flex items-center gap-1 bg-primary-container/40 rounded-full p-0.5 border border-outline-variant/20">
+                                             <button data-qty-btn="${escapeHTML(item.id)}" data-qty-delta="-1" onclick="updateQty('${item.id}', -1)" aria-label="Decrease ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-sm hover:bg-secondary-container active:scale-95 transition-all">-</button>
+                                             <span class="font-body-md text-xs font-bold px-2.5 text-on-surface tabular-nums" aria-label="${escapeHTML(item.name)} quantity ${item.qty}">${item.qty}</span>
+                                             <button data-qty-btn="${escapeHTML(item.id)}" data-qty-delta="1" onclick="updateQty('${item.id}', 1)" aria-label="Increase ${escapeHTML(item.name)} quantity" class="cart-quantity-btn min-w-[44px] min-h-[44px] rounded-full bg-white text-secondary flex items-center justify-center font-bold text-xs shadow-sm hover:bg-secondary-container active:scale-95 transition-all">+</button>
+                                         </div>
+                                         <div class="text-right">
+                                             <div class="font-headline-sm text-sm sm:text-base text-secondary font-bold tabular-nums">₹${formatPrice(lineSubtotal)}</div>
+                                             ${item.qty > 1 ? `<div class="text-[10px] text-on-surface-variant font-medium tabular-nums">(₹${formatPrice(item.price)} each)</div>` : ''}
+                                         </div>
+                                     </div>
 
-                                    ${item.itemNote ? `
-                                        <div class="mt-2 text-[11px] text-secondary bg-secondary/8 rounded-lg px-2.5 py-1 flex items-center gap-1.5 border border-secondary/15">
-                                            <span class="material-symbols-outlined text-[13px]" aria-hidden="true">palette</span>
-                                            <span class="truncate">${escapeHTML(item.itemNote)}</span>
-                                        </div>
-                                    ` : ''}
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
+                                     ${item.itemNote ? `
+                                         <div class="mt-2 text-[11px] text-secondary bg-secondary/8 rounded-lg px-2.5 py-1 flex items-center gap-1.5 border border-secondary/15">
+                                             <span class="material-symbols-outlined text-[13px]" aria-hidden="true">palette</span>
+                                             <span class="truncate">${escapeHTML(item.itemNote)}</span>
+                                         </div>
+                                     ` : ''}
+                                 </div>
+                             </div>
+                         </div>
+                     `;
+                 });
+                 html += '</div>';
 
-                // Sleek callout to full cart page for gifting touches
-                html += `
-                    <div class="pt-1">
-                        <a href="/cart" onclick="closeCart()" class="block p-3 rounded-2xl bg-secondary/8 border border-secondary/20 hover:bg-secondary/15 transition-all text-xs group">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-secondary flex items-center gap-1.5">
-                                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">redeem</span>
-                                    <span>Add Gift Card, Box &amp; Fairy Lights</span>
-                                </span>
-                                <span class="material-symbols-outlined text-[16px] text-secondary group-hover:translate-x-0.5 transition-transform" aria-hidden="true">arrow_forward</span>
-                            </div>
-                            <p class="text-[11px] text-on-surface-variant/80 mt-1">Personalize with hand-calligraphed cards and keepsake gift boxes on the full cart page.</p>
-                        </a>
-                    </div>
-                `;
+                 // Sleek callout to full cart page for gifting touches
+                 html += `
+                     <div class="pt-1">
+                         <a href="/cart" onclick="closeCart()" class="block p-3 rounded-2xl bg-secondary/8 border border-secondary/20 hover:bg-secondary/15 transition-all text-xs group">
+                             <div class="flex items-center justify-between">
+                                 <span class="font-bold text-secondary flex items-center gap-1.5">
+                                     <span class="material-symbols-outlined text-[18px]" aria-hidden="true">redeem</span>
+                                     <span>Add Gift Card, Box &amp; Fairy Lights</span>
+                                 </span>
+                                 <span class="material-symbols-outlined text-[16px] text-secondary group-hover:translate-x-0.5 transition-transform" aria-hidden="true">arrow_forward</span>
+                             </div>
+                             <p class="text-[11px] text-on-surface-variant/80 mt-1">Personalize with hand-calligraphed cards and keepsake gift boxes on the full cart page.</p>
+                         </a>
+                     </div>
+                 `;
 
-                container.innerHTML = html;
-                container.scrollTop = prevScrollTop;
-            }
-        });
+                 container.innerHTML = html;
+                 container.scrollTop = prevScrollTop;
+             }
+         });
 
-        // 2. Render Dedicated Page Items
-        pageContainers.forEach(container => {
-            if (cart.length === 0) {
-                container.innerHTML = renderPageEmptyCart();
-            } else {
-                container.innerHTML = renderPageCartItems();
-            }
-        });
+         // 2. Render Dedicated Page Items
+         pageContainers.forEach(container => {
+             if (cart.length === 0) {
+                 container.innerHTML = renderPageEmptyCart();
+             } else {
+                 container.innerHTML = renderPageCartItems();
+             }
+         });
 
-        updateContextualWhatsAppFloat();
-        saveCartToStorage();
-    }
+         restoreCartFocusTarget(focusToRestore);
+         updateContextualWhatsAppFloat();
+         saveCartToStorage();
+     }
 
     // ----------------------------------------------------
     // 5. CUSTOM ORDERS STEP BUILDER
@@ -3411,7 +3742,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p class="font-body-md text-on-surface-variant">${escapeHTML(product.description)}</p>
                             </div>
                             <div class="text-right">
-                                <span class="font-headline-sm text-secondary block font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
+                                <span class="font-headline-sm text-secondary block font-bold tabular-nums">Starting from ${formatStartingPrice(product.startingPrice)}</span>
                                 <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
                                     Add to Cart <span class="material-symbols-outlined" data-icon="add" aria-hidden="true">add</span>
                                 </button>
@@ -3444,7 +3775,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/${product.id}" class="hover:underline">${escapeHTML(product.name)}</a></h3>
                     <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
                     <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
-                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>
+                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ${formatStartingPrice(product.startingPrice)}</span>
                         <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-sm">
                             <span class="material-symbols-outlined text-[18px]" data-icon="add" aria-hidden="true">add</span>
                             <span class="hidden sm:inline">Add</span>
@@ -3544,6 +3875,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------------------------------------------
     initNavigationBindings();
+    syncLayoutOffsets();
+    window.addEventListener('resize', syncLayoutOffsets, { passive: true });
+    document.fonts?.ready?.then(syncLayoutOffsets);
+    if (window.ResizeObserver) {
+        const layoutObserver = new ResizeObserver(syncLayoutOffsets);
+        const headerRow = (document.getElementById('site-header') || document.querySelector('body > nav'))?.firstElementChild;
+        const collectionStickyBar = document.getElementById('collection-sticky-bar');
+        if (headerRow) layoutObserver.observe(headerRow);
+        if (collectionStickyBar) layoutObserver.observe(collectionStickyBar);
+    }
     syncWhatsAppFloatVisibility(currentScreen);
     setupPolicyFooterLinks();
     hydrateExternalConversionLinks();

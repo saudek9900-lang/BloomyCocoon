@@ -179,59 +179,129 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&icon_names=account_balance_wallet,add,add_shopping_cart,arrow_back,arrow_forward,auto_awesome,badge,cake,card_giftcard,celebration,chat,check,child_care,cleaning_services,close,delete,done,dry,eco,edit,edit_note,expand_more,favorite,fiber_manual_record,format_quote,gesture,inventory_2,local_mall,local_shipping,location_on,loyalty,magic_button,mail,menu,north_east,open_in_new,palette,pan_tool,photo_camera,receipt_long,redeem,remove,savings,schedule,search,search_off,sentiment_satisfied,shopping_bag,shopping_basket,spa,straighten,tune,verified,verified_user,visibility,volunteer_activism,wb_sunny,zoom_in&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&icon_names=account_balance_wallet,add,add_shopping_cart,arrow_back,arrow_forward,auto_awesome,badge,cake,card_giftcard,celebration,chat,check,child_care,cleaning_services,close,delete,done,dry,eco,edit,edit_note,expand_more,favorite,fiber_manual_record,format_quote,gesture,inventory_2,local_mall,local_shipping,location_on,loyalty,magic_button,mail,menu,north_east,open_in_new,palette,pan_tool,photo_camera,receipt_long,redeem,remove,savings,schedule,search,search_off,sentiment_satisfied,shopping_bag,shopping_basket,spa,straighten,tune,verified,verified_user,visibility,volunteer_activism,wb_sunny,zoom_in&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&icon_names=account_balance_wallet,add,add_shopping_cart,arrow_back,arrow_forward,auto_awesome,badge,cake,card_giftcard,celebration,chat,check,child_care,child_friendly,cleaning_services,close,delete,done,dry,eco,edit,edit_note,expand_more,favorite,fiber_manual_record,format_quote,gesture,home,inventory_2,key,local_florist,local_mall,local_shipping,location_on,loyalty,magic_button,mail,menu,north_east,open_in_new,palette,pan_tool,photo_camera,receipt_long,redeem,remove,savings,schedule,search,search_off,sentiment_satisfied,shopping_bag,shopping_basket,spa,straighten,style,toys,tune,verified,verified_user,visibility,volunteer_activism,wb_sunny,zoom_in&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&icon_names=account_balance_wallet,add,add_shopping_cart,arrow_back,arrow_forward,auto_awesome,badge,cake,card_giftcard,celebration,chat,check,child_care,child_friendly,cleaning_services,close,delete,done,dry,eco,edit,edit_note,expand_more,favorite,fiber_manual_record,format_quote,gesture,home,inventory_2,key,local_florist,local_mall,local_shipping,location_on,loyalty,magic_button,mail,menu,north_east,open_in_new,palette,pan_tool,photo_camera,receipt_long,redeem,remove,savings,schedule,search,search_off,sentiment_satisfied,shopping_bag,shopping_basket,spa,straighten,style,toys,tune,verified,verified_user,visibility,volunteer_activism,wb_sunny,zoom_in&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&icon_names=account_balance_wallet,add,add_shopping_cart,arrow_back,arrow_forward,auto_awesome,badge,cake,card_giftcard,celebration,chat,check,child_care,cleaning_services,close,delete,done,dry,eco,edit,edit_note,expand_more,favorite,fiber_manual_record,format_quote,gesture,inventory_2,local_mall,local_shipping,location_on,loyalty,magic_button,mail,menu,north_east,open_in_new,palette,pan_tool,photo_camera,receipt_long,redeem,remove,savings,schedule,search,search_off,sentiment_satisfied,shopping_bag,shopping_basket,spa,straighten,tune,verified,verified_user,visibility,volunteer_activism,wb_sunny,zoom_in&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&icon_names=account_balance_wallet,add,add_shopping_cart,arrow_back,arrow_forward,auto_awesome,badge,cake,card_giftcard,celebration,chat,check,child_care,child_friendly,cleaning_services,close,delete,done,dry,eco,edit,edit_note,expand_more,favorite,fiber_manual_record,format_quote,gesture,home,inventory_2,key,local_florist,local_mall,local_shipping,location_on,loyalty,magic_button,mail,menu,north_east,open_in_new,palette,pan_tool,photo_camera,receipt_long,redeem,remove,savings,schedule,search,search_off,sentiment_satisfied,shopping_bag,shopping_basket,spa,straighten,style,toys,tune,verified,verified_user,visibility,volunteer_activism,wb_sunny,zoom_in&display=swap" rel="stylesheet">
     </noscript>
     
     <!-- Build-time Tailwind and custom styles -->
     <link rel="stylesheet" href="/styles.css">
     <script type="module" crossorigin src="/app.js"></script>
 </head>
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-secondary-container">
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container">
     <a href="#app-viewport" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[120] focus:bg-secondary focus:text-on-secondary focus:px-4 focus:py-2.5 focus:rounded-full focus:font-label-md focus:shadow-lg">Skip to main content</a>
 
     <!-- Toast popup message container -->
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div id="cart-live-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <!-- GLOBAL MAIN NAVIGATION HEADER (SHARED ACCROSS ALL MAIN PAGES) -->
-    <nav class="bg-surface/85 backdrop-blur-md text-primary fixed w-full top-0 left-0 z-50 border-b border-outline-variant/20 shadow-sm transition-all duration-300">
+    <nav id="site-header" data-primary-nav aria-label="Primary navigation" class="bg-surface/85 backdrop-blur-md text-primary fixed w-full top-0 left-0 z-50 border-b border-outline-variant/20 shadow-sm transition-all duration-300">
         <div class="flex justify-between items-center px-4 sm:px-6 md:px-lg w-full max-w-container-max mx-auto py-md">
-            <a data-nav-logo class="nav-logo cursor-pointer flex items-center gap-0 hover:opacity-85 transition-opacity" href="/">
+            <a data-nav-logo class="nav-logo cursor-pointer flex items-center gap-0 hover:opacity-85 transition-opacity shrink-0" href="/">
                 <span class="font-headline-sm text-headline-sm md:text-[28px] tracking-tight text-secondary font-serif">
                     <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
                 </span>
             </a>
-            <div class="hidden md:flex items-center font-body-md text-body-md gap-md">
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/collections">Handmade Collection</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/custom-order">Custom Orders</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/about">About Us</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/faq">FAQ</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contact">Contact Us</a>
+            <div class="hidden md:flex items-center font-body-md text-body-md gap-4 lg:gap-md">
+                <div class="relative" data-nav-dropdown>
+                    <button type="button" id="nav-shop-trigger" data-nav-dropdown-trigger="nav-shop-menu" aria-expanded="false" aria-controls="nav-shop-menu" aria-haspopup="true" class="inline-flex items-center gap-1 min-h-[44px] min-w-[44px] px-3 py-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md rounded-lg">
+                        <span>Shop</span>
+                        <span class="material-symbols-outlined text-[18px] transition-transform duration-200" data-nav-chevron aria-hidden="true">expand_more</span>
+                    </button>
+                    <div id="nav-shop-menu" data-nav-dropdown-panel class="hidden absolute left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 top-full mt-2 w-[28rem] lg:w-[30rem] max-w-[calc(100vw-2rem)] bg-surface border border-outline-variant/25 rounded-2xl shadow-xl p-4 z-50">
+                        <a data-nav-item class="flex items-center justify-between gap-3 min-h-[44px] px-3.5 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-secondary font-label-md text-sm font-semibold transition-colors mb-3 border border-outline-variant/20" href="/collections">
+                            <span>All Handmade Gifts</span>
+                            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+                        </a>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="space-y-0.5">
+                                <p class="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Categories</p>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/crochet-bouquets">Bouquets</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/crochet-plushies">Plushies</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/crochet-keychains">Keychains</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/crochet-baby-gifts">Baby Gifts</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/crochet-accessories">Accessories</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/crochet-home-decor">Home &amp; Decor</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/crochet-gift-combos">Gift Combos</a>
+                            </div>
+                            <div class="space-y-0.5">
+                                <p class="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Occasions</p>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/anniversary-gifts">Anniversary</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/birthday-gifts">Birthday</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/baby-shower-gifts">Baby Shower</a>
+                                <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/return-gifts">Return Gifts</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a data-nav-item data-nav-top class="inline-flex items-center min-h-[44px] px-3 py-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md whitespace-nowrap" href="/custom-order">Custom Orders</a>
+                <div class="relative" data-nav-dropdown>
+                    <button type="button" id="nav-explore-trigger" data-nav-dropdown-trigger="nav-explore-menu" aria-expanded="false" aria-controls="nav-explore-menu" aria-haspopup="true" class="inline-flex items-center gap-1 min-h-[44px] min-w-[44px] px-3 py-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md rounded-lg">
+                        <span>Explore</span>
+                        <span class="material-symbols-outlined text-[18px] transition-transform duration-200" data-nav-chevron aria-hidden="true">expand_more</span>
+                    </button>
+                    <div id="nav-explore-menu" data-nav-dropdown-panel class="hidden absolute right-0 top-full mt-2 w-60 max-w-[calc(100vw-2rem)] bg-surface border border-outline-variant/25 rounded-2xl shadow-xl p-2 z-50 flex flex-col gap-0.5">
+                        <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/about">About</a>
+                        <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/faq">FAQ</a>
+                        <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/contact">Contact</a>
+                        <a data-nav-item class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-sm font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="/crochet-care">Crochet Care</a>
+                    </div>
+                </div>
             </div>
-            <div class="flex items-center gap-md">
+            <div class="flex items-center gap-md shrink-0">
                 <a href="/cart" class="relative inline-flex items-center justify-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-full text-on-surface-variant hover:bg-primary-container/50 transition-all duration-300 cart-trigger" aria-label="Open shopping cart" aria-controls="sideCart" aria-expanded="false">
-                    <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
-                    <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center pointer-events-none shadow-sm cart-badge hidden" aria-live="polite">0</span>
+                    <span class="material-symbols-outlined text-[24px]" aria-hidden="true">shopping_bag</span>
+                    <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center pointer-events-none shadow-sm cart-badge hidden" aria-hidden="true">0</span>
                 </a>
-                <button onclick="toggleMobileMenu()" class="md:hidden min-w-[44px] min-h-[44px] p-2 flex items-center justify-center text-on-surface-variant rounded-full active:bg-primary-container/40" aria-label="Open mobile menu" aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="material-symbols-outlined">menu</span>
+                <button type="button" onclick="toggleMobileMenu()" class="md:hidden min-w-[44px] min-h-[44px] p-2 flex items-center justify-center text-on-surface-variant rounded-full active:bg-primary-container/40" aria-label="Open mobile menu" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="material-symbols-outlined" aria-hidden="true">menu</span>
                 </button>
             </div>
         </div>
         <!-- Mobile Dropdown Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 py-sm border-t border-outline-variant/20 bg-surface flex flex-col gap-sm">
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/collections">Handmade Collection</a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/custom-order">Custom Orders</a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md flex items-center justify-between" href="/cart">
+        <div id="mobile-menu" class="hidden md:hidden px-6 py-sm border-t border-outline-variant/20 bg-surface flex flex-col gap-1 max-h-[calc(100vh-var(--header-height,69px))] overflow-y-auto">
+            <div class="border-b border-outline-variant/15 pb-1">
+                <button type="button" id="mobile-shop-trigger" data-mobile-accordion-trigger="mobile-shop-panel" aria-expanded="false" aria-controls="mobile-shop-panel" class="w-full min-h-[44px] py-2 flex items-center justify-between text-on-surface-variant hover:text-primary font-label-md text-left">
+                    <span>Shop</span>
+                    <span class="material-symbols-outlined text-[20px] transition-transform duration-200" data-nav-chevron aria-hidden="true">expand_more</span>
+                </button>
+                <div id="mobile-shop-panel" data-mobile-accordion-panel class="hidden pl-3 pb-2 space-y-0.5">
+                    <a data-nav-item class="min-h-[44px] flex items-center text-secondary font-semibold hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/collections">All Handmade Gifts</a>
+                    <p class="px-2 pt-1.5 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Categories</p>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/crochet-bouquets">Bouquets</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/crochet-plushies">Plushies</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/crochet-keychains">Keychains</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/crochet-baby-gifts">Baby Gifts</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/crochet-accessories">Accessories</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/crochet-home-decor">Home &amp; Decor</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/crochet-gift-combos">Gift Combos</a>
+                    <p class="px-2 pt-1.5 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">Occasions</p>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/anniversary-gifts">Anniversary</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/birthday-gifts">Birthday</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/baby-shower-gifts">Baby Shower</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/return-gifts">Return Gifts</a>
+                </div>
+            </div>
+            <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 font-label-md border-b border-outline-variant/15" href="/custom-order">Custom Orders</a>
+            <div class="border-b border-outline-variant/15 pb-1">
+                <button type="button" id="mobile-explore-trigger" data-mobile-accordion-trigger="mobile-explore-panel" aria-expanded="false" aria-controls="mobile-explore-panel" class="w-full min-h-[44px] py-2 flex items-center justify-between text-on-surface-variant hover:text-primary font-label-md text-left">
+                    <span>Explore</span>
+                    <span class="material-symbols-outlined text-[20px] transition-transform duration-200" data-nav-chevron aria-hidden="true">expand_more</span>
+                </button>
+                <div id="mobile-explore-panel" data-mobile-accordion-panel class="hidden pl-3 pb-2 space-y-0.5">
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/about">About</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/faq">FAQ</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/contact">Contact</a>
+                    <a data-nav-item class="min-h-[44px] flex items-center text-on-surface-variant hover:text-primary transition-colors py-2 px-2 rounded-lg font-label-md text-sm" href="/crochet-care">Crochet Care</a>
+                </div>
+            </div>
+            <a data-nav-item class="min-h-[44px] text-on-surface-variant hover:text-primary transition-colors py-2 font-label-md flex items-center justify-between" href="/cart">
                 <span>Shopping Cart</span>
-                <span class="cart-badge bg-secondary text-white text-[10px] px-2 py-0.5 rounded-full font-bold hidden">0</span>
+                <span class="cart-badge bg-secondary text-white text-[10px] px-2 py-0.5 rounded-full font-bold hidden" aria-hidden="true">0</span>
             </a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/about">About Us</a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/faq">FAQ</a>
-            <a class="text-on-surface-variant hover:text-primary transition-colors py-1 font-label-md" href="/contact">Contact Us</a>
         </div>
     </nav>
 
@@ -271,7 +341,7 @@
         <!-- Cart Items dynamic wrapper: High vertical priority (flex-1) -->
         <div class="flex-1 cart-items-container overflow-y-auto pr-1" aria-live="polite" aria-relevant="additions removals text">
             <!-- Rendered by JS -->
-            <div class="text-center py-12 opacity-60 flex flex-col items-center">
+            <div class="text-center py-12 text-on-surface-variant flex flex-col items-center">
                 <span class="material-symbols-outlined text-4xl block mb-2 text-secondary" aria-hidden="true">shopping_basket</span>
                 <p class="font-label-md text-sm">Your cart is empty</p>
             </div>
@@ -383,7 +453,7 @@
                     <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg w-full grid grid-cols-1 md:grid-cols-12 items-center gap-gutter relative z-10">
                         <div class="md:col-span-6 space-y-md">
                             <div class="inline-flex items-center gap-2 bg-tertiary-container text-on-tertiary-container px-4 py-1.5 rounded-full font-label-md text-label-md">
-                                <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">auto_awesome</span>
                                 Soft handmade gifting
                             </div>
                             <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background leading-tight">
@@ -403,7 +473,7 @@
                             <picture class="contents"><source srcset="/assets/hero_crochet_scene-DkLWzVp4-320.webp 320w, /assets/hero_crochet_scene-DkLWzVp4-480.webp 480w, /assets/hero_crochet_scene-DkLWzVp4-640.webp 640w, /assets/hero_crochet_scene-DkLWzVp4.webp 1024w" sizes="(min-width: 1024px) 600px, (min-width: 768px) 50vw, 92vw" type="image/webp"><img alt="Handmade crochet gifts arranged by BloomyCocoon" class="w-full h-full object-cover rounded-[4rem] shadow-2xl relative z-10" src="/assets/hero_crochet_scene-DkLWzVp4.webp" fetchpriority="high" width="600" height="600" decoding="async"></picture>
                             <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl z-20 hidden sm:flex items-center gap-base">
                                 <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-secondary">redeem</span>
+                                    <span class="material-symbols-outlined text-secondary" aria-hidden="true">redeem</span>
                                 </div>
                                 <div>
                                     <p class="font-label-md text-label-md text-on-surface">Gift Wrapped</p>
@@ -422,7 +492,7 @@
                                 <p class="text-body-md font-body-md text-on-surface-variant">Find the perfect handmade gift category</p>
                             </div>
                             <a class="text-secondary font-label-md flex items-center gap-base group" href="/collections">
-                                View All <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                View All <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                             </a>
                         </div>
                         <div class="explore-category-grid grid grid-cols-2 lg:grid-cols-4 gap-sm md:gap-md">
@@ -473,7 +543,7 @@
                                         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/rose-bouquet" class="hover:underline">Rose Bouquet</a></h3>
                                     </div>
                                     <div class="pt-2 border-t border-outline-variant/10 mt-2">
-                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ₹799</span>
+                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ₹799</span>
                                     </div>
                                 </div>
                             </article>
@@ -496,7 +566,7 @@
                                         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/single-crochet-rose" class="hover:underline">Single Crochet Rose</a></h3>
                                     </div>
                                     <div class="pt-2 border-t border-outline-variant/10 mt-2">
-                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ₹149</span>
+                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ₹149</span>
                                     </div>
                                 </div>
                             </article>
@@ -519,7 +589,7 @@
                                         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/bunny-plushie" class="hover:underline">Bunny Plushie</a></h3>
                                     </div>
                                     <div class="pt-2 border-t border-outline-variant/10 mt-2">
-                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ₹499</span>
+                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ₹499</span>
                                     </div>
                                 </div>
                             </article>
@@ -542,7 +612,7 @@
                                         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/strawberry-keychain" class="hover:underline">Strawberry Keychain</a></h3>
                                     </div>
                                     <div class="pt-2 border-t border-outline-variant/10 mt-2">
-                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ₹199</span>
+                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ₹199</span>
                                     </div>
                                 </div>
                             </article>
@@ -565,7 +635,7 @@
                                         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/baby-booties-cap-set" class="hover:underline">Baby Booties + Cap Set</a></h3>
                                     </div>
                                     <div class="pt-2 border-t border-outline-variant/10 mt-2">
-                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ₹799</span>
+                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ₹799</span>
                                     </div>
                                 </div>
                             </article>
@@ -588,7 +658,7 @@
                                         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/crochet-tote-bag" class="hover:underline">Crochet Tote Bag</a></h3>
                                     </div>
                                     <div class="pt-2 border-t border-outline-variant/10 mt-2">
-                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ₹799</span>
+                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ₹799</span>
                                     </div>
                                 </div>
                             </article>
@@ -611,7 +681,7 @@
                                         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/crochet-plant-holder" class="hover:underline">Crochet Plant Holder</a></h3>
                                     </div>
                                     <div class="pt-2 border-t border-outline-variant/10 mt-2">
-                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ₹499</span>
+                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ₹499</span>
                                     </div>
                                 </div>
                             </article>
@@ -631,7 +701,7 @@
                                         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/couple-bouquet-combo" class="hover:underline">Couple Bouquet Combo</a></h3>
                                     </div>
                                     <div class="pt-2 border-t border-outline-variant/10 mt-2">
-                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ₹1,199</span>
+                                        <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ₹1,199</span>
                                     </div>
                                 </div>
                             </article>
@@ -706,7 +776,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                         <a href="/anniversary-gifts" class="group bg-surface-container-low rounded-2xl p-6 border border-outline-variant/15 hover:border-secondary/30 transition-all hover:shadow-md flex flex-col justify-between">
                             <div>
-                                <span aria-hidden="true" class="w-12 h-12 rounded-full bg-[#fbd8d0] text-[#775d56] flex items-center justify-center mb-4 text-2xl">💍</span>
+                                <span aria-hidden="true" class="w-12 h-12 rounded-full bg-[#fbd8d0] text-[#59413b] flex items-center justify-center mb-4 text-2xl">💍</span>
                                 <h3 class="font-headline-sm text-lg text-primary group-hover:text-secondary transition-colors">Anniversary Gifts</h3>
                                 <p class="mt-2 font-caption text-on-surface-variant leading-relaxed">Everlasting flower bouquets, couple plushies, and luxury keepsake boxes.</p>
                             </div>
@@ -716,7 +786,7 @@
                         </a>
                         <a href="/birthday-gifts" class="group bg-surface-container-low rounded-2xl p-6 border border-outline-variant/15 hover:border-secondary/30 transition-all hover:shadow-md flex flex-col justify-between">
                             <div>
-                                <span aria-hidden="true" class="w-12 h-12 rounded-full bg-[#ffe0b2] text-[#e65100] flex items-center justify-center mb-4 text-2xl">🎂</span>
+                                <span aria-hidden="true" class="w-12 h-12 rounded-full bg-[#ffe0b2] text-[#9a3412] flex items-center justify-center mb-4 text-2xl">🎂</span>
                                 <h3 class="font-headline-sm text-lg text-primary group-hover:text-secondary transition-colors">Birthday Gifts</h3>
                                 <p class="mt-2 font-caption text-on-surface-variant leading-relaxed">Cheerful mini gift boxes, custom character plushies, and note-card combos.</p>
                             </div>
@@ -726,7 +796,7 @@
                         </a>
                         <a href="/baby-shower-gifts" class="group bg-surface-container-low rounded-2xl p-6 border border-outline-variant/15 hover:border-secondary/30 transition-all hover:shadow-md flex flex-col justify-between">
                             <div>
-                                <span aria-hidden="true" class="w-12 h-12 rounded-full bg-[#e1f5fe] text-[#0277bd] flex items-center justify-center mb-4 text-2xl">👶</span>
+                                <span aria-hidden="true" class="w-12 h-12 rounded-full bg-[#e1f5fe] text-[#035388] flex items-center justify-center mb-4 text-2xl">👶</span>
                                 <h3 class="font-headline-sm text-lg text-primary group-hover:text-secondary transition-colors">Baby Shower Gifts</h3>
                                 <p class="mt-2 font-caption text-on-surface-variant leading-relaxed">Skin-friendly yarn booties, caps, rattles, name garlands, and newborn hampers.</p>
                             </div>
@@ -736,7 +806,7 @@
                         </a>
                         <a href="/return-gifts" class="group bg-surface-container-low rounded-2xl p-6 border border-outline-variant/15 hover:border-secondary/30 transition-all hover:shadow-md flex flex-col justify-between">
                             <div>
-                                <span aria-hidden="true" class="w-12 h-12 rounded-full bg-[#e8f5e9] text-[#2e7d32] flex items-center justify-center mb-4 text-2xl">🎁</span>
+                                <span aria-hidden="true" class="w-12 h-12 rounded-full bg-[#e8f5e9] text-[#1b5e20] flex items-center justify-center mb-4 text-2xl">🎁</span>
                                 <h3 class="font-headline-sm text-lg text-primary group-hover:text-secondary transition-colors">Return Gifts &amp; Favors</h3>
                                 <p class="mt-2 font-caption text-on-surface-variant leading-relaxed">Affordable handmade keychains, single stems, and favors starting from ₹149.</p>
                             </div>
@@ -847,7 +917,7 @@
                 <!-- Back navigation button -->
                 <div class="mb-6 flex justify-start">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                 </div>
                 <!-- Title -->
@@ -860,10 +930,10 @@
                 </section>
 
                 <!-- Search & Filters category scroll -->
-                <section class="mb-6 md:mb-lg sticky top-[72px] z-40 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-lg md:px-lg border-b border-outline-variant/15 space-y-2">
+                <section id="collection-sticky-bar" class="collection-sticky-bar mb-6 md:mb-lg sticky z-40 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-lg md:px-lg border-b border-outline-variant/15 space-y-2">
                     <div class="relative max-w-md">
                         <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] pointer-events-none" aria-hidden="true">search</span>
-                        <input type="text" id="collection-search-input" oninput="handleCollectionSearch(this.value)" placeholder="Search roses, plushies, keychains, gifts..." class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-10 py-2 text-base md:text-sm font-body-md text-on-surface placeholder:text-on-surface-variant/60 focus:ring-2 focus:ring-secondary/25 focus:border-secondary transition-all" aria-label="Search handmade crochet collection">
+                        <input type="text" id="collection-search-input" oninput="handleCollectionSearch(this.value)" placeholder="Search roses, plushies, keychains, gifts..." class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-10 py-2 text-base md:text-sm font-body-md text-on-surface placeholder:text-on-surface-variant/80 focus:ring-2 focus:ring-secondary/25 focus:border-secondary transition-all" aria-label="Search handmade crochet collection">
                         <button id="collection-search-clear" onclick="clearCollectionSearch()" class="hidden absolute right-1 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full" aria-label="Clear search">
                             <span class="material-symbols-outlined text-[18px]" aria-hidden="true">close</span>
                         </button>
@@ -950,14 +1020,16 @@
                 <section class="relative h-[80vh] flex items-center justify-center overflow-hidden">
                     <div class="absolute top-6 left-6 z-20 md:left-12">
                         <a href="/" data-nav-back class="flex items-center gap-2 text-secondary bg-white/90 hover:bg-white border border-outline-variant/30 backdrop-blur-sm px-4 py-2 rounded-full font-label-md transition-all duration-300 shadow-md">
-                            <span class="material-symbols-outlined">arrow_back</span> Back
+                            <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back
                         </a>
                     </div>
                     <picture class="contents"><source srcset="/assets/about_process-CA2IMdmF-320.webp 320w, /assets/about_process-CA2IMdmF-480.webp 480w, /assets/about_process-CA2IMdmF-640.webp 640w, /assets/about_process-CA2IMdmF.webp 1024w" sizes="(min-width: 768px) 42vw, 100vw" type="image/webp"><img alt="BloomyCocoon handmade crochet process in Malappuram Kerala" class="absolute inset-0 w-full h-full object-cover" src="/assets/about_process-CA2IMdmF.png" loading="lazy" width="500" height="500" decoding="async"></picture>
                     <div class="absolute inset-0 bg-secondary/10"></div>
-                    <div class="relative z-10 text-center px-md max-w-3xl">
-                        <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-base drop-shadow-sm">Where Every Stitch Tells a Story</h1>
-                        <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant bg-white/20 backdrop-blur-sm px-md py-base inline-block rounded-lg">A cozy space for handmade gifting.</p>
+                    <div class="relative z-10 text-center px-md max-w-3xl mx-4">
+                        <div class="bg-surface/90 backdrop-blur-md rounded-2xl px-6 py-6 md:px-8 md:py-8 shadow-sm border border-outline-variant/20">
+                            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-base">Where Every Stitch Tells a Story</h1>
+                            <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant inline-block">A cozy space for handmade gifting.</p>
+                        </div>
                     </div>
                 </section>
 
@@ -1051,7 +1123,7 @@
                 <section class="py-10 md:py-xl bg-[#fbd8d0]">
                     <div class="max-w-3xl mx-auto text-center px-md">
                         <h2 class="font-headline-md text-2xl md:text-headline-md text-[#725852] mb-base">Ready to Create Your Own Memory?</h2>
-                        <p class="text-base md:text-body-lg text-[#725852]/80 mb-lg">Whether it's a gift for a loved one or a treat for yourself, we're here to help you find the perfect handmade cocoon.</p>
+                        <p class="text-base md:text-body-lg text-on-secondary-fixed-variant mb-lg">Whether it's a gift for a loved one or a treat for yourself, we're here to help you find the perfect handmade cocoon.</p>
                         <div class="flex flex-col md:flex-row items-center justify-center gap-md">
                             <a href="/collections" class="w-full md:w-auto bg-[#605e5a] text-white px-6 py-3 rounded-lg font-label-md hover:shadow-lg transition-all scale-100 active:scale-95 text-center">Explore Collection</a>
                             <a href="/custom-order" class="w-full md:w-auto border border-secondary text-secondary px-6 py-3 rounded-lg font-label-md hover:bg-secondary/5 transition-all scale-100 active:scale-95 text-center">Start a Custom Order</a>
@@ -1091,7 +1163,7 @@
             <main>
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pt-6">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                 </div>
                 <!-- Hero section -->
@@ -1124,28 +1196,28 @@
                             </h2>
                             <div class="space-y-base">
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">What is BloomyCocoon?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India, offering custom crochet bouquets, plushies, keychains, accessories, home decor, and personalized handmade gifts through WhatsApp-based ordering.</p>
                                 </details>
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">How do I order from BloomyCocoon?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">Browse the collection, add your favorite crochet gifts to cart, and continue to WhatsApp. BloomyCocoon confirms customization, final quote, payment, delivery, and order details through WhatsApp before handcrafting begins.</p>
                                 </details>
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">Can I order through WhatsApp?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">Yes. BloomyCocoon uses WhatsApp-based ordering so your design, colors, Starting from price, final quote, payment, timeline, and delivery details can be discussed personally.</p>
                                 </details>
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">How does payment work?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
@@ -1161,28 +1233,28 @@
                             </h2>
                             <div class="space-y-base">
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">Do you make custom crochet gifts?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">Yes. BloomyCocoon makes custom crochet bouquets, plushies, keychains, accessories, home decor, baby gifts, gift combos, and personalized handmade gifts based on your idea and occasion.</p>
                                 </details>
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">What does Starting from mean for crochet bouquets?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">Crochet bouquet options on the website use Starting from pricing: Starting from ₹149 for single stems and Starting from ₹799 for full bouquet styles. Final quote is confirmed on WhatsApp based on flowers, size, colors, names, packaging, and delivery.</p>
                                 </details>
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">How long does a custom crochet order take?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">A custom crochet order usually takes 1-2 weeks, depending on the product type, size, customization, and current order queue. The exact timeline is confirmed on WhatsApp before the order begins.</p>
                                 </details>
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">Can I customize colors, names, or packaging?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
@@ -1198,21 +1270,21 @@
                             </h2>
                             <div class="space-y-base">
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">Do you deliver across Kerala?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">Yes. BloomyCocoon delivers handmade crochet gifts across Kerala, including Malappuram and other Kerala locations where delivery service is available.</p>
                                 </details>
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">Do you deliver across India?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">Yes. BloomyCocoon delivers handmade crochet gifts across India, with delivery details and charges confirmed through WhatsApp before finalizing the order.</p>
                                 </details>
                                 <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
-                                    <summary class="list-none flex justify-between items-center cursor-pointer focus:outline-none">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
                                         <span class="font-headline-sm text-headline-sm text-on-surface">Are the products handmade?</span>
                                         <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
                                     </summary>
@@ -1272,7 +1344,7 @@
             <main>
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pt-6">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                 </div>
                 <!-- Hero section banner -->
@@ -1428,7 +1500,7 @@
             <main>
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pt-6">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                 </div>
                 <!-- Hero section content -->
@@ -1631,7 +1703,7 @@
 
                                 <div class="p-3 bg-white/70 rounded-xl border border-secondary/15 space-y-1">
                                     <div class="flex items-center gap-1.5 text-secondary text-xs font-semibold">
-                                        <span class="material-symbols-outlined text-[15px]">verified</span>
+                                        <span class="material-symbols-outlined text-[15px]" aria-hidden="true">verified</span>
                                         <span>50% Advance via UPI upon confirmation</span>
                                     </div>
                                     <p class="text-[11px] text-on-surface-variant">Custom orders take 1-2 weeks. Photos are shared for approval before dispatch.</p>
@@ -1750,13 +1822,13 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex justify-start">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                 </div>
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">favorite</span> Everlasting Love &amp; Keepsakes
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">favorite</span> Everlasting Love &amp; Keepsakes
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Anniversary Gifts</span>
@@ -1767,7 +1839,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I am looking for a custom crochet anniversary gift.">
                             <span>Order Anniversary Gift</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Bouquet Request
@@ -1777,21 +1849,21 @@
 
                 <section class="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">spa</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">spa</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Flowers That Never Fade</h2>
                             <p class="font-caption text-on-surface-variant mt-1">High-grade cotton-blend yarn preserves vivid petals and delicate textures for years.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">palette</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">palette</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Custom Palette &amp; Notes</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Choose your partner's favorite colors and include a handwritten card message.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">local_shipping</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">local_shipping</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Delivered Across India</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Safely boxed from Kerala to prevent crushing during transit.</p>
@@ -1814,7 +1886,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>How long before our anniversary should I place an order?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Because each anniversary bouquet and keepsake is hand-stitched from scratch, we recommend ordering 7–10 days in advance within Kerala, or 10–14 days in advance for delivery to other states in India.
@@ -1823,7 +1895,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>Can I customize the flower colors or bouquet wrapper?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Yes! You can choose stem counts, flower varieties (roses, tulips, sunflowers, lavender), wrapping paper colors, ribbon styles, and fairy light add-ons. We confirm all photos and palettes with you on WhatsApp before stitching.
@@ -1832,7 +1904,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>Can you include a personalized anniversary note card?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Absolutely. Share your anniversary message with us on WhatsApp, and we will tuck a handwritten note card securely inside the gift box at no extra charge.
@@ -1852,13 +1924,13 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex justify-start">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                 </div>
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">cake</span> Joyful Celebrations
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">cake</span> Joyful Celebrations
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Birthday Gifts</span>
@@ -1869,7 +1941,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I am looking for a handmade crochet birthday gift.">
                             <span>Order Birthday Gift</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Birthday Request
@@ -1879,21 +1951,21 @@
 
                 <section class="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">sentiment_satisfied</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">sentiment_satisfied</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Adorable Plush Characters</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Bears, bunnies, cats, and custom animal friends stitched in soft pastel yarn.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">card_giftcard</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">card_giftcard</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Ready-to-Gift Boxes</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Curated gift boxes combining mini bouquets, keychains, and personalized notes.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">magic_button</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">magic_button</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Personal Touch</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Add initial letters, customized tags, and custom color accents.</p>
@@ -1916,7 +1988,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>Can I request a custom character or animal plushie for a birthday?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Yes! Share your reference photo or preferred character on WhatsApp. We will discuss sizing, yarn colours, and provide an exact quote before crafting begins.
@@ -1925,7 +1997,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>What is the price range for birthday gifts?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Our handmade birthday gifts start from ₹149 for single stems and initial keychains, ₹399–₹699 for plushies, and ₹999–₹1999 for curated gift boxes and hampers.
@@ -1934,7 +2006,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>Can you deliver directly to the birthday person with a note?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Yes! You can provide the recipient's address at checkout on WhatsApp. We will package it securely with your custom note and send you tracking details upon dispatch.
@@ -1954,13 +2026,13 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex justify-start">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                 </div>
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">child_care</span> Welcoming Little Blessings
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">child_care</span> Welcoming Little Blessings
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Baby Shower Gifts</span>
@@ -1971,7 +2043,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I am looking for handmade crochet baby shower or newborn gifts.">
                             <span>Order Baby Gift</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Baby Set Request
@@ -1981,21 +2053,21 @@
 
                 <section class="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">fiber_manual_record</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">fiber_manual_record</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Ultra-Soft &amp; Skin Safe</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Stitched using non-scratchy, breathable baby-grade yarn safe for delicate infant skin.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">badge</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">badge</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Custom Name Garlands</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Personalized alphabet letter banners perfect for nursery decor and photo sessions.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">inventory_2</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">inventory_2</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Heirloom Quality Hampers</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Cherished keepsake boxes that families preserve long after baby outgrows them.</p>
@@ -2018,7 +2090,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>Is the yarn safe and comfortable for newborn babies?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Yes. We select soft cotton and baby-friendly acrylic blend yarns that are lightweight, non-abrasive, and gentle on sensitive newborn skin.
@@ -2027,7 +2099,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>What age groups do the baby booties and caps fit?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Our standard sets are sized for 0–6 months newborns. If you need larger sizing (6–12 months or 12–18 months), let us know on WhatsApp and we will adjust the dimensions.
@@ -2036,7 +2108,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>Can I customize the letters and colors of the name garland?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Yes! You can choose the exact baby name, nursery color palette (pastels, neutrals, warm earth tones), and end accents like mini clouds or stars.
@@ -2056,13 +2128,13 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex justify-start">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                 </div>
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">loyalty</span> Thoughtful Celebration Favors
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">loyalty</span> Thoughtful Celebration Favors
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Return Gifts &amp; Favors</span>
@@ -2073,7 +2145,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I am enquiring about bulk handmade crochet return gifts.">
                             <span>Get Bulk Quote on WhatsApp</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Party Favors
@@ -2083,21 +2155,21 @@
 
                 <section class="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">savings</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">savings</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Starting from ₹149</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Affordable, high-perceived-value handmade gifts that stand out from generic plastic favors.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">tune</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">tune</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Color-Coordinated</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Match your wedding theme, party color palette, or celebration decor effortlessly.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/15 flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-2xl">local_mall</span>
+                        <span class="material-symbols-outlined text-secondary text-2xl" aria-hidden="true">local_mall</span>
                         <div>
                             <h2 class="font-label-md font-bold text-on-surface">Individual Packaging</h2>
                             <p class="font-caption text-on-surface-variant mt-1">Each piece is individually packed with optional customized event name tags.</p>
@@ -2120,7 +2192,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>What is the minimum quantity for bulk return gifts?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 We welcome orders starting from single pieces up to bulk orders of 10, 25, 50, or 100+ items. Special bundle pricing is confirmed personally on WhatsApp.
@@ -2129,7 +2201,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>How much time is required for large bulk orders?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 For small batches (10–25 pieces), we usually need 5–7 days. For larger wedding favors or celebration batches (50+ pieces), please reach out 2–3 weeks in advance.
@@ -2138,7 +2210,7 @@
                         <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
                             <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
                                 <span>Can you attach customized wedding or party thank-you tags?</span>
-                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 Yes! We can attach custom thank-you tags with the couple's names, event date, or a personalized message to each piece before delivery.
@@ -2157,7 +2229,7 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                     <nav aria-label="Breadcrumb" class="text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5">
                         <a href="/" class="hover:text-secondary transition-colors">Home</a>
@@ -2170,7 +2242,7 @@
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">local_florist</span> Long-Lasting Handmade Blooms
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">local_florist</span> Long-Lasting Handmade Blooms
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Bouquets &amp; Stems</span>
@@ -2181,7 +2253,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about a handmade crochet bouquet.">
                             <span>Order Bouquet on WhatsApp</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Bouquet Request
@@ -2198,7 +2270,36 @@
                     </div>
                 </section>
             </main>
-            <footer class="bg-surface-container py-10 border-t border-outline-variant/10"></footer>
+            <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
+                        <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
+                        <a data-policy-footer-links class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/shipping-delivery">Shipping &amp; Delivery</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/returns-cancellations">Returns &amp; Cancellations</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
+                    </nav>
+                    <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- ==================================================== -->
@@ -2208,7 +2309,7 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                     <nav aria-label="Breadcrumb" class="text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5">
                         <a href="/" class="hover:text-secondary transition-colors">Home</a>
@@ -2221,7 +2322,7 @@
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">toys</span> Soft Amigurumi Keepsakes
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">toys</span> Soft Amigurumi Keepsakes
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Plushies</span>
@@ -2232,7 +2333,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about handmade crochet plushies.">
                             <span>Order Plushie on WhatsApp</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Plushie Request
@@ -2249,7 +2350,36 @@
                     </div>
                 </section>
             </main>
-            <footer class="bg-surface-container py-10 border-t border-outline-variant/10"></footer>
+            <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
+                        <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
+                        <a data-policy-footer-links class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/shipping-delivery">Shipping &amp; Delivery</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/returns-cancellations">Returns &amp; Cancellations</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
+                    </nav>
+                    <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- ==================================================== -->
@@ -2259,7 +2389,7 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                     <nav aria-label="Breadcrumb" class="text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5">
                         <a href="/" class="hover:text-secondary transition-colors">Home</a>
@@ -2272,7 +2402,7 @@
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">key</span> Everyday Bag &amp; Gift Charms
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">key</span> Everyday Bag &amp; Gift Charms
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Keychains &amp; Charms</span>
@@ -2283,7 +2413,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about handmade crochet keychains.">
                             <span>Order Keychains on WhatsApp</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Keychain Request
@@ -2300,7 +2430,36 @@
                     </div>
                 </section>
             </main>
-            <footer class="bg-surface-container py-10 border-t border-outline-variant/10"></footer>
+            <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
+                        <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
+                        <a data-policy-footer-links class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/shipping-delivery">Shipping &amp; Delivery</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/returns-cancellations">Returns &amp; Cancellations</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
+                    </nav>
+                    <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- ==================================================== -->
@@ -2310,7 +2469,7 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                     <nav aria-label="Breadcrumb" class="text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5">
                         <a href="/" class="hover:text-secondary transition-colors">Home</a>
@@ -2323,7 +2482,7 @@
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">child_friendly</span> Gentle Newborn Keepsakes
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">child_friendly</span> Gentle Newborn Keepsakes
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Baby Gifts</span>
@@ -2334,7 +2493,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about handmade crochet baby gifts.">
                             <span>Order Baby Gifts on WhatsApp</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Baby Set Request
@@ -2351,7 +2510,36 @@
                     </div>
                 </section>
             </main>
-            <footer class="bg-surface-container py-10 border-t border-outline-variant/10"></footer>
+            <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
+                        <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
+                        <a data-policy-footer-links class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/shipping-delivery">Shipping &amp; Delivery</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/returns-cancellations">Returns &amp; Cancellations</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
+                    </nav>
+                    <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- ==================================================== -->
@@ -2361,7 +2549,7 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                     <nav aria-label="Breadcrumb" class="text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5">
                         <a href="/" class="hover:text-secondary transition-colors">Home</a>
@@ -2374,7 +2562,7 @@
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">style</span> Cozy Everyday Styling
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">style</span> Cozy Everyday Styling
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Accessories</span>
@@ -2385,7 +2573,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about handmade crochet accessories.">
                             <span>Order Accessories on WhatsApp</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Shade Request
@@ -2402,7 +2590,36 @@
                     </div>
                 </section>
             </main>
-            <footer class="bg-surface-container py-10 border-t border-outline-variant/10"></footer>
+            <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
+                        <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
+                        <a data-policy-footer-links class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/shipping-delivery">Shipping &amp; Delivery</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/returns-cancellations">Returns &amp; Cancellations</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
+                    </nav>
+                    <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- ==================================================== -->
@@ -2412,7 +2629,7 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                     <nav aria-label="Breadcrumb" class="text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5">
                         <a href="/" class="hover:text-secondary transition-colors">Home</a>
@@ -2425,7 +2642,7 @@
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">home</span> Warm Handmade Corners
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">home</span> Warm Handmade Corners
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Home &amp; Decor</span>
@@ -2436,7 +2653,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about handmade crochet home decor.">
                             <span>Order Decor on WhatsApp</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Custom Decor Request
@@ -2453,7 +2670,36 @@
                     </div>
                 </section>
             </main>
-            <footer class="bg-surface-container py-10 border-t border-outline-variant/10"></footer>
+            <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
+                        <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
+                        <a data-policy-footer-links class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/shipping-delivery">Shipping &amp; Delivery</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/returns-cancellations">Returns &amp; Cancellations</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
+                    </nav>
+                    <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- ==================================================== -->
@@ -2463,7 +2709,7 @@
             <main class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-xl">
                 <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <a href="/" data-nav-back class="flex items-center gap-2 text-secondary font-label-md hover:-translate-x-1 transition-transform duration-300">
-                        <span class="material-symbols-outlined">arrow_back</span> Back to Home
+                        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Back to Home
                     </a>
                     <nav aria-label="Breadcrumb" class="text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5">
                         <a href="/" class="hover:text-secondary transition-colors">Home</a>
@@ -2476,7 +2722,7 @@
 
                 <section class="mb-10 md:mb-14 text-center md:text-left">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-secondary font-label-md text-xs uppercase tracking-wider mb-3">
-                        <span class="material-symbols-outlined text-[16px]">card_giftcard</span> Curated Gift Boxes &amp; Hampers
+                        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">card_giftcard</span> Curated Gift Boxes &amp; Hampers
                     </span>
                     <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
                         Handmade Crochet <span class="italic font-normal">Gift Combos &amp; Hampers</span>
@@ -2487,7 +2733,7 @@
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <a href="https://wa.me/919061174579" target="_blank" rel="noopener" class="bg-secondary text-white px-6 py-3 rounded-full font-label-md hover:opacity-90 transition-all flex items-center gap-2" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about a handmade crochet gift combo.">
                             <span>Plan Combo on WhatsApp</span>
-                            <span class="material-symbols-outlined text-sm">chat</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">chat</span>
                         </a>
                         <a href="/custom-order" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md hover:bg-secondary/15 transition-all">
                             Build Custom Hamper
@@ -2504,7 +2750,36 @@
                     </div>
                 </section>
             </main>
-            <footer class="bg-surface-container py-10 border-t border-outline-variant/10"></footer>
+            <footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
+                <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
+                    <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
+                        <span class="font-display-lg text-[36px] md:text-[38px] tracking-tight text-secondary font-serif">
+                            <span class="italic font-normal">Bloomy</span><span class="font-bold">Cocoon</span>
+                        </span>
+                    </a>
+                    <p class="font-body-md text-on-surface-variant max-w-2xl">BloomyCocoon — handmade crochet gifts from Mampad, Malappuram, Kerala. Delivering across Kerala and India.</p>
+                    <nav class="flex flex-wrap justify-center gap-6 md:gap-lg my-md" aria-label="Footer navigation">
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/">Home</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/collections">Handmade Collection</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/custom-order">Custom Orders</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/anniversary-gifts">Anniversary Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/birthday-gifts">Birthday Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/baby-shower-gifts">Baby Shower Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/return-gifts">Return Gifts</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/about">About Us</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/faq">FAQ</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/contact">Contact Us</a>
+                        <a data-policy-footer-links class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/shipping-delivery">Shipping &amp; Delivery</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/returns-cancellations">Returns &amp; Cancellations</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
+                    </nav>
+                    <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
+                </div>
+            </footer>
         </section>
 
         <!-- ==================================================== -->
@@ -2535,10 +2810,10 @@
                     <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-3 border-b border-outline-variant/15">
                         <div class="flex items-center gap-3">
                             <h1 class="font-display-lg text-display-lg-mobile md:text-3xl text-primary font-serif font-bold tracking-tight">Your Handcrafted Basket</h1>
-                            <span class="cart-badge bg-secondary/10 text-secondary text-xs font-label-md px-2.5 py-0.5 rounded-full font-bold hidden">0</span>
+                            <span class="cart-badge bg-secondary/10 text-secondary text-xs font-label-md px-2.5 py-0.5 rounded-full font-bold hidden" aria-hidden="true">0</span>
                         </div>
                         <a href="/collections" class="inline-flex items-center gap-1 text-xs font-semibold text-secondary hover:text-primary transition-colors">
-                            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
                             <span>Continue Shopping</span>
                         </a>
                     </div>
@@ -2546,7 +2821,7 @@
                     <!-- Reassurance banner -->
                     <div class="mt-4 flex flex-wrap items-center justify-between gap-3 bg-surface-container-low/80 border border-outline-variant/20 rounded-2xl px-4 py-3 text-xs text-on-surface-variant">
                         <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-secondary text-[18px]">eco</span>
+                            <span class="material-symbols-outlined text-secondary text-[18px]" aria-hidden="true">eco</span>
                             <span class="font-medium text-on-surface">100% Handcrafted to order in Mampad, Kerala</span>
                         </div>
                         <div class="flex items-center gap-4 text-[11px] text-on-surface-variant">
@@ -2568,13 +2843,13 @@
                             <!-- Rendered by JS or pre-rendered static fallback: empty basket with popular handcrafted blooms -->
                             <div class="text-center py-12 px-6 rounded-3xl bg-surface-container-low/70 border border-outline-variant/20 flex flex-col items-center gap-3">
                                 <div class="w-16 h-16 rounded-full bg-primary-container/70 flex items-center justify-center text-secondary">
-                                    <span class="material-symbols-outlined text-3xl">shopping_basket</span>
+                                    <span class="material-symbols-outlined text-3xl" aria-hidden="true">shopping_basket</span>
                                 </div>
                                 <h2 class="font-headline-sm text-xl text-primary font-bold">Your basket is waiting for blooms</h2>
                                 <p class="font-body-md text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">Explore our slow-crafted bouquets, cute plushies, and forever keepsakes made with love in Mampad, Kerala.</p>
                                 <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-sm">
                                     <span>Browse Handmade Collection</span>
-                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                    <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
                                 </a>
                             </div>
 
@@ -2586,7 +2861,7 @@
                                     </div>
                                     <a href="/collections" class="text-xs font-semibold text-secondary hover:underline flex items-center gap-0.5">
                                         <span>View All</span>
-                                        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                                        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span>
                                     </a>
                                 </div>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
@@ -2599,7 +2874,7 @@
                                             <a href="/products/single-crochet-rose" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">Single Crochet Rose</a>
                                             <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
                                                 <span>Crochet Bouquets</span>
-                                                <span class="font-bold text-secondary">Starting ₹149</span>
+                                                <span class="font-bold text-secondary tabular-nums">Starting ₹149</span>
                                             </div>
                                         </div>
                                         <a href="/products/single-crochet-rose" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 text-center min-h-[44px]">
@@ -2617,7 +2892,7 @@
                                             <a href="/products/bunny-plushie" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">Bunny Plushie</a>
                                             <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
                                                 <span>Amigurumi Plushies</span>
-                                                <span class="font-bold text-secondary">Starting ₹499</span>
+                                                <span class="font-bold text-secondary tabular-nums">Starting ₹499</span>
                                             </div>
                                         </div>
                                         <a href="/products/bunny-plushie" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 text-center min-h-[44px]">
@@ -2635,7 +2910,7 @@
                                             <a href="/products/strawberry-keychain" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">Strawberry Keychain</a>
                                             <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
                                                 <span>Everyday Keychains</span>
-                                                <span class="font-bold text-secondary">Starting ₹199</span>
+                                                <span class="font-bold text-secondary tabular-nums">Starting ₹199</span>
                                             </div>
                                         </div>
                                         <a href="/products/strawberry-keychain" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 text-center min-h-[44px]">
@@ -2653,7 +2928,7 @@
                                             <a href="/products/couple-bouquet-combo" class="font-label-md text-xs sm:text-sm font-bold text-secondary hover:underline truncate block">Couple Bouquet Combo</a>
                                             <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
                                                 <span>Crochet Bouquets</span>
-                                                <span class="font-bold text-secondary">Starting ₹1,199</span>
+                                                <span class="font-bold text-secondary tabular-nums">Starting ₹1,199</span>
                                             </div>
                                         </div>
                                         <a href="/products/couple-bouquet-combo" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm active:scale-95 text-center min-h-[44px]">
@@ -2674,30 +2949,30 @@
                                 </span>
                                 <span class="text-[10px] text-on-surface-variant font-normal">Sent with your WhatsApp quote</span>
                             </label>
-                            <textarea id="cart-page-customer-note" rows="2" class="w-full bg-white/90 border border-outline-variant/20 rounded-xl p-3 text-base md:text-xs text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all placeholder:text-on-surface-variant/60" placeholder="e.g. Please deliver before Sunday for a birthday gift, preferred petal shades, or surprise delivery instructions..."></textarea>
+                            <textarea id="cart-page-customer-note" rows="2" class="w-full bg-white/90 border border-outline-variant/20 rounded-xl p-3 text-base md:text-xs text-on-surface focus:ring-2 focus:ring-secondary/30 transition-all placeholder:text-on-surface-variant/75" placeholder="e.g. Please deliver before Sunday for a birthday gift, preferred petal shades, or surprise delivery instructions..."></textarea>
                         </div>
                     </div>
 
                     <!-- RIGHT COLUMN: Sticky Order Summary Card (4 cols) -->
-                    <div class="lg:col-span-5 xl:col-span-4 sticky top-24 space-y-4">
+                    <div class="lg:col-span-5 xl:col-span-4 sticky cart-sticky-summary space-y-4">
                         <div class="bg-surface-container-low border border-outline-variant/25 rounded-3xl p-5 sm:p-6 shadow-sm space-y-4">
                             <div class="flex items-center justify-between pb-3 border-b border-outline-variant/15">
                                 <h2 class="font-headline-sm text-lg text-primary font-bold">Order Summary</h2>
-                                <span class="bg-secondary/10 text-secondary text-xs font-label-md px-2.5 py-0.5 rounded-full font-bold cart-header-count">0 items</span>
+                                <span class="bg-secondary/10 text-secondary text-xs font-label-md px-2.5 py-0.5 rounded-full font-bold cart-header-count tabular-nums">0 items</span>
                             </div>
 
                             <!-- Cost Breakdown -->
                             <div class="space-y-2.5 text-xs">
                                 <div class="flex justify-between text-on-surface-variant">
                                     <span>Items Subtotal</span>
-                                    <span class="font-semibold text-on-surface cart-items-subtotal">₹0</span>
+                                    <span class="font-semibold text-on-surface cart-items-subtotal tabular-nums">₹0</span>
                                 </div>
                                 <div class="cart-addons-row hidden justify-between text-secondary text-xs pt-1 border-t border-outline-variant/10">
                                     <span class="flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[15px]">redeem</span>
+                                        <span class="material-symbols-outlined text-[15px]" aria-hidden="true">redeem</span>
                                         <span>Gift Packaging &amp; Add-ons</span>
                                     </span>
-                                    <span class="font-bold cart-addons-amount">+₹0</span>
+                                    <span class="font-bold cart-addons-amount tabular-nums">+₹0</span>
                                 </div>
                                 <div class="flex justify-between text-on-surface-variant text-[11px] pt-1 border-t border-outline-variant/10">
                                     <span>Delivery Charge</span>
@@ -2705,7 +2980,7 @@
                                 </div>
                                 <div class="flex justify-between text-base font-bold text-primary pt-2 border-t border-outline-variant/20">
                                     <span>Estimated Total</span>
-                                    <span class="cart-total-price text-secondary font-headline-sm">₹0</span>
+                                    <span class="cart-total-price text-secondary font-headline-sm tabular-nums">₹0</span>
                                 </div>
                             </div>
 
@@ -2713,7 +2988,7 @@
                             <div class="bg-white/80 rounded-2xl p-3.5 border border-outline-variant/20 space-y-2">
                                 <div class="flex items-center justify-between text-[11px] font-bold text-secondary uppercase tracking-wider">
                                     <span class="flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[14px]">account_balance_wallet</span>
+                                        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">account_balance_wallet</span>
                                         <span>Handmade Payment Schedule</span>
                                     </span>
                                     <span class="text-[10px] bg-secondary/10 px-2 py-0.5 rounded-full font-semibold">UPI</span>
@@ -2723,37 +2998,37 @@
                                         <span class="w-2 h-2 rounded-full bg-secondary shrink-0"></span>
                                         <span>50% Advance on Booking</span>
                                     </span>
-                                    <span class="font-bold text-secondary cart-advance-amount">₹0</span>
+                                    <span class="font-bold text-secondary cart-advance-amount tabular-nums">₹0</span>
                                 </div>
                                 <div class="flex justify-between items-center text-[11px] text-on-surface-variant pt-1 border-t border-outline-variant/10">
                                     <span class="flex items-center gap-1.5">
                                         <span class="w-2 h-2 rounded-full bg-outline-variant/60 shrink-0"></span>
                                         <span>50% Balance Before Dispatch</span>
                                     </span>
-                                    <span class="font-medium cart-balance-amount">₹0</span>
+                                    <span class="font-medium cart-balance-amount tabular-nums">₹0</span>
                                 </div>
-                                <p class="text-[10px] text-on-surface-variant/75 pt-1 italic">Advance is paid via UPI once colors and details are finalized on WhatsApp. Balance is paid after you approve completion photos.</p>
+                                <p class="text-[10px] text-on-surface-variant/85 pt-1 italic">Advance is paid via UPI once colors and details are finalized on WhatsApp. Balance is paid after you approve completion photos.</p>
                             </div>
 
                             <!-- WhatsApp Checkout Action -->
                             <button disabled class="checkout-btn w-full bg-secondary text-white py-3.5 sm:py-4 rounded-2xl font-label-md text-sm md:text-base flex items-center justify-center gap-2 active:scale-95 transition-all opacity-55 cursor-default shadow-md hover:shadow-lg" aria-label="Continue to WhatsApp to confirm final quote and order details">
                                 <span>Continue on WhatsApp</span>
-                                <span class="material-symbols-outlined text-[20px]">chat</span>
+                                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">chat</span>
                             </button>
-                            <p class="text-[10px] text-center text-on-surface-variant/75 leading-relaxed">Starting from prices are a guide. Final quote, customized colors, packaging, and delivery confirmed directly on WhatsApp.</p>
+                            <p class="text-[10px] text-center text-on-surface-variant/85 leading-relaxed">Starting from prices are a guide. Final quote, customized colors, packaging, and delivery confirmed directly on WhatsApp.</p>
 
                             <!-- Trust & Care Assurances -->
                             <div class="pt-3 border-t border-outline-variant/15 space-y-2 text-[11px] text-on-surface-variant">
                                 <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+                                    <span class="material-symbols-outlined text-[16px] text-secondary" aria-hidden="true">verified_user</span>
                                     <span>Direct chat with artisan maker</span>
                                 </div>
                                 <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-[16px] text-secondary">photo_camera</span>
+                                    <span class="material-symbols-outlined text-[16px] text-secondary" aria-hidden="true">photo_camera</span>
                                     <span>Work-in-progress photos before packing</span>
                                 </div>
                                 <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-[16px] text-secondary">inventory_2</span>
+                                    <span class="material-symbols-outlined text-[16px] text-secondary" aria-hidden="true">inventory_2</span>
                                     <span>Secure bubble wrapped packaging</span>
                                 </div>
                             </div>
@@ -2820,7 +3095,7 @@
                         <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
                         <span>Back to Handmade Collection</span>
                     </a>
-                    <span class="text-xs text-on-surface-variant/75 hidden sm:inline-flex items-center gap-1">
+                    <span class="text-xs text-on-surface-variant/85 hidden sm:inline-flex items-center gap-1">
                         <span class="material-symbols-outlined text-secondary text-[16px]" aria-hidden="true">location_on</span>
                         <span>Mampad, Malappuram, Kerala</span>
                     </span>
@@ -2866,7 +3141,7 @@
                             <span id="detail-product-category" class="text-xs uppercase tracking-wider text-secondary font-bold font-label-md">Bouquets</span>
                             <h1 id="detail-product-name" class="font-headline-md text-3xl md:text-4xl text-primary font-bold mt-1">Handmade Crochet Gift</h1>
                             <div class="flex flex-wrap items-baseline gap-2 mt-2">
-                                <span id="detail-product-price" class="text-2xl md:text-3xl font-bold font-headline-md text-secondary">Starting from ₹149</span>
+                                <span id="detail-product-price" class="text-2xl md:text-3xl font-bold font-headline-md text-secondary tabular-nums">Starting from ₹149</span>
                                 <span class="text-xs text-on-surface-variant/80 font-medium">• Crafted to order in Kerala</span>
                             </div>
                         </div>
@@ -2910,21 +3185,21 @@
                                         <input type="checkbox" id="detail-addon-card" onchange="updateProductDetailAddons()" aria-label="Add Handwritten Calligraphy Note Card (+₹49)" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
                                         <span class="font-medium text-on-surface"><span aria-hidden="true">✍️</span> Handwritten Calligraphy Note Card</span>
                                     </div>
-                                    <span class="text-secondary font-bold font-label-md">+₹49</span>
+                                    <span class="text-secondary font-bold font-label-md tabular-nums">+₹49</span>
                                 </label>
                                 <label for="detail-addon-lights" class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
                                     <div class="flex items-center gap-2.5">
                                         <input type="checkbox" id="detail-addon-lights" onchange="updateProductDetailAddons()" aria-label="Add Warm Fairy Lights (+₹89)" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
                                         <span class="font-medium text-on-surface"><span aria-hidden="true">✨</span> Warm Fairy Lights (Wrapped with battery)</span>
                                     </div>
-                                    <span class="text-secondary font-bold font-label-md">+₹89</span>
+                                    <span class="text-secondary font-bold font-label-md tabular-nums">+₹89</span>
                                 </label>
                                 <label for="detail-addon-box" class="flex items-center justify-between p-2.5 rounded-xl bg-surface border border-outline-variant/20 hover:border-secondary/40 transition-colors cursor-pointer select-none">
                                     <div class="flex items-center gap-2.5">
                                         <input type="checkbox" id="detail-addon-box" onchange="updateProductDetailAddons()" aria-label="Add Keepsake Display Window Gift Box (+₹129)" class="rounded text-secondary focus:ring-secondary/20 h-4 w-4 border-outline-variant">
                                         <span class="font-medium text-on-surface"><span aria-hidden="true">🎁</span> Keepsake Display Window Gift Box</span>
                                     </div>
-                                    <span class="text-secondary font-bold font-label-md">+₹129</span>
+                                    <span class="text-secondary font-bold font-label-md tabular-nums">+₹129</span>
                                 </label>
                             </div>
                             <p class="text-[11px] text-secondary/90 flex items-center gap-1.5 pt-0.5">
@@ -2941,7 +3216,7 @@
                                     <button type="button" id="detail-qty-minus" onclick="changeProductDetailQty(-1)" class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center text-on-surface hover:bg-secondary/10 active:scale-95 transition-all cursor-pointer" aria-label="Decrease quantity">
                                         <span class="material-symbols-outlined text-[18px]" aria-hidden="true">remove</span>
                                     </button>
-                                    <span id="detail-qty-val" class="w-10 text-center font-bold text-on-surface text-sm select-none" aria-live="polite">1</span>
+                                    <span id="detail-qty-val" class="w-10 text-center font-bold text-on-surface text-sm select-none tabular-nums" aria-live="polite">1</span>
                                     <button type="button" id="detail-qty-plus" onclick="changeProductDetailQty(1)" class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center text-on-surface hover:bg-secondary/10 active:scale-95 transition-all cursor-pointer" aria-label="Increase quantity">
                                         <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add</span>
                                     </button>
@@ -2960,7 +3235,7 @@
                                     <span>Order on WhatsApp</span>
                                 </a>
                             </div>
-                            <p class="text-[11px] text-center text-on-surface-variant/75">
+                            <p class="text-[11px] text-center text-on-surface-variant/85">
                                 Starting prices are a guide. Final quote &amp; color customization confirmed personally on WhatsApp.
                             </p>
                         </div>
@@ -3043,7 +3318,7 @@
                     <img id="detail-sticky-img" src="/images/hero_crochet_scene-320.webp" alt="" class="w-11 h-11 rounded-xl object-cover border border-outline-variant/20 shrink-0" width="44" height="44" loading="lazy">
                     <div class="min-w-0 flex-1">
                         <span id="detail-sticky-name" class="font-label-md text-xs font-semibold text-on-surface truncate block">Product</span>
-                        <span id="detail-sticky-price" class="text-xs font-bold text-secondary font-headline-md block">Starting from ₹149</span>
+                        <span id="detail-sticky-price" class="text-xs font-bold text-secondary font-headline-md block tabular-nums">Starting from ₹149</span>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
@@ -3075,7 +3350,7 @@
 
     <!-- Global Floating WhatsApp Button -->
     <a href="https://wa.me/919061174579" target="_blank" rel="noopener" id="whatsapp-global-float" class="whatsapp-float h-12 w-12 md:w-auto md:px-5 gap-2" aria-label="Chat on WhatsApp" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about handmade crochet gifts and custom orders.">
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.431 2.5 1.157 3.476L6.5 17.5l2.176-.906a5.751 5.751 0 003.355.845c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm3.39 8.163c-.156.438-.767.828-1.22 1.002-.303.116-.7.217-1.127.217-.61 0-1.393-.195-2.23-.746-1.173-.772-1.93-1.954-2.518-2.868-.27-.417-.468-.86-.468-1.332 0-.583.25-.873.493-1.109.117-.113.235-.226.353-.339.094-.09.18-.178.257-.257.086-.089.172-.113.256-.113.084 0 .167.012.235.036.082.029.17.067.247.199.1.171.343.834.373.896.03.062.051.134.01.218-.042.084-.092.14-.15.207-.058.067-.123.15-.176.206-.06.063-.122.132-.053.252.069.12.306.505.656.816.45.4.83.524 1.01.61.18.086.284.073.39-.049.106-.122.457-.532.58-.716.12-.184.24-.153.404-.092.164.062 1.04.49 1.217.579.177.089.295.134.339.21.044.076.044.44-.112.878zM12 2C6.477 2 2 6.477 2 12c0 2.01.593 3.88 1.61 5.44L2 22l4.7-.93C8.16 21.65 9.99 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.745 0-3.374-.483-4.767-1.32l-.341-.205-2.828.56.57-2.723-.228-.363A7.94 7.94 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
         </svg>
         <span class="hidden md:inline font-label-md text-sm tracking-wide whatsapp-label-text">WhatsApp Us</span>

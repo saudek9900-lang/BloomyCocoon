@@ -137,7 +137,7 @@ export function getProductCardMarkup(product) {
               <p class="font-body-md text-on-surface-variant">${escapeHTML(product.description)}</p>
             </div>
             <div class="text-right">
-              <span class="font-headline-sm text-secondary block font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
+              <span class="font-headline-sm text-secondary block font-bold tabular-nums">Starting from ${formatStartingPrice(product.startingPrice)}</span>
               <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
                 Add to Cart <span class="material-symbols-outlined" data-icon="add" aria-hidden="true">add</span>
               </button>
@@ -170,9 +170,9 @@ export function getProductCardMarkup(product) {
         <h3 class="font-headline-sm text-headline-sm text-secondary mb-xs"><a href="/products/${product.id}" class="hover:underline">${escapeHTML(product.name)}</a></h3>
         <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
         <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
-          <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>
+          <span class="font-body-md text-on-surface font-bold text-sm md:text-base tabular-nums">Starting from ${formatStartingPrice(product.startingPrice)}</span>
           <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-sm">
-            <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+            <span class="material-symbols-outlined text-[18px]" data-icon="add" aria-hidden="true">add</span>
             <span class="hidden sm:inline">Add</span>
           </button>
         </div>
