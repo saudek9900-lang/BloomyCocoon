@@ -522,29 +522,35 @@ html {
 }
 
 /* Micro-animations for Back Buttons */
+[data-nav-back],
 button[onclick="navigateBack()"] {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+[data-nav-back]:hover,
 button[onclick="navigateBack()"]:hover {
     color: var(--color-primary) !important;
 }
 
+[data-nav-back]:hover span,
 button[onclick="navigateBack()"]:hover span {
     transform: translateX(-4px);
 }
 
+[data-nav-back] span,
 button[onclick="navigateBack()"] span {
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Premium Floating Capsule Back Button */
+.absolute [data-nav-back]:hover,
 .absolute button[onclick="navigateBack()"]:hover {
     background-color: #ffffff !important;
     transform: translateY(-2px);
     box-shadow: 0 12px 30px rgba(114, 88, 82, 0.15);
 }
 
+.absolute [data-nav-back]:active,
 .absolute button[onclick="navigateBack()"]:active {
     transform: translateY(0px) scale(0.98);
 }

@@ -1671,6 +1671,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function bindNav(selector, targetScreen, transition = 'push') {
         queryElements(selector).forEach(el => {
             el.addEventListener('click', (e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.defaultPrevented) return;
                 if (!document.getElementById(targetScreen)) {
                     if (el.tagName === 'A' && el.getAttribute('href')) return;
                 }
@@ -1719,6 +1720,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function initNavigationBindings() {
         document.addEventListener('click', (e) => {
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.defaultPrevented) return;
+            const backTrigger = e.target.closest('[data-nav-back]');
+            if (!backTrigger) return;
+            if (!document.getElementById('screen-home') && screenHistory.length <= 1) return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            closeMobileMenu();
+            navigateBack();
+        }, true);
+
+        document.addEventListener('click', (e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.defaultPrevented) return;
+            const customTrigger = e.target.closest('[data-navigate-custom-order]');
+            if (!customTrigger) return;
+            if (!document.getElementById('screen-custom-orders') && customTrigger.tagName === 'A' && customTrigger.getAttribute('href')) return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            closeMobileMenu();
+            openCustomOrderFlow();
+        }, true);
+
+        document.addEventListener('click', (e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.defaultPrevented) return;
 
             const link = e.target.closest('a[href]');
             if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
@@ -1752,6 +1777,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, true);
 
         document.addEventListener('click', (e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.defaultPrevented) return;
             const logo = e.target.closest('[data-nav-logo]');
             if (!logo) return;
 
@@ -1769,15 +1795,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, true);
 
-        document.addEventListener('click', (e) => {
-            const customTrigger = e.target.closest('[data-navigate-custom-order]');
-            if (!customTrigger) return;
-
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            openCustomOrderFlow();
-        }, true);
-
         // Logo links go Home with push_back
         bindNav('[data-nav-logo], .nav-logo, header div.font-display-lg-mobile a, nav div.font-display-lg-mobile a, nav a:contains("BloomyCocoon")', 'screen-home', 'push_back');
         
@@ -1787,6 +1804,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (text === 'BloomyCocoon') {
                 el.style.cursor = 'pointer';
                 el.addEventListener('click', (e) => {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.defaultPrevented) return;
                     if (!document.getElementById('screen-home')) {
                         if (el.tagName === 'A' && el.getAttribute('href')) return;
                         window.location.href = '/';
@@ -1807,18 +1825,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Collection navigation
         bindNav('nav a[href*="collection"], nav a[href="#collection"], a:contains("Handmade Collection"), a:contains("Collection")', 'screen-collection', 'push');
-        bindNav('button:contains("Explore Collection"), button:contains("View Collections"), a:contains("View All")', 'screen-collection', 'push');
+        bindNav('a:contains("Explore Collection"), button:contains("Explore Collection"), a:contains("View Collections"), button:contains("View Collections"), a:contains("View All")', 'screen-collection', 'push');
         
         // Custom Orders navigation
         bindNav('nav a[href*="custom"], nav a[href="#custom"], a:contains("Custom Orders")', 'screen-custom-orders', 'push');
-        bindNav('button:contains("Custom Orders"), button:contains("Start Your Custom Request"), button:contains("Start a Custom Order"), button:contains("Start Your Order")', 'screen-custom-orders', 'push');
-        bindNav('button:contains("Order Custom"), button:contains("Start Custom Order")', 'screen-custom-orders', 'slide_up'); // Slide-up triggers
-        queryElements('button:contains("Start a Custom Request")').forEach(el => {
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                openCustomOrderFlow();
-            });
-        });
+        bindNav('a:contains("Custom Orders"), button:contains("Custom Orders"), a:contains("Start Your Custom Request"), button:contains("Start Your Custom Request"), a:contains("Start a Custom Order"), button:contains("Start a Custom Order"), a:contains("Start Your Order"), button:contains("Start Your Order")', 'screen-custom-orders', 'push');
+        bindNav('a:contains("Order Custom"), button:contains("Order Custom"), a:contains("Start Custom Order"), button:contains("Start Custom Order")', 'screen-custom-orders', 'slide_up'); // Slide-up triggers
         
         // About Us navigation
         bindNav('nav a[href*="about"], nav a[href="#about"], a:contains("About Us")', 'screen-about', 'push');
