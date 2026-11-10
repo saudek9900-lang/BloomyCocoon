@@ -374,33 +374,6 @@ export function getProductSchema(product) {
         returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
         merchantReturnLink: `${SITE_ORIGIN}/returns-cancellations`,
       },
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: '0',
-          currency: 'INR',
-        },
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'IN',
-        },
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 2,
-            maxValue: 5,
-            unitCode: 'DAY',
-          },
-          transitTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 3,
-            maxValue: 5,
-            unitCode: 'DAY',
-          },
-        },
-      },
     },
   };
 }

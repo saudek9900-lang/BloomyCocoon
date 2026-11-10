@@ -64,11 +64,6 @@ export function generateGoogleMerchantXml(catalog) {
     xml += '      <g:custom_label_0>Handmade in Kerala</g:custom_label_0>\n';
     xml += `      <g:google_product_category>${escapeXml(googleCategory)}</g:google_product_category>\n`;
     xml += `      <g:product_type>${escapeXml(`Handmade Crochet > ${categoryLabel}`)}</g:product_type>\n`;
-    xml += '      <g:shipping>\n';
-    xml += '        <g:country>IN</g:country>\n';
-    xml += '        <g:service>Pan-India Standard Delivery</g:service>\n';
-    xml += '        <g:price>0.00 INR</g:price>\n';
-    xml += '      </g:shipping>\n';
     xml += '    </item>\n';
   }
 
