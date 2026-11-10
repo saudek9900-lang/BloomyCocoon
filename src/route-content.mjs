@@ -444,11 +444,21 @@ export function getRoutePageSchema(screenId, { faqItems = [], products = [] } = 
         name: isOccasion ? route.title : 'BloomyCocoon Handmade Crochet Gift Collection',
         description: route.description,
         numberOfItems: filteredProducts.length,
-        itemListElement: filteredProducts.map((product, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          item: getProductSchema(product),
-        })),
+        itemListElement: filteredProducts.map((product, index) => (
+          isOccasion
+            ? {
+                '@type': 'ListItem',
+                position: index + 1,
+                item: getProductSchema(product),
+              }
+            : {
+                '@type': 'ListItem',
+                position: index + 1,
+                url: getProductCanonical(product.id),
+                name: product.name,
+                image: product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`,
+              }
+        )),
       };
     } else {
       page.mainEntity = {
