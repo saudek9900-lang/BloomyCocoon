@@ -1,8 +1,18 @@
 import { execSync } from 'node:child_process';
-import { statSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
+import path from 'node:path';
 import { OCCASION_PRODUCTS } from './route-content.mjs';
 
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
+
+function resolveSitemapImageUrl(relPath) {
+  const clean = String(relPath || '').replace(/^\/+/, '');
+  const webpCandidate = clean.replace(/\.png$/i, '.webp');
+  if (webpCandidate !== clean && existsSync(path.resolve('public', webpCandidate))) {
+    return `${SITE_ORIGIN}/${webpCandidate}`;
+  }
+  return `${SITE_ORIGIN}/${clean}`;
+}
 
 function getFileLastModDate(filePath, defaultDate = new Date().toISOString().split('T')[0]) {
   try {
@@ -68,7 +78,7 @@ export function generateSitemapXml(catalog, defaultDate = new Date().toISOString
 
     if (route.image) {
       xml += '    <image:image>\n';
-      xml += `      <image:loc>${SITE_ORIGIN}/${route.image}</image:loc>\n`;
+      xml += `      <image:loc>${resolveSitemapImageUrl(route.image)}</image:loc>\n`;
       xml += `      <image:title>${escapeXml(route.title)}</image:title>\n`;
       xml += '    </image:image>\n';
     }
@@ -77,7 +87,7 @@ export function generateSitemapXml(catalog, defaultDate = new Date().toISOString
       for (const product of catalog) {
         if (product.image) {
           xml += '    <image:image>\n';
-          xml += `      <image:loc>${SITE_ORIGIN}/${product.image}</image:loc>\n`;
+          xml += `      <image:loc>${resolveSitemapImageUrl(product.image)}</image:loc>\n`;
           xml += `      <image:title>${escapeXml(`${product.name} - Handmade Crochet ${product.category}`)}</image:title>\n`;
           xml += '    </image:image>\n';
         }
@@ -89,7 +99,7 @@ export function generateSitemapXml(catalog, defaultDate = new Date().toISOString
       for (const product of catalog) {
         if (allowedIds.includes(product.id) && product.image) {
           xml += '    <image:image>\n';
-          xml += `      <image:loc>${SITE_ORIGIN}/${product.image}</image:loc>\n`;
+          xml += `      <image:loc>${resolveSitemapImageUrl(product.image)}</image:loc>\n`;
           xml += `      <image:title>${escapeXml(`${product.name} - Handmade Crochet Gift`)}</image:title>\n`;
           xml += '    </image:image>\n';
         }
@@ -108,7 +118,7 @@ export function generateSitemapXml(catalog, defaultDate = new Date().toISOString
       xml += '    <priority>0.80</priority>\n';
       if (product.image) {
         xml += '    <image:image>\n';
-        xml += `      <image:loc>${SITE_ORIGIN}/${product.image}</image:loc>\n`;
+        xml += `      <image:loc>${resolveSitemapImageUrl(product.image)}</image:loc>\n`;
         xml += `      <image:title>${escapeXml(`${product.name} - Handmade Crochet Gift`)}</image:title>\n`;
         xml += '    </image:image>\n';
       }

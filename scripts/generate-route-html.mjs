@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import {
@@ -22,6 +23,7 @@ const DIST_DIR = path.resolve('dist');
 const PUBLIC_DIR = path.resolve('public');
 const INDEX_PATH = path.join(DIST_DIR, 'index.html');
 const CATALOG_PATH = path.resolve('src/catalog.json');
+const hasPublicWebp = (relPath) => existsSync(path.join(PUBLIC_DIR, String(relPath || '').replace(/^\/+/, '')));
 const catalog = JSON.parse(await readFile(CATALOG_PATH, 'utf8'));
 const preRenderedProductsHtml = renderCollectionProductsHtml(catalog);
 
@@ -300,7 +302,7 @@ function insertRouteSchema(html, screenId, baseHtml) {
 
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': getRouteSchemaGraph(screenId, { faqItems, products: catalog }),
+    '@graph': getRouteSchemaGraph(screenId, { faqItems, products: catalog, hasWebp: hasPublicWebp }),
   };
   const script = [
     `    <script type="application/ld+json" id="${ROUTE_SCHEMA_ID}">`,
@@ -489,7 +491,7 @@ function insertProductSchema(html, product, baseHtml) {
   const faqItems = extractFaqItemsForScreen(baseHtml, 'screen-product-detail');
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': getProductSchemaGraph(product, { faqItems }),
+    '@graph': getProductSchemaGraph(product, { faqItems, hasWebp: hasPublicWebp }),
   };
   const script = [
     `    <script type="application/ld+json" id="${ROUTE_SCHEMA_ID}">`,
@@ -501,6 +503,16 @@ function insertProductSchema(html, product, baseHtml) {
   ].join('\n');
 
   return replaceOne(html, /<\/head>/i, `${script}\n</head>`, 'closing head tag');
+}
+
+function injectHomeHeroPreload(html) {
+  const heroMatch = html.match(
+    /<picture\b[^>]*>\s*<source\b[^>]*\bsrcset=["']([^"']*hero_crochet_scene[^"']*)["'][^>]*\bsizes=["']([^"']+)["'][^>]*>\s*<img\b[^>]*\bfetchpriority=["']high["']/i
+  );
+  if (!heroMatch) return html;
+  const [, heroSrcset, heroSizes] = heroMatch;
+  const preloadTag = `    <link rel="preload" as="image" imagesrcset="${escapeHtml(heroSrcset)}" imagesizes="${escapeHtml(heroSizes)}" fetchpriority="high">`;
+  return replaceOne(html, /<\/head>/i, `${preloadTag}\n</head>`, 'closing head tag for hero preload');
 }
 
 async function writeProductHtml(baseHtml, product, catalog) {
@@ -519,10 +531,12 @@ const rawBaseHtml = restoreFaqFocusOutline(await readFile(INDEX_PATH, 'utf8'));
 const baseHtml = injectPreRenderedProducts(rawBaseHtml);
 await writeFile(
   INDEX_PATH,
-  insertRouteSchema(
-    updateMetadata(ensureUnifiedFooter(isolateScreen(baseHtml, 'screen-home')), getRouteMetadata('screen-home')),
-    'screen-home',
-    baseHtml,
+  injectHomeHeroPreload(
+    insertRouteSchema(
+      updateMetadata(ensureUnifiedFooter(isolateScreen(baseHtml, 'screen-home')), getRouteMetadata('screen-home')),
+      'screen-home',
+      baseHtml,
+    ),
   ),
 );
 

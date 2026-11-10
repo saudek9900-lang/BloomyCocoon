@@ -336,9 +336,17 @@ const CATEGORY_MATERIALS = {
   'gift-combos': 'Milk Cotton Yarn, Floral Keepsake Wrapping, Gift Box Packaging',
 };
 
-export function getProductSchema(product) {
+export function getSchemaImageUrl(product, hasWebp = null) {
+  const rel = product?.image || 'images/hero_crochet_scene.png';
+  const cleanRel = rel.replace(/^\/+/, '');
+  const webpRel = cleanRel.replace(/\.png$/i, '.webp');
+  const canUseWebp = typeof hasWebp === 'function' ? hasWebp(webpRel) : /\.png$/i.test(cleanRel);
+  return `${SITE_ORIGIN}/${canUseWebp ? webpRel : cleanRel}`;
+}
+
+export function getProductSchema(product, { hasWebp = null } = {}) {
   const productUrl = getProductCanonical(product.id);
-  const imageUrl = product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`;
+  const imageUrl = getSchemaImageUrl(product, hasWebp);
   const safePrice = Number(product.startingPrice) || 149;
   const material = CATEGORY_MATERIALS[product.category] || 'Soft Milk Cotton Yarn';
 
@@ -378,7 +386,7 @@ export function getProductSchema(product) {
   };
 }
 
-export function getRoutePageSchema(screenId, { faqItems = [], products = [] } = {}) {
+export function getRoutePageSchema(screenId, { faqItems = [], products = [], hasWebp = null } = {}) {
   const route = getRouteContent(screenId);
   const canonical = getRouteCanonical(screenId);
 
@@ -449,14 +457,14 @@ export function getRoutePageSchema(screenId, { faqItems = [], products = [] } = 
             ? {
                 '@type': 'ListItem',
                 position: index + 1,
-                item: getProductSchema(product),
+                item: getProductSchema(product, { hasWebp }),
               }
             : {
                 '@type': 'ListItem',
                 position: index + 1,
                 url: getProductCanonical(product.id),
                 name: product.name,
-                image: product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`,
+                image: getSchemaImageUrl(product, hasWebp),
               }
         )),
       };
@@ -497,8 +505,8 @@ export function getRouteSchemaGraph(screenId, options = {}) {
   return graph;
 }
 
-export function getProductSchemaGraph(product, { faqItems = [] } = {}) {
-  const graph = [getProductBreadcrumbs(product), getProductSchema(product)];
+export function getProductSchemaGraph(product, { faqItems = [], hasWebp = null } = {}) {
+  const graph = [getProductBreadcrumbs(product), getProductSchema(product, { hasWebp })];
   if (faqItems && faqItems.length > 0) {
     const canonical = getProductCanonical(product.id);
     graph.push({
