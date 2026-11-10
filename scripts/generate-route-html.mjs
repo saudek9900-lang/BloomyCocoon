@@ -408,7 +408,7 @@ function injectProductDetail(html, product, catalog) {
   // 8. Add to Cart button
   next = next.replace(
     /<button\b[^>]*\bid=["']detail-add-to-cart-btn["'][^>]*>([\s\S]*?)<\/button>/i,
-    `<button id="detail-add-to-cart-btn" data-add-to-cart="${escapeHtml(product.id)}" onclick="handleDetailAddToCart()" class="flex-1 min-h-[48px] bg-secondary text-white py-3 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">add_shopping_cart</span><span id="detail-add-to-cart-text">Add to Cart</span></button>`
+    `<button type="button" id="detail-add-to-cart-btn" data-add-to-cart="${escapeHtml(product.id)}" aria-controls="sideCart" onclick="handleDetailAddToCart()" class="flex-1 min-h-[48px] bg-secondary text-white py-3 px-6 rounded-full font-label-md text-sm md:text-base flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer"><span class="material-symbols-outlined text-[20px]" aria-hidden="true">add_shopping_cart</span><span id="detail-add-to-cart-text">Add to Cart</span></button>`
   );
 
   // 9. WhatsApp button

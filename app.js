@@ -1170,10 +1170,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const stickyAddBtn = document.getElementById('detail-sticky-add-btn');
         if (stickyAddBtn) {
-            stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span><span>Added</span>`;
-            setTimeout(() => {
-                stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span><span>Add</span>`;
-            }, 1500);
+            const stickyIcon = document.getElementById('detail-sticky-add-icon');
+            const stickyText = document.getElementById('detail-sticky-add-text');
+            if (stickyIcon && stickyText) {
+                stickyIcon.textContent = 'check';
+                stickyText.textContent = 'Added';
+                setTimeout(() => {
+                    stickyIcon.textContent = 'add_shopping_cart';
+                    stickyText.textContent = 'Add';
+                }, 1500);
+            } else {
+                stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span><span>Added</span>`;
+                setTimeout(() => {
+                    stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span><span>Add</span>`;
+                }, 1500);
+            }
         }
     };
 
@@ -1824,6 +1835,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     const activeOverlays = [];
     const overlayStateMap = new WeakMap();
+    const inertedByOverlays = new Set();
+    let overlayBodyScrollLocked = false;
+    let overlaySavedBodyOverflow = '';
 
     function getFocusableElements(container) {
         return Array.from(container.querySelectorAll([
@@ -1867,36 +1881,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function setBackgroundInertForOverlay(overlayEl, shouldInert, state) {
-        if (!overlayEl) return;
-        if (shouldInert) {
-            const inerted = [];
-            let cur = overlayEl;
+    function reconcileOverlayEnvironment() {
+        const requiredInert = new Set();
+        const topOverlay = activeOverlays[activeOverlays.length - 1] || null;
+
+        if (topOverlay) {
+            let cur = topOverlay;
             while (cur && cur !== document.body) {
                 const parent = cur.parentElement;
                 if (!parent) break;
                 Array.from(parent.children).forEach(sibling => {
                     if (sibling === cur) return;
                     const tag = sibling.tagName;
-                    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'LINK' || tag === 'TEMPLATE') return;
-                    if (!sibling.hasAttribute('inert')) {
-                        sibling.setAttribute('inert', '');
-                        sibling.setAttribute('aria-hidden', 'true');
-                        inerted.push(sibling);
-                    }
+                    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'LINK' || tag === 'TEMPLATE' || sibling.id === 'toast-container') return;
+                    requiredInert.add(sibling);
                 });
                 cur = parent;
             }
-            state.inerted = inerted;
-            return;
         }
 
-        if (Array.isArray(state.inerted)) {
-            state.inerted.forEach(el => {
+        Array.from(inertedByOverlays).forEach(el => {
+            if (!requiredInert.has(el)) {
                 el.removeAttribute('inert');
                 el.removeAttribute('aria-hidden');
-            });
-            state.inerted = [];
+                inertedByOverlays.delete(el);
+            }
+        });
+
+        if (topOverlay) {
+            topOverlay.removeAttribute('inert');
+            topOverlay.setAttribute('aria-hidden', 'false');
+        }
+
+        requiredInert.forEach(el => {
+            if (!el.hasAttribute('inert')) {
+                el.setAttribute('inert', '');
+                el.setAttribute('aria-hidden', 'true');
+                inertedByOverlays.add(el);
+            }
+        });
+
+        const shouldLockScroll = activeOverlays.some(el => overlayStateMap.get(el)?.lockScroll);
+        if (shouldLockScroll && !overlayBodyScrollLocked) {
+            overlaySavedBodyOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            overlayBodyScrollLocked = true;
+        } else if (!shouldLockScroll && overlayBodyScrollLocked) {
+            document.body.style.overflow = overlaySavedBodyOverflow || '';
+            overlayBodyScrollLocked = false;
         }
     }
 
@@ -1904,7 +1936,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!overlayEl) return;
         let state = overlayStateMap.get(overlayEl);
         if (!state) {
-            state = { inerted: [], triggerEl: null, onClose: null, lockScroll: true };
+            state = { triggerEl: null, onClose: null, lockScroll: true };
             overlayStateMap.set(overlayEl, state);
         }
 
@@ -1914,20 +1946,12 @@ document.addEventListener('DOMContentLoaded', () => {
         state.onClose = onClose;
         state.lockScroll = lockScroll;
 
-        overlayEl.removeAttribute('inert');
+        const existingIdx = activeOverlays.indexOf(overlayEl);
+        if (existingIdx !== -1) activeOverlays.splice(existingIdx, 1);
+        activeOverlays.push(overlayEl);
+
         overlayEl.setAttribute('aria-modal', 'true');
-        overlayEl.setAttribute('aria-hidden', 'false');
-
-        if (!activeOverlays.includes(overlayEl)) {
-            activeOverlays.push(overlayEl);
-        }
-
-        setBackgroundInertForOverlay(overlayEl, true, state);
-
-        if (lockScroll && activeOverlays.length === 1) {
-            state.prevOverflow = document.body.style.overflow;
-            document.body.style.overflow = 'hidden';
-        }
+        reconcileOverlayEnvironment();
 
         const targetFocus = initialFocusEl || getFocusableElements(overlayEl)[0] || overlayEl;
         requestAnimationFrame(() => {
@@ -1935,7 +1959,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function closeAccessibleOverlay(overlayEl) {
+    function closeAccessibleOverlay(overlayEl, { restoreFocus = true } = {}) {
         if (!overlayEl) return;
         const state = overlayStateMap.get(overlayEl);
         overlayEl.setAttribute('inert', '');
@@ -1944,14 +1968,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const idx = activeOverlays.indexOf(overlayEl);
         if (idx !== -1) activeOverlays.splice(idx, 1);
 
+        reconcileOverlayEnvironment();
+
         if (state) {
-            setBackgroundInertForOverlay(overlayEl, false, state);
-            if (state.lockScroll && activeOverlays.length === 0) {
-                document.body.style.overflow = state.prevOverflow || '';
-            }
             const trigger = state.triggerEl;
             state.triggerEl = null;
-            if (trigger && document.contains(trigger)) {
+            if (activeOverlays.length === 0 && restoreFocus && trigger && document.contains(trigger)) {
                 requestAnimationFrame(() => trigger.focus({ preventScroll: true }));
             }
         }
@@ -2057,20 +2079,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Auto-close mobile menu on link clicks and cart on outside taps
+    // Delegate Quick Look & card Add-to-Cart clicks, and auto-close menu/cart on outside taps
     document.addEventListener('click', (e) => {
-        const clickedMobileMenuLink = e.target.closest('#mobile-menu a');
-        const clickedNavLink = e.target.closest('nav a');
+        const clickedMobileMenuLink = e.target.closest?.('#mobile-menu a');
+        const clickedNavLink = e.target.closest?.('nav a');
         if (clickedMobileMenuLink || clickedNavLink) {
             closeMobileMenu();
+        }
+
+        const qlBtn = e.target.closest?.('[data-quick-look]');
+        if (qlBtn) {
+            const productId = qlBtn.dataset.quickLook;
+            if (productId) window.openQuickLook?.(productId, qlBtn);
+            return;
+        }
+
+        const addBtn = e.target.closest?.('[data-add-to-cart]');
+        if (addBtn) {
+            const productId = addBtn.dataset.addToCart;
+            if (
+                addBtn.id !== 'modal-add-to-cart-btn' &&
+                addBtn.id !== 'detail-add-to-cart-btn' &&
+                addBtn.id !== 'detail-sticky-add-btn' &&
+                productId &&
+                productId !== 'modal' &&
+                productId !== 'detail' &&
+                productId !== 'sticky'
+            ) {
+                const product = collectionProducts.find(item => item.id === productId);
+                if (product) {
+                    addToCart(product.id, product.name, product.category, product.startingPrice, getProductImage(product));
+                }
+                return;
+            }
         }
 
         const sideCart = document.getElementById('sideCart');
         if (!sideCart?.classList.contains('cart-visible')) return;
 
-        const eventPath = e.composedPath();
-        const clickedInsideCart = eventPath.includes(sideCart);
-        const clickedCartControl = e.target.closest('[aria-controls="sideCart"], [data-add-to-cart]');
+        const eventPath = typeof e.composedPath === 'function' ? e.composedPath() : [];
+        const clickedInsideCart = eventPath.includes(sideCart) || sideCart.contains(e.target);
+        const cartControlSelector = '[aria-controls="sideCart"], [data-add-to-cart], #detail-add-to-cart-btn, #detail-sticky-add-btn, #modal-add-to-cart-btn';
+        const clickedCartControl = Boolean(
+            e.target.closest?.(cartControlSelector) ||
+            eventPath.some(el => el instanceof Element && el.matches?.(cartControlSelector))
+        );
         if (!clickedInsideCart && !clickedCartControl) {
             window.closeCart();
         }
@@ -2295,7 +2348,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img src="${escapeHTML(getThumbnailImage(img))}" alt="${escapeHTML(catalogItem.name)}" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-102 transition-transform" width="200" height="150" loading="lazy">
                         </a>
                         ${catalogItem.badge ? `<span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider pointer-events-none">${escapeHTML(catalogItem.badge)}</span>` : ''}
-                        <button type="button" onclick="openQuickLook('${catalogItem.id}', this)" class="absolute bottom-2 right-2 w-11 h-11 min-w-[44px] min-h-[44px] p-0 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm text-secondary border border-secondary/20 shadow-sm flex items-center justify-center transition-all cursor-pointer" aria-label="Quick look at ${escapeHTML(catalogItem.name)}">
+                        <button type="button" data-quick-look="${catalogItem.id}" class="quick-look-btn absolute bottom-2 right-2 w-11 h-11 min-w-[44px] min-h-[44px] p-0 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm text-secondary border border-secondary/20 shadow-sm flex items-center justify-center focus-visible:opacity-100 transition-all cursor-pointer" aria-label="Quick look at ${escapeHTML(catalogItem.name)}">
                             <span class="material-symbols-outlined text-[20px] leading-none" aria-hidden="true">visibility</span>
                         </button>
                     </div>
@@ -2306,7 +2359,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="font-bold text-secondary">Starting ₹${formatPrice(safePrice)}</span>
                         </div>
                     </div>
-                    <button onclick="addToCart('${catalogItem.id}', '${escapeHTML(catalogItem.name)}', '${catalogItem.category}', ${safePrice}, '${img}', '${catalogItem.badge || ''}', '${escapeHTML(catalogItem.description || '')}')" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 min-h-[44px]">
+                    <button type="button" data-add-to-cart="${catalogItem.id}" aria-controls="sideCart" class="mt-3 w-full bg-secondary hover:bg-secondary/90 text-white text-xs font-semibold py-2 px-3 rounded-full flex items-center justify-center gap-1.5 transition-all shadow-2xs active:scale-95 min-h-[44px]">
                         <span class="material-symbols-outlined text-[15px]" aria-hidden="true">add</span>
                         <span>Add to Basket</span>
                     </button>
@@ -2980,8 +3033,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (addBtn) {
             addBtn.onclick = (e) => {
                 if (e) e.stopPropagation();
+                const qlState = overlayStateMap.get(modal);
+                const originTrigger = qlState?.triggerEl || null;
+                closeQuickLook({ restoreFocus: false });
                 addToCart(product.id, product.name, product.category, product.startingPrice, getProductImage(product));
-                closeQuickLook();
+                if (originTrigger instanceof HTMLElement && document.contains(originTrigger)) {
+                    lastCartTrigger = originTrigger;
+                    const scState = overlayStateMap.get(document.getElementById('sideCart'));
+                    if (scState) scState.triggerEl = originTrigger;
+                }
             };
         }
 
@@ -3006,7 +3066,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    window.closeQuickLook = function() {
+    window.closeQuickLook = function(arg) {
+        const restoreFocus = (arg && typeof arg === 'object' && 'restoreFocus' in arg) ? arg.restoreFocus !== false : true;
         const modal = document.getElementById('quick-look-modal');
         const dialog = document.getElementById('quick-look-dialog');
         if (!modal) return;
@@ -3018,7 +3079,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dialog.classList.remove('scale-100');
         }
         currentModalProduct = null;
-        closeAccessibleOverlay(modal);
+        closeAccessibleOverlay(modal, { restoreFocus });
     };
 
     // ----------------------------------------------------
@@ -3299,7 +3360,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
                             </picture>
                         </a>
-                        <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-3 right-3 z-10 min-w-[44px] min-h-[44px] px-3.5 py-2 rounded-full bg-white/90 hover:bg-white text-secondary border border-secondary/20 backdrop-blur-sm shadow-sm flex items-center justify-center gap-1.5 text-xs font-label-md opacity-95 md:opacity-0 md:group-hover/img:opacity-100 md:focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
+                        <button type="button" data-quick-look="${product.id}" class="quick-look-btn absolute bottom-3 right-3 z-10 min-w-[44px] min-h-[44px] px-3.5 py-2 rounded-full bg-white/90 hover:bg-white text-secondary border border-secondary/20 backdrop-blur-sm shadow-sm flex items-center justify-center gap-1.5 text-xs font-label-md focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
                             <span class="material-symbols-outlined text-[18px] leading-none" aria-hidden="true">visibility</span>
                             <span>Quick Look</span>
                         </button>
@@ -3317,7 +3378,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="text-right">
                                 <span class="font-headline-sm text-secondary block font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-                                <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
+                                <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
                                     Add to Cart <span class="material-symbols-outlined" data-icon="add" aria-hidden="true">add</span>
                                 </button>
                             </div>
@@ -3336,7 +3397,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
                         </picture>
                     </a>
-                    <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-2 right-2 z-10 w-11 h-11 min-w-[44px] min-h-[44px] p-0 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-full bg-white/90 hover:bg-white text-secondary border border-secondary/20 backdrop-blur-sm shadow-sm flex items-center justify-center gap-1.5 text-xs font-label-md opacity-95 md:opacity-0 md:group-hover/img:opacity-100 md:focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
+                    <button type="button" data-quick-look="${product.id}" class="quick-look-btn absolute bottom-2 right-2 z-10 w-11 h-11 min-w-[44px] min-h-[44px] p-0 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-full bg-white/90 hover:bg-white text-secondary border border-secondary/20 backdrop-blur-sm shadow-sm flex items-center justify-center gap-1.5 text-xs font-label-md focus-visible:opacity-100 transition-opacity cursor-pointer" aria-label="Quick look at ${escapeHTML(product.name)}">
                         <span class="material-symbols-outlined text-[20px] leading-none" aria-hidden="true">visibility</span>
                         <span class="hidden sm:inline">Quick Look</span>
                     </button>
@@ -3350,7 +3411,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
                     <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
                         <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-                        <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-xs">
+                        <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-xs">
                             <span class="material-symbols-outlined text-[18px]" data-icon="add" aria-hidden="true">add</span>
                             <span class="hidden sm:inline">Add</span>
                         </button>
@@ -3368,27 +3429,12 @@ document.addEventListener('DOMContentLoaded', () => {
             productGrid.innerHTML = collectionProducts.map(getProductCardMarkup).join('');
         }
         applyImageFallbacks(productGrid);
-        setupProductCardAddToCartTriggers();
         updateCategoryDescription('all');
         applyCollectionFilterFromUrl();
     }
 
-    function setupProductCardAddToCartTriggers(root = document) {
-        root.querySelectorAll('[data-add-to-cart]').forEach(addBtn => {
-            if (addBtn.id === 'detail-add-to-cart-btn' || addBtn.id === 'detail-sticky-add-btn') return;
-            if (addBtn.dataset.cartBound === 'true') return;
-
-            addBtn.dataset.cartBound = 'true';
-            addBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const productId = addBtn.dataset.addToCart;
-                if (!productId || productId === 'modal') return;
-                const product = collectionProducts.find(item => item.id === productId);
-                if (!product) return;
-                addToCart(product.id, product.name, product.category, product.startingPrice, getProductImage(product));
-            });
-        });
-    }
+    // Delegated document click handlers handle [data-add-to-cart] and [data-quick-look] across dynamic/filtered grids.
+    function setupProductCardAddToCartTriggers() {}
 
     function applyImageFallbacks(root = document) {
         root.querySelectorAll('img[data-fallback-src]').forEach(img => {

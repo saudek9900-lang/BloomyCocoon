@@ -120,7 +120,7 @@ export function getProductCardMarkup(product) {
               <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="800" height="500">
             </picture>
           </a>
-          <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-3 right-3 bg-white/90 hover:bg-white backdrop-blur-sm text-secondary text-xs font-label-md px-3.5 py-2 min-h-[44px] rounded-full shadow-sm flex items-center justify-center gap-1.5 opacity-95 md:opacity-0 md:group-hover/img:opacity-100 focus-visible:opacity-100 transition-opacity cursor-pointer border border-secondary/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
+          <button type="button" data-quick-look="${product.id}" class="quick-look-btn absolute bottom-3 right-3 bg-white/90 hover:bg-white backdrop-blur-sm text-secondary text-xs font-label-md px-3.5 py-2 min-w-[44px] min-h-[44px] rounded-full shadow-sm flex items-center justify-center gap-1.5 focus-visible:opacity-100 transition-opacity cursor-pointer border border-secondary/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
             <span class="material-symbols-outlined text-[18px] leading-none" aria-hidden="true">visibility</span>
             <span>Quick Look</span>
           </button>
@@ -138,7 +138,7 @@ export function getProductCardMarkup(product) {
             </div>
             <div class="text-right">
               <span class="font-headline-sm text-secondary block font-bold">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-              <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
+              <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
                 Add to Cart <span class="material-symbols-outlined" data-icon="add" aria-hidden="true">add</span>
               </button>
             </div>
@@ -157,7 +157,7 @@ export function getProductCardMarkup(product) {
             <img alt="${escapeHTML(productAlt)}" class="product-image w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105" src="${escapeHTML(image)}" data-fallback-src="${escapeHTML(fallbackImage)}" loading="lazy" decoding="async" width="400" height="500">
           </picture>
         </a>
-        <button type="button" onclick="openQuickLook('${product.id}', this)" class="absolute bottom-2 right-2 bg-white/90 hover:bg-white backdrop-blur-sm text-secondary text-xs font-label-md w-11 h-11 min-w-[44px] min-h-[44px] p-0 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-full shadow-sm flex items-center justify-center gap-1.5 opacity-95 md:opacity-0 md:group-hover/img:opacity-100 focus-visible:opacity-100 transition-opacity cursor-pointer border border-secondary/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
+        <button type="button" data-quick-look="${product.id}" class="quick-look-btn absolute bottom-2 right-2 bg-white/90 hover:bg-white backdrop-blur-sm text-secondary text-xs font-label-md w-11 h-11 min-w-[44px] min-h-[44px] p-0 sm:w-auto sm:h-auto sm:px-3 sm:py-1.5 rounded-full shadow-sm flex items-center justify-center gap-1.5 focus-visible:opacity-100 transition-opacity cursor-pointer border border-secondary/20 z-10" aria-label="Quick look at ${escapeHTML(product.name)}">
           <span class="material-symbols-outlined text-[20px] leading-none" aria-hidden="true">visibility</span>
           <span class="hidden sm:inline">Quick Look</span>
         </button>
@@ -171,7 +171,7 @@ export function getProductCardMarkup(product) {
         <p class="product-card-description text-caption text-on-surface-variant mb-sm">${escapeHTML(product.description)}</p>
         <div class="flex justify-between items-center gap-2 pt-1 border-t border-outline-variant/10 mt-2">
           <span class="font-body-md text-on-surface font-bold text-sm md:text-base">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-          <button data-add-to-cart="${product.id}" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-xs">
+          <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="min-w-[44px] min-h-[44px] px-3 py-2 rounded-full border border-secondary flex items-center justify-center gap-1 text-secondary font-label-md text-xs hover:bg-secondary hover:text-white active:scale-95 transition-all shadow-xs">
             <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
             <span class="hidden sm:inline">Add</span>
           </button>
