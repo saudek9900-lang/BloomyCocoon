@@ -4,6 +4,7 @@ import {
     ROUTE_SCHEMA_ID,
     SITE_ORIGIN,
     getCategoryPath,
+    getProductSchemaGraph,
     getRouteSchemaGraph
 } from './src/route-content.mjs';
 
@@ -1358,7 +1359,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateBrowserRoute(targetScreenId, historyAction, routeSearch, targetPath);
             }
             syncScreenMetadata(targetScreenId, targetPath);
-            syncDynamicStructuredData(targetScreenId);
+            syncDynamicStructuredData(targetScreenId, targetPath);
             syncNavigationUI();
             syncWhatsAppFloatVisibility(targetScreenId);
             if (targetScreenId === 'screen-collection') {
@@ -1389,7 +1390,7 @@ document.addEventListener('DOMContentLoaded', () => {
             targetScreenEl.classList.add('active');
             currentScreen = targetScreenId;
             syncScreenMetadata(targetScreenId, targetPath);
-            syncDynamicStructuredData(targetScreenId);
+            syncDynamicStructuredData(targetScreenId, targetPath);
             syncNavigationUI();
             syncWhatsAppFloatVisibility(targetScreenId);
             focusScreenHeading(targetScreenEl);
@@ -1400,7 +1401,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const prefersReducedMotion = Boolean(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
         const skipAnimation = prefersReducedMotion || transitionType === 'instant';
 
-        syncDynamicStructuredData(targetScreenId);
+        syncDynamicStructuredData(targetScreenId, targetPath);
 
         inTransition = !skipAnimation;
         
@@ -1621,6 +1622,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderProductDetailScreen(window.location.pathname);
             }
             syncScreenMetadata(targetScreenId, window.location.pathname);
+            syncDynamicStructuredData(targetScreenId, window.location.pathname);
             return;
         }
 
@@ -1654,6 +1656,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderProductDetailScreen(window.location.pathname);
             }
             syncScreenMetadata(targetScreenId, window.location.pathname);
+            syncDynamicStructuredData(targetScreenId, window.location.pathname);
             return;
         }
 
@@ -3823,14 +3826,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function syncDynamicStructuredData(screenId = currentScreen) {
-        const existing = document.getElementById(ROUTE_SCHEMA_ID);
-        if (existing) existing.remove();
+    function syncDynamicStructuredData(screenId = currentScreen, targetPath = window.location.pathname) {
+        // Clean up any non-site schema scripts to prevent duplicate or leftover blocks
+        const existingScripts = document.querySelectorAll('script[type="application/ld+json"]:not(#site-schema)');
+        existingScripts.forEach(s => s.remove());
+
+        if (screenId === 'screen-blog' || screenId === 'screen-blog-post') {
+            return;
+        }
 
         let faqItems = [];
-
-        if (screenId === 'screen-faq') {
-            faqItems = Array.from(document.querySelectorAll('#screen-faq .faq-details')).map(details => {
+        const screenEl = document.getElementById(screenId);
+        if (screenEl) {
+            faqItems = Array.from(screenEl.querySelectorAll('.faq-details')).map(details => {
                 const question = details.querySelector('summary span')?.textContent.trim();
                 const answer = details.querySelector('p')?.textContent.trim();
                 if (!question || !answer) return null;
@@ -3845,16 +3853,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }).filter(Boolean);
         }
 
-        const graph = getRouteSchemaGraph(screenId, { faqItems, products: collectionProducts });
+        let graph = [];
+        if (screenId === 'screen-product-detail') {
+            const path = targetPath || window.location.pathname;
+            const match = path.match(/^\/products?\/([^/?#]+)/);
+            const slug = match ? match[1] : null;
+            const product = slug ? collectionProducts.find(p => p.id === slug) : null;
+            if (product) {
+                graph = getProductSchemaGraph(product, { faqItems });
+            } else {
+                graph = getRouteSchemaGraph(screenId, { faqItems, products: collectionProducts });
+            }
+        } else {
+            graph = getRouteSchemaGraph(screenId, { faqItems, products: collectionProducts });
+        }
 
-        const script = document.createElement('script');
-        script.id = ROUTE_SCHEMA_ID;
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": graph
-        });
-        document.head.appendChild(script);
+        if (graph && graph.length > 0) {
+            const script = document.createElement('script');
+            script.id = ROUTE_SCHEMA_ID;
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": graph
+            });
+            document.head.appendChild(script);
+        }
     }
 
     // ----------------------------------------------------
@@ -3929,10 +3952,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (CATEGORY_PAGES[currentScreen]) {
         renderCategoryLandingGrid(currentScreen);
     }
-
-    // Defer dynamic structured data syncing to idle time so it does not block main-thread FCP/TBT
-    const scheduleIdleTask = window.requestIdleCallback || ((fn) => setTimeout(fn, 150));
-    scheduleIdleTask(() => {
-        syncDynamicStructuredData(getScreenIdFromPath(window.location.pathname) || currentScreen);
-    });
 });

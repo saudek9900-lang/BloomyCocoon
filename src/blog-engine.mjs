@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { marked } from 'marked';
+import { ROUTE_SCHEMA_ID } from './route-content.mjs';
 
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
 
@@ -230,12 +231,13 @@ function applyBlogShell({
   );
 
   // 6. Schema JSON-LD replacement
-  const schemaBlock = `<script type="application/ld+json" id="route-schema">
+  const schemaBlock = `<script type="application/ld+json" id="${ROUTE_SCHEMA_ID}">
 ${JSON.stringify({ '@context': 'https://schema.org', '@graph': schemaGraph }, null, 2)}
     </script>`;
 
-  if (/<script\b[^>]*\bid=["']route-schema["'][^>]*>[\s\S]*?<\/script>/i.test(next)) {
-    next = next.replace(/<script\b[^>]*\bid=["']route-schema["'][^>]*>[\s\S]*?<\/script>/i, schemaBlock);
+  const schemaRegex = new RegExp(`<script\\b[^>]*\\bid=["'](?:${ROUTE_SCHEMA_ID}|route-schema)["'][^>]*>[\\s\\S]*?<\\/script>`, 'i');
+  if (schemaRegex.test(next)) {
+    next = next.replace(schemaRegex, schemaBlock);
   } else {
     next = next.replace('</head>', `    ${schemaBlock}\n</head>`);
   }
