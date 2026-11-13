@@ -1,9 +1,36 @@
 import { execSync } from 'node:child_process';
-import { existsSync, statSync } from 'node:fs';
+import { existsSync, statSync, readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { CATEGORY_PAGES, OCCASION_PRODUCTS } from './route-content.mjs';
 
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
+const EXISTING_ROUTES_LASTMOD = '2026-11-10';
+
+function getBlogPostsSync() {
+  const blogDir = path.resolve('content/blog');
+  if (!existsSync(blogDir)) return [];
+  try {
+    const files = readdirSync(blogDir).filter((f) => f.endsWith('.md'));
+    const posts = [];
+    for (const file of files) {
+      const content = readFileSync(path.join(blogDir, file), 'utf8');
+      const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+      if (!match) continue;
+      const yaml = match[1];
+      const title = yaml.match(/^title:\s*(.*)$/m)?.[1]?.trim().replace(/^['"]|['"]$/g, '');
+      const slug = yaml.match(/^slug:\s*(.*)$/m)?.[1]?.trim().replace(/^['"]|['"]$/g, '');
+      const date = yaml.match(/^date:\s*(.*)$/m)?.[1]?.trim().replace(/^['"]|['"]$/g, '');
+      const image = yaml.match(/^image:\s*(.*)$/m)?.[1]?.trim().replace(/^['"]|['"]$/g, '');
+      if (slug && date) {
+        posts.push({ title: title || slug, slug, date, image });
+      }
+    }
+    posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return posts;
+  } catch {
+    return [];
+  }
+}
 
 function resolveSitemapImageUrl(relPath) {
   const clean = String(relPath || '').replace(/^\/+/, '');
@@ -14,7 +41,7 @@ function resolveSitemapImageUrl(relPath) {
   return `${SITE_ORIGIN}/${clean}`;
 }
 
-function getFileLastModDate(filePath, defaultDate = new Date().toISOString().split('T')[0]) {
+function getFileLastModDate(filePath, defaultDate = EXISTING_ROUTES_LASTMOD) {
   try {
     const gitDate = execSync(`git log -1 --format=%cs -- "${filePath}"`, { encoding: 'utf8' }).trim();
     if (/^\d{4}-\d{2}-\d{2}$/.test(gitDate)) {
@@ -62,20 +89,16 @@ function escapeXml(str) {
     .replace(/'/g, '&apos;');
 }
 
-export function generateSitemapXml(catalog, defaultDate = new Date().toISOString().split('T')[0]) {
-  const catalogLastMod = getFileLastModDate('src/catalog.json', defaultDate);
-  const routeContentLastMod = getFileLastModDate('src/route-content.mjs', defaultDate);
-  const indexHtmlLastMod = getFileLastModDate('index.html', defaultDate);
+export function generateSitemapXml(catalog, defaultDate = EXISTING_ROUTES_LASTMOD, blogPosts = []) {
+  // Existing routes keep their stable committed lastmod
+  const existingRouteLastMod = EXISTING_ROUTES_LASTMOD;
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
   xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
 
   for (const route of CORE_ROUTES) {
-    let routeLastMod = defaultDate;
-    if (route.sourceFile === 'src/catalog.json') routeLastMod = catalogLastMod;
-    else if (route.sourceFile === 'src/route-content.mjs') routeLastMod = routeContentLastMod;
-    else if (route.sourceFile === 'index.html') routeLastMod = indexHtmlLastMod;
+    const routeLastMod = existingRouteLastMod;
 
     xml += '  <url>\n';
     xml += `    <loc>${SITE_ORIGIN}${route.path}</loc>\n`;
@@ -132,7 +155,7 @@ export function generateSitemapXml(catalog, defaultDate = new Date().toISOString
     for (const product of catalog) {
       xml += '  <url>\n';
       xml += `    <loc>${SITE_ORIGIN}/products/${product.id}</loc>\n`;
-      xml += `    <lastmod>${catalogLastMod}</lastmod>\n`;
+      xml += `    <lastmod>${existingRouteLastMod}</lastmod>\n`;
       xml += '    <changefreq>weekly</changefreq>\n';
       xml += '    <priority>0.80</priority>\n';
       if (product.image) {
@@ -143,6 +166,32 @@ export function generateSitemapXml(catalog, defaultDate = new Date().toISOString
       }
       xml += '  </url>\n';
     }
+  }
+
+  // Blog index and individual posts
+  const posts = (Array.isArray(blogPosts) && blogPosts.length > 0) ? blogPosts : getBlogPostsSync();
+  const blogLastMod = posts.length > 0 ? posts[0].date : defaultDate;
+
+  xml += '  <url>\n';
+  xml += `    <loc>${SITE_ORIGIN}/blog</loc>\n`;
+  xml += `    <lastmod>${blogLastMod}</lastmod>\n`;
+  xml += '    <changefreq>weekly</changefreq>\n';
+  xml += '    <priority>0.80</priority>\n';
+  xml += '  </url>\n';
+
+  for (const post of posts) {
+    xml += '  <url>\n';
+    xml += `    <loc>${SITE_ORIGIN}/blog/${post.slug}</loc>\n`;
+    xml += `    <lastmod>${post.date}</lastmod>\n`;
+    xml += '    <changefreq>monthly</changefreq>\n';
+    xml += '    <priority>0.70</priority>\n';
+    if (post.image) {
+      xml += '    <image:image>\n';
+      xml += `      <image:loc>${resolveSitemapImageUrl(post.image)}</image:loc>\n`;
+      xml += `      <image:title>${escapeXml(post.title)}</image:title>\n`;
+      xml += '    </image:image>\n';
+    }
+    xml += '  </url>\n';
   }
 
   xml += '</urlset>\n';

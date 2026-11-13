@@ -1559,4 +1559,60 @@
       <image:title>Custom Crochet Hamper - Handmade Crochet Gift</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/blog</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/blog/crochet-bouquet-vs-fresh-flowers</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/mixed_luxury_bouquet.webp</image:loc>
+      <image:title>Crochet Bouquet vs Fresh Flowers: Which Makes a Better Gift?</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/blog/crochet-gift-ideas-christmas-new-year</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/hero_crochet_scene.webp</image:loc>
+      <image:title>Crochet Gift Ideas for Christmas and New Year</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/blog/crochet-vs-knitting-difference</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/about_process.png</image:loc>
+      <image:title>Crochet vs Knitting: What&apos;s the Difference?</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/blog/valentines-day-crochet-gift-ideas</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/strawberry_keychain.png</image:loc>
+      <image:title>Valentine&apos;s Day Crochet Gift Ideas</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.bloomycocoon.com/blog/what-is-amigurumi-crochet-plushies-guide</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://www.bloomycocoon.com/images/crochet_bunny_plush.webp</image:loc>
+      <image:title>What Is Amigurumi? A Simple Guide to Crochet Plushies</image:title>
+    </image:image>
+  </url>
 </urlset>

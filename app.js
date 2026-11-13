@@ -933,6 +933,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/crochet-accessories') return 'screen-crochet-accessories';
         if (cleanPath === '/crochet-home-decor') return 'screen-crochet-home-decor';
         if (cleanPath === '/crochet-gift-combos') return 'screen-crochet-gift-combos';
+        if (cleanPath === '/blog') return 'screen-blog';
+        if (cleanPath.startsWith('/blog/')) return 'screen-blog-post';
         return null;
     }
 
@@ -947,6 +949,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const path = targetPath || window.location.pathname;
             return path.startsWith('/products/') ? path : (path.startsWith('/product/') ? path.replace('/product/', '/products/') : '/products');
         }
+        if (screenId === 'screen-blog') return '/blog';
+        if (screenId === 'screen-blog-post') return targetPath || window.location.pathname;
         return screenMetadata[screenId]?.path || '/';
     }
 
@@ -1022,6 +1026,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('meta[name="robots"]')?.setAttribute('content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
                 return;
             }
+        }
+
+        if (screenId === 'screen-blog' || screenId === 'screen-blog-post') {
+            return;
         }
 
         const metadata = screenMetadata[screenId] || screenMetadata['screen-home'];
@@ -1568,7 +1576,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            const isActive = Boolean(linkPath) && linkPath === currentPath;
+            const isActive = Boolean(linkPath) && (linkPath === currentPath || (linkPath === '/blog' && currentPath.startsWith('/blog/')));
             const isTopLevel = link.hasAttribute('data-nav-top');
 
             if (isActive) {
@@ -1914,7 +1922,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ['Privacy Policy', '/privacy-policy'],
             ['Order Terms', '/order-terms'],
             ['Crochet Care', '/crochet-care'],
-            ['Workshops', '/workshops']
+            ['Workshops', '/workshops'],
+            ['Blog', '/blog']
         ];
 
         document.querySelectorAll('footer nav[aria-label="Footer navigation"]').forEach((footerNav) => {

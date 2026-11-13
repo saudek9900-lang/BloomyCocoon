@@ -21,6 +21,7 @@ import {
 } from '../src/product-cards.mjs';
 import { generateSitemapXml, generateLlmsFullTxt } from '../src/sitemap-generator.mjs';
 import { generateGoogleMerchantXml } from '../src/merchant-feed-generator.mjs';
+import { getAllBlogPosts, generateBlogIndexHtml, generateBlogPostHtml } from '../src/blog-engine.mjs';
 
 const DIST_DIR = path.resolve('dist');
 const PUBLIC_DIR = path.resolve('public');
@@ -502,6 +503,7 @@ const UNIFIED_FOOTER_HTML = `<footer class="bg-surface-container py-10 md:py-xl 
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/workshops">Workshops</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/blog">Blog</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>
@@ -577,8 +579,38 @@ for (const product of catalog) {
 }
 console.log(`Generated route HTML for ${catalog.length} standalone product pages under /products/`);
 
+async function writeBlogPages(baseHtml) {
+  const posts = await getAllBlogPosts();
+  const blogDir = path.join(DIST_DIR, 'blog');
+  await mkdir(blogDir, { recursive: true });
+
+  const blogIndexHtml = generateBlogIndexHtml({
+    baseHtml,
+    posts,
+    unifiedFooterHtml: UNIFIED_FOOTER_HTML,
+  });
+  await writeFile(path.join(blogDir, 'index.html'), blogIndexHtml);
+
+  for (const post of posts) {
+    const postDir = path.join(blogDir, post.slug);
+    await mkdir(postDir, { recursive: true });
+    const postHtml = generateBlogPostHtml({
+      baseHtml,
+      post,
+      allPosts: posts,
+      unifiedFooterHtml: UNIFIED_FOOTER_HTML,
+    });
+    await writeFile(path.join(postDir, 'index.html'), postHtml);
+  }
+
+  console.log(`Generated route HTML for /blog and ${posts.length} blog posts`);
+  return posts;
+}
+
+const blogPosts = await writeBlogPages(baseHtml);
+
 // Generate sitemap.xml with image entries
-const sitemapXml = generateSitemapXml(catalog);
+const sitemapXml = generateSitemapXml(catalog, undefined, blogPosts);
 await writeFile(path.join(PUBLIC_DIR, 'sitemap.xml'), sitemapXml);
 await writeFile(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml);
 console.log('Generated sitemap.xml with product image entries');
