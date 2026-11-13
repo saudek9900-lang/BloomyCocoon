@@ -43,7 +43,7 @@ export const ROUTE_CONTENT = {
     path: '/faq',
     outputDir: 'faq',
     title: 'BloomyCocoon FAQ | Crochet Orders, Delivery & Care',
-    description: 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, production time, Starting from prices and crochet gift care.',
+    description: 'Find answers about custom crochet orders, WhatsApp ordering, delivery across Kerala and India, Starting from prices and crochet gift care.',
     schemaType: 'FAQPage',
     breadcrumbName: 'BloomyCocoon FAQ',
   },
@@ -99,7 +99,7 @@ export const ROUTE_CONTENT = {
     path: '/anniversary-gifts',
     outputDir: 'anniversary-gifts',
     title: 'Handmade Crochet Anniversary Gifts & Bouquets in Kerala | BloomyCocoon',
-    description: 'Celebrate love with everlasting handmade crochet anniversary flower bouquets, couple gift combos and romantic keepsakes from BloomyCocoon in Kerala. Custom orders on WhatsApp.',
+    description: 'Celebrate love with handmade crochet anniversary flower bouquets, couple gift combos and romantic keepsakes from BloomyCocoon in Kerala. Custom orders on WhatsApp.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Anniversary Gifts',
   },
@@ -115,7 +115,7 @@ export const ROUTE_CONTENT = {
     path: '/baby-shower-gifts',
     outputDir: 'baby-shower-gifts',
     title: 'Handmade Crochet Baby Shower & Newborn Gifts in Kerala | BloomyCocoon',
-    description: 'Soft, skin-safe handmade crochet baby booties, caps, rattles, name garlands and newborn gift hampers from BloomyCocoon in Mampad, Kerala. Delivery across India.',
+    description: 'Handmade crochet baby booties, caps, rattles, name garlands and newborn gift hampers from BloomyCocoon in Mampad, Kerala. Delivery across India.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Baby Shower Gifts',
   },
@@ -371,7 +371,7 @@ export function getProductRouteMetadata(product) {
   const desc = product.description ? product.description.trim() : `Handmade crochet ${product.name} crafted in Kerala.`;
   return {
     title: `${product.name} - Handmade Crochet Gift in Kerala | BloomyCocoon`,
-    description: `${desc} Handcrafted in Kerala with soft milk cotton yarn. Starting from ₹${safePrice}. Order & customize on WhatsApp.`,
+    description: `${desc} Handmade to order in Kerala. Starting from ₹${safePrice}. Order & customize on WhatsApp.`,
     canonical: getProductCanonical(product.id),
     image: product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`,
     category: CATEGORY_LABELS[product.category] || 'Handmade Gift',
@@ -414,16 +414,6 @@ export function getProductBreadcrumbs(product) {
   };
 }
 
-const CATEGORY_MATERIALS = {
-  bouquets: 'Milk Cotton Yarn, Floral Craft Wire, Keepsake Wrapping Paper',
-  plushies: 'Milk Cotton Yarn, Hypoallergenic Polyester Fiberfill, Safety Eyes',
-  keychains: 'Milk Cotton Yarn, Stainless Steel Keychain Ring, Polyester Fiberfill',
-  'baby-gifts': 'Skin-Safe Milk Cotton Yarn, Baby-Friendly Hypoallergenic Fiberfill',
-  accessories: 'Durable Milk Cotton Yarn, Fabric Lining, Metal Hardware',
-  'home-decor': 'Milk Cotton Yarn, Wooden Craft Ring, Premium Macrame Cord',
-  'gift-combos': 'Milk Cotton Yarn, Floral Keepsake Wrapping, Gift Box Packaging',
-};
-
 export function getSchemaImageUrl(product, hasWebp = null) {
   const rel = product?.image || 'images/hero_crochet_scene.png';
   const cleanRel = rel.replace(/^\/+/, '');
@@ -436,7 +426,6 @@ export function getProductSchema(product, { hasWebp = null } = {}) {
   const productUrl = getProductCanonical(product.id);
   const imageUrl = getSchemaImageUrl(product, hasWebp);
   const safePrice = Number(product.startingPrice) || 149;
-  const material = CATEGORY_MATERIALS[product.category] || 'Soft Milk Cotton Yarn';
 
   return {
     '@type': 'Product',
@@ -446,7 +435,6 @@ export function getProductSchema(product, { hasWebp = null } = {}) {
     image: imageUrl,
     sku: product.id,
     mpn: product.id,
-    material,
     category: CATEGORY_LABELS[product.category] || 'Handmade',
     brand: {
       '@type': 'Brand',

@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.bloomycocoon.com/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/collections</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -295,7 +295,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/crochet-bouquets</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -329,7 +329,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/crochet-plushies</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -379,7 +379,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/crochet-keychains</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -429,7 +429,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/crochet-baby-gifts</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -475,7 +475,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/crochet-accessories</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -525,7 +525,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/crochet-home-decor</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -571,7 +571,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/crochet-gift-combos</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -613,7 +613,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/anniversary-gifts</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -659,7 +659,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/birthday-gifts</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -709,7 +709,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/baby-shower-gifts</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -759,7 +759,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/return-gifts</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -809,13 +809,13 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/custom-order</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/about</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -825,13 +825,13 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/faq</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/contact</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -841,37 +841,37 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/shipping-delivery</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/returns-cancellations</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/privacy-policy</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/order-terms</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/crochet-care</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/single-crochet-rose</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -881,7 +881,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/single-crochet-tulip</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -891,7 +891,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/single-sunflower-stem</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -901,7 +901,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/rose-bouquet</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -911,7 +911,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/tulip-bouquet</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -921,7 +921,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/lavender-bouquet</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -931,7 +931,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/custom-premium-bouquet</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -941,7 +941,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/mini-teddy-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -951,7 +951,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/bunny-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -961,7 +961,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/cat-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -971,7 +971,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/duck-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -981,7 +981,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/bee-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -991,7 +991,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/frog-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1001,7 +1001,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/penguin-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1011,7 +1011,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/dinosaur-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1021,7 +1021,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/octopus-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1031,7 +1031,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/custom-animal-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1041,7 +1041,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/mini-pocket-plushies</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1051,7 +1051,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/heart-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1061,7 +1061,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/flower-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1071,7 +1071,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/mushroom-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1081,7 +1081,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/teddy-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1091,7 +1091,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/bunny-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1101,7 +1101,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/cat-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1111,7 +1111,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/duck-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1121,7 +1121,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/initial-letter-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1131,7 +1131,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/couple-keychain-set</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1141,7 +1141,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/custom-character-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1151,7 +1151,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/strawberry-keychain</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1161,7 +1161,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-booties</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1171,7 +1171,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-cap</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1181,7 +1181,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-mittens</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1191,7 +1191,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-booties-cap-set</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1201,7 +1201,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-rattle</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1211,7 +1211,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-name-garland</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1221,7 +1221,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-bunny-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1231,7 +1231,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-bear-plushie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1241,7 +1241,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-shower-mini-set</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1251,7 +1251,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/newborn-gift-hamper</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1261,7 +1261,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-bow-clip</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1271,7 +1271,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-scrunchie</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1281,7 +1281,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-hair-band</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1291,7 +1291,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/flower-brooch</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1301,7 +1301,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-bracelet</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1311,7 +1311,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-earrings</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1321,7 +1321,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/bag-charm</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1331,7 +1331,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/phone-charm</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1341,7 +1341,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-coin-pouch</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1351,7 +1351,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-phone-sleeve</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1361,7 +1361,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-tote-bag</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1371,7 +1371,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-coaster</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1381,7 +1381,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/mini-flower-pot</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1391,7 +1391,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/car-hanging-charm</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1401,7 +1401,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-garland</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1411,7 +1411,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/table-decor-piece</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1421,7 +1421,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/door-hanging</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1431,7 +1431,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/custom-name-decor</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1441,7 +1441,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-cushion-cover</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1451,7 +1451,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/crochet-plant-holder</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1461,7 +1461,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/wall-hanging</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1471,7 +1471,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/keychain-flower-combo</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1481,7 +1481,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/mini-bouquet-note-card</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1491,7 +1491,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/plushie-flower-combo</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1501,7 +1501,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/birthday-mini-gift-box</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1511,7 +1511,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/couple-keychain-combo</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1521,7 +1521,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/couple-bouquet-combo</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1531,7 +1531,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/baby-gift-combo</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1541,7 +1541,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/anniversary-gift-box</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>
@@ -1551,7 +1551,7 @@
   </url>
   <url>
     <loc>https://www.bloomycocoon.com/products/custom-crochet-hamper</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
     <image:image>

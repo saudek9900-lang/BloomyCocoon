@@ -4,7 +4,7 @@ import path from 'node:path';
 import { CATEGORY_PAGES, OCCASION_PRODUCTS } from './route-content.mjs';
 
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
-const EXISTING_ROUTES_LASTMOD = '2026-11-10';
+const EXISTING_ROUTES_LASTMOD = '2026-11-13';
 
 function getBlogPostsSync() {
   const blogDir = path.resolve('content/blog');

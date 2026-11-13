@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 199,
     "image": "images/crochet_sunflower_bouquet_single-sunflower-stem-generated.png",
     "badge": "Sunny",
-    "description": "A sunny long-lasting flower for desk corners, jars and small surprise gifts."
+    "description": "A sunny flower for desk corners, jars and small surprise gifts."
   },
   {
     "id": "rose-bouquet",
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 899,
     "image": "images/crochet_tulip_bouquet_tulip-bouquet.png",
     "badge": "New Arrival",
-    "description": "A graceful long-lasting bouquet for birthdays, thank-you gifts and gentle celebrations."
+    "description": "A graceful bouquet for birthdays, thank-you gifts and gentle celebrations."
   },
   {
     "id": "lavender-bouquet",
@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "gift-combos",
     "startingPrice": 1199,
     "image": "images/mixed_luxury_bouquet_couple-bouquet-combo.png",
-    "description": "A romantic combo for anniversaries, couple surprises and long-lasting bouquet gifts."
+    "description": "A romantic combo for anniversaries, couple surprises and bouquet gifts."
   },
   {
     "id": "baby-gift-combo",
@@ -690,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const priceNote = "Final price may vary based on size, color, custom name, flowers, packaging, and delivery.";
     const categoryDescriptions = {
         "all": "Explore handmade crochet gifts from BloomyCocoon in Mampad, Malappuram, Kerala, India. Find crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and custom gift combos for birthdays, anniversaries, students, baby showers and surprise gifts, with delivery across Kerala and India.",
-        "bouquets": "BloomyCocoon's crochet bouquets are long-lasting handmade flower gifts for birthdays, anniversaries, couple gifts and soft surprises. Choose roses, tulips, sunflowers, lavender or custom bouquet styles, then confirm colors, wrapping, Starting from price and final quote on WhatsApp before making begins.",
+        "bouquets": "BloomyCocoon's crochet bouquets are handmade flowers that don't wilt for birthdays, anniversaries, couple gifts and soft surprises. Choose roses, tulips, sunflowers, lavender or custom bouquet styles, then confirm colors, Starting from price and final quote on WhatsApp before making begins.",
         "plushies": "Soft handmade crochet plushies for birthdays, baby gifting, student desks, couple surprises and keepsake gifts. Each plushie can be discussed for color, size and small details through WhatsApp, making it a cozy custom crochet gift from Kerala for moments that need a gentle hug.",
         "keychains": "Crochet keychains are small handmade gifts for students, friends, couples, bags, keys and custom hampers. Choose hearts, flowers, initials, animals or character-inspired charms, then confirm colors, quantity and final quote on WhatsApp before BloomyCocoon makes your order in Kerala with care.",
         "baby-gifts": "Gentle baby crochet gifts for newborns, baby showers, naming moments and soft family keepsakes. Explore booties, caps, mittens, rattles, baby plushies, name garlands and baby gift sets, with sizing, colors, Starting from price and delivery confirmed on WhatsApp before making.",
@@ -706,8 +706,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const cartGiftAddons = {
         card: { enabled: false, price: 49, message: '' },
-        fairyLights: { enabled: false, price: 89 },
-        windowBox: { enabled: false, price: 129 }
+        fairyLights: { enabled: false, price: 89 }
     };
 
     function loadCartFromStorage() {
@@ -726,7 +725,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (parsedAddons && typeof parsedAddons === 'object') {
                     if (parsedAddons.card) Object.assign(cartGiftAddons.card, parsedAddons.card);
                     if (parsedAddons.fairyLights) Object.assign(cartGiftAddons.fairyLights, parsedAddons.fairyLights);
-                    if (parsedAddons.windowBox) Object.assign(cartGiftAddons.windowBox, parsedAddons.windowBox);
                 }
             }
         } catch (e) {
@@ -750,7 +748,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let sum = 0;
         if (cartGiftAddons.card.enabled) sum += cartGiftAddons.card.price;
         if (cartGiftAddons.fairyLights.enabled) sum += cartGiftAddons.fairyLights.price;
-        if (cartGiftAddons.windowBox.enabled) sum += cartGiftAddons.windowBox.price;
         return sum;
     }
 
@@ -848,8 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const balanceAmount = grandTotal - advanceAmount;
 
         const hasAddons = cartGiftAddons.card.enabled || 
-                          cartGiftAddons.fairyLights.enabled || 
-                          cartGiftAddons.windowBox.enabled;
+                          cartGiftAddons.fairyLights.enabled;
 
         if (hasAddons) {
             message += `🎁 *Gift Packaging & Add-ons:*\n`;
@@ -861,9 +857,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (cartGiftAddons.fairyLights.enabled) {
                 message += `• Warm Fairy Lights String (+₹${cartGiftAddons.fairyLights.price})\n`;
-            }
-            if (cartGiftAddons.windowBox.enabled) {
-                message += `• Keepsake Display Window Box (+₹${cartGiftAddons.windowBox.price})\n`;
             }
             message += `\n`;
         }
@@ -1007,7 +1000,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (product) {
                 const safePrice = Number(product.startingPrice) || 149;
                 const pageTitle = `${product.name} - Handmade Crochet Gift in Kerala | BloomyCocoon`;
-                const pageDesc = `${product.description} Handcrafted in Kerala with soft milk cotton yarn. Starting from ₹${safePrice}. Order & customize on WhatsApp.`;
+                const pageDesc = `${product.description} Handmade to order in Kerala. Starting from ₹${safePrice}. Order & customize on WhatsApp.`;
                 const canonicalUrl = `${SITE_ORIGIN}/products/${product.id}`;
                 const imageUrl = product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`;
 
@@ -1074,8 +1067,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let detailSelectedQty = 1;
     let detailSelectedAddons = {
         card: false,
-        fairyLights: false,
-        windowBox: false
+        fairyLights: false
     };
 
     window.changeProductDetailQty = function(delta) {
@@ -1089,11 +1081,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.updateProductDetailAddons = function() {
         const cardCheckbox = document.getElementById('detail-addon-card');
         const lightsCheckbox = document.getElementById('detail-addon-lights');
-        const boxCheckbox = document.getElementById('detail-addon-box');
 
         detailSelectedAddons.card = Boolean(cardCheckbox?.checked);
         detailSelectedAddons.fairyLights = Boolean(lightsCheckbox?.checked);
-        detailSelectedAddons.windowBox = Boolean(boxCheckbox?.checked);
 
         updateProductDetailActionLabels();
         updateProductDetailWhatsAppLinks();
@@ -1105,7 +1095,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let addonsCost = 0;
         if (detailSelectedAddons.card) addonsCost += 49;
         if (detailSelectedAddons.fairyLights) addonsCost += 89;
-        if (detailSelectedAddons.windowBox) addonsCost += 129;
 
         const totalEst = (basePrice * detailSelectedQty) + addonsCost;
         
@@ -1132,10 +1121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (detailSelectedAddons.fairyLights) {
             addonsCost += 89;
             addonsList.push('Warm Fairy Lights (+₹89)');
-        }
-        if (detailSelectedAddons.windowBox) {
-            addonsCost += 129;
-            addonsList.push('Keepsake Window Box (+₹129)');
         }
 
         const totalEst = (basePrice * detailSelectedQty) + addonsCost;
@@ -1175,10 +1160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (detailSelectedAddons.fairyLights && cartGiftAddons.fairyLights) {
             cartGiftAddons.fairyLights.enabled = true;
         }
-        if (detailSelectedAddons.windowBox && cartGiftAddons.windowBox) {
-            cartGiftAddons.windowBox.enabled = true;
-        }
-        if (detailSelectedAddons.card || detailSelectedAddons.fairyLights || detailSelectedAddons.windowBox) {
+        if (detailSelectedAddons.card || detailSelectedAddons.fairyLights) {
             renderCart();
         }
 
@@ -1261,7 +1243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         detailCurrentProduct = product;
         detailSelectedQty = 1;
-        detailSelectedAddons = { card: false, fairyLights: false, windowBox: false };
+        detailSelectedAddons = { card: false, fairyLights: false };
 
         // Reset quantity & checkboxes
         const qtyVal = document.getElementById('detail-qty-val');
@@ -1270,8 +1252,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cardBox) cardBox.checked = false;
         const lightsBox = document.getElementById('detail-addon-lights');
         if (lightsBox) lightsBox.checked = false;
-        const boxBox = document.getElementById('detail-addon-box');
-        if (boxBox) boxBox.checked = false;
 
         const catLabel = getCategoryLabel(product.category);
         const breadcrumbCat = document.getElementById('detail-breadcrumb-cat');
@@ -2590,7 +2570,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cartGiftAddons.card.enabled = false;
             cartGiftAddons.card.message = '';
             cartGiftAddons.fairyLights.enabled = false;
-            cartGiftAddons.windowBox.enabled = false;
         }
         renderCart(preservedFocus);
         if (removed) {
@@ -2670,20 +2649,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </label>
                     </div>
-
-                    <!-- 3. Keepsake Window Display Box -->
-                    <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.windowBox.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
-                        <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" data-gift-addon="windowBox" onchange="toggleGiftAddon('windowBox')" ${cartGiftAddons.windowBox.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
-                            <div class="flex-1 min-w-0">
-                                <div class="flex items-center justify-between">
-                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">🎁</span> Keepsake Display Window Box</span>
-                                    <span class="text-xs font-bold text-secondary tabular-nums">+₹${cartGiftAddons.windowBox.price}</span>
-                                </div>
-                                <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Rigid clear display showcase with satin ribbon handle for dust-free display</p>
-                            </div>
-                        </label>
-                    </div>
                 </div>
             </div>
         `;
@@ -2737,7 +2702,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="material-symbols-outlined text-3xl" aria-hidden="true">shopping_basket</span>
                     </div>
                     <h2 class="font-headline-sm text-xl text-primary font-bold">Your basket is waiting for blooms</h2>
-                    <p class="font-body-md text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">Explore our slow-crafted bouquets, cute plushies, and forever keepsakes made with love in Mampad, Kerala.</p>
+                    <p class="font-body-md text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">Explore our slow-crafted bouquets, cute plushies, and keepsakes made with love in Mampad, Kerala.</p>
                     <a href="/collections" class="mt-2 inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-sm min-h-[44px]">
                         <span>Browse Handmade Collection</span>
                         <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
@@ -2951,7 +2916,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div>
                             <p class="font-headline-sm text-lg text-secondary font-semibold">Your basket is waiting for blooms</p>
-                            <p class="font-body-md text-xs text-on-surface-variant max-w-[220px] mx-auto mt-1">Explore our slow-crafted bouquets, cute plushies, and forever gifts.</p>
+                            <p class="font-body-md text-xs text-on-surface-variant max-w-[220px] mx-auto mt-1">Explore our slow-crafted bouquets, cute plushies, and gifts.</p>
                         </div>
                         <a href="/collections" onclick="setCartOpen(false)" class="mt-2 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-sm min-h-[44px]">
                             <span>Browse Collection</span>
@@ -3025,11 +2990,11 @@ document.addEventListener('DOMContentLoaded', () => {
                              <div class="flex items-center justify-between">
                                  <span class="font-bold text-secondary flex items-center gap-1.5">
                                      <span class="material-symbols-outlined text-[18px]" aria-hidden="true">redeem</span>
-                                     <span>Add Gift Card, Box &amp; Fairy Lights</span>
+                                     <span>Add Gift Card &amp; Fairy Lights</span>
                                  </span>
                                  <span class="material-symbols-outlined text-[16px] text-secondary group-hover:translate-x-0.5 transition-transform" aria-hidden="true">arrow_forward</span>
                              </div>
-                             <p class="text-[11px] text-on-surface-variant/80 mt-1">Personalize with hand-calligraphed cards and keepsake gift boxes on the full cart page.</p>
+                             <p class="text-[11px] text-on-surface-variant/80 mt-1">Personalize with hand-calligraphed cards and fairy lights on the full cart page.</p>
                          </a>
                      </div>
                  `;

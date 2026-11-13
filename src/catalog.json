@@ -24,7 +24,7 @@
     "startingPrice": 199,
     "image": "images/crochet_sunflower_bouquet_single-sunflower-stem-generated.png",
     "badge": "Sunny",
-    "description": "A sunny long-lasting flower for desk corners, jars and small surprise gifts."
+    "description": "A sunny flower for desk corners, jars and small surprise gifts."
   },
   {
     "id": "rose-bouquet",
@@ -42,7 +42,7 @@
     "startingPrice": 899,
     "image": "images/crochet_tulip_bouquet_tulip-bouquet.png",
     "badge": "New Arrival",
-    "description": "A graceful long-lasting bouquet for birthdays, thank-you gifts and gentle celebrations."
+    "description": "A graceful bouquet for birthdays, thank-you gifts and gentle celebrations."
   },
   {
     "id": "lavender-bouquet",
@@ -559,7 +559,7 @@
     "category": "gift-combos",
     "startingPrice": 1199,
     "image": "images/mixed_luxury_bouquet_couple-bouquet-combo.png",
-    "description": "A romantic combo for anniversaries, couple surprises and long-lasting bouquet gifts."
+    "description": "A romantic combo for anniversaries, couple surprises and bouquet gifts."
   },
   {
     "id": "baby-gift-combo",

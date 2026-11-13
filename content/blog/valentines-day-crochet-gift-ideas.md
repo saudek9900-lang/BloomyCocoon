@@ -14,9 +14,9 @@ Valentine's Day gives us a chance to show appreciation to the people we care abo
 
 Handmade crochet items make wonderful Valentine's Day presents. Made by hand with soft yarn, they carry a gentle warmth that factory items cannot match. Here are sweet and simple crochet gift ideas to surprise your partner this Valentine's Day.
 
-## Everlasting Crochet Roses and Bouquets
+## Crochet Roses and Bouquets
 
-Red roses are a traditional symbol of love, but fresh stems dry out within days. A crochet rose stays bright and keeps its shape on a desk or bookshelf.
+Red roses are a traditional symbol of love, but fresh stems dry out quickly. A crochet rose does not wilt, so it can sit on a desk or bookshelf.
 
 You can choose a Single Crochet Rose for a simple, sweet gesture or a full Rose Bouquet for a bigger surprise. Because each petal and leaf is shaped by hand with a crochet hook, the flowers have a charming handmade look. Your partner can keep them on their bedside table as a quiet reminder of your appreciation.
 
@@ -34,7 +34,7 @@ You can find sweet companions in our [Crochet Plushies & Amigurumi](/crochet-plu
 
 If you cannot decide between flowers and a cute character, a gift combo offers a balanced option.
 
-Our gift combos combine a crochet flower with a plushie or keychain. A set like our Couple Keychain Combo gives each of you a matching piece, making it a fun shared gift. Having two coordinated handmade items makes the surprise feel thoughtful and well planned.
+Our gift combos bring two handmade pieces together, for example the Plushie + Flower Combo and the Keychain + Flower Combo. Two pieces in one gift make the surprise feel thoughtful.
 
 Explore our gift pairings in our [Crochet Gift Combos & Hampers](/crochet-gift-combos) collection.
 
@@ -42,7 +42,7 @@ Explore our gift pairings in our [Crochet Gift Combos & Hampers](/crochet-gift-c
 
 Small gifts can be just as meaningful as large ones. A keychain is a portable item that your partner can carry every day.
 
-Our Heart Keychain, Strawberry Keychain, and Couple Keychain Set clip easily onto bags, keys, or backpacks. Every time your partner steps out the door, they carry a small reminder of your connection. Because keychains are small and light, they are also easy to slip into a coat pocket as a surprise.
+Our Heart Keychain, Strawberry Keychain, and Couple Keychain Set clip easily onto bags, keys, or backpacks. Every time your partner steps out the door, they carry a small reminder of your connection. Because keychains are small, they are also easy to slip into a coat pocket as a surprise.
 
 Explore more small accessories in our [Crochet Keychains & Charms](/crochet-keychains) range.
 
@@ -54,15 +54,15 @@ You can visit our [Anniversary Gift Guides](/anniversary-gifts) for more ideas o
 
 ## Picking Colors That Your Partner Loves
 
-Every relationship has its own favorite memories and colors. When ordering handmade crochet, you can choose colors that fit your partner's personality:
+Every relationship has its own favorite memories and colors. Colours are confirmed with you on WhatsApp. When ordering handmade crochet, you can consider palette ideas that reflect your partner's style:
 
 - Classic Red: Deep red and white for a traditional romantic style.
 - Soft Pastels: Blush pink, cream, and light green for a gentle look.
 - Warm Tones: Terracotta and warm yellow for a cheerful feel.
 - Lavender and Blue: Soft purple and light blue for a quiet aesthetic.
 
-Choosing your partner's favorite shade makes the gift feel personal.
+Choosing thoughtful color combinations makes the gift feel personal.
 
 ## A Thoughtful Way to Celebrate Love
 
-Valentine's Day is about showing your partner that you care. When you choose a handmade crochet gift, you give something created stitch by stitch with human hands. It stays on their desk or shelf long after the day is over, serving as a warm reminder of your care.
+Valentine's Day is about showing your partner that you care. When you choose a handmade crochet gift, you give something created stitch by stitch with human hands. It can sit on their desk or shelf as a reminder of your care.

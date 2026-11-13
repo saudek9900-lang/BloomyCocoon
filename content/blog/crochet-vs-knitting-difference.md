@@ -18,7 +18,7 @@ Understanding the differences between crochet and knitting helps explain why cer
 
 The main difference between the two crafts is the tool in the maker's hand.
 
-Knitting uses two pointed needles. In knitting, an entire row of active loops sits openly across the needles at the same time. The maker moves stitches back and forth between the left and right needles, intermeshing loops vertically. Because many loops stay open on the needles at once, dropping a stitch can cause a column of knitting to run down the piece.
+Knitting uses two pointed needles. In knitting, an entire row of active loops sits openly across the needles at the same time. The maker moves stitches back and forth between the left and right needles, intermeshing loops vertically. Because many loops remain open on the needles at once, dropping a stitch can cause a column of knitting to run down the piece.
 
 Crochet uses a single hook with a small notch at the tip. Instead of holding many loops at once, crochet usually works with only one active loop at a time. The maker inserts the hook into an existing stitch, pulls yarn through, and builds the next stitch. Once a stitch is finished, the next one begins. Working with a single active loop makes crochet flexible and easy to steer in any direction.
 
@@ -38,22 +38,18 @@ This firm structure makes crochet great for making flowers. Petals and leaves ne
 
 When making three-dimensional objects, crochet offers great freedom. Because you work with one loop, you can add or decrease stitches at any point around a curve.
 
-This makes crochet the natural choice for amigurumi, the craft of making small stuffed animals and characters in continuous rounds. A maker can shape round heads, animal snouts, ears, and small paws smoothly. Knitting three-dimensional curves requires multiple double-pointed needles, making small rounded shapes harder to manage.
-
-## Why True Crochet Cannot Be Made by Machine
-
-One interesting fact about modern textiles is that commercial machines cannot create true crochet stitches.
-
-Factories use computerized knitting machines to produce sweaters, hats, and socks in huge numbers. However, no machine can replicate the manual movements of a human hand working with a crochet hook and a single loop. Whenever you see a real crochet item, a person made every single stitch by hand.
-
-This gives handmade crochet pieces a special personal touch. You can learn more about our work on our [About BloomyCocoon](/about) page.
+This makes crochet the natural choice for amigurumi, the craft of making small stuffed animals and characters in continuous rounds. A maker can shape round heads, animal snouts, ears, and small paws smoothly. Knitting can make rounded shapes too, using different tools and techniques. In crochet, working in spirals allows the maker to place increases and decreases anywhere without interrupting the rhythm of the work.
 
 ## Choosing Yarn Weight and Hook Size
 
 In both crafts, matching the right yarn weight to the right tool size is important. Using a smaller hook creates tighter, firmer stitches with fewer gaps. This works well for plushies, where you want to keep the inner stuffing from showing through the fabric. Using a larger hook creates looser, softer stitches that feel lighter.
+
+A crochet hook consists of several functional parts: the point that enters the stitch, the throat that catches the strand, the working shaft that sets the loop diameter, and the flat grip held by the fingers. Consistent loop size depends directly on sliding each new loop onto the shaft rather than keeping it pinched near the tip.
 
 Makers test different hook sizes with their yarn until they find the right balance of softness and structure for each project.
 
 ## Celebrating Both Crafts
 
 Neither craft is better than the other. Each has its own strengths. Knitting is wonderful for soft, flowing clothing like sweaters and scarves. Crochet is wonderful for three-dimensional shapes, flower bouquets, and small character toys. Knowing how each craft works helps you appreciate the careful handwork in every piece.
+
+You can learn more about us on our [About BloomyCocoon](/about) page.

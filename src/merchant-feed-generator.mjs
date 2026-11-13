@@ -35,7 +35,7 @@ export function generateGoogleMerchantXml(catalog) {
   xml += '  <channel>\n';
   xml += '    <title>BloomyCocoon Handmade Crochet Gifts</title>\n';
   xml += `    <link>${SITE_ORIGIN}</link>\n`;
-  xml += '    <description>Handcrafted crochet bouquets, amigurumi plushies, keychains, and custom gifts made slowly in Kerala with soft milk cotton yarn. Pan-India delivery.</description>\n';
+  xml += '    <description>Handcrafted crochet bouquets, amigurumi plushies, keychains, and custom gifts made slowly in Kerala. Pan-India delivery.</description>\n';
 
   for (const product of catalog) {
     const safePrice = Number(product.startingPrice) || 149;
@@ -45,7 +45,7 @@ export function generateGoogleMerchantXml(catalog) {
     const googleCategory = GOOGLE_PRODUCT_CATEGORIES[product.category] || 'Home & Garden > Decor > Artificial Flora';
     const categoryLabel = CATEGORY_LABELS[product.category] || 'Handmade Gift';
     const cleanDesc = (product.description || '').trim();
-    const fullDesc = `${cleanDesc} Handcrafted in Kerala with soft milk cotton yarn. Custom colors and personalized options available on WhatsApp. Starting from ₹${safePrice}.`;
+    const fullDesc = `${cleanDesc} Handmade to order in Kerala. Custom colors and personalized options available on WhatsApp. Starting from ₹${safePrice}.`;
     const productTitle = `${product.name} - Handmade Crochet ${categoryLabel}`;
 
     xml += '    <item>\n';
@@ -59,7 +59,6 @@ export function generateGoogleMerchantXml(catalog) {
     xml += `      <g:price>${priceFormatted}</g:price>\n`;
     xml += '      <g:brand>BloomyCocoon</g:brand>\n';
     xml += `      <g:mpn>${escapeXml(product.id)}</g:mpn>\n`;
-    xml += '      <g:material>Milk Cotton Yarn</g:material>\n';
     xml += '      <g:identifier_exists>no</g:identifier_exists>\n';
     xml += '      <g:custom_label_0>Handmade in Kerala</g:custom_label_0>\n';
     xml += `      <g:google_product_category>${escapeXml(googleCategory)}</g:google_product_category>\n`;
