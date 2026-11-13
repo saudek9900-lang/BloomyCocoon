@@ -24,16 +24,25 @@
                 s.async = true;
                 document.head.appendChild(s);
             }
-            const triggers = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+            const triggers = ['pointerdown', 'keydown', 'scroll', 'touchstart', 'mousemove'];
             function onInteraction() {
                 triggers.forEach(evt => window.removeEventListener(evt, onInteraction));
                 loadGtag();
             }
             triggers.forEach(evt => window.addEventListener(evt, onInteraction, { once: true, passive: true }));
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(function() { setTimeout(loadGtag, 2000); });
+            function scheduleDeferred() {
+                setTimeout(function() {
+                    if ('requestIdleCallback' in window) {
+                        requestIdleCallback(loadGtag);
+                    } else {
+                        loadGtag();
+                    }
+                }, 6000);
+            }
+            if (document.readyState === 'complete') {
+                scheduleDeferred();
             } else {
-                setTimeout(loadGtag, 3500);
+                window.addEventListener('load', scheduleDeferred, { once: true });
             }
         })();
     </script>
@@ -201,8 +210,11 @@
     <!-- Preconnect & Fonts & Material Symbols -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=optional">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&icon_names=account_balance_wallet,add,add_shopping_cart,arrow_back,arrow_forward,article,auto_awesome,badge,cake,calendar_today,card_giftcard,celebration,chat,check,child_care,child_friendly,cleaning_services,close,delete,done,dry,eco,edit,edit_note,expand_more,favorite,fiber_manual_record,format_quote,gesture,home,inventory_2,key,local_florist,local_mall,local_shipping,location_on,loyalty,magic_button,mail,menu,north_east,open_in_new,palette,pan_tool,photo_camera,receipt_long,redeem,remove,savings,schedule,search,search_off,sentiment_satisfied,shopping_bag,shopping_basket,spa,straighten,style,toys,tune,verified,verified_user,visibility,volunteer_activism,wb_sunny,zoom_in&display=optional">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgEM86xQ.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/l/font?kit=kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpEpjC_1v-p_4MrImHCIJIZrDCvHOejbd5zrDAt684qwNWf_Mq0BOswaDhdHcv0SCfv0rtu0oocn_HoMHTSKhC5IbvuLoecojjqqbEQxQx43f5klH6V-cAjqS5NZxB3F1JF1T9_YgFKklPrcaEX9_oH3saxA8Hq_Y0e4cNOHMMRSD3XRfC6uAoFOC8&skey=b8dc2088854b122f&v=v385">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&icon_names=account_balance_wallet,add,add_shopping_cart,arrow_back,arrow_forward,article,auto_awesome,badge,cake,calendar_today,card_giftcard,celebration,chat,check,child_care,child_friendly,cleaning_services,close,delete,done,dry,eco,edit,edit_note,expand_more,favorite,fiber_manual_record,format_quote,gesture,home,inventory_2,key,local_florist,local_mall,local_shipping,location_on,loyalty,magic_button,mail,menu,north_east,open_in_new,palette,pan_tool,photo_camera,receipt_long,redeem,remove,savings,schedule,search,search_off,sentiment_satisfied,shopping_bag,shopping_basket,spa,straighten,style,toys,tune,verified,verified_user,visibility,volunteer_activism,wb_sunny,zoom_in&display=swap">
     
     <!-- Build-time Tailwind and custom styles -->
     <link rel="preload" as="style" href="/styles.css">
@@ -1008,6 +1020,7 @@
                 </section>
 
                 <!-- Grid Products -->
+                <h2 class="sr-only">Handmade Collection Pieces</h2>
                 <div id="collection-product-grid" class="mobile-product-grid grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-gutter" aria-live="polite">
                     <!-- Product cards are generated from collectionProducts in app.js to keep names, categories, images, descriptions, and Starting from prices consistent. -->
                 </div>
@@ -3242,7 +3255,7 @@
                             <span id="detail-product-badge" class="absolute top-4 left-4 bg-secondary text-white text-xs font-label-md px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm hidden"></span>
                             
                             <!-- Tap to zoom lightbox trigger button -->
-                            <button type="button" id="detail-zoom-trigger" onclick="openProductLightbox(undefined, undefined, this)" class="absolute bottom-4 right-4 bg-surface/90 hover:bg-surface text-secondary backdrop-blur-sm text-xs font-label-md px-3.5 py-2 min-h-[44px] rounded-full shadow-sm flex items-center gap-1.5 border border-outline-variant/20 transition-all active:scale-95 cursor-pointer" aria-label="Zoom product image to inspect stitches">
+                            <button type="button" id="detail-zoom-trigger" onclick="openProductLightbox(undefined, undefined, this)" class="absolute bottom-4 right-4 bg-surface/90 hover:bg-surface text-secondary backdrop-blur-sm text-xs font-label-md px-3.5 py-2 min-h-[44px] rounded-full shadow-sm flex items-center gap-1.5 border border-outline-variant/20 transition-all active:scale-95 cursor-pointer" aria-label="Inspect Stitches - Zoom product image">
                                 <span class="material-symbols-outlined text-[16px]" aria-hidden="true">zoom_in</span>
                                 <span>Inspect Stitches</span>
                             </button>
