@@ -6,12 +6,36 @@
     <title>Handmade Crochet Gifts in Kerala &amp; India | BloomyCocoon</title>
 
     <!-- Google tag (gtag.js) -->
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-M3TXB88CT8"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
         gtag('js', new Date());
         gtag('config', 'G-M3TXB88CT8');
+
+        // Deferred loading of gtag.js after idle or first user interaction
+        (function() {
+            let loaded = false;
+            function loadGtag() {
+                if (loaded) return;
+                loaded = true;
+                const s = document.createElement('script');
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=G-M3TXB88CT8';
+                s.async = true;
+                document.head.appendChild(s);
+            }
+            const triggers = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+            function onInteraction() {
+                triggers.forEach(evt => window.removeEventListener(evt, onInteraction));
+                loadGtag();
+            }
+            triggers.forEach(evt => window.addEventListener(evt, onInteraction, { once: true, passive: true }));
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(function() { setTimeout(loadGtag, 2000); });
+            } else {
+                setTimeout(loadGtag, 3500);
+            }
+        })();
     </script>
     
     <!-- Meta tags for premium SEO optimization -->
