@@ -192,6 +192,15 @@ export const ROUTE_CONTENT = {
     breadcrumbName: 'Shopping Cart',
     robots: 'noindex, follow',
   },
+  'screen-workshops': {
+    path: '/workshops',
+    outputDir: 'workshops',
+    title: 'Crochet Workshops: Coming Soon | BloomyCocoon',
+    description: "BloomyCocoon is planning crochet workshops. Details aren't finalised yet. Message us on WhatsApp to hear first.",
+    schemaType: 'WebPage',
+    breadcrumbName: 'Workshops',
+    robots: 'noindex, follow',
+  },
 };
 
 export const OCCASION_PRODUCTS = {

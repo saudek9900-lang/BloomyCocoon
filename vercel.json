@@ -177,6 +177,10 @@
       "destination": "/crochet-care/index.html"
     },
     {
+      "source": "/workshops",
+      "destination": "/workshops/index.html"
+    },
+    {
       "source": "/anniversary-gifts",
       "destination": "/anniversary-gifts/index.html"
     },

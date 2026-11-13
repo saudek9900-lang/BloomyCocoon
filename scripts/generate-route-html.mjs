@@ -501,6 +501,7 @@ const UNIFIED_FOOTER_HTML = `<footer class="bg-surface-container py-10 md:py-xl 
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/privacy-policy">Privacy Policy</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/order-terms">Order Terms</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-care">Crochet Care</a>
+                        <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/workshops">Workshops</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>

@@ -921,6 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/privacy-policy') return 'screen-privacy-policy';
         if (cleanPath === '/order-terms') return 'screen-order-terms';
         if (cleanPath === '/crochet-care') return 'screen-crochet-care';
+        if (cleanPath === '/workshops') return 'screen-workshops';
         if (cleanPath === '/anniversary-gifts') return 'screen-anniversary-gifts';
         if (cleanPath === '/birthday-gifts') return 'screen-birthday-gifts';
         if (cleanPath === '/baby-shower-gifts') return 'screen-baby-shower-gifts';
@@ -1018,6 +1019,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', imageUrl);
                 document.querySelector('meta[property="twitter:url"]')?.setAttribute('content', canonicalUrl);
                 document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
+                document.querySelector('meta[name="robots"]')?.setAttribute('content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
                 return;
             }
         }
@@ -1053,6 +1055,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const twitterUrl = document.querySelector('meta[property="twitter:url"]');
         if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
+
+        const robotsMeta = document.querySelector('meta[name="robots"]');
+        if (robotsMeta) {
+            robotsMeta.setAttribute('content', metadata.robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+        }
     }
 
     let detailCurrentProduct = null;
@@ -1906,7 +1913,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ['Returns & Cancellations', '/returns-cancellations'],
             ['Privacy Policy', '/privacy-policy'],
             ['Order Terms', '/order-terms'],
-            ['Crochet Care', '/crochet-care']
+            ['Crochet Care', '/crochet-care'],
+            ['Workshops', '/workshops']
         ];
 
         document.querySelectorAll('footer nav[aria-label="Footer navigation"]').forEach((footerNav) => {
