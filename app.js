@@ -3653,7 +3653,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getProductImageSizes(isFeatured) {
-        return isFeatured ? '(min-width: 768px) 66vw, 92vw' : '(min-width: 768px) 33vw, 46vw';
+        return isFeatured
+            ? '(min-width: 1200px) 728px, (min-width: 768px) 64vw, 92vw'
+            : '(min-width: 1200px) 352px, (min-width: 768px) 31vw, 46vw';
     }
 
     function getProductCategoryIds(product) {
