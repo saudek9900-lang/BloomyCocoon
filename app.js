@@ -2857,7 +2857,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        document.querySelectorAll('[aria-controls="sideCart"]').forEach(btn => {
+        document.querySelectorAll('.cart-trigger[aria-controls="sideCart"]').forEach(btn => {
             btn.setAttribute('aria-label', totalQty > 0 ? `Open shopping cart, ${totalQty} item${totalQty === 1 ? '' : 's'} selected` : 'Open shopping cart');
         });
         document.querySelectorAll('#mobile-menu a[href="/cart"]').forEach(link => {
@@ -3727,7 +3727,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="text-right">
                                 <span class="font-headline-sm text-secondary block font-bold tabular-nums">Starting from ${formatStartingPrice(product.startingPrice)}</span>
-                                <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add ${escapeHTML(product.name)} to cart" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
+                                <button type="button" data-add-to-cart="${product.id}" aria-controls="sideCart" aria-label="Add to Cart: ${escapeHTML(product.name)}" class="mt-base flex items-center gap-xs text-secondary font-label-md group/btn bg-white/70 hover:bg-secondary hover:text-white px-4 py-2 rounded-full transition-colors border border-secondary shadow-sm min-h-[44px]">
                                     Add to Cart <span class="material-symbols-outlined" data-icon="add" aria-hidden="true">add</span>
                                 </button>
                             </div>
