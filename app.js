@@ -813,7 +813,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Meta Pixel standard events matching our GA4 events (only the ones below are sent to Meta)
+    function trackMetaEvent(eventName, params = {}) {
+        if (typeof window.fbq !== 'function') return;
+        let metaEvent = null;
+        let metaParams = {};
+        if (eventName === 'view_item') {
+            metaEvent = 'ViewContent';
+            metaParams = { content_ids: [params.item_id], content_name: params.item_name, content_category: params.item_category, content_type: 'product', value: params.value, currency: params.currency };
+        } else if (eventName === 'add_to_cart') {
+            metaEvent = 'AddToCart';
+            metaParams = { content_ids: [params.item_id], content_name: params.item_name, content_category: params.item_category, content_type: 'product', value: params.value, currency: params.currency };
+        } else if (eventName === 'whatsapp_checkout_click') {
+            metaEvent = 'InitiateCheckout';
+            metaParams = { value: params.value, currency: params.currency, num_items: params.item_count };
+        } else if (eventName === 'custom_order_submit') {
+            metaEvent = 'Lead';
+            metaParams = { content_name: params.order_type };
+        } else if (eventName === 'contact_whatsapp_click') {
+            metaEvent = 'Contact';
+        }
+        if (metaEvent) window.fbq('track', metaEvent, metaParams);
+    }
+
+    function trackPageView() {
+        // GA4 and Clarity follow history changes on their own; Meta Pixel needs a manual PageView.
+        if (typeof window.fbq === 'function') window.fbq('track', 'PageView');
+    }
+
     function trackEvent(eventName, params = {}) {
+        trackMetaEvent(eventName, params);
         if (window.gtag && typeof window.gtag === "function") {
             window.gtag("event", eventName, params);
             return;
@@ -988,6 +1017,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (route === currentRoute) return;
         const method = action === 'replace' ? 'replaceState' : 'pushState';
         window.history[method]({ screenId, targetPath }, '', route);
+        if (method === 'pushState') trackPageView();
     }
 
     function getLegacyHashSearch(hash) {
@@ -1246,6 +1276,23 @@ document.addEventListener('DOMContentLoaded', () => {
         heading.focus({ preventScroll: true });
     }
 
+    let lastProductViewKey = '';
+    let lastProductViewTime = 0;
+    function trackProductView(product) {
+        // renderProductDetailScreen can run more than once per visit; skip repeats of the same product within 2s
+        const now = Date.now();
+        if (lastProductViewKey === product.id && now - lastProductViewTime < 2000) return;
+        lastProductViewKey = product.id;
+        lastProductViewTime = now;
+        trackEvent('view_item', {
+            item_id: product.id,
+            item_name: product.name,
+            item_category: product.category,
+            value: getSafePrice(product.startingPrice),
+            currency: 'INR'
+        });
+    }
+
     function renderProductDetailScreen(pathname = window.location.pathname) {
         const match = pathname.match(/^\/products?\/([^/?#]+)/);
         if (!match) return;
@@ -1254,6 +1301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!product) return;
 
         detailCurrentProduct = product;
+        trackProductView(product);
         detailSelectedQty = 1;
         detailSelectedAddons = { card: false, fairyLights: false };
 
@@ -1628,6 +1676,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Popstate listener to coordinate browser forward/backward operations
     window.addEventListener('popstate', () => {
+        trackPageView();
         const targetScreenId = getScreenIdFromPath(window.location.pathname) || 'screen-home';
         if (!document.getElementById(targetScreenId)) {
             window.location.reload();

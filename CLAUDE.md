@@ -15,10 +15,10 @@
 | 1 | Copy fixes | docs/claude/prompts-upgrade-round.md, "Prompt 1" | copy/upgrade-1 | Prompt 1: copy fixes |
 | 2 | SEO upgrades (E9 parked) | docs/claude/prompts-upgrade-round.md, "Prompt 2" | seo/upgrade-2 | Prompt 2: SEO upgrades |
 | 3 | UI/UX upgrades | docs/claude/prompts-upgrade-round.md, "Prompt 3" | ui/upgrade-3 | Prompt 3: UI/UX upgrades |
-| T | Tracking (GA4 events, Clarity, Meta Pixel) | NOT DRAFTED (needs Clarity ID, Pixel ID from Saud) | - | - |
+| T | Tracking (GA4 events, Clarity, Meta Pixel) | docs/claude/prompt-T-tracking.md | claude/relaxed-feynman-uwpp3o | Prompt T: Tracking |
 | - | New Sunflower + Lily bouquets | PARKED (needs new product images) | - | - |
 
-After task 3: stop and tell Saud the queue is done; new prompts come from his planning chat.
+After task T: stop and tell Saud the queue is done; new prompts come from his planning chat.
 
 ## Project
 - Handmade crochet gifts. Site: https://www.bloomycocoon.com (www is canonical). Based in Mampad, Malappuram, Kerala.
