@@ -267,6 +267,15 @@ export const CATEGORY_PAGES = {
   'screen-crochet-gift-combos': 'gift-combos',
 };
 
+export function getMatchingOccasions(productId) {
+  return Object.entries(OCCASION_PRODUCTS)
+    .filter(([, ids]) => ids.includes(productId))
+    .map(([screenId]) => ({
+      path: ROUTE_CONTENT[screenId].path,
+      label: ROUTE_CONTENT[screenId].breadcrumbName,
+    }));
+}
+
 const CATEGORY_SCREEN_BY_ID = Object.fromEntries(
   Object.entries(CATEGORY_PAGES).map(([screenId, categoryId]) => [categoryId, screenId]),
 );
@@ -357,6 +366,37 @@ export function getCategoryLabel(categoryId) {
   return CATEGORY_LABELS[categoryId] || 'Handmade';
 }
 
+export const CATEGORY_PRODUCT_FAQS = {
+  bouquets: [
+    ['Are there standard sizes for bouquets?', 'No, there are no standard sizes — stem count and size are confirmed with you on WhatsApp.'],
+    ['How early should I order for an anniversary?', 'We recommend ordering at least 12–14 days ahead for anniversary gifting.'],
+  ],
+  plushies: [
+    ['Can I add a note card or fairy lights with this plushie?', 'Yes, a handwritten note card and warm fairy lights (with battery) can be added as gift add-ons.'],
+    ['What if my plushie arrives damaged?', 'Please contact us within 48 hours of delivery with clear photos and an unboxing video.'],
+  ],
+  keychains: [
+    ['Is this keychain available in a fixed size?', 'There are no standard sizes — size is confirmed with you on WhatsApp.'],
+    ['Can I order keychains in bulk for a party?', 'Yes, quantity and colours for bulk orders are confirmed directly on WhatsApp.'],
+  ],
+  'baby-gifts': [
+    ['Are standard sizes available for baby items?', 'No, there are no standard sizes — sizing is confirmed with you on WhatsApp to fit your little one.'],
+    ['What if the baby gift arrives damaged?', 'Please contact us within 48 hours of delivery with clear photos and an unboxing video.'],
+  ],
+  accessories: [
+    ['Does the yarn come in a specific brand or type?', "Yarn varies by preference and availability — we don't commit to a specific brand or type."],
+    ['Can I add a gift note card with this accessory?', 'Yes, a handwritten note card can be added as a gift add-on.'],
+  ],
+  'home-decor': [
+    ['Can I get this in a custom size for my space?', 'There are no standard sizes — size is confirmed with you on WhatsApp to fit your space.'],
+    ['What if my home decor piece arrives damaged?', 'Please contact us within 48 hours of delivery with clear photos and an unboxing video.'],
+  ],
+  'gift-combos': [
+    ["Can I customize what's included in this combo?", 'Yes, the mix of items in a combo is confirmed with you directly on WhatsApp.'],
+    ['Can I add a note card or fairy lights to this combo?', 'Yes, both can be added as gift add-ons at checkout.'],
+  ],
+};
+
 export function getCategoryPath(categoryId) {
   const screenId = CATEGORY_SCREEN_BY_ID[categoryId];
   return screenId && ROUTE_CONTENT[screenId] ? ROUTE_CONTENT[screenId].path : '/collections';
@@ -366,12 +406,34 @@ export function getProductCanonical(productId) {
   return `${SITE_ORIGIN}/products/${productId}`;
 }
 
+export function buildProductTitle(name) {
+  const prefixed = /crochet/i.test(name) ? name : `Crochet ${name}`;
+  const full = `${prefixed} | Handmade in Kerala | BloomyCocoon`;
+  return full.length > 60 ? `${prefixed} | Handmade in Kerala` : full;
+}
+
+export function buildProductDescription(name, description, price) {
+  const safePrice = Number(price) || 149;
+  const prefix = `${name}. `;
+  const suffix = ` Starting from ₹${safePrice}. Made to order in Kerala, customize on WhatsApp.`;
+  let body = (description || `Handmade crochet ${name} crafted in Kerala.`).trim();
+
+  let full = `${prefix}${body}${suffix}`;
+  if (full.length > 160) {
+    const maxBodyLen = 160 - prefix.length - suffix.length;
+    body = maxBodyLen > 0
+      ? body.slice(0, maxBodyLen).replace(/\s+\S*$/, '').replace(/[.,;:\s]+$/, '')
+      : '';
+    full = `${prefix}${body}${suffix}`.replace(/\s{2,}/g, ' ').trim();
+  }
+  return full;
+}
+
 export function getProductRouteMetadata(product) {
   const safePrice = Number(product.startingPrice) || 149;
-  const desc = product.description ? product.description.trim() : `Handmade crochet ${product.name} crafted in Kerala.`;
   return {
-    title: `${product.name} - Handmade Crochet Gift in Kerala | BloomyCocoon`,
-    description: `${desc} Handmade to order in Kerala. Starting from ₹${safePrice}. Order & customize on WhatsApp.`,
+    title: buildProductTitle(product.name),
+    description: buildProductDescription(product.name, product.description, safePrice),
     canonical: getProductCanonical(product.id),
     image: product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`,
     category: CATEGORY_LABELS[product.category] || 'Handmade Gift',

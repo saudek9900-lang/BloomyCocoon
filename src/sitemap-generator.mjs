@@ -90,15 +90,12 @@ function escapeXml(str) {
 }
 
 export function generateSitemapXml(catalog, defaultDate = EXISTING_ROUTES_LASTMOD, blogPosts = []) {
-  // Existing routes keep their stable committed lastmod
-  const existingRouteLastMod = EXISTING_ROUTES_LASTMOD;
-
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
   xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
 
   for (const route of CORE_ROUTES) {
-    const routeLastMod = existingRouteLastMod;
+    const routeLastMod = getFileLastModDate(route.sourceFile, defaultDate);
 
     xml += '  <url>\n';
     xml += `    <loc>${SITE_ORIGIN}${route.path}</loc>\n`;
@@ -152,10 +149,11 @@ export function generateSitemapXml(catalog, defaultDate = EXISTING_ROUTES_LASTMO
   }
 
   if (Array.isArray(catalog)) {
+    const productLastMod = getFileLastModDate('src/catalog.json', defaultDate);
     for (const product of catalog) {
       xml += '  <url>\n';
       xml += `    <loc>${SITE_ORIGIN}/products/${product.id}</loc>\n`;
-      xml += `    <lastmod>${existingRouteLastMod}</lastmod>\n`;
+      xml += `    <lastmod>${productLastMod}</lastmod>\n`;
       xml += '    <changefreq>weekly</changefreq>\n';
       xml += '    <priority>0.80</priority>\n';
       if (product.image) {

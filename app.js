@@ -5,8 +5,12 @@ import {
     SITE_ORIGIN,
     getCategoryPath,
     getProductSchemaGraph,
-    getRouteSchemaGraph
+    getRouteSchemaGraph,
+    buildProductTitle,
+    buildProductDescription,
+    getMatchingOccasions
 } from './src/route-content.mjs';
+import { getProductAltText } from './src/product-cards.mjs';
 
 /* BloomyCocoon Main Application Controller */
 
@@ -1000,8 +1004,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const product = slug ? collectionProducts.find(p => p.id === slug) : null;
             if (product) {
                 const safePrice = Number(product.startingPrice) || 149;
-                const pageTitle = `${product.name} - Handmade Crochet Gift in Kerala | BloomyCocoon`;
-                const pageDesc = `${product.description} Handmade to order in Kerala. Starting from ₹${safePrice}. Order & customize on WhatsApp.`;
+                const pageTitle = buildProductTitle(product.name);
+                const pageDesc = buildProductDescription(product.name, product.description, safePrice);
                 const canonicalUrl = `${SITE_ORIGIN}/products/${product.id}`;
                 const imageUrl = product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`;
 
@@ -1283,7 +1287,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (imgEl) {
             imgEl.src = imagePath;
-            imgEl.alt = `${product.name} - Handmade crochet gift by BloomyCocoon`;
+            imgEl.alt = getProductAltText(product);
         }
 
         const lightboxImg = document.getElementById('lightbox-img');
@@ -1314,6 +1318,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const descEl = document.getElementById('detail-product-desc');
         if (descEl) descEl.textContent = product.description || 'Handcrafted to order with premium yarn.';
+
+        const occasionLinksEl = document.getElementById('detail-occasion-links');
+        if (occasionLinksEl) {
+            const matchingOccasions = getMatchingOccasions(product.id);
+            occasionLinksEl.innerHTML = matchingOccasions.length > 0
+                ? `Also a great fit for: ${matchingOccasions.map(o => `<a href="${escapeHTML(o.path)}" class="text-secondary font-semibold hover:underline">${escapeHTML(o.label)}</a>`).join(' &middot; ')}`
+                : '';
+        }
 
         const addBtn = document.getElementById('detail-add-to-cart-btn');
         if (addBtn) addBtn.setAttribute('data-add-to-cart', product.id);
@@ -3675,19 +3687,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function getCategoryLabel(catId) {
         const cat = collectionCategories.find(c => c.id === catId);
         return cat ? cat.label : "Handmade";
-    }
-
-    function getProductAltText(product) {
-        const categoryAlt = {
-            "bouquets": "Handmade crochet bouquet for gifting in Kerala",
-            "plushies": "Crochet plushie handmade gift by BloomyCocoon",
-            "keychains": "Handmade crochet keychain for small gifts in India",
-            "baby-gifts": "Baby crochet gift handmade in Kerala",
-            "accessories": "Handmade crochet accessory by BloomyCocoon",
-            "home-decor": "Crochet home decor piece by BloomyCocoon",
-            "gift-combos": "Handmade crochet gift combo for birthdays and anniversaries"
-        };
-        return `${product.name} - ${categoryAlt[product.category] || 'Handmade crochet gift by BloomyCocoon'}`;
     }
 
     function formatPrice(price) {
