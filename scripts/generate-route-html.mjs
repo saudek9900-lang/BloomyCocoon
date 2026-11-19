@@ -7,6 +7,7 @@ import {
   STATIC_ROUTE_SCREEN_IDS,
   OCCASION_PRODUCTS,
   CATEGORY_PAGES,
+  CATEGORY_PRODUCT_FAQS,
   getCategoryLabel,
   getCategoryPath,
   getRouteMetadata,
@@ -475,6 +476,25 @@ function injectProductDetail(html, product, catalog) {
     `$1\n${relatedHtml}\n$3`
   );
 
+  // 13. Category-specific FAQs, appended after the shared FAQ items
+  const categoryFaqs = CATEGORY_PRODUCT_FAQS[product.category] || [];
+  if (categoryFaqs.length > 0) {
+    const categoryFaqHtml = categoryFaqs.map(([question, answer]) => `
+                        <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
+                            <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
+                                <span>${escapeHtml(question)}</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
+                            </summary>
+                            <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
+                                ${escapeHtml(answer)}
+                            </p>
+                        </details>`).join('');
+    next = next.replace(
+      /(<div\b[^>]*\bid=["']detail-faq-accordion["'][^>]*>)([\s\S]*?)(<\/div>)/i,
+      `$1$2${categoryFaqHtml}\n                    $3`
+    );
+  }
+
   return next;
 }
 
@@ -549,7 +569,7 @@ async function writeProductHtml(baseHtml, product, catalog) {
   const detailHtml = injectProductDetail(baseHtml, product, catalog);
   const initialHtml = ensureUnifiedFooter(isolateScreen(detailHtml, 'screen-product-detail'));
   const metaHtml = updateMetadata(initialHtml, metadata);
-  const finalHtml = insertProductSchema(metaHtml, product, baseHtml);
+  const finalHtml = insertProductSchema(metaHtml, product, detailHtml);
   const outputDir = path.join(DIST_DIR, 'products', product.id);
   await mkdir(outputDir, { recursive: true });
   await writeFile(path.join(outputDir, 'index.html'), finalHtml);
