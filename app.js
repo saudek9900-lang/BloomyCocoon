@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Single Crochet Rose",
     "category": "bouquets",
     "startingPrice": 149,
-    "image": "images/crochet_rose_bouquet_single-crochet-rose-landscape-generated.png",
+    "image": "images/crochet_rose_bouquet_single-crochet-rose-landscape.png",
     "badge": "Single Stem",
     "description": "Best for tiny gestures, student gifts and note-card add-ons, with colors confirmed on WhatsApp."
   },
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Single Crochet Tulip",
     "category": "bouquets",
     "startingPrice": 169,
-    "image": "images/crochet_tulip_bouquet_single-crochet-tulip-landscape-generated.png",
+    "image": "images/crochet_tulip_bouquet_single-crochet-tulip-landscape.png",
     "badge": "Fresh Pick",
     "description": "A cheerful single stem for birthdays, desk corners and surprises, with shade choices confirmed on WhatsApp."
   },
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Single Sunflower Stem",
     "category": "bouquets",
     "startingPrice": 199,
-    "image": "images/crochet_sunflower_bouquet_single-sunflower-stem-generated.png",
+    "image": "images/crochet_sunflower_bouquet_single-sunflower-stem.png",
     "badge": "Sunny",
     "description": "A sunny flower for desk corners, jars and small surprise gifts."
   },
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Octopus Plushie",
     "category": "plushies",
     "startingPrice": 399,
-    "image": "images/cozy_bear_plushie_octopus-plushie-generated.png",
+    "image": "images/cozy_bear_plushie_octopus-plushie.png",
     "description": "A tiny octopus plushie with soft tentacles and cheerful detail."
   },
   {
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Mini Pocket Plushies",
     "category": "plushies",
     "startingPrice": 299,
-    "image": "images/cozy_bear_plushie_mini-pocket-plushies-generated.png",
+    "image": "images/cozy_bear_plushie_mini-pocket-plushies.png",
     "badge": "Kept Favorite",
     "description": "Small pocket plushies for tiny gifting, students, desk friends and surprise add-ons."
   },
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Bunny Keychain",
     "category": "keychains",
     "startingPrice": 249,
-    "image": "images/mini_animal_keychain_bunny-keychain-generated.png",
+    "image": "images/mini_animal_keychain_bunny-keychain.png",
     "description": "A handcrafted bunny keychain featuring petite ears and a cozy yarn texture for backpacks, keys and thoughtful gift add-ons. Share your favorite shade on WhatsApp to personalize the finish."
   },
   {
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Cat Keychain",
     "category": "keychains",
     "startingPrice": 249,
-    "image": "images/mini_animal_keychain_cat-keychain-generated.png",
+    "image": "images/mini_animal_keychain_cat-keychain.png",
     "description": "A cute handmade cat keychain stitched in soft yarn for daily bags, keys and curated gift boxes. Customize the yarn shades on WhatsApp to create a sweet keepsake for friends or students."
   },
   {
@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Duck Keychain",
     "category": "keychains",
     "startingPrice": 249,
-    "image": "images/mini_animal_keychain_duck-keychain-generated.png",
+    "image": "images/mini_animal_keychain_duck-keychain.png",
     "description": "A cheerful crochet duck keychain bringing playful handmade charm to keys, pouches and small gifting moments. Confirm your preferred yarn colors on WhatsApp before stitching begins."
   },
   {
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Initial Letter Keychain",
     "category": "keychains",
     "startingPrice": 199,
-    "image": "images/heart_keychain_initial-letter-keychain-generated.png",
+    "image": "images/heart_keychain_initial-letter-keychain.png",
     "badge": "Personalized",
     "description": "A custom initial keychain for names, students, couples and handmade gift hampers."
   },
@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Custom Character Keychain",
     "category": "keychains",
     "startingPrice": 349,
-    "image": "images/mini_animal_keychain_custom-character-keychain-generated.png",
+    "image": "images/mini_animal_keychain_custom-character-keychain.png",
     "badge": "Custom",
     "description": "A character-inspired charm based on your idea or theme, with final details confirmed on WhatsApp."
   },
@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Baby Booties",
     "category": "baby-gifts",
     "startingPrice": 399,
-    "image": "images/crochet_bunny_plush_baby-booties-generated.png",
+    "image": "images/crochet_bunny_plush_baby-booties.png",
     "description": "Soft crochet booties for newborn gifting and baby showers, with gentle shades confirmed on WhatsApp."
   },
   {
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Baby Cap",
     "category": "baby-gifts",
     "startingPrice": 399,
-    "image": "images/crochet_headband_baby-cap-generated.png",
+    "image": "images/crochet_headband_baby-cap.png",
     "description": "A cozy handmade baby cap with custom color and sizing options."
   },
   {
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Baby Name Garland",
     "category": "baby-gifts",
     "startingPrice": 799,
-    "image": "images/crochet_wall_hanging_baby-name-garland-generated.png",
+    "image": "images/crochet_wall_hanging_baby-name-garland.png",
     "badge": "Name Custom",
     "description": "A custom name garland for nurseries, baby showers and keepsake corners, with final quote confirmed on WhatsApp."
   },
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Baby Shower Mini Set",
     "category": "baby-gifts",
     "startingPrice": 1299,
-    "image": "images/crochet_bunny_plush_baby-shower-mini-set-generated.png",
+    "image": "images/crochet_bunny_plush_baby-shower-mini-set.png",
     "badge": "Shower Gift",
     "description": "A curated mini baby set for shower tables, hampers and family gifting."
   },
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Newborn Gift Hamper",
     "category": "baby-gifts",
     "startingPrice": 1999,
-    "image": "images/hero_crochet_scene_newborn-gift-hamper-generated.png",
+    "image": "images/hero_crochet_scene_newborn-gift-hamper.png",
     "badge": "Hamper",
     "featured": true,
     "description": "A larger newborn hamper with baby pieces, plush details and packaging, finalized personally on WhatsApp."
@@ -436,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Crochet Bow Clip",
     "category": "accessories",
     "startingPrice": 149,
-    "image": "images/crochet_headband_crochet-bow-clip-generated.png",
+    "image": "images/crochet_headband_crochet-bow-clip.png",
     "description": "A sweet bow clip for soft everyday styling, return gifts and custom shade requests."
   },
   {
@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Crochet Earrings",
     "category": "accessories",
     "startingPrice": 199,
-    "image": "images/crochet_flower_keychain_crochet-earrings-generated.png",
+    "image": "images/crochet_flower_keychain_crochet-earrings.png",
     "description": "Delicate crochet earrings for a soft handmade accessory moment."
   },
   {
@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Phone Charm",
     "category": "accessories",
     "startingPrice": 199,
-    "image": "images/crochet_bag_charm_phone-charm-generated.png",
+    "image": "images/crochet_bag_charm_phone-charm.png",
     "description": "A petite crochet phone charm crafted from soft handmade yarn for personal daily styling and cute gift add-ons. Select your favorite shade combination on WhatsApp before making starts."
   },
   {
@@ -554,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Crochet Garland",
     "category": "home-decor",
     "startingPrice": 799,
-    "image": "images/crochet_wall_hanging_crochet-garland-generated.png",
+    "image": "images/crochet_wall_hanging_crochet-garland.png",
     "description": "A handmade garland for rooms, celebrations, nursery corners and gentle festive decor."
   },
   {
@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Door Hanging",
     "category": "home-decor",
     "startingPrice": 699,
-    "image": "images/crochet_wall_hanging_door-hanging-generated.png",
+    "image": "images/crochet_wall_hanging_door-hanging.png",
     "description": "A soft door hanging for festive, nursery, or everyday decor."
   },
   {
@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Custom Name Decor",
     "category": "home-decor",
     "startingPrice": 999,
-    "image": "images/crochet_wall_hanging_custom-name-decor-generated.png",
+    "image": "images/crochet_wall_hanging_custom-name-decor.png",
     "badge": "Name Custom",
     "description": "A personalized crochet name decor piece for rooms, doors, baby gifting and keepsakes."
   },
@@ -649,7 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Couple Keychain Combo",
     "category": "gift-combos",
     "startingPrice": 499,
-    "image": "images/heart_keychain_couple-keychain-combo-generated.png",
+    "image": "images/heart_keychain_couple-keychain-combo.png",
     "description": "A couple-friendly charm combo with coordinated handmade keychains."
   },
   {
@@ -673,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Anniversary Gift Box",
     "category": "gift-combos",
     "startingPrice": 1499,
-    "image": "images/mixed_luxury_bouquet_anniversary-gift-box-generated.png",
+    "image": "images/mixed_luxury_bouquet_anniversary-gift-box.png",
     "badge": "Anniversary",
     "description": "An anniversary box with crochet keepsakes, flowers and gift-ready packaging."
   },
@@ -682,7 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "name": "Custom Crochet Hamper",
     "category": "gift-combos",
     "startingPrice": 1999,
-    "image": "images/hero_crochet_scene_custom-crochet-hamper-generated.png",
+    "image": "images/hero_crochet_scene_custom-crochet-hamper.png",
     "badge": "Custom Hamper",
     "featured": true,
     "description": "A fully custom hamper combining crochet pieces, notes, flowers and packaging, with final quote confirmed on WhatsApp."
