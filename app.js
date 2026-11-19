@@ -886,8 +886,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Custom Order step state
     let orderStep = 1;
     const orderData = {
-        type: 'Bouquet',
-        color: 'Blush Pink',
+        type: null,
+        color: null,
         notes: '',
         name: ''
     };
@@ -3137,8 +3137,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const previewNotes = document.getElementById('preview-notes');
         const previewImage = document.getElementById('preview-image');
 
-        if (previewType) previewType.innerText = orderData.type;
-        if (previewColor) previewColor.innerText = orderData.color || "Blush Pink";
+        if (previewType) previewType.innerText = orderData.type || "Not chosen yet";
+        if (previewColor) previewColor.innerText = orderData.color || "Not chosen yet";
         
         if (previewNotes) {
             const notesInput = document.getElementById('custom-notes');
@@ -3195,14 +3195,14 @@ document.addEventListener('DOMContentLoaded', () => {
             successCard.classList.remove('hidden');
             
             // Re-render final custom details
-            document.getElementById('final-type').innerText = orderData.type;
+            document.getElementById('final-type').innerText = orderData.type || "Not chosen yet";
             
             showToast("✨ Custom order request submitted!");
             
             let message = "Hello BloomyCocoon! 🌸 I would like to place a custom crochet order.\n\n";
             message += `Customer name: ${orderData.name}\n`;
-            message += `Base type: ${orderData.type}\n`;
-            message += `Palette preference: ${orderData.color || "Blush Pink"}\n`;
+            message += `Base type: ${orderData.type || "Not chosen yet"}\n`;
+            message += `Palette preference: ${orderData.color || "Not chosen yet"}\n`;
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
             message += "Source: Custom Order Page\n\n";
             message += "Please help me finalize the design, Starting from price, final quote, made and delivered in 1–2 weeks, and delivery across Kerala and India.\n\n";
@@ -3232,12 +3232,19 @@ document.addEventListener('DOMContentLoaded', () => {
             window.clearFieldError(orderNameInput, 'order-name-error');
         }
         
-        orderData.type = 'Bouquet';
-        orderData.color = 'Blush Pink';
+        orderData.type = null;
+        orderData.color = null;
         orderData.notes = '';
         orderData.name = '';
-        
-        selectOrderType('Bouquet');
+
+        document.querySelectorAll('.type-pill').forEach(pill => {
+            pill.classList.remove('bg-secondary', 'text-on-secondary');
+            pill.classList.add('bg-primary-container', 'text-on-primary-container');
+        });
+        document.querySelectorAll('.color-swatch-btn').forEach(btn => {
+            btn.classList.remove('bg-secondary', 'text-white', 'border-secondary', 'shadow-sm');
+            btn.classList.add('bg-white', 'text-on-surface', 'border-outline-variant/30');
+        });
         updateStepIndicatorUI();
         updateLivePreview();
     };

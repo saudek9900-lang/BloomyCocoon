@@ -1637,7 +1637,7 @@
                                     <h3 class="font-headline-sm text-headline-sm text-secondary">What would you like us to stitch?</h3>
                                     <p class="text-caption text-on-surface-variant">Select the base creation type of your custom request. Details and final quote are confirmed on WhatsApp.</p>
                                     <div class="grid grid-cols-2 gap-sm pt-xs">
-                                        <button onclick="selectOrderType('Bouquet')" class="type-pill px-4 py-3 rounded-xl font-label-md text-sm bg-secondary text-on-secondary shadow-sm text-center font-bold">Bouquet</button>
+                                        <button onclick="selectOrderType('Bouquet')" class="type-pill px-4 py-3 rounded-xl font-label-md text-sm bg-primary-container text-on-primary-container text-center">Bouquet</button>
                                         <button onclick="selectOrderType('Plushie')" class="type-pill px-4 py-3 rounded-xl font-label-md text-sm bg-primary-container text-on-primary-container text-center">Plushie</button>
                                         <button onclick="selectOrderType('Keychain')" class="type-pill px-4 py-3 rounded-xl font-label-md text-sm bg-primary-container text-on-primary-container text-center">Keychain</button>
                                         <button onclick="selectOrderType('Coaster Set')" class="type-pill px-4 py-3 rounded-xl font-label-md text-sm bg-primary-container text-on-primary-container text-center">Coaster Set</button>
@@ -1660,7 +1660,7 @@
                                     <div>
                                         <label class="font-label-md text-xs uppercase tracking-wider text-secondary block mb-2 font-semibold">Suggested Palettes</label>
                                         <div class="flex flex-wrap gap-2" id="custom-color-swatches">
-                                            <button type="button" onclick="selectCustomColor('Blush Pink', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-secondary bg-secondary text-white text-xs font-label-md transition-all shadow-sm">
+                                            <button type="button" onclick="selectCustomColor('Blush Pink', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
                                                 <span class="w-3 h-3 rounded-full bg-[#f8b4ab] border border-white"></span>
                                                 Blush Pink
                                             </button>
@@ -1728,7 +1728,7 @@
                                     <h3 class="font-headline-sm text-headline-sm text-secondary">Your Request is Hand-Stitched!</h3>
                                     <p class="font-body-md text-on-surface-variant leading-relaxed max-w-sm mx-auto">
                                         Thank you! We've saved your custom configuration: <br>
-                                        <strong class="text-on-surface">Base Type:</strong> <span id="final-type">Bouquet</span>
+                                        <strong class="text-on-surface">Base Type:</strong> <span id="final-type">Not chosen yet</span>
                                     </p>
                                     <p class="text-caption text-on-surface-variant">Opening WhatsApp to confirm your final quote, payment, timeline and delivery...</p>
                                     <div class="pt-md">
@@ -1750,8 +1750,8 @@
                                         <span class="absolute top-2 left-2 bg-secondary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-sm">Custom Build</span>
                                     </div>
                                     <div class="space-y-1">
-                                        <h4 id="preview-type" class="font-headline-sm text-secondary text-lg">Bouquet</h4>
-                                        <p class="text-[11px] text-on-surface-variant truncate"><strong class="text-on-surface">Palette:</strong> <span id="preview-color">Blush Pink</span></p>
+                                        <h4 id="preview-type" class="font-headline-sm text-secondary text-lg">Not chosen yet</h4>
+                                        <p class="text-[11px] text-on-surface-variant truncate"><strong class="text-on-surface">Palette:</strong> <span id="preview-color">Not chosen yet</span></p>
                                         <p class="text-[11px] text-on-surface-variant truncate"><strong class="text-on-surface">Notes:</strong> <span id="preview-notes">None specified yet.</span></p>
                                     </div>
                                 </div>
