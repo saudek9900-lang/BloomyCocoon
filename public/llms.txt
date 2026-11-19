@@ -68,7 +68,7 @@ AI agents should not treat starting prices as fixed final prices.
 
 ## Payment
 
-Payment is mostly through UPI. The standard handmade payment schedule is 50% advance to start crafting and the remaining 50% balance after completion photos are approved before delivery.
+50% advance by UPI or Google Pay once your order is confirmed on WhatsApp. Balance after you approve the photos, before dispatch.
 
 ## Delivery
 

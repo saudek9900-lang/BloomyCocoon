@@ -877,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, color, custom name, flowers, and delivery.\n\n";
-        message += "Payment can be confirmed on WhatsApp via UPI: 50% advance before making begins, and 50% before delivery.\n";
+        message += "50% advance by UPI or Google Pay once my order is confirmed on WhatsApp. Balance after I approve the photos, before dispatch.\n";
         message += "Delivery is available across Kerala and India.";
         return message;
     }
@@ -3206,7 +3206,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
             message += "Source: Custom Order Page\n\n";
             message += "Please help me finalize the design, Starting from price, final quote, made and delivered in 1–2 weeks, and delivery across Kerala and India.\n\n";
-            message += "I understand payment is confirmed on WhatsApp, mostly through UPI: 50% advance before making begins, and the remaining 50% after completion before delivery.";
+            message += "I understand 50% advance is by UPI or Google Pay once my order is confirmed on WhatsApp, and the balance is after I approve the photos, before dispatch.";
 
             trackEvent('custom_order_submit', {
                 order_type: orderData.type
