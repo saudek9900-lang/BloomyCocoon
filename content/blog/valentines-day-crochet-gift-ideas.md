@@ -4,6 +4,7 @@ description: "Find meaningful Valentine's Day crochet gift ideas, from flowers t
 slug: "valentines-day-crochet-gift-ideas"
 date: "2026-11-13"
 image: "images/strawberry_keychain.png"
+imageAlt: "A red and green handmade crochet strawberry keychain with a metal keyring"
 related:
   - "/crochet-bouquets"
   - "/crochet-plushies"

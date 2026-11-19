@@ -320,7 +320,7 @@ export function generateBlogIndexHtml({ baseHtml, posts, unifiedFooterHtml }) {
         return `
       <article class="bg-surface-container-low rounded-2xl md:rounded-3xl border border-outline-variant/20 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
         <a href="/blog/${post.slug}" class="block relative aspect-[16/9] overflow-hidden bg-surface-container">
-          ${renderResponsivePicture(post.image, post.title, isAboveFold)}
+          ${renderResponsivePicture(post.image, post.imageAlt || post.title, isAboveFold)}
         </a>
         <div class="p-5 sm:p-6 md:p-8 flex flex-col justify-between flex-1">
           <div>
@@ -544,7 +544,7 @@ export function generateBlogPostHtml({ baseHtml, post, allPosts, unifiedFooterHt
       <article class="max-w-4xl mx-auto px-4 sm:px-6 md:px-lg py-10 md:py-14">
         <!-- Featured Image -->
         <div class="mb-8 md:mb-12 rounded-2xl md:rounded-3xl overflow-hidden shadow-sm">
-          ${renderResponsivePicture(post.image, post.title, true)}
+          ${renderResponsivePicture(post.image, post.imageAlt || post.title, true)}
         </div>
 
         <!-- Markdown Body -->

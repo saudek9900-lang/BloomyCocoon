@@ -4,6 +4,7 @@ description: "Learn what amigurumi means, how crochet plushies are made in conti
 slug: "what-is-amigurumi-crochet-plushies-guide"
 date: "2026-11-13"
 image: "images/crochet_bunny_plush.png"
+imageAlt: "A cream handmade crochet bunny plushie with a pink bow sitting on a wooden table"
 related:
   - "/crochet-plushies"
   - "/crochet-keychains"

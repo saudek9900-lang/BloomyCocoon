@@ -85,17 +85,19 @@ function getCategoryLabel(catId) {
   return cat ? cat.label : 'Handmade';
 }
 
-function getProductAltText(product) {
-  const categoryAlt = {
-    bouquets: 'Handmade crochet bouquet for gifting in Kerala',
-    plushies: 'Crochet plushie handmade gift by BloomyCocoon',
-    keychains: 'Handmade crochet keychain for small gifts in India',
-    'baby-gifts': 'Baby crochet gift handmade in Kerala',
-    accessories: 'Handmade crochet accessory by BloomyCocoon',
-    'home-decor': 'Crochet home decor piece by BloomyCocoon',
-    'gift-combos': 'Handmade crochet gift combo for birthdays and anniversaries'
-  };
-  return `${product.name} - ${categoryAlt[product.category] || 'Handmade crochet gift by BloomyCocoon'}`;
+const CATEGORY_SINGULAR = {
+  bouquets: 'bouquet',
+  plushies: 'plushie',
+  keychains: 'keychain',
+  'baby-gifts': 'baby gift',
+  accessories: 'accessory',
+  'home-decor': 'home decor piece',
+  'gift-combos': 'gift combo',
+};
+
+export function getProductAltText(product) {
+  const categorySingular = CATEGORY_SINGULAR[product.category] || 'gift';
+  return `${product.name} – handmade crochet ${categorySingular} by BloomyCocoon`;
 }
 
 export function getProductCardMarkup(product) {

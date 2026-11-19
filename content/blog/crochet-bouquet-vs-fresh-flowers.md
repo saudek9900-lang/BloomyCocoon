@@ -4,6 +4,7 @@ description: "Compare crochet bouquets with fresh flowers on keepsake value, car
 slug: "crochet-bouquet-vs-fresh-flowers"
 date: "2026-11-13"
 image: "images/mixed_luxury_bouquet.png"
+imageAlt: "A handmade crochet bouquet of pink and cream roses wrapped in kraft paper and tied with twine"
 related:
   - "/crochet-bouquets"
   - "/crochet-care"

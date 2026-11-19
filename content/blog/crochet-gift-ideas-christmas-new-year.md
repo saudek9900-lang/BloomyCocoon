@@ -4,6 +4,7 @@ description: "Explore handmade crochet gift ideas for the holiday season, from p
 slug: "crochet-gift-ideas-christmas-new-year"
 date: "2026-11-13"
 image: "images/hero_crochet_scene.png"
+imageAlt: "Crochet flowers and a cream teddy bear plushie laid out on a table with yarn balls and a vase of fresh flowers"
 related:
   - "/crochet-plushies"
   - "/crochet-gift-combos"

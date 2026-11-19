@@ -19,6 +19,7 @@ import {
   renderCollectionProductsHtml,
   getProductImage,
   getResponsiveWebpSrcset,
+  getProductAltText,
 } from '../src/product-cards.mjs';
 import { generateSitemapXml, generateLlmsFullTxt } from '../src/sitemap-generator.mjs';
 import { generateGoogleMerchantXml } from '../src/merchant-feed-generator.mjs';
@@ -399,7 +400,7 @@ function injectProductDetail(html, product, catalog) {
   const webpThumb = `/${image.replace(/^\//, '').replace(/\.png$/i, '-320.webp')}`;
   const pictureMarkup = `<picture id="detail-product-picture" class="contents">
                                 <source srcset="${escapeHtml(webpSrcset)}" sizes="(min-width: 768px) 50vw, 92vw" type="image/webp">
-                                <img id="detail-product-img" src="${escapeHtml(webpFull)}" alt="${escapeHtml(product.name)} - Handmade crochet gift by BloomyCocoon" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="600" height="450" loading="eager" fetchpriority="high" decoding="async">
+                                <img id="detail-product-img" src="${escapeHtml(webpFull)}" alt="${escapeHtml(getProductAltText(product))}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="600" height="450" loading="eager" fetchpriority="high" decoding="async">
                             </picture>`;
   next = next.replace(/<picture\b[^>]*\bid=["']detail-product-picture["'][^>]*>[\s\S]*?<\/picture>/i, pictureMarkup);
 

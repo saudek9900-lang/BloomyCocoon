@@ -9,6 +9,7 @@ import {
     buildProductTitle,
     buildProductDescription
 } from './src/route-content.mjs';
+import { getProductAltText } from './src/product-cards.mjs';
 
 /* BloomyCocoon Main Application Controller */
 
@@ -1285,7 +1286,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (imgEl) {
             imgEl.src = imagePath;
-            imgEl.alt = `${product.name} - Handmade crochet gift by BloomyCocoon`;
+            imgEl.alt = getProductAltText(product);
         }
 
         const lightboxImg = document.getElementById('lightbox-img');
@@ -3677,19 +3678,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function getCategoryLabel(catId) {
         const cat = collectionCategories.find(c => c.id === catId);
         return cat ? cat.label : "Handmade";
-    }
-
-    function getProductAltText(product) {
-        const categoryAlt = {
-            "bouquets": "Handmade crochet bouquet for gifting in Kerala",
-            "plushies": "Crochet plushie handmade gift by BloomyCocoon",
-            "keychains": "Handmade crochet keychain for small gifts in India",
-            "baby-gifts": "Baby crochet gift handmade in Kerala",
-            "accessories": "Handmade crochet accessory by BloomyCocoon",
-            "home-decor": "Crochet home decor piece by BloomyCocoon",
-            "gift-combos": "Handmade crochet gift combo for birthdays and anniversaries"
-        };
-        return `${product.name} - ${categoryAlt[product.category] || 'Handmade crochet gift by BloomyCocoon'}`;
     }
 
     function formatPrice(price) {

@@ -4,6 +4,7 @@ description: "Learn the key differences between crochet and knitting, from singl
 slug: "crochet-vs-knitting-difference"
 date: "2026-11-13"
 image: "images/about_process.png"
+imageAlt: "Close-up of hands crocheting a pink piece with a wooden hook and a ball of yarn on a table"
 related:
   - "/crochet-plushies"
   - "/crochet-bouquets"
