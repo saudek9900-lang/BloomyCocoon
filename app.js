@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "description": "A fully custom hamper combining crochet pieces, notes, flowers and packaging, with final quote confirmed on WhatsApp."
   }
 ];
-    const priceNote = "Final price may vary based on size, color, custom name, flowers, packaging, and delivery.";
+    const priceNote = "Final price may vary based on size, color, custom name, flowers, and delivery.";
     const categoryDescriptions = {
         "all": "Explore handmade crochet gifts from BloomyCocoon in Mampad, Malappuram, Kerala, India. Find crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and custom gift combos for birthdays, anniversaries, students, baby showers and surprise gifts, with delivery across Kerala and India.",
         "bouquets": "BloomyCocoon's crochet bouquets are handmade flowers that don't wilt for birthdays, anniversaries, couple gifts and soft surprises. Choose roses, tulips, sunflowers, lavender or custom bouquet styles, then confirm colors, Starting from price and final quote on WhatsApp before making begins.",
@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "baby-gifts": "Gentle baby crochet gifts for newborns, baby showers, naming moments and soft family keepsakes. Explore booties, caps, mittens, rattles, baby plushies, name garlands and baby gift sets, with sizing, colors, Starting from price and delivery confirmed on WhatsApp before making.",
         "accessories": "Handmade crochet accessories for soft everyday styling, small surprises and affordable gifting. Browse scrunchies, hair bands, bow clips, brooches, earrings, bracelets, bag charms, phone charms and pouches, with custom shades and final details confirmed through WhatsApp for Kerala and India orders.",
         "home-decor": "Cozy crochet home decor pieces for rooms, desks, cars, nursery corners and handmade housewarming gifts. Explore coasters, wall hangings, door hangings, car charms, garlands, plant holders and custom name decor made with a warm BloomyCocoon feel for personal spaces too.",
-        "gift-combos": "Gift combos and custom crochet hampers bring bouquets, plushies, keychains, notes and packaging together for birthdays, anniversaries, couple gifts, baby gifting and surprise moments. BloomyCocoon confirms the mix, Starting from price, final quote and delivery across Kerala and India on WhatsApp."
+        "gift-combos": "Gift combos and custom crochet hampers bring bouquets, plushies, keychains and notes together for birthdays, anniversaries, couple gifts, baby gifting and surprise moments. BloomyCocoon confirms the mix, Starting from price, final quote and delivery across Kerala and India on WhatsApp."
     };
 
     function getSafePrice(price) {
@@ -849,7 +849,7 @@ document.addEventListener('DOMContentLoaded', () => {
                           cartGiftAddons.fairyLights.enabled;
 
         if (hasAddons) {
-            message += `🎁 *Gift Packaging & Add-ons:*\n`;
+            message += `🎁 *Gift add-ons:*\n`;
             if (cartGiftAddons.card.enabled) {
                 message += `• Handwritten Calligraphy Card (+₹${cartGiftAddons.card.price})\n`;
                 if (cartGiftAddons.card.message && cartGiftAddons.card.message.trim()) {
@@ -876,8 +876,8 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `*Order Notes / Delivery Details:*\n${note}\n\n`;
         }
 
-        message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, color, custom name, flowers, packaging, and delivery.\n\n";
-        message += "Payment can be confirmed on WhatsApp via UPI: 50% advance before making begins, and 50% before delivery.\n";
+        message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, color, custom name, flowers, and delivery.\n\n";
+        message += "50% advance by UPI or Google Pay once my order is confirmed on WhatsApp. Balance after I approve the photos, before dispatch.\n";
         message += "Delivery is available across Kerala and India.";
         return message;
     }
@@ -886,8 +886,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Custom Order step state
     let orderStep = 1;
     const orderData = {
-        type: 'Bouquet',
-        color: 'Blush Pink',
+        type: null,
+        color: null,
         notes: '',
         name: ''
     };
@@ -3137,8 +3137,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const previewNotes = document.getElementById('preview-notes');
         const previewImage = document.getElementById('preview-image');
 
-        if (previewType) previewType.innerText = orderData.type;
-        if (previewColor) previewColor.innerText = orderData.color || "Blush Pink";
+        if (previewType) previewType.innerText = orderData.type || "Not chosen yet";
+        if (previewColor) previewColor.innerText = orderData.color || "Not chosen yet";
         
         if (previewNotes) {
             const notesInput = document.getElementById('custom-notes');
@@ -3195,18 +3195,18 @@ document.addEventListener('DOMContentLoaded', () => {
             successCard.classList.remove('hidden');
             
             // Re-render final custom details
-            document.getElementById('final-type').innerText = orderData.type;
+            document.getElementById('final-type').innerText = orderData.type || "Not chosen yet";
             
             showToast("✨ Custom order request submitted!");
             
             let message = "Hello BloomyCocoon! 🌸 I would like to place a custom crochet order.\n\n";
             message += `Customer name: ${orderData.name}\n`;
-            message += `Base type: ${orderData.type}\n`;
-            message += `Palette preference: ${orderData.color || "Blush Pink"}\n`;
+            message += `Base type: ${orderData.type || "Not chosen yet"}\n`;
+            message += `Palette preference: ${orderData.color || "Not chosen yet"}\n`;
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
             message += "Source: Custom Order Page\n\n";
-            message += "Please help me finalize the design, Starting from price, final quote, 1-2 week custom timeline, and delivery across Kerala and India.\n\n";
-            message += "I understand payment is confirmed on WhatsApp, mostly through UPI: 50% advance before making begins, and the remaining 50% after completion before delivery.";
+            message += "Please help me finalize the design, Starting from price, final quote, made and delivered in 1–2 weeks, and delivery across Kerala and India.\n\n";
+            message += "I understand 50% advance is by UPI or Google Pay once my order is confirmed on WhatsApp, and the balance is after I approve the photos, before dispatch.";
 
             trackEvent('custom_order_submit', {
                 order_type: orderData.type
@@ -3232,12 +3232,19 @@ document.addEventListener('DOMContentLoaded', () => {
             window.clearFieldError(orderNameInput, 'order-name-error');
         }
         
-        orderData.type = 'Bouquet';
-        orderData.color = 'Blush Pink';
+        orderData.type = null;
+        orderData.color = null;
         orderData.notes = '';
         orderData.name = '';
-        
-        selectOrderType('Bouquet');
+
+        document.querySelectorAll('.type-pill').forEach(pill => {
+            pill.classList.remove('bg-secondary', 'text-on-secondary');
+            pill.classList.add('bg-primary-container', 'text-on-primary-container');
+        });
+        document.querySelectorAll('.color-swatch-btn').forEach(btn => {
+            btn.classList.remove('bg-secondary', 'text-white', 'border-secondary', 'shadow-sm');
+            btn.classList.add('bg-white', 'text-on-surface', 'border-outline-variant/30');
+        });
         updateStepIndicatorUI();
         updateLivePreview();
     };
