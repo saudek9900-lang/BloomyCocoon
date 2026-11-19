@@ -893,10 +893,17 @@ document.addEventListener('DOMContentLoaded', () => {
         type: null,
         color: null,
         notes: '',
-        name: ''
+        name: '',
+        occasion: '',
+        neededBy: ''
     };
     let lastCartTrigger = null;
     let cartScrollY = 0;
+
+    const neededByFieldInit = document.getElementById('custom-needed-by');
+    if (neededByFieldInit) {
+        neededByFieldInit.min = new Date().toISOString().slice(0, 10);
+    }
 
     const screenMetadata = ROUTE_CONTENT;
 
@@ -3092,9 +3099,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.nextOrderStep = function() {
         if (orderStep === 2) {
-            // Validate step 2 notes
             const notesVal = document.getElementById('custom-notes').value.trim();
             orderData.notes = notesVal;
+            orderData.occasion = document.getElementById('custom-occasion').value;
+
+            const neededByInput = document.getElementById('custom-needed-by');
+            const neededByVal = neededByInput.value;
+            const todayStr = new Date().toISOString().slice(0, 10);
+            if (neededByVal && neededByVal < todayStr) {
+                showFieldError(neededByInput, 'custom-needed-by-error', 'Please choose a date that is today or later.');
+                neededByInput.focus();
+                return;
+            }
+            window.clearFieldError(neededByInput, 'custom-needed-by-error');
+            orderData.neededBy = neededByVal;
         }
 
         if (orderStep < 3) {
@@ -3221,6 +3239,13 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `Base type: ${orderData.type || "Not chosen yet"}\n`;
             message += `Palette preference: ${orderData.color || "Not chosen yet"}\n`;
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
+            if (orderData.occasion) {
+                message += `Occasion: ${orderData.occasion}\n`;
+            }
+            if (orderData.neededBy) {
+                const neededByDate = new Date(`${orderData.neededBy}T00:00:00`);
+                message += `Needed by: ${neededByDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}\n`;
+            }
             message += "Source: Custom Order Page\n\n";
             message += "Please help me finalize the design, Starting from price, final quote, made and delivered in 1–2 weeks, and delivery across Kerala and India.\n\n";
             message += "I understand 50% advance is by UPI or Google Pay once my order is confirmed on WhatsApp, and the balance is after I approve the photos, before dispatch.";
@@ -3248,11 +3273,20 @@ document.addEventListener('DOMContentLoaded', () => {
             orderNameInput.value = '';
             window.clearFieldError(orderNameInput, 'order-name-error');
         }
-        
+        const occasionInput = document.getElementById('custom-occasion');
+        if (occasionInput) occasionInput.value = '';
+        const neededByInput = document.getElementById('custom-needed-by');
+        if (neededByInput) {
+            neededByInput.value = '';
+            window.clearFieldError(neededByInput, 'custom-needed-by-error');
+        }
+
         orderData.type = null;
         orderData.color = null;
         orderData.notes = '';
         orderData.name = '';
+        orderData.occasion = '';
+        orderData.neededBy = '';
 
         document.querySelectorAll('.type-pill').forEach(pill => {
             pill.classList.remove('bg-secondary', 'text-on-secondary');

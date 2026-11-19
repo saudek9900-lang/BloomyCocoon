@@ -1535,8 +1535,26 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-sm">
+                                        <div>
+                                            <label for="custom-occasion" class="font-label-md text-xs uppercase tracking-wider text-secondary block mb-1 font-semibold">Occasion <span class="text-on-surface-variant normal-case font-normal tracking-normal">(Optional)</span></label>
+                                            <select id="custom-occasion" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl p-3 focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-base md:text-sm" oninput="updateLivePreview()">
+                                                <option value="">Select an occasion</option>
+                                                <option value="Anniversary">Anniversary</option>
+                                                <option value="Birthday">Birthday</option>
+                                                <option value="Baby Shower">Baby Shower</option>
+                                                <option value="Return Gift / Favor">Return Gift / Favor</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="custom-needed-by" class="font-label-md text-xs uppercase tracking-wider text-secondary block mb-1 font-semibold">Needed By <span class="text-on-surface-variant normal-case font-normal tracking-normal">(Optional)</span></label>
+                                            <input type="date" id="custom-needed-by" aria-describedby="custom-needed-by-error" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl p-3 focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-base md:text-sm" oninput="clearFieldError(this, 'custom-needed-by-error'); updateLivePreview()">
+                                            <p id="custom-needed-by-error" class="hidden text-xs text-error font-medium mt-1 ml-xs" role="alert"></p>
+                                        </div>
+                                    </div>
                                     <div>
-                                        <label for="custom-notes" class="font-label-md text-xs uppercase tracking-wider text-secondary block mb-1 font-semibold">Special Wishes / Notes</label>
+                                        <label for="custom-notes" class="font-label-md text-xs uppercase tracking-wider text-secondary block mb-1 font-semibold">Describe Your Idea <span class="text-on-surface-variant normal-case font-normal tracking-normal">(Optional)</span></label>
                                         <textarea id="custom-notes" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl p-3 focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-base md:text-sm resize-none" placeholder="E.g., small rose bouquet with cream wrapping and a personalized anniversary note..." rows="4" oninput="updateLivePreview()"></textarea>
                                     </div>
                                     <div class="flex justify-between items-center pt-md">
