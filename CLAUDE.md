@@ -9,14 +9,17 @@
 6. Never start a task whose prompt is marked NOT DRAFTED or PARKED. Tell Saud instead.
 
 ## Task queue
-All earlier tasks (0, 1, 2, 3, T) are merged and live. Nothing is runnable right now.
-| # | Task | Prompt | Branch | Status |
-|---|------|--------|--------|--------|
-| T2 | Tracking follow-up (host gate + missing events) | docs/claude/roadmap.md | - | NOT DRAFTED |
+Tasks 0, 1, 2, 3 and T are merged and live. Run the queue below in order, one task per session.
+| # | Task | Prompt | Branch | PR title |
+|---|------|--------|--------|----------|
+| T2 | Tracking follow-up (live-host gate + missing events) | docs/claude/prompt-T2-tracking.md | track/t2-followup | Prompt T2: Tracking follow-up |
+| 4 | Amigurumi post title + meta | docs/claude/prompt-4-amigurumi-title.md | content/amigurumi-title | Prompt 4: Amigurumi title and meta |
+| 5 | Return gift ideas blog post | docs/claude/prompt-5-return-gifts-post.md | content/return-gifts-post | Prompt 5: Return gift ideas post |
+| 6 | UI Phase B/C audit (docs only, no code) | docs/claude/prompt-6-ui-audit.md | ui/phase-bc-audit | Prompt 6: UI Phase B/C audit |
 | - | New Sunflower + Lily bouquets | docs/claude/roadmap.md | - | PARKED (needs new product images) |
 | - | E9 hidden IPTC tag on feed images | docs/claude/roadmap.md | - | PARKED (Saud to confirm) |
 
-If Saud says "continue" and every row is NOT DRAFTED or PARKED: tell him the queue is empty and new prompts come from his planning chat. Do not invent a task. Remaining upgrades are listed in docs/claude/roadmap.md.
+After task 6: stop and tell Saud the queue is done. Next prompts come from his planning chat. Full plan: docs/claude/roadmap.md.
 
 ## Project
 - Handmade crochet gifts. Site: https://www.bloomycocoon.com (www is canonical). Based in Mampad, Malappuram, Kerala.
