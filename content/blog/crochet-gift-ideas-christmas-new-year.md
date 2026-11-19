@@ -19,7 +19,7 @@ Handmade crochet gifts offer a warm alternative. Each piece is made by hand with
 
 Crochet plushies make delightful gifts for friends and family. Because they are made with soft yarn, they feel cozy to hold and look cute sitting on a bed, desk, or armchair.
 
-Popular choices include our Bunny Plushie and Mini Teddy Plushie. These small animal figures bring a gentle presence to any room. When you give a plush toy made by hand, you give something created loop by loop with patience.
+Popular choices include our [Bunny Plushie](/products/bunny-plushie) and [Mini Teddy Plushie](/products/mini-teddy-plushie). These small animal figures bring a gentle presence to any room. When you give a plush toy made by hand, you give something created loop by loop with patience.
 
 You can browse our [Crochet Plushies & Amigurumi](/crochet-plushies) collection to see different animals and character shapes.
 
@@ -27,7 +27,7 @@ You can browse our [Crochet Plushies & Amigurumi](/crochet-plushies) collection 
 
 If you want to give more than a single item, gift combos make giving simple. Pairing a small crochet plushie with a flower stem creates a balanced gift that feels complete.
 
-For example, our Plushie + Flower Combo and Keychain + Flower Combo combine two small handcrafted items into one cheerful package. These sets work well for secret gift exchanges at school or the office.
+For example, our [Plushie + Flower Combo](/products/plushie-flower-combo) and [Keychain + Flower Combo](/products/keychain-flower-combo) combine two small handcrafted items into one cheerful package. These sets work well for secret gift exchanges at school or the office.
 
 You can look through our [Crochet Gift Combos & Hampers](/crochet-gift-combos) collection to find combinations ready for gifting.
 
@@ -35,7 +35,7 @@ You can look through our [Crochet Gift Combos & Hampers](/crochet-gift-combos) c
 
 Small gifts can carry a lot of meaning. Crochet keychains and bag charms are portable items that friends can take with them wherever they go.
 
-Items like our Strawberry Keychain and Heart Keychain clip easily onto house keys, work bags, or backpacks. Every time your friend reaches for their keys during a busy day, they see a small handmade token that reminds them of your friendship.
+Items like our [Strawberry Keychain](/products/strawberry-keychain) and [Heart Keychain](/products/heart-keychain) clip easily onto house keys, work bags, or backpacks. Every time your friend reaches for their keys during a busy day, they see a small handmade token that reminds them of your friendship.
 
 You can explore our [Crochet Keychains & Charms](/crochet-keychains) to see different charm styles.
 
@@ -43,7 +43,7 @@ You can explore our [Crochet Keychains & Charms](/crochet-keychains) to see diff
 
 Winter celebrations often center around the home. Crochet items for living spaces help make rooms feel welcoming and cozy during cold holiday evenings.
 
-Small decor pieces like our Crochet Plant Holder and Crochet Coaster add soft color to dining tables, coffee tables, and kitchen corners. They make thoughtful hostess gifts when you visit friends for holiday dinners.
+Small decor pieces like our [Crochet Plant Holder](/products/crochet-plant-holder) and [Crochet Coaster](/products/crochet-coaster) add soft color to dining tables, coffee tables, and kitchen corners. They make thoughtful hostess gifts when you visit friends for holiday dinners.
 
 You can see more home items in our [Crochet Home & Decor](/crochet-home-decor) collection.
 

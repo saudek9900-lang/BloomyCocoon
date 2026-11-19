@@ -267,6 +267,15 @@ export const CATEGORY_PAGES = {
   'screen-crochet-gift-combos': 'gift-combos',
 };
 
+export function getMatchingOccasions(productId) {
+  return Object.entries(OCCASION_PRODUCTS)
+    .filter(([, ids]) => ids.includes(productId))
+    .map(([screenId]) => ({
+      path: ROUTE_CONTENT[screenId].path,
+      label: ROUTE_CONTENT[screenId].breadcrumbName,
+    }));
+}
+
 const CATEGORY_SCREEN_BY_ID = Object.fromEntries(
   Object.entries(CATEGORY_PAGES).map(([screenId, categoryId]) => [categoryId, screenId]),
 );

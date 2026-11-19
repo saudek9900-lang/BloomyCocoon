@@ -7,7 +7,8 @@ import {
     getProductSchemaGraph,
     getRouteSchemaGraph,
     buildProductTitle,
-    buildProductDescription
+    buildProductDescription,
+    getMatchingOccasions
 } from './src/route-content.mjs';
 import { getProductAltText } from './src/product-cards.mjs';
 
@@ -1317,6 +1318,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const descEl = document.getElementById('detail-product-desc');
         if (descEl) descEl.textContent = product.description || 'Handcrafted to order with premium yarn.';
+
+        const occasionLinksEl = document.getElementById('detail-occasion-links');
+        if (occasionLinksEl) {
+            const matchingOccasions = getMatchingOccasions(product.id);
+            occasionLinksEl.innerHTML = matchingOccasions.length > 0
+                ? `Also a great fit for: ${matchingOccasions.map(o => `<a href="${escapeHTML(o.path)}" class="text-secondary font-semibold hover:underline">${escapeHTML(o.label)}</a>`).join(' &middot; ')}`
+                : '';
+        }
 
         const addBtn = document.getElementById('detail-add-to-cart-btn');
         if (addBtn) addBtn.setAttribute('data-add-to-cart', product.id);

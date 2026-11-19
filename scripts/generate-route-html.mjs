@@ -14,6 +14,7 @@ import {
   getRouteSchemaGraph,
   getProductRouteMetadata,
   getProductSchemaGraph,
+  getMatchingOccasions,
 } from '../src/route-content.mjs';
 import {
   renderCollectionProductsHtml,
@@ -475,6 +476,16 @@ function injectProductDetail(html, product, catalog) {
   next = next.replace(
     /(<div\b[^>]*\bid=["']detail-related-products-grid["'][^>]*>)([\s\S]*?)(<\/div>)/i,
     `$1\n${relatedHtml}\n$3`
+  );
+
+  // 12b. Matching occasion page links
+  const matchingOccasions = getMatchingOccasions(product.id);
+  const occasionLinksHtml = matchingOccasions.length > 0
+    ? `Also a great fit for: ${matchingOccasions.map((o) => `<a href="${escapeHtml(o.path)}" class="text-secondary font-semibold hover:underline">${escapeHtml(o.label)}</a>`).join(' &middot; ')}`
+    : '';
+  next = next.replace(
+    /(<div\b[^>]*\bid=["']detail-occasion-links["'][^>]*>)([\s\S]*?)(<\/div>)/i,
+    `$1${occasionLinksHtml}$3`
   );
 
   // 13. Category-specific FAQs, appended after the shared FAQ items
