@@ -1187,15 +1187,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const stickyText = document.getElementById('detail-sticky-add-text');
             if (stickyIcon && stickyText) {
                 stickyIcon.textContent = 'check';
-                stickyText.textContent = 'Added';
+                stickyText.textContent = 'Added to Cart';
                 setTimeout(() => {
                     stickyIcon.textContent = 'add_shopping_cart';
-                    stickyText.textContent = 'Add';
+                    stickyText.textContent = 'Add to Cart';
                 }, 1500);
             } else {
-                stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span><span>Added</span>`;
+                stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span><span>Added to Cart</span>`;
                 setTimeout(() => {
-                    stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span><span>Add</span>`;
+                    stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span><span>Add to Cart</span>`;
                 }, 1500);
             }
         }
