@@ -2898,6 +2898,11 @@ document.addEventListener('DOMContentLoaded', () => {
             el.innerText = totalQty > 0 ? `₹${formatPrice(grandTotal)}` : 'Add items';
         });
 
+        // Hide totals, add-on and advance/balance sections entirely when the cart is empty
+        document.querySelectorAll('.cart-totals-section').forEach(el => {
+            el.classList.toggle('hidden', totalQty === 0);
+        });
+
         // Enable/Disable checkout buttons
         checkoutBtn.forEach(btn => {
             if (totalQty > 0) {

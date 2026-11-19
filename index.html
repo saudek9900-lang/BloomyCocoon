@@ -3232,7 +3232,7 @@
                             </div>
 
                             <!-- Cost Breakdown -->
-                            <div class="space-y-2.5 text-xs">
+                            <div class="cart-totals-section space-y-2.5 text-xs">
                                 <div class="flex justify-between text-on-surface-variant">
                                     <span>Items Subtotal</span>
                                     <span class="font-semibold text-on-surface cart-items-subtotal tabular-nums">₹0</span>
@@ -3255,7 +3255,7 @@
                             </div>
 
                             <!-- 50/50 Handcrafted Payment Schedule -->
-                            <div class="bg-white/80 rounded-2xl p-3.5 border border-outline-variant/20 space-y-2">
+                            <div class="cart-totals-section bg-white/80 rounded-2xl p-3.5 border border-outline-variant/20 space-y-2">
                                 <div class="flex items-center justify-between text-[11px] font-bold text-secondary uppercase tracking-wider">
                                     <span class="flex items-center gap-1">
                                         <span class="material-symbols-outlined text-[14px]" aria-hidden="true">account_balance_wallet</span>
@@ -3653,13 +3653,17 @@
             <div class="text-center py-12 text-on-surface-variant flex flex-col items-center">
                 <span class="material-symbols-outlined text-4xl block mb-2 text-secondary" aria-hidden="true">shopping_basket</span>
                 <p class="font-label-md text-sm">Your cart is empty</p>
+                <a href="/collections" onclick="closeCart()" class="mt-4 inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-secondary text-white font-label-md text-xs hover:opacity-90 active:scale-95 transition-all shadow-sm min-h-[44px]">
+                    <span>Browse Collection</span>
+                    <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+                </a>
             </div>
         </div>
         
         <!-- Streamlined compact footer keeping 70%+ view for products -->
         <div class="pt-3 border-t border-outline-variant/20 space-y-2 shrink-0 bg-surface-container-low">
             <!-- Compact summary card -->
-            <div id="cart-payment-breakdown" class="bg-white/90 rounded-2xl p-3 border border-outline-variant/15 space-y-1.5 text-xs">
+            <div id="cart-payment-breakdown" class="cart-totals-section bg-white/90 rounded-2xl p-3 border border-outline-variant/15 space-y-1.5 text-xs">
                 <div class="flex justify-between items-baseline">
                     <span class="text-on-surface-variant font-medium">Estimated Total (<span id="cart-summary-items-count">0 items</span>)</span>
                     <span class="font-headline-sm text-base sm:text-lg font-bold text-secondary cart-total-price">₹0</span>
