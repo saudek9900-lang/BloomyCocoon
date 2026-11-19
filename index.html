@@ -346,140 +346,6 @@
         </div>
     </nav>
 
-    <!-- GLOBAL CART BACKDROP OVERLAY -->
-    <div id="cart-backdrop" onclick="closeCart()" class="fixed inset-0 bg-black/35 backdrop-blur-sm z-[75] opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
-
-    <!-- GLOBAL CART SIDEBAR -->
-    <aside class="fixed right-0 top-0 h-full w-full max-w-full sm:max-w-[460px] md:max-w-[480px] bg-surface-container-low border-l border-outline-variant/30 shadow-2xl z-[80] flex flex-col p-4 sm:p-5 translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1" inert>
-        <div class="flex justify-between items-center mb-2.5 pb-2.5 border-b border-outline-variant/15 shrink-0">
-            <div>
-                <div class="flex items-center gap-2">
-                    <h2 class="font-headline-sm text-lg text-primary font-bold" id="cart-title">Your Basket</h2>
-                    <span id="cart-header-count" class="cart-header-count bg-secondary/10 text-secondary text-xs font-label-md px-2.5 py-0.5 rounded-full font-bold">0 items</span>
-                </div>
-                <p class="font-caption text-xs text-on-surface-variant italic mt-0.5" id="cart-description">Handmade picks before WhatsApp confirmation</p>
-            </div>
-            <div class="flex items-center gap-2">
-                <a href="/cart" onclick="closeCart()" class="text-xs text-secondary font-semibold hover:text-primary transition-colors flex items-center gap-1 bg-primary-container/70 hover:bg-primary-container px-3.5 py-2 rounded-full border border-secondary/20 shadow-sm min-h-[44px]" aria-label="Open full cart page">
-                    <span>Full Page</span>
-                    <span class="material-symbols-outlined text-[15px]" aria-hidden="true">open_in_new</span>
-                </a>
-                <button class="text-on-surface-variant hover:text-primary min-w-[44px] min-h-[44px] w-11 h-11 rounded-full hover:bg-primary-container/40 flex items-center justify-center cart-close-btn transition-colors" onclick="closeCart()" aria-label="Close cart drawer">
-                    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">close</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Craft reassurance banner -->
-        <div class="mb-2.5 flex items-center justify-between text-xs text-on-surface-variant bg-white/80 border border-outline-variant/15 rounded-xl px-3 py-1.5 font-medium shrink-0">
-            <span class="flex items-center gap-1.5 text-secondary font-semibold">
-                <span class="material-symbols-outlined text-[15px]" aria-hidden="true">eco</span>
-                <span>Handmade to order • 1–2 weeks incl. delivery</span>
-            </span>
-            <span class="text-on-surface-variant/80">Kerala &amp; Pan-India</span>
-        </div>
-        
-        <!-- Cart Items dynamic wrapper: High vertical priority (flex-1) -->
-        <div class="flex-1 cart-items-container overflow-y-auto pr-1" aria-live="polite" aria-relevant="additions removals text">
-            <!-- Rendered by JS -->
-            <div class="text-center py-12 text-on-surface-variant flex flex-col items-center">
-                <span class="material-symbols-outlined text-4xl block mb-2 text-secondary" aria-hidden="true">shopping_basket</span>
-                <p class="font-label-md text-sm">Your cart is empty</p>
-            </div>
-        </div>
-        
-        <!-- Streamlined compact footer keeping 70%+ view for products -->
-        <div class="pt-3 border-t border-outline-variant/20 space-y-2 shrink-0 bg-surface-container-low">
-            <!-- Compact summary card -->
-            <div id="cart-payment-breakdown" class="bg-white/90 rounded-2xl p-3 border border-outline-variant/15 space-y-1.5 text-xs">
-                <div class="flex justify-between items-baseline">
-                    <span class="text-on-surface-variant font-medium">Estimated Total (<span id="cart-summary-items-count">0 items</span>)</span>
-                    <span class="font-headline-sm text-base sm:text-lg font-bold text-secondary cart-total-price">₹0</span>
-                </div>
-                <div id="cart-addons-row" class="cart-addons-row hidden justify-between text-secondary text-xs pt-1 border-t border-outline-variant/10">
-                    <span class="flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">redeem</span>
-                        <span>Gift add-ons</span>
-                    </span>
-                    <span class="font-bold cart-addons-amount" id="cart-addons-amount">+₹0</span>
-                </div>
-                <div class="flex justify-between items-center text-xs text-secondary pt-1 border-t border-outline-variant/10 font-medium">
-                    <span class="flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>
-                        <span id="cart-payment-note">50% advance after WhatsApp confirmation</span>
-                    </span>
-                    <span class="font-bold cart-advance-amount" id="cart-advance-amount">₹0</span>
-                </div>
-            </div>
-
-            <!-- Primary WhatsApp CTA -->
-            <button disabled class="checkout-btn w-full bg-secondary text-white py-3.5 rounded-2xl font-label-md text-sm md:text-base flex items-center justify-center gap-2 active:scale-95 transition-all opacity-55 cursor-default shadow-sm hover:shadow-md min-h-[44px]" aria-label="Continue to WhatsApp to confirm final quote and order details" aria-describedby="cart-checkout-note cart-payment-note">
-                <span>Continue on WhatsApp</span>
-                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span>
-            </button>
-
-            <!-- Link to full page for complete gifting touches -->
-            <a href="/cart" onclick="closeCart()" class="w-full text-center py-2 text-xs font-semibold text-secondary hover:text-primary transition-colors flex items-center justify-center gap-1 min-h-[44px]">
-                <span>Open Full Cart Page &amp; Gift Touches</span>
-                <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span>
-            </a>
-
-            <!-- Hidden elements to preserve JS bindings and two-way sync -->
-            <textarea id="cart-customer-note" class="hidden" aria-label="Customer order notes"></textarea>
-            <span class="cart-balance-amount hidden" id="cart-balance-amount">₹0</span>
-            <p class="text-xs text-center text-on-surface-variant/80 hidden" id="cart-checkout-note"></p>
-        </div>
-    </aside>
-
-    <!-- GLOBAL QUICK LOOK MODAL -->
-    <div id="quick-look-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" inert>
-        <div class="fixed inset-0 bg-black/45 backdrop-blur-sm" onclick="closeQuickLook()"></div>
-        <div class="relative bg-surface rounded-3xl max-w-2xl w-full shadow-2xl border border-outline-variant/20 z-10 overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col max-h-[88dvh] md:max-h-[90vh]" id="quick-look-dialog">
-            <button id="quick-look-close-btn" type="button" onclick="closeQuickLook()" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-surface-container-low/95 hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors z-20 shadow-sm" aria-label="Close details">
-                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">close</span>
-            </button>
-            <div class="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 md:p-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
-                    <div class="aspect-[4/3] sm:aspect-square max-h-[210px] sm:max-h-[280px] md:max-h-none rounded-2xl overflow-hidden bg-primary-container relative">
-                        <img id="modal-product-img" src="" alt="" class="w-full h-full object-cover">
-                        <span id="modal-product-badge" class="absolute top-3 left-3 bg-secondary text-white text-xs font-label-md px-3 py-1 rounded-full uppercase tracking-wider"></span>
-                    </div>
-                    <div class="space-y-3 md:space-y-4">
-                        <div class="pr-8 md:pr-0">
-                            <span id="modal-product-cat" class="text-xs uppercase tracking-wider text-secondary font-semibold font-label-md"></span>
-                            <h2 id="modal-product-name" class="font-headline-md text-xl sm:text-2xl md:text-3xl text-secondary mt-0.5 md:mt-1"></h2>
-                            <p id="modal-product-price" class="font-headline-sm text-lg md:text-xl text-on-surface font-bold mt-1"></p>
-                        </div>
-                        <p id="modal-product-desc" class="font-body-md text-sm text-on-surface-variant leading-relaxed"></p>
-                        
-                        <div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant/15 space-y-1 text-xs text-on-surface-variant">
-                            <div class="flex items-center gap-2 text-secondary font-semibold">
-                                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">eco</span>
-                                <span>Care &amp; Keepsake</span>
-                            </div>
-                            <p>Slow handcrafted yarn. Spot clean gently with a damp cloth.</p>
-                        </div>
-
-                        <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/15 text-xs text-on-surface-variant">
-                            <span class="material-symbols-outlined text-secondary text-[18px]" aria-hidden="true">redeem</span>
-                            <span><strong class="text-secondary">Gifting this?</strong> Calligraphy cards &amp; warm fairy lights can be added in cart!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="shrink-0 px-4 py-3 sm:px-6 md:px-8 border-t border-outline-variant/15 bg-surface flex flex-col sm:flex-row gap-2">
-                <button id="modal-add-to-cart-btn" type="button" data-add-to-cart="modal" aria-controls="sideCart" class="flex-1 min-h-[44px] bg-secondary text-white py-3 px-4 rounded-full font-label-md text-sm flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer">
-                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add_shopping_cart</span>
-                    <span>Add to Cart</span>
-                </button>
-                <button id="modal-whatsapp-inquire-btn" type="button" class="min-h-[44px] bg-[#25D366]/10 text-[#0B5D4A] font-semibold border border-[#0B5D4A]/30 py-3 px-4 rounded-full font-label-md text-sm flex items-center justify-center gap-1.5 hover:bg-[#25D366]/20 transition-all cursor-pointer">
-                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span>
-                    <span>Ask on WhatsApp</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- VIEWPORT WRAPPER FOR SINGLE PAGE NAVIGATION -->
     <div id="app-viewport" tabindex="-1">
 
@@ -3481,5 +3347,141 @@
     </a>
 
     <!-- Script imports -->
+
+    <!-- Off-canvas UI (cart drawer, quick-look modal) — moved after main content for SEO source order -->
+    <!-- GLOBAL CART BACKDROP OVERLAY -->
+    <div id="cart-backdrop" onclick="closeCart()" class="fixed inset-0 bg-black/35 backdrop-blur-sm z-[75] opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
+
+    <!-- GLOBAL CART SIDEBAR -->
+    <aside class="fixed right-0 top-0 h-full w-full max-w-full sm:max-w-[460px] md:max-w-[480px] bg-surface-container-low border-l border-outline-variant/30 shadow-2xl z-[80] flex flex-col p-4 sm:p-5 translate-x-full transition-transform duration-300" id="sideCart" role="dialog" aria-modal="false" aria-labelledby="cart-title" aria-describedby="cart-description cart-checkout-note cart-payment-note" tabindex="-1" inert>
+        <div class="flex justify-between items-center mb-2.5 pb-2.5 border-b border-outline-variant/15 shrink-0">
+            <div>
+                <div class="flex items-center gap-2">
+                    <h2 class="font-headline-sm text-lg text-primary font-bold" id="cart-title">Your Basket</h2>
+                    <span id="cart-header-count" class="cart-header-count bg-secondary/10 text-secondary text-xs font-label-md px-2.5 py-0.5 rounded-full font-bold">0 items</span>
+                </div>
+                <p class="font-caption text-xs text-on-surface-variant italic mt-0.5" id="cart-description">Handmade picks before WhatsApp confirmation</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <a href="/cart" onclick="closeCart()" class="text-xs text-secondary font-semibold hover:text-primary transition-colors flex items-center gap-1 bg-primary-container/70 hover:bg-primary-container px-3.5 py-2 rounded-full border border-secondary/20 shadow-sm min-h-[44px]" aria-label="Open full cart page">
+                    <span>Full Page</span>
+                    <span class="material-symbols-outlined text-[15px]" aria-hidden="true">open_in_new</span>
+                </a>
+                <button class="text-on-surface-variant hover:text-primary min-w-[44px] min-h-[44px] w-11 h-11 rounded-full hover:bg-primary-container/40 flex items-center justify-center cart-close-btn transition-colors" onclick="closeCart()" aria-label="Close cart drawer">
+                    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Craft reassurance banner -->
+        <div class="mb-2.5 flex items-center justify-between text-xs text-on-surface-variant bg-white/80 border border-outline-variant/15 rounded-xl px-3 py-1.5 font-medium shrink-0">
+            <span class="flex items-center gap-1.5 text-secondary font-semibold">
+                <span class="material-symbols-outlined text-[15px]" aria-hidden="true">eco</span>
+                <span>Handmade to order • 1–2 weeks incl. delivery</span>
+            </span>
+            <span class="text-on-surface-variant/80">Kerala &amp; Pan-India</span>
+        </div>
+        
+        <!-- Cart Items dynamic wrapper: High vertical priority (flex-1) -->
+        <div class="flex-1 cart-items-container overflow-y-auto pr-1" aria-live="polite" aria-relevant="additions removals text">
+            <!-- Rendered by JS -->
+            <div class="text-center py-12 text-on-surface-variant flex flex-col items-center">
+                <span class="material-symbols-outlined text-4xl block mb-2 text-secondary" aria-hidden="true">shopping_basket</span>
+                <p class="font-label-md text-sm">Your cart is empty</p>
+            </div>
+        </div>
+        
+        <!-- Streamlined compact footer keeping 70%+ view for products -->
+        <div class="pt-3 border-t border-outline-variant/20 space-y-2 shrink-0 bg-surface-container-low">
+            <!-- Compact summary card -->
+            <div id="cart-payment-breakdown" class="bg-white/90 rounded-2xl p-3 border border-outline-variant/15 space-y-1.5 text-xs">
+                <div class="flex justify-between items-baseline">
+                    <span class="text-on-surface-variant font-medium">Estimated Total (<span id="cart-summary-items-count">0 items</span>)</span>
+                    <span class="font-headline-sm text-base sm:text-lg font-bold text-secondary cart-total-price">₹0</span>
+                </div>
+                <div id="cart-addons-row" class="cart-addons-row hidden justify-between text-secondary text-xs pt-1 border-t border-outline-variant/10">
+                    <span class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]" aria-hidden="true">redeem</span>
+                        <span>Gift add-ons</span>
+                    </span>
+                    <span class="font-bold cart-addons-amount" id="cart-addons-amount">+₹0</span>
+                </div>
+                <div class="flex justify-between items-center text-xs text-secondary pt-1 border-t border-outline-variant/10 font-medium">
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary shrink-0"></span>
+                        <span id="cart-payment-note">50% advance after WhatsApp confirmation</span>
+                    </span>
+                    <span class="font-bold cart-advance-amount" id="cart-advance-amount">₹0</span>
+                </div>
+            </div>
+
+            <!-- Primary WhatsApp CTA -->
+            <button disabled class="checkout-btn w-full bg-secondary text-white py-3.5 rounded-2xl font-label-md text-sm md:text-base flex items-center justify-center gap-2 active:scale-95 transition-all opacity-55 cursor-default shadow-sm hover:shadow-md min-h-[44px]" aria-label="Continue to WhatsApp to confirm final quote and order details" aria-describedby="cart-checkout-note cart-payment-note">
+                <span>Continue on WhatsApp</span>
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span>
+            </button>
+
+            <!-- Link to full page for complete gifting touches -->
+            <a href="/cart" onclick="closeCart()" class="w-full text-center py-2 text-xs font-semibold text-secondary hover:text-primary transition-colors flex items-center justify-center gap-1 min-h-[44px]">
+                <span>Open Full Cart Page &amp; Gift Touches</span>
+                <span class="material-symbols-outlined text-[14px]" aria-hidden="true">arrow_forward</span>
+            </a>
+
+            <!-- Hidden elements to preserve JS bindings and two-way sync -->
+            <textarea id="cart-customer-note" class="hidden" aria-label="Customer order notes"></textarea>
+            <span class="cart-balance-amount hidden" id="cart-balance-amount">₹0</span>
+            <p class="text-xs text-center text-on-surface-variant/80 hidden" id="cart-checkout-note"></p>
+        </div>
+    </aside>
+
+    <!-- GLOBAL QUICK LOOK MODAL -->
+    <div id="quick-look-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" inert>
+        <div class="fixed inset-0 bg-black/45 backdrop-blur-sm" onclick="closeQuickLook()"></div>
+        <div class="relative bg-surface rounded-3xl max-w-2xl w-full shadow-2xl border border-outline-variant/20 z-10 overflow-hidden transform scale-95 transition-transform duration-300 flex flex-col max-h-[88dvh] md:max-h-[90vh]" id="quick-look-dialog">
+            <button id="quick-look-close-btn" type="button" onclick="closeQuickLook()" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-surface-container-low/95 hover:bg-secondary/10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors z-20 shadow-sm" aria-label="Close details">
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">close</span>
+            </button>
+            <div class="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
+                    <div class="aspect-[4/3] sm:aspect-square max-h-[210px] sm:max-h-[280px] md:max-h-none rounded-2xl overflow-hidden bg-primary-container relative">
+                        <img id="modal-product-img" src="" alt="" class="w-full h-full object-cover">
+                        <span id="modal-product-badge" class="absolute top-3 left-3 bg-secondary text-white text-xs font-label-md px-3 py-1 rounded-full uppercase tracking-wider"></span>
+                    </div>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="pr-8 md:pr-0">
+                            <span id="modal-product-cat" class="text-xs uppercase tracking-wider text-secondary font-semibold font-label-md"></span>
+                            <h2 id="modal-product-name" class="font-headline-md text-xl sm:text-2xl md:text-3xl text-secondary mt-0.5 md:mt-1"></h2>
+                            <p id="modal-product-price" class="font-headline-sm text-lg md:text-xl text-on-surface font-bold mt-1"></p>
+                        </div>
+                        <p id="modal-product-desc" class="font-body-md text-sm text-on-surface-variant leading-relaxed"></p>
+                        
+                        <div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant/15 space-y-1 text-xs text-on-surface-variant">
+                            <div class="flex items-center gap-2 text-secondary font-semibold">
+                                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">eco</span>
+                                <span>Care &amp; Keepsake</span>
+                            </div>
+                            <p>Slow handcrafted yarn. Spot clean gently with a damp cloth.</p>
+                        </div>
+
+                        <div class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low border border-outline-variant/15 text-xs text-on-surface-variant">
+                            <span class="material-symbols-outlined text-secondary text-[18px]" aria-hidden="true">redeem</span>
+                            <span><strong class="text-secondary">Gifting this?</strong> Calligraphy cards &amp; warm fairy lights can be added in cart!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shrink-0 px-4 py-3 sm:px-6 md:px-8 border-t border-outline-variant/15 bg-surface flex flex-col sm:flex-row gap-2">
+                <button id="modal-add-to-cart-btn" type="button" data-add-to-cart="modal" aria-controls="sideCart" class="flex-1 min-h-[44px] bg-secondary text-white py-3 px-4 rounded-full font-label-md text-sm flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">add_shopping_cart</span>
+                    <span>Add to Cart</span>
+                </button>
+                <button id="modal-whatsapp-inquire-btn" type="button" class="min-h-[44px] bg-[#25D366]/10 text-[#0B5D4A] font-semibold border border-[#0B5D4A]/30 py-3 px-4 rounded-full font-label-md text-sm flex items-center justify-center gap-1.5 hover:bg-[#25D366]/20 transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">chat</span>
+                    <span>Ask on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
