@@ -9,16 +9,14 @@
 6. Never start a task whose prompt is marked NOT DRAFTED or PARKED. Tell Saud instead.
 
 ## Task queue
-| # | Task | Prompt | Branch | PR title |
-|---|------|--------|--------|----------|
-| 0 | Image rename (drop "-generated") | docs/claude/prompt-0-image-rename.md | chore/image-rename | Prompt 0: image rename |
-| 1 | Copy fixes | docs/claude/prompts-upgrade-round.md, "Prompt 1" | copy/upgrade-1 | Prompt 1: copy fixes |
-| 2 | SEO upgrades (E9 parked) | docs/claude/prompts-upgrade-round.md, "Prompt 2" | seo/upgrade-2 | Prompt 2: SEO upgrades |
-| 3 | UI/UX upgrades | docs/claude/prompts-upgrade-round.md, "Prompt 3" | ui/upgrade-3 | Prompt 3: UI/UX upgrades |
-| T | Tracking (GA4 events, Clarity, Meta Pixel) | docs/claude/prompt-T-tracking.md | claude/relaxed-feynman-uwpp3o | Prompt T: Tracking |
-| - | New Sunflower + Lily bouquets | PARKED (needs new product images) | - | - |
+All earlier tasks (0, 1, 2, 3, T) are merged and live. Nothing is runnable right now.
+| # | Task | Prompt | Branch | Status |
+|---|------|--------|--------|--------|
+| T2 | Tracking follow-up (host gate + missing events) | docs/claude/roadmap.md | - | NOT DRAFTED |
+| - | New Sunflower + Lily bouquets | docs/claude/roadmap.md | - | PARKED (needs new product images) |
+| - | E9 hidden IPTC tag on feed images | docs/claude/roadmap.md | - | PARKED (Saud to confirm) |
 
-After task T: stop and tell Saud the queue is done; new prompts come from his planning chat.
+If Saud says "continue" and every row is NOT DRAFTED or PARKED: tell him the queue is empty and new prompts come from his planning chat. Do not invent a task. Remaining upgrades are listed in docs/claude/roadmap.md.
 
 ## Project
 - Handmade crochet gifts. Site: https://www.bloomycocoon.com (www is canonical). Based in Mampad, Malappuram, Kerala.
