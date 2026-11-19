@@ -366,12 +366,34 @@ export function getProductCanonical(productId) {
   return `${SITE_ORIGIN}/products/${productId}`;
 }
 
+export function buildProductTitle(name) {
+  const prefixed = /crochet/i.test(name) ? name : `Crochet ${name}`;
+  const full = `${prefixed} | Handmade in Kerala | BloomyCocoon`;
+  return full.length > 60 ? `${prefixed} | Handmade in Kerala` : full;
+}
+
+export function buildProductDescription(name, description, price) {
+  const safePrice = Number(price) || 149;
+  const prefix = `${name}. `;
+  const suffix = ` Starting from ₹${safePrice}. Made to order in Kerala, customize on WhatsApp.`;
+  let body = (description || `Handmade crochet ${name} crafted in Kerala.`).trim();
+
+  let full = `${prefix}${body}${suffix}`;
+  if (full.length > 160) {
+    const maxBodyLen = 160 - prefix.length - suffix.length;
+    body = maxBodyLen > 0
+      ? body.slice(0, maxBodyLen).replace(/\s+\S*$/, '').replace(/[.,;:\s]+$/, '')
+      : '';
+    full = `${prefix}${body}${suffix}`.replace(/\s{2,}/g, ' ').trim();
+  }
+  return full;
+}
+
 export function getProductRouteMetadata(product) {
   const safePrice = Number(product.startingPrice) || 149;
-  const desc = product.description ? product.description.trim() : `Handmade crochet ${product.name} crafted in Kerala.`;
   return {
-    title: `${product.name} - Handmade Crochet Gift in Kerala | BloomyCocoon`,
-    description: `${desc} Handmade to order in Kerala. Starting from ₹${safePrice}. Order & customize on WhatsApp.`,
+    title: buildProductTitle(product.name),
+    description: buildProductDescription(product.name, product.description, safePrice),
     canonical: getProductCanonical(product.id),
     image: product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`,
     category: CATEGORY_LABELS[product.category] || 'Handmade Gift',

@@ -5,7 +5,9 @@ import {
     SITE_ORIGIN,
     getCategoryPath,
     getProductSchemaGraph,
-    getRouteSchemaGraph
+    getRouteSchemaGraph,
+    buildProductTitle,
+    buildProductDescription
 } from './src/route-content.mjs';
 
 /* BloomyCocoon Main Application Controller */
@@ -1000,8 +1002,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const product = slug ? collectionProducts.find(p => p.id === slug) : null;
             if (product) {
                 const safePrice = Number(product.startingPrice) || 149;
-                const pageTitle = `${product.name} - Handmade Crochet Gift in Kerala | BloomyCocoon`;
-                const pageDesc = `${product.description} Handmade to order in Kerala. Starting from ₹${safePrice}. Order & customize on WhatsApp.`;
+                const pageTitle = buildProductTitle(product.name);
+                const pageDesc = buildProductDescription(product.name, product.description, safePrice);
                 const canonicalUrl = `${SITE_ORIGIN}/products/${product.id}`;
                 const imageUrl = product.image ? `${SITE_ORIGIN}/${product.image}` : `${SITE_ORIGIN}/images/hero_crochet_scene.png`;
 
