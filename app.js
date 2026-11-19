@@ -3205,7 +3205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `Palette preference: ${orderData.color || "Blush Pink"}\n`;
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
             message += "Source: Custom Order Page\n\n";
-            message += "Please help me finalize the design, Starting from price, final quote, 1-2 week custom timeline, and delivery across Kerala and India.\n\n";
+            message += "Please help me finalize the design, Starting from price, final quote, made and delivered in 1–2 weeks, and delivery across Kerala and India.\n\n";
             message += "I understand payment is confirmed on WhatsApp, mostly through UPI: 50% advance before making begins, and the remaining 50% after completion before delivery.";
 
             trackEvent('custom_order_submit', {
