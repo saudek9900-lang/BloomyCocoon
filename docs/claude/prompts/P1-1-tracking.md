@@ -1,6 +1,6 @@
-# Prompt T2: Tracking follow-up
+# P1-1: Tracking follow-up
 
-Branch: track/t2-followup. PR title: "Prompt T2: Tracking follow-up". One commit per step.
+Branch: track/p1-1-tracking. PR title: "P1-1: Tracking follow-up". One commit per step.
 
 ## Why
 - Today GA4, Clarity and Meta Pixel load on every host (localhost, Vercel previews), so Saud's own testing pollutes the data.

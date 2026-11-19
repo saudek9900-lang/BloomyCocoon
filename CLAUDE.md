@@ -1,25 +1,48 @@
 # BloomyCocoon: instructions for Claude Code
 
 ## When Saud says "continue" (or anything like "carry on", "next task")
-1. Look at the task queue below, top to bottom.
-2. For each task, check GitHub: is its PR merged into main, still open, or not created yet? (Use the PR title or branch name below. If you cannot see PRs, check `git log origin/main` for the task's commits.)
-3. Skip tasks whose PR is merged.
-4. If the first unmerged task has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link.
-5. Otherwise run that task: open its prompt file, follow it exactly, push only its branch, open the PR, give the final report, and STOP. One task per session.
-6. Never start a task whose prompt is marked NOT DRAFTED or PARKED. Tell Saud instead.
+1. Read the task queue below, top to bottom.
+2. For each task, check its PR on GitHub (REST only, GraphQL is blocked here: `gh api "repos/saudek9900-lang/BloomyCocoon/pulls?state=all&head=saudek9900-lang:<branch>"`). If you cannot, check `git log origin/main`.
+3. If any queue task has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. Only one open task PR at a time.
+4. Otherwise pick the first task that is not merged and is runnable:
+   - READY: runnable if the tasks in its "Needs" column are merged.
+   - WAITING: runnable once every answer it lists in docs/claude/data/owner-answers.md is no longer TODO (or, for photo tasks, the incoming-photos/ files exist on main). Then treat it as READY.
+   - PARKED or NOT DRAFTED: never run. Skip.
+   Skipped tasks: list them in your reply with what unblocks each.
+5. Run the chosen task: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), give the final report, and STOP. One task per session.
+6. If nothing is runnable: tell Saud which answers or photos unblock the next task.
 
 ## Task queue
-Tasks 0, 1, 2, 3 and T are merged and live. Run the queue below in order, one task per session.
-| # | Task | Prompt | Branch | PR title |
-|---|------|--------|--------|----------|
-| T2 | Tracking follow-up (live-host gate + missing events) | docs/claude/prompt-T2-tracking.md | track/t2-followup | Prompt T2: Tracking follow-up |
-| 4 | Amigurumi post title + meta | docs/claude/prompt-4-amigurumi-title.md | content/amigurumi-title | Prompt 4: Amigurumi title and meta |
-| 5 | Return gift ideas blog post | docs/claude/prompt-5-return-gifts-post.md | content/return-gifts-post | Prompt 5: Return gift ideas post |
-| 6 | UI Phase B/C audit (docs only, no code) | docs/claude/prompt-6-ui-audit.md | ui/phase-bc-audit | Prompt 6: UI Phase B/C audit |
-| - | New Sunflower + Lily bouquets | docs/claude/roadmap.md | - | PARKED (needs new product images) |
-| - | E9 hidden IPTC tag on feed images | docs/claude/roadmap.md | - | PARKED (Saud to confirm) |
+Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. Run in this order.
+| # | Task | Branch | Status | Needs |
+|---|------|--------|--------|-------|
+| P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | READY | - |
+| P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | READY | - |
+| P1-3 | Order steps + trust strip | ux/p1-3-order-steps | READY | - |
+| P1-4 | Titles and meta (CTR) | content/p1-4-titles-meta | READY | - |
+| P1-5 | Valentine's Day gifts page (live by 20 Dec) | content/p1-5-valentines | READY | - |
+| P2-1 | Unique product descriptions | content/p2-1-product-descriptions | READY | - |
+| P2-2 | Kerala + NRI gifting pages | content/p2-2-kerala-nri | READY | P1-3 |
+| P2-3 | Return gift ideas post | content/p2-3-return-gifts-post | READY | - |
+| P2-4 | Eid gifts page (live by 15 Jan) | content/p2-4-eid | READY | P2-2 |
+| P2-5 | UI Phase B/C audit (docs only) | ui/p2-5-audit | READY | - |
+| P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | READY | P2-4 |
+| P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | READY | - |
+| P3-3 | Product sizes | content/p3-3-sizes | WAITING (Q1) | - |
+| P3-4 | About the makers | content/p3-4-about | WAITING (Q7, Q9) | - |
+| P3-5 | Gulf country pages | content/p3-5-gulf-pages | WAITING (Q2, Q3) | P2-2 |
+| P3-6 | Malayalam page | content/p3-6-malayalam | WAITING (Q12) | P2-2 |
+| P3-7 | Return-gift packs | content/p3-7-packs | WAITING (Q5) | - |
+| P3-8 | Merchant feed test set | seo/p3-8-feed | WAITING (Q13) | - |
+| P3-9 | Damage and remake policy | content/p3-9-policy | WAITING (Q6) | - |
+| P3-10 | Phase B/C UI builds | - | NOT DRAFTED (from P2-5 audit) | P2-5 |
+| P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | READY | P3-1 |
+| P4-2 | Workshops details | content/p4-2-workshops | WAITING (Q10) | - |
+| P5-1 | Product photo galleries | img/p5-1-photos | WAITING (photos in incoming-photos/) | - |
+| P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | WAITING (images in incoming-photos/new-bouquets/) | - |
+| P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
 
-After task 6: stop and tell Saud the queue is done. Next prompts come from his planning chat. Full plan: docs/claude/roadmap.md.
+Image tasks (P5) always come last.
 
 ## Project
 - Handmade crochet gifts. Site: https://www.bloomycocoon.com (www is canonical). Based in Mampad, Malappuram, Kerala.
@@ -40,7 +63,7 @@ After task 6: stop and tell Saud the queue is done. Next prompts come from his p
 - Made and delivered in 1–2 weeks. 50% advance by UPI or Google Pay after WhatsApp confirmation; balance after photo approval, before dispatch.
 - Do not name a specific yarn brand or type.
 - No Google Business Profile yet. Workshops: no fees/dates yet, no Course schema.
-- Never add any visible text, file name, alt text, title or caption about how images were made. Do not create or edit image pixels.
+- Never add any visible text, file name, alt text, title or caption about how images were made. Do not create images or change what they show. Resizing and format conversion with the repo's existing image setup is allowed (P5 tasks).
 - og:image, twitter:image and the Merchant feed image_link stay PNG.
 - Keep existing page URLs, canonicals and redirects. /cart and /workshops stay noindex; /cart stays out of the sitemap.
 - Every built page: exactly one H1, one canonical, one footer, valid JSON-LD. No shippingDetails, aggregateRating or review in JSON-LD.

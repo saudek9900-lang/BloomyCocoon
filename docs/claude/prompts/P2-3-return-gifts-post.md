@@ -1,6 +1,6 @@
-# Prompt 5: Blog post "crochet return gift ideas"
+# P2-3: Blog post "crochet return gift ideas"
 
-Branch: content/return-gifts-post. PR title: "Prompt 5: Return gift ideas post". One commit for the post, one for any link changes.
+Branch: content/p2-3-return-gifts-post. PR title: "P2-3: Return gift ideas post". One commit for the post, one for any link changes.
 
 ## Why
 "crochet return gift ideas" and "crochet return gifts" are the only non-brand searches the site shows up for, and /return-gifts already gets clicks at position ~5.7. A focused post supports that page.

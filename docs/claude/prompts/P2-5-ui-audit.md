@@ -1,6 +1,6 @@
-# Prompt 6: UI Phase B/C audit (plan only, no code)
+# P2-5: UI Phase B/C audit (plan only, no code)
 
-Branch: ui/phase-bc-audit. PR title: "Prompt 6: UI Phase B/C audit". Docs only.
+Branch: ui/p2-5-audit. PR title: "P2-5: UI Phase B/C audit". Docs only.
 
 ## Why
 Phase B/C UI (collections, custom order, cart, contact) is next, but the detailed list was lost. Before writing code, audit what exists today and propose the work so Saud can pick.

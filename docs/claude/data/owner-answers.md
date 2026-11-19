@@ -1,0 +1,59 @@
+# Owner answers (Saud fills these in)
+
+Replace TODO with the real answer (edit this file on GitHub from your phone, commit to main).
+A WAITING task in the CLAUDE.md queue becomes runnable once the answers it needs are no longer TODO.
+Never guessed by Claude. Leave TODO if unsure.
+
+## Q1 Product sizes (used by P3-3)
+Height x width in cm (or "fits in palm" style text), at least the top 20 products. Format: product-id: size
+TODO
+
+## Q2 Gulf shipping (P2-2, P3-5)
+Can you courier to UAE / Saudi / Qatar / Oman / Kuwait / Bahrain? Which courier, cost, transit time? Or Kerala delivery only?
+TODO
+
+## Q3 Payment for customers abroad (P2-2, P3-5)
+Which methods work for NRIs (international card, NRE/NRO UPI, bank transfer, PayPal...)?
+TODO
+
+## Q4 Local hand delivery or pickup (Google Business Profile, owner task)
+Do you or your sisters hand-deliver locally (which towns) or allow pickup? Google only allows a profile with in-person contact.
+TODO
+
+## Q5 Return-gift packs (P3-7)
+Minimum quantity, pack sizes and pack prices for return gifts and keychains.
+TODO
+
+## Q6 Damage / remake / refund policy (P3-9)
+TODO
+
+## Q7 Hours of work per piece (P3-4)
+e.g. rose bouquet about X hours, plushie about Y hours.
+TODO
+
+## Q8 GST registration (Amazon Karigar / Etsy, owner task)
+TODO
+
+## Q9 Makers story and photos (P3-4)
+Are your sisters OK to appear in photos/video? Short true story: who makes what, since when, why.
+TODO
+
+## Q10 Workshops (P4-2)
+Dates, fees, place or online, how to book.
+TODO
+
+## Q11 NRI delivery details (P2-2)
+Can the sender's (Gulf) number be the contact? Can you deliver on a fixed date? Surprise delivery?
+TODO
+
+## Q12 Malayalam page text (P3-6)
+Approved Malayalam text for the page (Claude will not translate it).
+TODO
+
+## Q13 Merchant feed test items (P3-8)
+5-10 product ids with an exact fixed price and a fixed shipping charge.
+TODO
+
+## Q14 Merchant feed images (P5-3)
+Do you use the Merchant feed? Which product images need Google's DigitalSourceType tag?
+TODO
