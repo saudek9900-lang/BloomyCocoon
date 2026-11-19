@@ -47,6 +47,63 @@
         })();
     </script>
     
+    <!-- Microsoft Clarity + Meta Pixel (stubs queue calls now; scripts load after idle or first interaction, like gtag) -->
+    <script>
+        (function(w, d) {
+            // Clarity stub
+            w.clarity = w.clarity || function() { (w.clarity.q = w.clarity.q || []).push(arguments); };
+
+            // Meta Pixel stub
+            if (!w.fbq) {
+                var n = w.fbq = function() {
+                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                };
+                if (!w._fbq) w._fbq = n;
+                n.push = n;
+                n.loaded = true;
+                n.version = '2.0';
+                n.queue = [];
+            }
+            w.fbq('init', '1844995836681399');
+            w.fbq('track', 'PageView');
+
+            var loaded = false;
+            function inject(src) {
+                var s = d.createElement('script');
+                s.async = true;
+                s.src = src;
+                var first = d.getElementsByTagName('script')[0];
+                first.parentNode.insertBefore(s, first);
+            }
+            function loadTrackers() {
+                if (loaded) return;
+                loaded = true;
+                inject('https://www.clarity.ms/tag/zgadv9adjz');
+                inject('https://connect.facebook.net/en_US/fbevents.js');
+            }
+            var triggers = ['pointerdown', 'keydown', 'scroll', 'touchstart', 'mousemove'];
+            function onInteraction() {
+                triggers.forEach(function(evt) { w.removeEventListener(evt, onInteraction); });
+                loadTrackers();
+            }
+            triggers.forEach(function(evt) { w.addEventListener(evt, onInteraction, { once: true, passive: true }); });
+            function scheduleDeferred() {
+                setTimeout(function() {
+                    if ('requestIdleCallback' in w) {
+                        requestIdleCallback(loadTrackers);
+                    } else {
+                        loadTrackers();
+                    }
+                }, 6000);
+            }
+            if (d.readyState === 'complete') {
+                scheduleDeferred();
+            } else {
+                w.addEventListener('load', scheduleDeferred, { once: true });
+            }
+        })(window, document);
+    </script>
+
     <!-- Meta tags for premium SEO optimization -->
     <meta name="description" content="Handmade crochet gifts from Mampad, Malappuram, Kerala, India. Explore crochet bouquets, plushies, keychains, baby gifts and custom crochet gifts with WhatsApp ordering and delivery across Kerala and India.">
     <meta name="author" content="BloomyCocoon">
