@@ -893,10 +893,17 @@ document.addEventListener('DOMContentLoaded', () => {
         type: null,
         color: null,
         notes: '',
-        name: ''
+        name: '',
+        occasion: '',
+        neededBy: ''
     };
     let lastCartTrigger = null;
     let cartScrollY = 0;
+
+    const neededByFieldInit = document.getElementById('custom-needed-by');
+    if (neededByFieldInit) {
+        neededByFieldInit.min = new Date().toISOString().slice(0, 10);
+    }
 
     const screenMetadata = ROUTE_CONTENT;
 
@@ -1187,15 +1194,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const stickyText = document.getElementById('detail-sticky-add-text');
             if (stickyIcon && stickyText) {
                 stickyIcon.textContent = 'check';
-                stickyText.textContent = 'Added';
+                stickyText.textContent = 'Added to Cart';
                 setTimeout(() => {
                     stickyIcon.textContent = 'add_shopping_cart';
-                    stickyText.textContent = 'Add';
+                    stickyText.textContent = 'Add to Cart';
                 }, 1500);
             } else {
-                stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span><span>Added</span>`;
+                stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span><span>Added to Cart</span>`;
                 setTimeout(() => {
-                    stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span><span>Add</span>`;
+                    stickyAddBtn.innerHTML = `<span class="material-symbols-outlined text-[16px]" aria-hidden="true">add_shopping_cart</span><span>Add to Cart</span>`;
                 }, 1500);
             }
         }
@@ -2622,7 +2629,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-secondary text-[20px]" aria-hidden="true">redeem</span>
-                        <span class="font-label-md ${isDrawer ? 'text-xs' : 'text-sm'} font-bold text-on-surface">Make It Extra Special 🎁</span>
+                        <span class="font-label-md ${isDrawer ? 'text-xs' : 'text-sm'} font-bold text-on-surface">Make It Extra Special</span>
                     </div>
                     <span class="text-[10px] text-secondary font-semibold bg-white/80 px-2.5 py-0.5 rounded-full border border-secondary/15">Artisan Touches</span>
                 </div>
@@ -2634,7 +2641,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" data-gift-addon="card" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">✍️</span> Handwritten Calligraphy Card</span>
+                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true" class="material-symbols-outlined text-[14px] align-middle">edit_note</span> Handwritten Calligraphy Card</span>
                                     <span class="text-xs font-bold text-secondary tabular-nums">+₹${cartGiftAddons.card.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Written on craft cardstock with custom wax seal stamp</p>
@@ -2657,7 +2664,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" data-gift-addon="fairyLights" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">💡</span> Warm Fairy Lights String</span>
+                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true" class="material-symbols-outlined text-[14px] align-middle">auto_awesome</span> Warm Fairy Lights String</span>
                                     <span class="text-xs font-bold text-secondary tabular-nums">+₹${cartGiftAddons.fairyLights.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Micro-LED warm copper wire woven through flowers (includes battery)</p>
@@ -2898,6 +2905,11 @@ document.addEventListener('DOMContentLoaded', () => {
             el.innerText = totalQty > 0 ? `₹${formatPrice(grandTotal)}` : 'Add items';
         });
 
+        // Hide totals, add-on and advance/balance sections entirely when the cart is empty
+        document.querySelectorAll('.cart-totals-section').forEach(el => {
+            el.classList.toggle('hidden', totalQty === 0);
+        });
+
         // Enable/Disable checkout buttons
         checkoutBtn.forEach(btn => {
             if (totalQty > 0) {
@@ -3087,9 +3099,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.nextOrderStep = function() {
         if (orderStep === 2) {
-            // Validate step 2 notes
             const notesVal = document.getElementById('custom-notes').value.trim();
             orderData.notes = notesVal;
+            orderData.occasion = document.getElementById('custom-occasion').value;
+
+            const neededByInput = document.getElementById('custom-needed-by');
+            const neededByVal = neededByInput.value;
+            const todayStr = new Date().toISOString().slice(0, 10);
+            if (neededByVal && neededByVal < todayStr) {
+                showFieldError(neededByInput, 'custom-needed-by-error', 'Please choose a date that is today or later.');
+                neededByInput.focus();
+                return;
+            }
+            window.clearFieldError(neededByInput, 'custom-needed-by-error');
+            orderData.neededBy = neededByVal;
         }
 
         if (orderStep < 3) {
@@ -3216,6 +3239,13 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `Base type: ${orderData.type || "Not chosen yet"}\n`;
             message += `Palette preference: ${orderData.color || "Not chosen yet"}\n`;
             message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
+            if (orderData.occasion) {
+                message += `Occasion: ${orderData.occasion}\n`;
+            }
+            if (orderData.neededBy) {
+                const neededByDate = new Date(`${orderData.neededBy}T00:00:00`);
+                message += `Needed by: ${neededByDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}\n`;
+            }
             message += "Source: Custom Order Page\n\n";
             message += "Please help me finalize the design, Starting from price, final quote, made and delivered in 1–2 weeks, and delivery across Kerala and India.\n\n";
             message += "I understand 50% advance is by UPI or Google Pay once my order is confirmed on WhatsApp, and the balance is after I approve the photos, before dispatch.";
@@ -3243,11 +3273,20 @@ document.addEventListener('DOMContentLoaded', () => {
             orderNameInput.value = '';
             window.clearFieldError(orderNameInput, 'order-name-error');
         }
-        
+        const occasionInput = document.getElementById('custom-occasion');
+        if (occasionInput) occasionInput.value = '';
+        const neededByInput = document.getElementById('custom-needed-by');
+        if (neededByInput) {
+            neededByInput.value = '';
+            window.clearFieldError(neededByInput, 'custom-needed-by-error');
+        }
+
         orderData.type = null;
         orderData.color = null;
         orderData.notes = '';
         orderData.name = '';
+        orderData.occasion = '';
+        orderData.neededBy = '';
 
         document.querySelectorAll('.type-pill').forEach(pill => {
             pill.classList.remove('bg-secondary', 'text-on-secondary');
