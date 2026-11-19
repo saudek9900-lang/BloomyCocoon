@@ -2622,7 +2622,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-secondary text-[20px]" aria-hidden="true">redeem</span>
-                        <span class="font-label-md ${isDrawer ? 'text-xs' : 'text-sm'} font-bold text-on-surface">Make It Extra Special 🎁</span>
+                        <span class="font-label-md ${isDrawer ? 'text-xs' : 'text-sm'} font-bold text-on-surface">Make It Extra Special</span>
                     </div>
                     <span class="text-[10px] text-secondary font-semibold bg-white/80 px-2.5 py-0.5 rounded-full border border-secondary/15">Artisan Touches</span>
                 </div>
@@ -2634,7 +2634,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" data-gift-addon="card" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">✍️</span> Handwritten Calligraphy Card</span>
+                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true" class="material-symbols-outlined text-[14px] align-middle">edit_note</span> Handwritten Calligraphy Card</span>
                                     <span class="text-xs font-bold text-secondary tabular-nums">+₹${cartGiftAddons.card.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Written on craft cardstock with custom wax seal stamp</p>
@@ -2657,7 +2657,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input type="checkbox" data-gift-addon="fairyLights" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
-                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true">💡</span> Warm Fairy Lights String</span>
+                                    <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true" class="material-symbols-outlined text-[14px] align-middle">auto_awesome</span> Warm Fairy Lights String</span>
                                     <span class="text-xs font-bold text-secondary tabular-nums">+₹${cartGiftAddons.fairyLights.price}</span>
                                 </div>
                                 <p class="text-[11px] text-on-surface-variant/80 mt-0.5">Micro-LED warm copper wire woven through flowers (includes battery)</p>
