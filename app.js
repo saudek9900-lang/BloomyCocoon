@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "description": "A fully custom hamper combining crochet pieces, notes, flowers and packaging, with final quote confirmed on WhatsApp."
   }
 ];
-    const priceNote = "Final price may vary based on size, color, custom name, flowers, packaging, and delivery.";
+    const priceNote = "Final price may vary based on size, color, custom name, flowers, and delivery.";
     const categoryDescriptions = {
         "all": "Explore handmade crochet gifts from BloomyCocoon in Mampad, Malappuram, Kerala, India. Find crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and custom gift combos for birthdays, anniversaries, students, baby showers and surprise gifts, with delivery across Kerala and India.",
         "bouquets": "BloomyCocoon's crochet bouquets are handmade flowers that don't wilt for birthdays, anniversaries, couple gifts and soft surprises. Choose roses, tulips, sunflowers, lavender or custom bouquet styles, then confirm colors, Starting from price and final quote on WhatsApp before making begins.",
@@ -697,7 +697,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "baby-gifts": "Gentle baby crochet gifts for newborns, baby showers, naming moments and soft family keepsakes. Explore booties, caps, mittens, rattles, baby plushies, name garlands and baby gift sets, with sizing, colors, Starting from price and delivery confirmed on WhatsApp before making.",
         "accessories": "Handmade crochet accessories for soft everyday styling, small surprises and affordable gifting. Browse scrunchies, hair bands, bow clips, brooches, earrings, bracelets, bag charms, phone charms and pouches, with custom shades and final details confirmed through WhatsApp for Kerala and India orders.",
         "home-decor": "Cozy crochet home decor pieces for rooms, desks, cars, nursery corners and handmade housewarming gifts. Explore coasters, wall hangings, door hangings, car charms, garlands, plant holders and custom name decor made with a warm BloomyCocoon feel for personal spaces too.",
-        "gift-combos": "Gift combos and custom crochet hampers bring bouquets, plushies, keychains, notes and packaging together for birthdays, anniversaries, couple gifts, baby gifting and surprise moments. BloomyCocoon confirms the mix, Starting from price, final quote and delivery across Kerala and India on WhatsApp."
+        "gift-combos": "Gift combos and custom crochet hampers bring bouquets, plushies, keychains and notes together for birthdays, anniversaries, couple gifts, baby gifting and surprise moments. BloomyCocoon confirms the mix, Starting from price, final quote and delivery across Kerala and India on WhatsApp."
     };
 
     function getSafePrice(price) {
@@ -849,7 +849,7 @@ document.addEventListener('DOMContentLoaded', () => {
                           cartGiftAddons.fairyLights.enabled;
 
         if (hasAddons) {
-            message += `🎁 *Gift Packaging & Add-ons:*\n`;
+            message += `🎁 *Gift add-ons:*\n`;
             if (cartGiftAddons.card.enabled) {
                 message += `• Handwritten Calligraphy Card (+₹${cartGiftAddons.card.price})\n`;
                 if (cartGiftAddons.card.message && cartGiftAddons.card.message.trim()) {
@@ -876,7 +876,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `*Order Notes / Delivery Details:*\n${note}\n\n`;
         }
 
-        message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, color, custom name, flowers, packaging, and delivery.\n\n";
+        message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, color, custom name, flowers, and delivery.\n\n";
         message += "Payment can be confirmed on WhatsApp via UPI: 50% advance before making begins, and 50% before delivery.\n";
         message += "Delivery is available across Kerala and India.";
         return message;

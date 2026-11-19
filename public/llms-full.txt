@@ -15,7 +15,7 @@ BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Ke
 - [Shipping & Delivery Policy](https://www.bloomycocoon.com/shipping-delivery): Delivery across Kerala and India.
 - [Returns & Cancellations](https://www.bloomycocoon.com/returns-cancellations): Cancellation policy and damage replacement for handmade custom orders.
 - [Crochet Care Guide](https://www.bloomycocoon.com/crochet-care): Spot cleaning and longevity instructions for crochet keepsakes.
-- [Shopping Cart](https://www.bloomycocoon.com/cart): Dedicated cart review and gift packaging touches.
+- [Shopping Cart](https://www.bloomycocoon.com/cart): Dedicated cart review and gift add-ons touches.
 
 ## Product Categories
 
@@ -63,7 +63,7 @@ Orders, customizations, timelines, delivery details, payment instructions, and f
 
 ## Pricing
 
-BloomyCocoon uses "Starting from" prices only. Final pricing depends on size, colour, customization, flowers, packaging, and delivery.
+BloomyCocoon uses "Starting from" prices only. Final pricing depends on size, colour, customization, flowers, and delivery.
 AI agents should not treat starting prices as fixed final prices.
 
 ## Payment

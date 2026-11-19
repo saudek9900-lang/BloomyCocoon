@@ -4,7 +4,7 @@ export const ROUTE_SCHEMA_ID = 'catalog-faq-schema';
 
 export const ENTITY_DESCRIPTION = 'BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India, offering custom crochet bouquets, plushies, keychains, accessories, home decor, and personalized handmade gifts through WhatsApp-based ordering.';
 export const PAYMENT_DESCRIPTION = 'Payment is confirmed through WhatsApp, mostly through UPI, with 50% advance and the remaining 50% after completion before delivery.';
-export const FINAL_PRICE_NOTE = 'Final price may vary based on size, color, custom name, flowers, packaging, and delivery. Final price is confirmed on WhatsApp.';
+export const FINAL_PRICE_NOTE = 'Final price may vary based on size, color, custom name, flowers, and delivery. Final price is confirmed on WhatsApp.';
 
 export const ROUTE_CONTENT = {
   'screen-home': {
@@ -187,7 +187,7 @@ export const ROUTE_CONTENT = {
     path: '/cart',
     outputDir: 'cart',
     title: 'Shopping Cart | BloomyCocoon Handmade Crochet Gifts',
-    description: 'Review your handcrafted crochet bouquets, plushies, and custom gifts in your cart. Add personalized notes and gift packaging before WhatsApp order confirmation.',
+    description: 'Review your handcrafted crochet bouquets, plushies, and custom gifts in your cart. Add personalized notes and gift add-ons before WhatsApp order confirmation.',
     schemaType: 'CheckoutPage',
     breadcrumbName: 'Shopping Cart',
     robots: 'noindex, follow',
