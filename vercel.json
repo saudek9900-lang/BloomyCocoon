@@ -133,6 +133,11 @@
       "source": "/product/:slug",
       "destination": "/products/:slug",
       "permanent": true
+    },
+    {
+      "source": "/images/:name(.*)-generated(.*)",
+      "destination": "/images/:name$2",
+      "permanent": true
     }
   ],
   "rewrites": [
