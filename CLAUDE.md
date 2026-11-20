@@ -33,7 +33,7 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-4 | About the makers | content/p3-4-about | WAITING (Q9; Q7: owner has no hours data) | - |
 | P3-5 | Gulf country pages | content/p3-5-gulf-pages | PARKED (owner: no Gulf shipping) | P2-2 |
 | P3-6 | Malayalam page | content/p3-6-malayalam | PARKED (owner: no Malayalam pages) | P2-2 |
-| P3-7 | Return-gift packs | content/p3-7-packs | PARKED (owner: no return-gift packs) | - |
+| P3-7 | Return-gift packs | content/p3-7-packs | PARKED (Q5: bulk OK, no MOQ, but no pack sizes or prices) | - |
 | P3-8 | Merchant feed test set | seo/p3-8-feed | PARKED (owner: skip) | - |
 | P3-9 | Damage and remake policy | content/p3-9-policy | READY (Q6 answered) | - |
 | P3-10 | Phase B/C UI builds | - | NOT DRAFTED (from P2-5 audit) | P2-5 |

@@ -22,7 +22,7 @@ No hand delivery, no pickup. Postal delivery only.
 
 ## Q5 Return-gift packs (P3-7)
 Minimum quantity, pack sizes and pack prices for return gifts and keychains.
-TODO
+Bulk orders accepted. No minimum order quantity. No fixed pack sizes or pack prices given (price confirmed on WhatsApp).
 
 ## Q6 Damage / remake / refund policy (P3-9)
 Customer must send an unboxing video, or raise a query within 2 days of delivery.
