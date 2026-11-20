@@ -593,7 +593,7 @@ export const CATEGORY_PRODUCT_FAQS = {
   ],
   plushies: [
     ['Can I add a note card or fairy lights with this plushie?', 'Yes, a handwritten note card and warm fairy lights (with battery) can be added as gift add-ons.'],
-    ['What if my plushie arrives damaged?', 'Please send an unboxing video, or raise a query within 2 days of delivery.'],
+    ['What if my plushie arrives damaged?', 'Please send an unboxing video within 24 hours of delivery. We do not accept returns after purchase, but a damaged item is replaced where feasible.'],
   ],
   keychains: [
     ['Is this keychain available in a fixed size?', 'There are no standard sizes — size is confirmed with you on WhatsApp.'],
@@ -601,7 +601,7 @@ export const CATEGORY_PRODUCT_FAQS = {
   ],
   'baby-gifts': [
     ['Are standard sizes available for baby items?', 'No, there are no standard sizes — sizing is confirmed with you on WhatsApp to fit your little one.'],
-    ['What if the baby gift arrives damaged?', 'Please send an unboxing video, or raise a query within 2 days of delivery.'],
+    ['What if the baby gift arrives damaged?', 'Please send an unboxing video within 24 hours of delivery. We do not accept returns after purchase, but a damaged item is replaced where feasible.'],
   ],
   accessories: [
     ['Does the yarn come in a specific brand or type?', "Yarn varies by preference and availability — we don't commit to a specific brand or type."],
@@ -609,7 +609,7 @@ export const CATEGORY_PRODUCT_FAQS = {
   ],
   'home-decor': [
     ['Can I get this in a custom size for my space?', 'There are no standard sizes — size is confirmed with you on WhatsApp to fit your space.'],
-    ['What if my home decor piece arrives damaged?', 'Please send an unboxing video, or raise a query within 2 days of delivery.'],
+    ['What if my home decor piece arrives damaged?', 'Please send an unboxing video within 24 hours of delivery. We do not accept returns after purchase, but a damaged item is replaced where feasible.'],
   ],
   'gift-combos': [
     ["Can I customize what's included in this combo?", 'Yes, the mix of items in a combo is confirmed with you directly on WhatsApp.'],

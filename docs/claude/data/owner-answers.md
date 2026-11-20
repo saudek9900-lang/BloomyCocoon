@@ -60,4 +60,4 @@ Merchant feed not submitted so far.
 
 ## Q15 Return policy wording (P3-14)
 Should the site say "no returns after purchase" (matches the product JSON-LD today), or "repair or replacement where feasible for damaged items" (matches the returns page today)? Q6 stays: send an unboxing video, or raise a query within 2 days of delivery.
-TODO
+Answer (Saud): No returns after purchase. Damaged items are replaced where feasible, replacement only, no repairs. Video evidence needed within 24 hours of delivery (replaces the earlier 2 days in Q6).
