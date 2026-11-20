@@ -35,9 +35,9 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-6 | Malayalam page | content/p3-6-malayalam | PARKED (owner: no Malayalam pages) | P2-2 |
 | P3-7 | Return-gift packs | content/p3-7-packs | PARKED (Q5: bulk OK, no MOQ, but no pack sizes or prices) | - |
 | P3-8 | Merchant feed test set | seo/p3-8-feed | PARKED (owner: skip) | - |
-| P3-9 | Damage and remake policy | content/p3-9-policy | READY (Q6 answered) | - |
+| P3-9 | Damage and remake policy | content/p3-9-policy | MERGED (#26) | - |
 | P3-10 | Phase B/C UI builds | - | NOT DRAFTED (from P2-5 audit) | P2-5 |
-| P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | READY | P3-1 |
+| P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | MERGED (#25) | P3-1 |
 | P4-2 | Workshops details | content/p4-2-workshops | WAITING (Q10; owner will answer later) | - |
 | P5-1 | Product photo galleries | img/p5-1-photos | WAITING (photos in incoming-photos/) | - |
 | P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | WAITING (images in incoming-photos/new-bouquets/) | - |
