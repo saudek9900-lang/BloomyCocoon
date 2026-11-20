@@ -44,7 +44,7 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | MERGED (#21) | P2-4 |
 | P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | MERGED (#22) | - |
 | P3-3 | Product sizes | content/p3-3-sizes | PARKED (owner: no size data) | - |
-| P3-4 | About the makers (L3) | content/p3-4-about | OPEN (#39) | - |
+| P3-4 | About the makers (L3) | content/p3-4-about | MERGED (#39) | - |
 | P3-5 | Gulf country pages (L3) | content/p3-5-gulf-pages | MERGED (#38) | P2-2 |
 | P3-6 | Malayalam page | content/p3-6-malayalam | PARKED (owner: no Malayalam pages) | P2-2 |
 | P3-7 | Return-gift packs | content/p3-7-packs | PARKED (Q5: bulk OK, no MOQ, but no pack sizes or prices) | - |
@@ -52,7 +52,7 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-9 | Damage and remake policy | content/p3-9-policy | MERGED (#26) | - |
 | P3-10 | Phase B/C UI builds | - | MERGED (split into P3-10a, b, c)| P2-5 |
 | P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | MERGED (#25) | P3-1 |
-| P4-2 | Workshops details (L3) | content/p4-2-workshops | WAITING (Q10; owner will answer later) | - |
+| P4-2 | Workshops details (L3) | content/p4-2-workshops | PARKED (Q10: owner will send details once fixed; do not edit /workshops) | - |
 | P5-1 | Product photo galleries | img/p5-1-photos | WAITING (photos in incoming-photos/) | - |
 | P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | WAITING (images in incoming-photos/new-bouquets/) | - |
 | P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
@@ -65,7 +65,7 @@ Image tasks (P5) always come last, and only when Saud has uploaded the images.
 | L0 Saud only (no code) | Search Console indexing (~10 URLs a day), IndexNow submit, check pages on a phone, answer Q9, Q10, Q15, upload photos | - |
 | L1 SEO | P3-13 | Sonnet 5.5, medium |
 | L2 Policy | P3-14 | Sonnet 5.5, medium |
-| L3 Content pages | P3-5 (needs Saud's yes), P3-4 (Q9), P4-2 (Q10), in that order, one after another | P3-5 high; others medium |
+| L3 Content pages (CLOSED: P3-5 and P3-4 merged, P4-2 parked) | P3-5, P3-4, P4-2 | P3-5 high; others medium |
 | L4 UI | P3-17, P3-18, P3-19, P3-20, P3-21, then P3-15 (alone), then P3-16. Audit: docs/claude/audits/2026-11-20-ui-site-audit.md | Sonnet 5.5, medium |
 | L5 Images | P5-1, P5-2, P5-3 (last, alone) | Sonnet 5.5, medium |
 
