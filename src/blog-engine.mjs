@@ -412,6 +412,8 @@ function getPathDisplayLabel(relPath) {
     '/crochet-gift-combos': 'Crochet Gift Combos & Hampers',
     '/anniversary-gifts': 'Curated Anniversary Gifts',
     '/valentines-day-gifts': "Valentine's Day Gifts",
+    '/send-gifts-to-kerala': 'Send Gifts to Kerala from Abroad',
+    '/crochet-gifts-kerala': 'Crochet Gifts in Kerala',
     '/birthday-gifts': 'Curated Birthday Gifts',
     '/baby-shower-gifts': 'Baby Shower & Newborn Gifts',
     '/return-gifts': 'Return Gifts & Small Celebrations',

@@ -38,6 +38,8 @@ const preRenderedProductsHtml = renderCollectionProductsHtml(catalog);
 const OCCASION_GRID_MAP = {
   'screen-anniversary-gifts': 'anniversary-product-grid',
   'screen-valentines-day-gifts': 'valentines-product-grid',
+  'screen-send-gifts-to-kerala': 'send-kerala-product-grid',
+  'screen-crochet-gifts-kerala': 'kerala-gifts-product-grid',
   'screen-birthday-gifts': 'birthday-product-grid',
   'screen-baby-shower-gifts': 'baby-shower-product-grid',
   'screen-return-gifts': 'return-gifts-product-grid',
@@ -538,6 +540,15 @@ ${footerGuidePosts.map((post) => `                            <li><a class="font
                         </ul>
                     </nav>` : '';
 
+const footerKeralaHtml = `
+                    <nav class="flex flex-col items-center gap-2 mb-md" aria-label="Kerala gifting">
+                        <p class="font-label-md text-on-surface font-semibold">Kerala gifting</p>
+                        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                            <li><a class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors" href="/send-gifts-to-kerala">Send Gifts to Kerala</a></li>
+                            <li><a class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors" href="/crochet-gifts-kerala">Crochet Gifts in Kerala</a></li>
+                        </ul>
+                    </nav>`;
+
 function escapeFooterText(str) {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
@@ -570,7 +581,7 @@ const UNIFIED_FOOTER_HTML = `<footer class="bg-surface-container py-10 md:py-xl 
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/blog">Blog</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
-                    </nav>${footerGuidesHtml}
+                    </nav>${footerGuidesHtml}${footerKeralaHtml}
                     <p class="font-body-md text-sm text-on-surface-variant">WhatsApp: <a class="hover:text-secondary transition-colors font-semibold" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">${WHATSAPP_DISPLAY_NUMBER}</a></p>
                     <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
                 </div>

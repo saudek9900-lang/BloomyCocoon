@@ -147,6 +147,8 @@ function getAllRoutes() {
     '/crochet-care',
     '/anniversary-gifts',
     '/valentines-day-gifts',
+    '/send-gifts-to-kerala',
+    '/crochet-gifts-kerala',
     '/birthday-gifts',
     '/baby-shower-gifts',
     '/return-gifts',
