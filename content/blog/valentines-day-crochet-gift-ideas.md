@@ -6,6 +6,7 @@ date: "2026-11-13"
 image: "images/strawberry_keychain.png"
 imageAlt: "A red and green handmade crochet strawberry keychain with a metal keyring"
 related:
+  - "/valentines-day-gifts"
   - "/crochet-bouquets"
   - "/crochet-plushies"
   - "/anniversary-gifts"
