@@ -44,6 +44,12 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 
 Image tasks (P5) always come last.
 
+## Skills (in .claude/skills/)
+- `seo-skill` (`/seo audit|page|technical|content|schema|sitemap|geo|ecommerce <url>`): use for SEO checks inside a task (P1-2, P1-4, P2-x content pages) and when Saud asks for an SEO audit. Audit only; reports go to docs/claude/audits/.
+- `ui-ux-pro-max`: use as a checklist for UI work (P1-3, P2-5, P3-10) and UI audits. Do not adopt its palette or fonts.
+- Both skills start with a "BloomyCocoon rules" block. Those rules and this file win over the skill text.
+- Using a skill never changes the task queue, branch rules or "one task per session".
+
 ## Model and thinking level
 - Default for every task: Sonnet 5.5, medium thinking.
 - High thinking (Sonnet 5.5): P2-2 (Kerala/NRI copy), P2-5 (UI audit), P3-5 (Gulf pages). Opus 5.5 is also fine for these.
