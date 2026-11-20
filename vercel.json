@@ -210,6 +210,10 @@
       "destination": "/crochet-gifts-kerala/index.html"
     },
     {
+      "source": "/eid-gifts",
+      "destination": "/eid-gifts/index.html"
+    },
+    {
       "source": "/birthday-gifts",
       "destination": "/birthday-gifts/index.html"
     },

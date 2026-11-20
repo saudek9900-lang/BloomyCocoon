@@ -40,6 +40,7 @@ const OCCASION_GRID_MAP = {
   'screen-valentines-day-gifts': 'valentines-product-grid',
   'screen-send-gifts-to-kerala': 'send-kerala-product-grid',
   'screen-crochet-gifts-kerala': 'kerala-gifts-product-grid',
+  'screen-eid-gifts': 'eid-product-grid',
   'screen-birthday-gifts': 'birthday-product-grid',
   'screen-baby-shower-gifts': 'baby-shower-product-grid',
   'screen-return-gifts': 'return-gifts-product-grid',
