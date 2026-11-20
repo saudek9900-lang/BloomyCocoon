@@ -510,6 +510,20 @@ function injectProductDetail(html, product, catalog) {
   return next;
 }
 
+// Newest blog posts (max 6) for the footer "Gift guides" list; new posts in content/blog appear automatically.
+const footerGuidePosts = (await getAllBlogPosts()).slice(0, 6);
+const footerGuidesHtml = footerGuidePosts.length > 0 ? `
+                    <nav class="flex flex-col items-center gap-2 mb-md" aria-label="Gift guides">
+                        <p class="font-label-md text-on-surface font-semibold">Gift guides</p>
+                        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+${footerGuidePosts.map((post) => `                            <li><a class="font-body-md text-sm text-on-surface-variant hover:text-secondary transition-colors" href="/blog/${post.slug}">${escapeFooterText(post.title)}</a></li>`).join('\n')}
+                        </ul>
+                    </nav>` : '';
+
+function escapeFooterText(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 const UNIFIED_FOOTER_HTML = `<footer class="bg-surface-container py-10 md:py-xl mt-10 md:mt-xl border-t border-outline-variant/10">
                 <div class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg flex flex-col items-center gap-base text-center">
                     <a data-nav-logo class="nav-logo cursor-pointer flex items-center justify-center gap-0 mb-sm" href="/">
@@ -538,7 +552,7 @@ const UNIFIED_FOOTER_HTML = `<footer class="bg-surface-container py-10 md:py-xl 
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" href="/blog">Blog</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
-                    </nav>
+                    </nav>${footerGuidesHtml}
                     <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
                 </div>
             </footer>`;
