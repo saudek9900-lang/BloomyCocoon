@@ -98,8 +98,8 @@ export const ROUTE_CONTENT = {
   'screen-anniversary-gifts': {
     path: '/anniversary-gifts',
     outputDir: 'anniversary-gifts',
-    title: 'Handmade Crochet Anniversary Gifts & Bouquets in Kerala | BloomyCocoon',
-    description: 'Celebrate love with handmade crochet anniversary flower bouquets, couple gift combos and romantic keepsakes from BloomyCocoon in Kerala. Custom orders on WhatsApp.',
+    title: 'Handmade Crochet Anniversary Gifts in Kerala | BloomyCocoon',
+    description: 'Handmade crochet anniversary gifts in Kerala: flower bouquets, couple combos and keepsakes. Order 12-14 days ahead. Details confirmed on WhatsApp.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Anniversary Gifts',
   },
