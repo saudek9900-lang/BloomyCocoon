@@ -6,7 +6,7 @@ Never guessed by Claude. Leave TODO if unsure.
 
 ## Q1 Product sizes (used by P3-3)
 Height x width in cm (or "fits in palm" style text), at least the top 20 products. Format: product-id: size
-TODO
+No size data available. Do not state sizes.
 
 ## Q2 Gulf shipping (P2-2, P3-5)
 Can you courier to UAE / Saudi / Qatar / Oman / Kuwait / Bahrain? Which courier, cost, transit time? Or Kerala delivery only?
@@ -22,14 +22,14 @@ No hand delivery, no pickup. Postal delivery only.
 
 ## Q5 Return-gift packs (P3-7)
 Minimum quantity, pack sizes and pack prices for return gifts and keychains.
-TODO
+Bulk orders accepted. No minimum order quantity. No fixed pack sizes or pack prices given (price confirmed on WhatsApp).
 
 ## Q6 Damage / remake / refund policy (P3-9)
 Customer must send an unboxing video, or raise a query within 2 days of delivery.
 
 ## Q7 Hours of work per piece (P3-4)
 e.g. rose bouquet about X hours, plushie about Y hours.
-TODO
+No data on hours per piece. Do not state hours.
 
 ## Q8 GST registration (Amazon Karigar / Etsy, owner task)
 No GST registration.
@@ -40,7 +40,7 @@ TODO
 
 ## Q10 Workshops (P4-2)
 Dates, fees, place or online, how to book.
-TODO
+Not now. Owner will answer later.
 
 ## Q11 NRI delivery details (P2-2)
 Can the sender's (Gulf) number be the contact? Can you deliver on a fixed date? Surprise delivery?
@@ -48,11 +48,11 @@ Yes to all three (sender's number as contact, fixed-date delivery, surprise deli
 
 ## Q12 Malayalam page text (P3-6)
 Approved Malayalam text for the page (Claude will not translate it).
-TODO
+No Malayalam text needed.
 
 ## Q13 Merchant feed test items (P3-8)
 5-10 product ids with an exact fixed price and a fixed shipping charge.
-TODO
+Skip. No fixed-price test items.
 
 ## Q14 Merchant feed images (P5-3)
 Do you use the Merchant feed? Which product images need Google's DigitalSourceType tag?

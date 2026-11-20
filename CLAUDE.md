@@ -26,19 +26,19 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P2-2 | Kerala + NRI gifting pages | content/p2-2-kerala-nri | MERGED (#15) | P1-3 |
 | P2-3 | Return gift ideas post | content/p2-3-return-gifts-post | MERGED (#17) | - |
 | P2-4 | Eid gifts page (live by 15 Jan) | content/p2-4-eid | MERGED (#18) | P2-2 |
-| P2-5 | UI Phase B/C audit (docs only) | ui/p2-5-audit | READY | - |
-| P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | READY | P2-4 |
-| P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | READY | - |
-| P3-3 | Product sizes | content/p3-3-sizes | WAITING (Q1) | - |
-| P3-4 | About the makers | content/p3-4-about | WAITING (Q7, Q9) | - |
+| P2-5 | UI Phase B/C audit (docs only) | ui/p2-5-audit | MERGED (#20) | - |
+| P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | MERGED (#21) | P2-4 |
+| P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | MERGED (#22) | - |
+| P3-3 | Product sizes | content/p3-3-sizes | PARKED (owner: no size data) | - |
+| P3-4 | About the makers | content/p3-4-about | WAITING (Q9; Q7: owner has no hours data) | - |
 | P3-5 | Gulf country pages | content/p3-5-gulf-pages | PARKED (owner: no Gulf shipping) | P2-2 |
 | P3-6 | Malayalam page | content/p3-6-malayalam | PARKED (owner: no Malayalam pages) | P2-2 |
-| P3-7 | Return-gift packs | content/p3-7-packs | PARKED (owner: no return-gift packs) | - |
-| P3-8 | Merchant feed test set | seo/p3-8-feed | WAITING (Q13; owner says no fixed prices, may be dropped) | - |
+| P3-7 | Return-gift packs | content/p3-7-packs | PARKED (Q5: bulk OK, no MOQ, but no pack sizes or prices) | - |
+| P3-8 | Merchant feed test set | seo/p3-8-feed | PARKED (owner: skip) | - |
 | P3-9 | Damage and remake policy | content/p3-9-policy | READY (Q6 answered) | - |
 | P3-10 | Phase B/C UI builds | - | NOT DRAFTED (from P2-5 audit) | P2-5 |
 | P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | READY | P3-1 |
-| P4-2 | Workshops details | content/p4-2-workshops | WAITING (Q10) | - |
+| P4-2 | Workshops details | content/p4-2-workshops | WAITING (Q10; owner will answer later) | - |
 | P5-1 | Product photo galleries | img/p5-1-photos | WAITING (photos in incoming-photos/) | - |
 | P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | WAITING (images in incoming-photos/new-bouquets/) | - |
 | P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
