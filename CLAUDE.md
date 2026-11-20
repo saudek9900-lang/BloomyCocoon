@@ -1,30 +1,31 @@
 # BloomyCocoon: instructions for Claude Code
 
 ## When Saud says "continue" (or anything like "carry on", "next task")
-1. Read the task queue below, top to bottom.
-2. For each task, check its PR on GitHub (REST only, GraphQL is blocked here: `gh api "repos/saudek9900-lang/BloomyCocoon/pulls?state=all&head=saudek9900-lang:<branch>"`). If you cannot, check `git log origin/main`.
-3. If any queue task has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. Only one open task PR at a time.
-4. Otherwise pick the first task that is not merged and is runnable:
+1. Before anything else, sync the Status column from GitHub (merged -> MERGED, open -> OPEN) and commit it on the task branch as the first commit: 'docs: sync queue status'. GitHub is the truth; the table is a mirror.
+2. Read the task queue below, top to bottom.
+3. For each task, check its PR on GitHub (REST only, GraphQL is blocked here: `gh api "repos/saudek9900-lang/BloomyCocoon/pulls?state=all&head=saudek9900-lang:<branch>"`). If you cannot, check `git log origin/main`.
+4. If any queue task has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. Only one open task PR at a time.
+5. Otherwise pick the first task that is not merged and is runnable:
    - READY: runnable if the tasks in its "Needs" column are merged.
    - WAITING: runnable once every answer it lists in docs/claude/data/owner-answers.md is no longer TODO (or, for photo tasks, the incoming-photos/ files exist on main). Then treat it as READY.
    - PARKED or NOT DRAFTED: never run. Skip.
    Skipped tasks: list them in your reply with what unblocks each.
-5. Before running the chosen task, apply "Model and thinking level" below. Then run it: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), give the final report, and STOP. One task per session.
-6. If nothing is runnable: tell Saud which answers or photos unblock the next task.
+6. Before running the chosen task, apply "Model and thinking level" below. Then run it: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), give the final report, and STOP. One task per session.
+7. If nothing is runnable: tell Saud which answers or photos unblock the next task.
 
 ## Task queue
 Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. Run in this order.
 | # | Task | Branch | Status | Needs |
 |---|------|--------|--------|-------|
-| P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | READY | - |
-| P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | READY | - |
-| P1-3 | Order steps + trust strip | ux/p1-3-order-steps | READY | - |
-| P1-4 | Titles and meta (CTR) | content/p1-4-titles-meta | READY | - |
-| P1-5 | Valentine's Day gifts page (live by 20 Dec) | content/p1-5-valentines | READY | - |
-| P2-1 | Unique product descriptions | content/p2-1-product-descriptions | READY | - |
-| P2-2 | Kerala + NRI gifting pages | content/p2-2-kerala-nri | READY | P1-3 |
-| P2-3 | Return gift ideas post | content/p2-3-return-gifts-post | READY | - |
-| P2-4 | Eid gifts page (live by 15 Jan) | content/p2-4-eid | READY | P2-2 |
+| P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
+| P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | MERGED (#10) | - |
+| P1-3 | Order steps + trust strip | ux/p1-3-order-steps | MERGED (#11) | - |
+| P1-4 | Titles and meta (CTR) | content/p1-4-titles-meta | MERGED (#12) | - |
+| P1-5 | Valentine's Day gifts page (live by 20 Dec) | content/p1-5-valentines | MERGED (#13) | - |
+| P2-1 | Unique product descriptions | content/p2-1-product-descriptions | MERGED (#14) | - |
+| P2-2 | Kerala + NRI gifting pages | content/p2-2-kerala-nri | MERGED (#15) | P1-3 |
+| P2-3 | Return gift ideas post | content/p2-3-return-gifts-post | MERGED (#17) | - |
+| P2-4 | Eid gifts page (live by 15 Jan) | content/p2-4-eid | MERGED (#18) | P2-2 |
 | P2-5 | UI Phase B/C audit (docs only) | ui/p2-5-audit | READY | - |
 | P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | READY | P2-4 |
 | P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | READY | - |
