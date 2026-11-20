@@ -16,15 +16,15 @@
 Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. Run in this order.
 | # | Task | Branch | Status | Needs |
 |---|------|--------|--------|-------|
-| P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | READY | - |
-| P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | READY | - |
-| P1-3 | Order steps + trust strip | ux/p1-3-order-steps | READY | - |
-| P1-4 | Titles and meta (CTR) | content/p1-4-titles-meta | READY | - |
-| P1-5 | Valentine's Day gifts page (live by 20 Dec) | content/p1-5-valentines | READY | - |
-| P2-1 | Unique product descriptions | content/p2-1-product-descriptions | READY | - |
-| P2-2 | Kerala + NRI gifting pages | content/p2-2-kerala-nri | READY | P1-3 |
-| P2-3 | Return gift ideas post | content/p2-3-return-gifts-post | READY | - |
-| P2-4 | Eid gifts page (live by 15 Jan) | content/p2-4-eid | READY | P2-2 |
+| P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
+| P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | MERGED (#10) | - |
+| P1-3 | Order steps + trust strip | ux/p1-3-order-steps | MERGED (#11) | - |
+| P1-4 | Titles and meta (CTR) | content/p1-4-titles-meta | MERGED (#12) | - |
+| P1-5 | Valentine's Day gifts page (live by 20 Dec) | content/p1-5-valentines | MERGED (#13) | - |
+| P2-1 | Unique product descriptions | content/p2-1-product-descriptions | MERGED (#14) | - |
+| P2-2 | Kerala + NRI gifting pages | content/p2-2-kerala-nri | MERGED (#15) | P1-3 |
+| P2-3 | Return gift ideas post | content/p2-3-return-gifts-post | MERGED (#17) | - |
+| P2-4 | Eid gifts page (live by 15 Jan) | content/p2-4-eid | MERGED (#18) | P2-2 |
 | P2-5 | UI Phase B/C audit (docs only) | ui/p2-5-audit | READY | - |
 | P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | READY | P2-4 |
 | P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | READY | - |
