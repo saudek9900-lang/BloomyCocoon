@@ -80,7 +80,8 @@ Effort: S = under half a day, M = about a day. Each finding names the L4 task th
 - **Fix idea:** add bottom padding equal to the bar or button height while it is shown. Do it in CSS on the page wrapper, not in the 36 footers.
 - Effort S, risk low.
 
-### U5. Keyboard: the mobile menu does not hold focus, and route changes drop focus (MEDIUM) → P3-20
+### U5. Keyboard: the mobile menu does not hold focus (MEDIUM) → P3-20
+- **Correction (found while building P3-20):** the second half of this finding, "route changes drop focus", was wrong. The link I tested does a full page load, where focus starting at the top of the page is normal. In-app transitions already call `focusScreenHeading`. No change was needed for that part.
 - **Mobile menu (375):**
   - Opened with the keyboard, Tab leaves the open menu and walks into the page behind it. After 20 Tabs, focus was on an add-to-cart button 1,300px down, with the menu still open.
   - The button's `aria-label` stays "Open mobile menu" while the menu is open.

@@ -10,7 +10,7 @@ The quick-look modal already handles focus correctly; follow its pattern.
 
 ## Steps
 1. Mobile menu (`toggleMobileMenu`, app.js ~2399): while open, keep Tab and Shift+Tab inside the menu, or close it when focus leaves. Set the button's `aria-label` to "Close mobile menu" while open and back to "Open mobile menu" when closed. Keep Escape as it is.
-2. After an in-app route change (not on the first page load, and not when the URL has a #hash target), move focus to the new page's H1 (add `tabindex="-1"` only where needed) or to `#app-viewport`, which already has `tabindex="-1"`. No visible focus ring on that H1 (outline none only for that programmatic focus). Do not scroll differently from today.
+2. (Not needed: in-app route changes already focus the H1 via `focusScreenHeading`; the audit finding was a full page load. Skip this step.) After an in-app route change (not on the first page load, and not when the URL has a #hash target), move focus to the new page's H1 (add `tabindex="-1"` only where needed) or to `#app-viewport`, which already has `tabindex="-1"`. No visible focus ring on that H1 (outline none only for that programmatic focus). Do not scroll differently from today.
 3. No visual change for mouse and touch users.
 
 ## Verify
