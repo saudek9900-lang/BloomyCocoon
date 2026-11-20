@@ -61,3 +61,19 @@ Merchant feed not submitted so far.
 ## Q15 Return policy wording (P3-14)
 Should the site say "no returns after purchase" (matches the product JSON-LD today), or "repair or replacement where feasible for damaged items" (matches the returns page today)? Q6 stays: send an unboxing video, or raise a query within 2 days of delivery.
 Answer (Saud): No returns after purchase. Damaged items are replaced where feasible, replacement only, no repairs. Video evidence needed within 24 hours of delivery (replaces the earlier 2 days in Q6).
+
+## Q16 Order tracking (full-site audit T1, used by P3-22)
+Does every order ship with courier tracking?
+Answer (Saud, 20 Nov 2026): No tracking feature on the website. Saud sends the tracking details to the customer manually after dispatch. Mention it only where it is needed (FAQ and shipping page), not on every page.
+
+## Q17 Customer proof (full-site audit C1)
+Customer messages or delivered-gift photos that can be shown with permission?
+Answer (Saud, 20 Nov 2026): None for now. Do not add testimonials, reviews or customer photos. Ask again later.
+
+## Q18 Spelling style (full-site audit W1, used by P3-23)
+UK spelling ("colour", "customise") or US ("color", "customize")?
+Answer (Saud, 20 Nov 2026): UK spelling for all visible text.
+
+## Q19 About-page durability wording (full-site audit X1, used by P3-22)
+Change "securing every thread for a lifetime of use" to "so it lasts for years with gentle care"?
+Answer (Saud, 20 Nov 2026): OK.
