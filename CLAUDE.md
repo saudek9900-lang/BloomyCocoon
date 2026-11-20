@@ -33,7 +33,7 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-21 | Tap targets, small text, bottom overlap (L4) | ui/p3-21-targets-text | MERGED (#45) | - |
 | P3-22 | Audit content fixes: H1s, tracking wording, llms price, small copy (L1) | content/p3-22-audit-fixes | MERGED (#49) | - |
 | P3-24 | Category answer blocks (L1) | content/p3-24-category-answers | MERGED (#50) | P3-22 |
-| P3-23 | UK spelling pass, run ALONE | content/p3-23-uk-spelling | READY | P3-22, P3-24 |
+| P3-23 | UK spelling pass, run ALONE | content/p3-23-uk-spelling | MERGED (#52) | P3-22, P3-24 |
 | P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
 | P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | MERGED (#10) | - |
 | P1-3 | Order steps + trust strip | ux/p1-3-order-steps | MERGED (#11) | - |

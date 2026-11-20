@@ -1,9 +1,9 @@
-# BloomyCocoon plan: current status and parallel lanes (updated 2026-11-20, night)
+# BloomyCocoon plan: current status and parallel lanes (updated 2026-11-20, end of day)
 
 This section replaces the phase order further down. The task queue and lane rules in CLAUDE.md win if they differ.
 
 ## Done and live (main, 2026-11-20 night)
-P1-1 to P1-5, P2-1 to P2-5, P3-1 (Vishu, Mother's Day), P3-2 (price guide), P3-9 (damage wording), P3-11 (return-gifts FAQ), P3-12 (SEO audit), P3-10a/b/c (collections fix, custom order and contact clarity, cart polish), P3-13 (SEO quick fix, #36), P3-14 (return policy, #37), P3-5 (Gulf ordering section, #38), P3-4 (About the makers, #39), P4-1 (Father's Day, Friendship Day, Raksha Bandhan, Onam, Diwali pages).
+P1-1 to P1-5, P2-1 to P2-5, P3-1 (Vishu, Mother's Day), P3-2 (price guide), P3-9 (damage wording), P3-11 (return-gifts FAQ), P3-12 (SEO audit), P3-10a/b/c (collections fix, custom order and contact clarity, cart polish), P3-13 (SEO quick fix, #36), P3-14 (return policy, #37), P3-5 (Gulf ordering section, #38), P3-4 (About the makers, #39), P3-22 (audit content fixes, #49), P3-24 (category answer blocks, #50), P3-23 (UK spelling, #52), P4-1 (Father's Day, Friendship Day, Raksha Bandhan, Onam, Diwali pages).
 
 ### L4 UI work shipped today (audit: docs/claude/audits/2026-11-20-ui-site-audit.md)
 | PR | Task | What changed |
@@ -21,8 +21,8 @@ L4 is finished. P3-16 ("Customise this" link) is parked: Saud said skip.
 | Priority | Lane | Task | Status | Model |
 |----------|------|------|--------|-------|
 | P0 | L0 Saud | Request indexing in Search Console (~10 URLs a day), IndexNow submit, phone check of new pages (including the new footer, menu and product grid), answer Q10 and Q14 | Saud | - |
-| Last | L5 Images | P5-1 photo galleries, P5-2 new bouquets (needs images in incoming-photos/, none uploaded yet), P5-3 image tag (parked, Q14) | Waiting for Saud's photos | Sonnet 5.5, medium |
-| Parked | - | P3-16 customise link (Saud: skip), P3-3 sizes (no data), P3-6 Malayalam (not needed), P3-7 packs (no sizes or prices), P3-8 feed test (skipped), P4-2 workshops (Q10, later) | Parked | - |
+| Parked | L5 Images | P5-1 photo galleries, P5-2 new bouquets (Saud: no images for now), P5-3 image tag (Q14) | Parked | Sonnet 5.5, medium |
+| Parked | - | P3-16 customise link (Saud: skip), P3-3 sizes (no data), P3-6 Malayalam (not needed), P3-7 packs (no sizes or prices), P3-8 feed test (skipped), P4-2 workshops (Q10, Saud parked it) | Parked | - |
 
 Nothing else is runnable. L1, L2, L3 and L4 are closed.
 
@@ -84,7 +84,7 @@ Measure: confirmed orders / organic sessions vs ~1.6% India D2C benchmark; repea
 
 ## Full-site audit follow-up (20 Nov 2026)
 Audit: docs/claude/audits/2026-11-20-full-site-audit.md (website-audit, seo-geo-aeo, seo-skill, ui-ux-pro-max). Answers Q16-Q19.
-Code: P3-22 audit content fixes (L1), then P3-24 category answer blocks (L1), then P3-23 UK spelling pass (alone).
+Code: P3-22 audit content fixes (#49), P3-24 category answer blocks (#50) and P3-23 UK spelling pass (#52) are all merged. Open question for Saud: the tracking sentence sits on /birthday-gifts, not /faq. Remove it there, or add one to /faq?
 Parked: customer proof on the site (Q17: none for now). Saud: keep collecting real customer messages/photos with permission; when there are some, a task can be drafted.
 
 ## Phase 5: images (last)
