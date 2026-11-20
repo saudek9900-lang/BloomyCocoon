@@ -1502,7 +1502,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const sameCategory = [...categoryList.slice(categoryIndex + 1), ...categoryList.slice(0, categoryIndex)];
             const otherCategory = collectionProducts.filter(p => p.id !== product.id && p.category !== product.category);
             const related = [...sameCategory, ...otherCategory].slice(0, 4);
-            relatedContainer.innerHTML = related.map(p => getProductCardMarkup(p)).join('\n');
+            relatedContainer.innerHTML = related.map(p => getProductCardMarkup({ ...p, featured: false })).join('\n');
             applyImageFallbacks(relatedContainer);
             setupProductCardAddToCartTriggers(relatedContainer);
         }
