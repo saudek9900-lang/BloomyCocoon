@@ -1,5 +1,7 @@
 # UI audit: whole site, L4 lane (2026-11-20)
 
+**Status: all findings fixed and merged (2026-11-20).** U1 = P3-17 (#40), U2 = P3-18 (#41), U3 = P3-19 (#43), U5 = P3-20 (#44; the route-change half was a wrong finding), U4/U6/U7/U8 = P3-21 (#45), footer links = P3-15 (#46). Not done: product-name links under cards (20px tall, optional) and the floating WhatsApp pill over the add-on box at 1024px (not a bug).
+
 Docs only. No code or site text was changed.
 Checklist: `ui-ux-pro-max` (accessibility, touch, performance, layout, type, motion, forms, navigation). Its palette and fonts were not used.
 This follows the P2-5 audit (`docs/claude/ui-phase-bc-proposal.md`). That audit covered collections, custom order, cart and contact at 375px. P3-10a/b/c already fixed most of what it found. This audit covers the whole site at all four widths.
