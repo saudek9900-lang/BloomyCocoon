@@ -17,6 +17,11 @@
 Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. Run in this order.
 | # | Task | Branch | Status | Needs |
 |---|------|--------|--------|-------|
+| P3-10a | B1: Collections deep-link bug + tidy (PRIORITY) | ui/b1-collections | READY | - |
+| P3-11 | Return-gifts FAQ: bulk orders, no minimum (PRIORITY) | content/p3-11-return-faq | READY | - |
+| P3-12 | SEO audit + indexing check, docs only (PRIORITY) | seo/p3-12-audit | READY | - |
+| P3-10b | B2: Custom order + contact clarity (PRIORITY) | ui/b2-custom-order | WAITING (Saud's wording and decisions, see prompt) | - |
+| P3-10c | C1: Cart polish (PRIORITY) | ui/c1-cart | WAITING (Saud's decisions, see prompt) | P3-10a |
 | P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
 | P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | MERGED (#10) | - |
 | P1-3 | Order steps + trust strip | ux/p1-3-order-steps | MERGED (#11) | - |
@@ -30,13 +35,13 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | MERGED (#21) | P2-4 |
 | P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | MERGED (#22) | - |
 | P3-3 | Product sizes | content/p3-3-sizes | PARKED (owner: no size data) | - |
-| P3-4 | About the makers | content/p3-4-about | WAITING (Q9; Q7: owner has no hours data) | - |
+| P3-4 | About the makers | content/p3-4-about | WAITING (Q9: owner will answer later; Q7: owner has no hours data) | - |
 | P3-5 | Gulf country pages | content/p3-5-gulf-pages | PARKED (owner: no Gulf shipping) | P2-2 |
 | P3-6 | Malayalam page | content/p3-6-malayalam | PARKED (owner: no Malayalam pages) | P2-2 |
 | P3-7 | Return-gift packs | content/p3-7-packs | PARKED (Q5: bulk OK, no MOQ, but no pack sizes or prices) | - |
 | P3-8 | Merchant feed test set | seo/p3-8-feed | PARKED (owner: skip) | - |
 | P3-9 | Damage and remake policy | content/p3-9-policy | MERGED (#26) | - |
-| P3-10 | Phase B/C UI builds | - | NOT DRAFTED (from P2-5 audit) | P2-5 |
+| P3-10 | Phase B/C UI builds | - | SPLIT into P3-10a, P3-10b, P3-10c at the top of this table | P2-5 |
 | P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | MERGED (#25) | P3-1 |
 | P4-2 | Workshops details | content/p4-2-workshops | WAITING (Q10; owner will answer later) | - |
 | P5-1 | Product photo galleries | img/p5-1-photos | WAITING (photos in incoming-photos/) | - |

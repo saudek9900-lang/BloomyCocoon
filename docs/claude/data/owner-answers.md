@@ -36,7 +36,7 @@ No GST registration.
 
 ## Q9 Makers story and photos (P3-4)
 Are your sisters OK to appear in photos/video? Short true story: who makes what, since when, why.
-TODO
+TODO (owner: not now, will answer later)
 
 ## Q10 Workshops (P4-2)
 Dates, fees, place or online, how to book.
