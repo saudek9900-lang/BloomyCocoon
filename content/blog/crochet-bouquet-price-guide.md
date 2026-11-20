@@ -34,6 +34,10 @@ Every price on this page is a "Starting from" price. It tells you where a piece 
 
 The delivery charge is not fixed either. We confirm it with you on WhatsApp before making begins, so there are no surprises later.
 
+## Why handmade costs more
+
+A crochet bouquet is stitched one flower at a time, by hand, and only after you place your order. That slow, made-to-order work is what you are paying for. It is also why we meet your colour and flower choices on WhatsApp first, rather than sending something off a shelf.
+
 ## Single stems or full bouquets?
 
 Our range has two kinds of pieces, and the price difference comes from what you are gifting.

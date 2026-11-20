@@ -35,7 +35,7 @@ export const ROUTE_CONTENT = {
     path: '/about',
     outputDir: 'about',
     title: 'About BloomyCocoon | Crochet Gifts from Malappuram, Kerala',
-    description: 'Meet BloomyCocoon, a handmade crochet gifting brand from Mampad, Malappuram, Kerala. Custom bouquets, plushies, keychains and gifts, made to order.',
+    description: 'Meet the sisters behind BloomyCocoon, a handmade crochet studio in Mampad, Malappuram, Kerala. Custom bouquets, plushies and gifts, made to order.',
     schemaType: 'AboutPage',
     breadcrumbName: 'About BloomyCocoon',
   },
