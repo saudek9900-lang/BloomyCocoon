@@ -473,6 +473,13 @@ body.cart-open {
     }
 }
 
+@media (max-width: 767px) {
+    #toast-container.toast-over-drawer {
+        bottom: auto;
+        top: 132px;
+    }
+}
+
 .toast {
     background: #422b25;
     color: #ffede9;

@@ -976,8 +976,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             message += `*Starting Total:* ₹${formatPrice(itemsSubtotal)}\n`;
         }
-        message += `• 50% Advance via UPI (to start crafting): ₹${formatPrice(advanceAmount)}\n`;
-        message += `• 50% Balance (before dispatch): ₹${formatPrice(balanceAmount)}\n\n`;
+        message += `• About 50% advance via UPI (to start crafting): approx. ₹${formatPrice(advanceAmount)}\n`;
+        message += `• About 50% balance (before dispatch): approx. ₹${formatPrice(balanceAmount)}\n`;
+        message += `(These amounts are estimates. The exact amount is confirmed on WhatsApp.)\n\n`;
 
         if (note) {
             message += `*Order Notes / Delivery Details:*\n${note}\n\n`;
@@ -2239,9 +2240,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const whatsappFloat = document.getElementById('whatsapp-global-float');
         if (!whatsappFloat) return;
         const isCartOpen = document.getElementById('sideCart')?.classList.contains('cart-visible');
-        whatsappFloat.classList.toggle('whatsapp-hidden', isCartOpen || screenId === 'screen-custom-orders');
+        whatsappFloat.classList.toggle('whatsapp-hidden', isCartOpen || screenId === 'screen-custom-orders' || screenId === 'screen-cart');
         whatsappFloat.classList.toggle('whatsapp-product-mobile-hide', screenId === 'screen-product-detail');
-        if (!isCartOpen && screenId !== 'screen-custom-orders') {
+        if (!isCartOpen && screenId !== 'screen-custom-orders' && screenId !== 'screen-cart') {
             updateContextualWhatsAppFloat(screenId);
         }
     }
@@ -2638,8 +2639,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         renderCart();
-        const toastMsg = addQty > 1 ? `Added ${addQty}x "${name}" to your cart!` : `Added "${name}" to your cart!`;
-        showToast(toastMsg);
+        // The drawer opens right after adding (and announces the new item), so the toast would only
+        // cover its main button. Show the toast only when the drawer will not open (on the /cart page).
+        if (currentScreen === 'screen-cart') {
+            const toastMsg = addQty > 1 ? `Added ${addQty}x "${name}" to your cart!` : `Added "${name}" to your cart!`;
+            showToast(toastMsg);
+        }
         trackEvent('add_to_cart', {
             item_id: id,
             item_name: name,
@@ -2786,8 +2791,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="space-y-2.5">
                     <!-- 1. Calligraphy Card -->
                     <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.card.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
-                        <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" data-gift-addon="card" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                        <label class="flex items-start gap-3 cursor-pointer min-h-[44px]">
+                            <input type="checkbox" data-gift-addon="card" onchange="toggleGiftAddon('card')" ${cartGiftAddons.card.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-5 h-5 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
                                     <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true" class="material-symbols-outlined text-[14px] align-middle">edit_note</span> Handwritten Calligraphy Card</span>
@@ -2809,8 +2814,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <!-- 2. Warm Fairy Lights -->
                     <div class="gift-addon-item bg-white/95 rounded-xl p-3 border transition-all ${cartGiftAddons.fairyLights.enabled ? 'border-secondary ring-1 ring-secondary/30 bg-secondary/5' : 'border-outline-variant/20 hover:border-outline-variant/40'}">
-                        <label class="flex items-start gap-3 cursor-pointer">
-                            <input type="checkbox" data-gift-addon="fairyLights" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-4 h-4 cursor-pointer">
+                        <label class="flex items-start gap-3 cursor-pointer min-h-[44px]">
+                            <input type="checkbox" data-gift-addon="fairyLights" onchange="toggleGiftAddon('fairyLights')" ${cartGiftAddons.fairyLights.enabled ? 'checked' : ''} class="mt-0.5 rounded text-secondary focus:ring-secondary accent-secondary w-5 h-5 cursor-pointer">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center justify-between">
                                     <span class="font-label-md text-xs font-bold text-on-surface"><span aria-hidden="true" class="material-symbols-outlined text-[14px] align-middle">auto_awesome</span> Warm Fairy Lights String</span>
@@ -2826,18 +2831,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderPageEmptyCart() {
-        const popularPicks = [
-            { id: 'single-crochet-rose', name: 'Single Crochet Rose', category: 'bouquets', price: 149, badge: 'Popular Fav' },
-            { id: 'bunny-plushie', name: 'Bunny Plushie', category: 'plushies', price: 499, badge: 'Bestseller' },
-            { id: 'strawberry-keychain', name: 'Strawberry Keychain', category: 'keychains', price: 199, badge: 'Pocket Love' },
-            { id: 'couple-bouquet-combo', name: 'Couple Bouquet Combo', category: 'bouquets', price: 1199, badge: 'Anniversary' }
-        ];
+        const pickIds = ['single-crochet-rose', 'bunny-plushie', 'strawberry-keychain', 'couple-bouquet-combo'];
+        const popularPicks = pickIds.map(id => collectionProducts.find(p => p.id === id)).filter(Boolean);
 
         let picksHtml = '';
         popularPicks.forEach(pick => {
-            const catalogItem = collectionProducts.find(p => p.id === pick.id) || pick;
+            const catalogItem = pick;
             const img = getProductImage(catalogItem);
-            const safePrice = getSafePrice(catalogItem.startingPrice || catalogItem.price);
+            const safePrice = getSafePrice(catalogItem.startingPrice);
             const categoryLabel = getCategoryLabel(catalogItem.category);
 
             picksHtml += `
@@ -2846,7 +2847,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a href="/products/${catalogItem.id}" class="block">
                             <img src="${escapeHTML(getThumbnailImage(img))}" alt="${escapeHTML(catalogItem.name)}" class="w-full h-32 sm:h-36 object-cover rounded-xl border border-outline-variant/15 group-hover:scale-105 transition-transform" width="200" height="150" loading="lazy">
                         </a>
-                        ${catalogItem.badge ? `<span class="absolute top-2 left-2 bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider pointer-events-none">${escapeHTML(catalogItem.badge)}</span>` : ''}
                         <button type="button" data-quick-look="${catalogItem.id}" class="quick-look-btn absolute bottom-2 right-2 w-11 h-11 min-w-[44px] min-h-[44px] p-0 rounded-full bg-white/90 hover:bg-white backdrop-blur-sm text-secondary border border-secondary/20 shadow-sm flex items-center justify-center focus-visible:opacity-100 transition-all cursor-pointer" aria-label="Quick look at ${escapeHTML(catalogItem.name)}">
                             <span class="material-symbols-outlined text-[20px] leading-none" aria-hidden="true">visibility</span>
                         </button>
@@ -2883,7 +2883,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="bg-surface-container-low/50 border border-outline-variant/20 rounded-3xl p-5 sm:p-6 space-y-4">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h3 class="font-headline-sm text-base text-primary font-bold">Popular Handcrafted Blooms</h3>
+                            <h3 class="font-headline-sm text-base text-primary font-bold">You may like</h3>
                             <p class="text-xs text-on-surface-variant">Tap to add directly to your basket</p>
                         </div>
                         <a href="/collections" class="text-xs font-semibold text-secondary hover:underline flex items-center gap-0.5">
@@ -2918,7 +2918,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="flex-1 min-w-0">
                             <div class="flex items-start justify-between gap-2">
                                 <div class="min-w-0">
-                                    <a href="/products/${item.id}" class="font-headline-sm text-base sm:text-lg text-primary font-bold leading-snug hover:text-secondary hover:underline transition-colors block truncate">${escapeHTML(item.name)}</a>
+                                    <a href="/products/${item.id}" class="font-headline-sm text-base sm:text-lg text-primary font-bold leading-snug hover:text-secondary hover:underline transition-colors block truncate py-3 -my-3">${escapeHTML(item.name)}</a>
                                     <div class="flex items-center gap-2 flex-wrap mt-1">
                                         <span class="text-xs text-on-surface-variant font-medium">${escapeHTML(categoryLabel)}</span>
                                         ${badge ? `<span class="bg-secondary/10 text-secondary text-[11px] font-semibold px-2.5 py-0.5 rounded-full uppercase tracking-wider">${escapeHTML(badge)}</span>` : ''}
@@ -2949,7 +2949,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="pt-1.5">
                         <div class="relative">
                             <span class="material-symbols-outlined text-on-surface-variant text-[16px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">palette</span>
-                            <input type="text" data-item-note="${escapeHTML(item.id)}" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colors or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="w-full bg-white border border-outline-variant/25 rounded-xl pl-8 pr-3 py-2 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/75 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom color or personalization wish for ${escapeHTML(item.name)}">
+                            <input type="text" data-item-note="${escapeHTML(item.id)}" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colors or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="min-h-[44px] w-full bg-white border border-outline-variant/25 rounded-xl pl-8 pr-3 py-2 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/75 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom color or personalization wish for ${escapeHTML(item.name)}">
                         </div>
                     </div>
                 </div>
@@ -2995,10 +2995,10 @@ document.addEventListener('DOMContentLoaded', () => {
             el.textContent = totalQty > 0 ? `₹${formatPrice(itemsSubtotal)}` : '₹0';
         });
         document.querySelectorAll('.cart-advance-amount, #cart-advance-amount').forEach(el => {
-            el.textContent = totalQty > 0 ? `₹${formatPrice(advanceAmount)}` : '₹0';
+            el.textContent = totalQty > 0 ? `approx. ₹${formatPrice(advanceAmount)}` : '₹0';
         });
         document.querySelectorAll('.cart-balance-amount, #cart-balance-amount').forEach(el => {
-            el.textContent = totalQty > 0 ? `₹${formatPrice(balanceAmount)}` : '₹0';
+            el.textContent = totalQty > 0 ? `approx. ₹${formatPrice(balanceAmount)}` : '₹0';
         });
 
         // Update addons row in breakdown
@@ -3704,6 +3704,9 @@ document.addEventListener('DOMContentLoaded', () => {
         container.setAttribute('role', 'status');
         container.setAttribute('aria-live', 'polite');
         container.setAttribute('aria-atomic', 'true');
+
+        // While the cart drawer is open, show toasts near its top so they never cover the main button.
+        container.classList.toggle('toast-over-drawer', !!document.getElementById('sideCart')?.classList.contains('cart-visible'));
 
         const toast = document.createElement('div');
         toast.className = 'toast';
