@@ -9,6 +9,11 @@ related:
   - "/crochet-plushies"
   - "/crochet-keychains"
   - "/crochet-baby-gifts"
+products:
+  - "mini-teddy-plushie"
+  - "bunny-plushie"
+  - "cat-plushie"
+  - "duck-plushie"
 ---
 
 In the world of yarn crafts, small stuffed figures are some of the most popular items to make and receive. With large heads, round cheeks, and friendly expressions, these cute characters are known by their Japanese name: amigurumi.

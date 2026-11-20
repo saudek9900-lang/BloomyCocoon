@@ -9,6 +9,11 @@ related:
   - "/crochet-plushies"
   - "/crochet-gift-combos"
   - "/crochet-home-decor"
+products:
+  - "bunny-plushie"
+  - "plushie-flower-combo"
+  - "keychain-flower-combo"
+  - "crochet-plant-holder"
 ---
 
 The holiday season brings friends and families together to share meals, exchange gifts, and celebrate the end of the year. Finding a gift that feels personal can take time. Many store shelves are filled with identical factory items that people forget once the season passes.

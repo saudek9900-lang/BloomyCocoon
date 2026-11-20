@@ -9,6 +9,11 @@ related:
   - "/crochet-bouquets"
   - "/crochet-plushies"
   - "/anniversary-gifts"
+products:
+  - "rose-bouquet"
+  - "mini-teddy-plushie"
+  - "plushie-flower-combo"
+  - "couple-keychain-set"
 ---
 
 Valentine's Day gives us a chance to show appreciation to the people we care about. While chocolates and paper cards are common choices, they often disappear quickly. Many people look for gifts that feel more personal and thoughtful.
