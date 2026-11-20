@@ -837,11 +837,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function trackPageView() {
+        if (!window.BC_TRACKING_LIVE) return;
         // GA4 and Clarity follow history changes on their own; Meta Pixel needs a manual PageView.
         if (typeof window.fbq === 'function') window.fbq('track', 'PageView');
     }
 
     function trackEvent(eventName, params = {}) {
+        if (!window.BC_TRACKING_LIVE) return;
         trackMetaEvent(eventName, params);
         if (window.gtag && typeof window.gtag === "function") {
             window.gtag("event", eventName, params);

@@ -7,6 +7,9 @@
 
     <!-- Google tag (gtag.js) -->
     <script>
+        // Analytics run only on the live host, so local and preview testing never pollutes the data.
+        window.BC_TRACKING_LIVE = (location.hostname === 'www.bloomycocoon.com');
+        if (window.BC_TRACKING_LIVE) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         window.gtag = gtag;
@@ -45,11 +48,13 @@
                 window.addEventListener('load', scheduleDeferred, { once: true });
             }
         })();
+        }
     </script>
     
     <!-- Microsoft Clarity + Meta Pixel (stubs queue calls now; scripts load after idle or first interaction, like gtag) -->
     <script>
         (function(w, d) {
+            if (location.hostname !== 'www.bloomycocoon.com') return;
             // Clarity stub
             w.clarity = w.clarity || function() { (w.clarity.q = w.clarity.q || []).push(arguments); };
 
