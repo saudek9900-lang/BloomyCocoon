@@ -22,8 +22,8 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-12 | SEO audit + indexing check, docs only (PRIORITY) | seo/p3-12-audit | MERGED (#31) | - |
 | P3-10b | B2: Custom order + contact clarity (PRIORITY) | ui/b2-custom-order | MERGED (#32) | - |
 | P3-10c | C1: Cart polish (PRIORITY) | ui/c1-cart | MERGED (#33) | P3-10a |
-| P3-13 | SEO quick fix: titles, meta, blog links, llms.txt (L1) | seo/p3-13-titles-links | READY | - |
-| P3-14 | Return policy alignment (L2) | content/p3-14-return-policy | WAITING (Q15) | - |
+| P3-13 | SEO quick fix: titles, meta, blog links, llms.txt (L1) | seo/p3-13-titles-links | MERGED (#36) | - |
+| P3-14 | Return policy alignment (L2) | content/p3-14-return-policy | MERGED (#37) | - |
 | P3-15 | Footer tap targets, run ALONE (L4) | ui/p3-15-footer-targets | WAITING (Saud OK) | - |
 | P3-16 | "Customise this" link, optional (L4) | ui/p3-16-customise-link | WAITING (Saud's wording) | - |
 | P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
@@ -39,8 +39,8 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | MERGED (#21) | P2-4 |
 | P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | MERGED (#22) | - |
 | P3-3 | Product sizes | content/p3-3-sizes | PARKED (owner: no size data) | - |
-| P3-4 | About the makers (L3) | content/p3-4-about | WAITING (Q9: owner will answer later; Q7: owner has no hours data) | - |
-| P3-5 | Gulf country pages (L3) | content/p3-5-gulf-pages | PARKED (needs Saud's yes: reframed as gifts delivered in India, no Gulf shipping) | P2-2 |
+| P3-4 | About the makers (L3) | content/p3-4-about | OPEN (#39) | - |
+| P3-5 | Gulf country pages (L3) | content/p3-5-gulf-pages | MERGED (#38) | P2-2 |
 | P3-6 | Malayalam page | content/p3-6-malayalam | PARKED (owner: no Malayalam pages) | P2-2 |
 | P3-7 | Return-gift packs | content/p3-7-packs | PARKED (Q5: bulk OK, no MOQ, but no pack sizes or prices) | - |
 | P3-8 | Merchant feed test set | seo/p3-8-feed | PARKED (owner: skip) | - |
