@@ -143,6 +143,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: "Vishu Gifts",
   },
+  'screen-mothers-day-gifts': {
+    path: '/mothers-day-gifts',
+    outputDir: 'mothers-day-gifts',
+    title: "Handmade Crochet Mother's Day Gifts | BloomyCocoon",
+    description: "Handmade crochet Mother's Day gifts for 9 May 2027: bouquets, combos, tote bags and decor. Made to order; message us 2 weeks ahead on WhatsApp.",
+    schemaType: 'CollectionPage',
+    breadcrumbName: "Mother's Day Gifts",
+  },
   'screen-birthday-gifts': {
     path: '/birthday-gifts',
     outputDir: 'birthday-gifts',
@@ -315,6 +323,18 @@ export const OCCASION_PRODUCTS = {
     'wall-hanging',
     'mini-flower-pot',
     'crochet-cushion-cover',
+  ],
+  'screen-mothers-day-gifts': [
+    'rose-bouquet',
+    'tulip-bouquet',
+    'lavender-bouquet',
+    'mini-bouquet-note-card',
+    'plushie-flower-combo',
+    'custom-crochet-hamper',
+    'flower-brooch',
+    'crochet-tote-bag',
+    'mini-flower-pot',
+    'crochet-plant-holder',
   ],
   'screen-birthday-gifts': [
     'birthday-mini-gift-box',

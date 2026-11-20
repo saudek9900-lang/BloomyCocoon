@@ -151,6 +151,7 @@ function getAllRoutes() {
     '/crochet-gifts-kerala',
     '/eid-gifts',
     '/vishu-gifts',
+    '/mothers-day-gifts',
     '/birthday-gifts',
     '/baby-shower-gifts',
     '/return-gifts',
