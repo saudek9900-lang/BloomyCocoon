@@ -1,4 +1,4 @@
-The Initial Letter Keychain is a personal charm made around a single letter, crocheted by hand in yarn. Its badge says Personalized, because the whole point is that it is made for one person.
+The Initial Letter Keychain is a personal charm made around a single letter, crocheted by hand in yarn. Its badge says Personalised, because the whole point is that it is made for one person.
 
 It suits names, students, couples and handmade gift hampers: a letter for a friend, one for each person in a pair or an initial that completes a larger gift. It is a small piece that feels thought through.
 

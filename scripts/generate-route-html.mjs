@@ -374,7 +374,7 @@ function injectProductDetail(html, product, catalog) {
   const safePrice = Number(product.startingPrice) || 149;
   const categoryLabel = getCategoryLabel(product.category);
   const categoryPath = getCategoryPath(product.category);
-  const waMessage = encodeURIComponent(`Hi BloomyCocoon, I would like to order the ${product.name} (Starting from ₹${safePrice}). What colors and custom options are available?`);
+  const waMessage = encodeURIComponent(`Hi BloomyCocoon, I would like to order the ${product.name} (Starting from ₹${safePrice}). What colours and custom options are available?`);
 
   // Find 4 related products
   // Same-category products, starting after the current one and wrapping, so every product is linked from its neighbours.
@@ -707,7 +707,7 @@ await writeFile(path.join(PUBLIC_DIR, 'llms-full.txt'), llmsFullTxt);
 await writeFile(path.join(DIST_DIR, 'llms-full.txt'), llmsFullTxt);
 console.log('Generated llms-full.txt with 69 catalog products');
 
-// Generate Google Merchant Center XML feed
+// Generate Google Merchant Centre XML feed
 const merchantXml = generateGoogleMerchantXml(catalog);
 await writeFile(path.join(PUBLIC_DIR, 'google-merchant-feed.xml'), merchantXml);
 await writeFile(path.join(DIST_DIR, 'google-merchant-feed.xml'), merchantXml);

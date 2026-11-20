@@ -1,4 +1,4 @@
-The Crochet Cushion Cover is a cosy cushion cover for warm corners, housewarming gifts and soft home decor. It is crocheted by hand in soft yarn and has a Kept Favorite badge.
+The Crochet Cushion Cover is a cosy cushion cover for warm corners, housewarming gifts and soft home decor. It is crocheted by hand in soft yarn and has a Kept Favourite badge.
 
 It suits sofas, beds and reading corners, and it is a good housewarming gift for someone who likes a warm, handmade look at home. It also works as a gift for family when you want something that stays in the house.
 

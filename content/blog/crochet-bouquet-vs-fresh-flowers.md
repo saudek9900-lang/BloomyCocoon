@@ -27,7 +27,7 @@ Fresh flowers are bright and pleasant, but they do not remain that way for long.
 
 A crochet bouquet does not wilt, so the arrangement can sit on a study desk, a shelf, or a bedside table long after the celebration is over. For events like graduations, new jobs, or family milestones, a crochet bouquet serves as a cheerful reminder of that moment. Whenever your loved one walks past it, they remember who gave it to them and why.
 
-You can explore our [Handmade Crochet Bouquets](/crochet-bouquets) to see different flower styles and colors.
+You can explore our [Handmade Crochet Bouquets](/crochet-bouquets) to see different flower styles and colours.
 
 ## Easy Daily Care
 
@@ -45,7 +45,7 @@ Crafting flower stems from yarn allows for a wide range of botanical forms. Indi
 
 When celebrating a relationship milestone, pairing flowers with thoughtful words makes the day feel special. You can read our [Anniversary Gift Guides](/anniversary-gifts) for ideas on choosing meaningful gifts for partners, or our [Valentine's Day crochet gift ideas](/blog/valentines-day-crochet-gift-ideas).
 
-## Choosing Colors and Custom Options
+## Choosing Colours and Custom Options
 
 Fresh flowers depend on seasonal availability, so certain varieties are not always on hand throughout the year.
 
@@ -55,4 +55,4 @@ With crochet flowers, yarn comes in many different shades. You can choose soft c
 
 Fresh flowers remain a good choice when you want a traditional scent for a quick occasion.
 
-When you want a gift that remains as a reminder of a happy day, a crochet bouquet is a great option. A handmade flower arrangement shows that you took time to choose something made by hand. It brings color to a room and reminds your favorite person of your care every time they see it.
+When you want a gift that remains as a reminder of a happy day, a crochet bouquet is a great option. A handmade flower arrangement shows that you took time to choose something made by hand. It brings colour to a room and reminds your favourite person of your care every time they see it.

@@ -45,7 +45,7 @@ export function generateGoogleMerchantXml(catalog) {
     const googleCategory = GOOGLE_PRODUCT_CATEGORIES[product.category] || 'Home & Garden > Decor > Artificial Flora';
     const categoryLabel = CATEGORY_LABELS[product.category] || 'Handmade Gift';
     const cleanDesc = (product.description || '').trim();
-    const fullDesc = `${cleanDesc} Handmade to order in Kerala. Custom colors and personalized options available on WhatsApp. Starting from ₹${safePrice}.`;
+    const fullDesc = `${cleanDesc} Handmade to order in Kerala. Custom colours and personalised options available on WhatsApp. Starting from ₹${safePrice}.`;
     const productTitle = `${product.name} - Handmade Crochet ${categoryLabel}`;
 
     xml += '    <item>\n';

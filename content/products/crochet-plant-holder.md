@@ -1,4 +1,4 @@
-The Crochet Plant Holder is a cosy plant holder for shelves, windows and handmade home decor gifts. It is crocheted by hand in soft yarn and carries a Kept Favorite badge.
+The Crochet Plant Holder is a cosy plant holder for shelves, windows and handmade home decor gifts. It is crocheted by hand in soft yarn and carries a Kept Favourite badge.
 
 It suits plant lovers, housewarming gifts and anyone who likes a soft, handmade touch around their plants. It sits well on a shelf or in a window.
 

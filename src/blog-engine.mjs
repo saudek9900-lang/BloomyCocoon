@@ -624,7 +624,7 @@ export function generateBlogPostHtml({ baseHtml, post, allPosts, unifiedFooterHt
           <div class="bg-secondary-container/60 rounded-2xl p-6 md:p-8 text-center max-w-2xl mx-auto border border-secondary-fixed/40">
             <span class="material-symbols-outlined text-secondary text-3xl mb-2" aria-hidden="true">edit_note</span>
             <h3 class="font-headline-sm text-lg md:text-xl font-bold text-on-surface mb-2">Looking for a Custom Crochet Gift?</h3>
-            <p class="font-body-md text-sm md:text-base text-on-surface-variant mb-5">Have a specific flower combination, custom plushie idea, or personalized color theme in mind? We craft custom keepsakes slowly for your meaningful celebrations.</p>
+            <p class="font-body-md text-sm md:text-base text-on-surface-variant mb-5">Have a specific flower combination, custom plushie idea, or personalised colour theme in mind? We craft custom keepsakes slowly for your meaningful celebrations.</p>
             <a href="/custom-order" class="inline-flex items-center gap-2 bg-secondary text-white font-label-md text-sm md:text-base py-3 px-6 rounded-full hover:opacity-90 active:scale-95 transition-all shadow-sm">
               <span>Start Custom Order</span>
               <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
