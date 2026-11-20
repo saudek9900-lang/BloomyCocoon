@@ -26,6 +26,11 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-14 | Return policy alignment (L2) | content/p3-14-return-policy | WAITING (Q15) | - |
 | P3-15 | Footer tap targets, run ALONE (L4) | ui/p3-15-footer-targets | WAITING (Saud OK) | - |
 | P3-16 | "Customise this" link, optional (L4) | ui/p3-16-customise-link | WAITING (Saud's wording) | - |
+| P3-17 | Related products grid fix (L4) | ui/p3-17-related-grid | READY | - |
+| P3-18 | Font layout shift fix (L4) | ui/p3-18-font-cls | READY | - |
+| P3-19 | Product page image weight (L4) | ui/p3-19-image-weight | READY | - |
+| P3-20 | Keyboard focus fixes (L4) | ui/p3-20-keyboard-focus | READY | - |
+| P3-21 | Tap targets, small text, bottom overlap (L4) | ui/p3-21-targets-text | READY | - |
 | P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
 | P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | MERGED (#10) | - |
 | P1-3 | Order steps + trust strip | ux/p1-3-order-steps | MERGED (#11) | - |
@@ -61,7 +66,7 @@ Image tasks (P5) always come last, and only when Saud has uploaded the images.
 | L1 SEO | P3-13 | Sonnet 5.5, medium |
 | L2 Policy | P3-14 | Sonnet 5.5, medium |
 | L3 Content pages | P3-5 (needs Saud's yes), P3-4 (Q9), P4-2 (Q10), in that order, one after another | P3-5 high; others medium |
-| L4 UI | P3-15 (alone), then P3-16 | Sonnet 5.5, medium |
+| L4 UI | P3-17, P3-18, P3-19, P3-20, P3-21, then P3-15 (alone), then P3-16. Audit: docs/claude/audits/2026-11-20-ui-site-audit.md | Sonnet 5.5, medium |
 | L5 Images | P5-1, P5-2, P5-3 (last, alone) | Sonnet 5.5, medium |
 
 Can run at the same time: L1, L2 and L3 (different files, small overlaps). L0 can always run.
@@ -69,6 +74,8 @@ Cannot run at the same time:
 - P3-15 (footer) edits 36 footers in index.html, so it conflicts with every lane. Run it alone, first or last.
 - L5 images: P5-1 changes the product template and images, P5-2 adds products (count, sitemap, feed, llms-full). Run alone, after everything else is merged. P5-1 and P5-2 also cannot run together.
 - P3-16 and P5-1 both change the product page. Not together.
+- P3-17 and P3-19 also change the product page: not together with P3-16 or P5-1.
+- P3-21 touches the page bottom next to the footer: never at the same time as P3-15.
 - Two tasks inside L3 both add or edit pages and the shared lists below. One after another.
 
 Rules for parallel chats:
