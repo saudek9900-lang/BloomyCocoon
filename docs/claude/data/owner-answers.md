@@ -10,29 +10,29 @@ TODO
 
 ## Q2 Gulf shipping (P2-2, P3-5)
 Can you courier to UAE / Saudi / Qatar / Oman / Kuwait / Bahrain? Which courier, cost, transit time? Or Kerala delivery only?
-TODO
+No Gulf shipping. No delivery outside India.
 
 ## Q3 Payment for customers abroad (P2-2, P3-5)
 Which methods work for NRIs (international card, NRE/NRO UPI, bank transfer, PayPal...)?
-TODO
+Same as Indian customers (UPI / Google Pay).
 
 ## Q4 Local hand delivery or pickup (Google Business Profile, owner task)
 Do you or your sisters hand-deliver locally (which towns) or allow pickup? Google only allows a profile with in-person contact.
-TODO
+No hand delivery, no pickup. Postal delivery only.
 
 ## Q5 Return-gift packs (P3-7)
 Minimum quantity, pack sizes and pack prices for return gifts and keychains.
 TODO
 
 ## Q6 Damage / remake / refund policy (P3-9)
-TODO
+Customer must send an unboxing video, or raise a query within 2 days of delivery.
 
 ## Q7 Hours of work per piece (P3-4)
 e.g. rose bouquet about X hours, plushie about Y hours.
 TODO
 
 ## Q8 GST registration (Amazon Karigar / Etsy, owner task)
-TODO
+No GST registration.
 
 ## Q9 Makers story and photos (P3-4)
 Are your sisters OK to appear in photos/video? Short true story: who makes what, since when, why.
@@ -44,7 +44,7 @@ TODO
 
 ## Q11 NRI delivery details (P2-2)
 Can the sender's (Gulf) number be the contact? Can you deliver on a fixed date? Surprise delivery?
-TODO
+Yes to all three (sender's number as contact, fixed-date delivery, surprise delivery).
 
 ## Q12 Malayalam page text (P3-6)
 Approved Malayalam text for the page (Claude will not translate it).
@@ -56,4 +56,4 @@ TODO
 
 ## Q14 Merchant feed images (P5-3)
 Do you use the Merchant feed? Which product images need Google's DigitalSourceType tag?
-TODO
+Merchant feed not submitted so far.
