@@ -151,6 +151,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: "Mother's Day Gifts",
   },
+  'screen-friendship-day-gifts': {
+    path: '/friendship-day-gifts',
+    outputDir: 'friendship-day-gifts',
+    title: "Handmade Crochet Friendship Day Gifts from Kerala | BloomyCocoon",
+    description: "Handmade crochet Friendship Day gifts from Kerala: keychains, plushies and mini bouquets, made to order. Message us 2 weeks ahead on WhatsApp.",
+    schemaType: 'CollectionPage',
+    breadcrumbName: "Friendship Day Gifts",
+  },
   'screen-fathers-day-gifts': {
     path: '/fathers-day-gifts',
     outputDir: 'fathers-day-gifts',
@@ -343,6 +351,18 @@ export const OCCASION_PRODUCTS = {
     'crochet-tote-bag',
     'mini-flower-pot',
     'crochet-plant-holder',
+  ],
+  'screen-friendship-day-gifts': [
+    'couple-keychain-set',
+    'flower-keychain',
+    'teddy-keychain',
+    'mini-pocket-plushies',
+    'bag-charm',
+    'phone-charm',
+    'crochet-bracelet',
+    'single-crochet-rose',
+    'mini-bouquet-note-card',
+    'keychain-flower-combo',
   ],
   'screen-fathers-day-gifts': [
     'car-hanging-charm',

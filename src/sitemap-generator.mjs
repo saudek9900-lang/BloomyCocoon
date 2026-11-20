@@ -72,6 +72,7 @@ const CORE_ROUTES = [
   { path: '/eid-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-eid-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/vishu-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-vishu-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/mothers-day-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-mothers-day-gifts', sourceFile: 'src/route-content.mjs' },
+  { path: '/friendship-day-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-friendship-day-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/fathers-day-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-fathers-day-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/birthday-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-birthday-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/baby-shower-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-baby-shower-gifts', sourceFile: 'src/route-content.mjs' },

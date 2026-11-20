@@ -1034,6 +1034,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/eid-gifts') return 'screen-eid-gifts';
         if (cleanPath === '/vishu-gifts') return 'screen-vishu-gifts';
         if (cleanPath === '/mothers-day-gifts') return 'screen-mothers-day-gifts';
+        if (cleanPath === '/friendship-day-gifts') return 'screen-friendship-day-gifts';
         if (cleanPath === '/fathers-day-gifts') return 'screen-fathers-day-gifts';
         if (cleanPath === '/birthday-gifts') return 'screen-birthday-gifts';
         if (cleanPath === '/baby-shower-gifts') return 'screen-baby-shower-gifts';
