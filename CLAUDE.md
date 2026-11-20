@@ -4,7 +4,7 @@
 1. Before anything else, sync the Status column from GitHub (merged -> MERGED, open -> OPEN) and commit it on the task branch as the first commit: 'docs: sync queue status'. GitHub is the truth; the table is a mirror.
 2. Read the task queue below, top to bottom.
 3. For each task, check its PR on GitHub (REST only, GraphQL is blocked here: `gh api "repos/saudek9900-lang/BloomyCocoon/pulls?state=all&head=saudek9900-lang:<branch>"`). If you cannot, check `git log origin/main`.
-4. Saud runs one chat per lane (see "Parallel lanes" below) and says which lane, for example "continue L1". If he names no lane, ask which one. If any task IN THAT LANE has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. One open task PR per lane. P3-15 (footer) and the L5 image tasks are the exception: they run alone, only when no other task PR is open.
+4. Saud runs one chat per lane (see "Parallel lanes" below) and says which lane, for example "continue L1". If he names no lane, ask which one. If any task IN THAT LANE has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. One open task PR per lane. P3-15 (footer), P3-23 (UK spelling) and the L5 image tasks are the exception: they run alone, only when no other task PR is open.
 5. Otherwise pick the first task of that lane that is not merged and is runnable:
    - READY: runnable if the tasks in its "Needs" column are merged.
    - WAITING: runnable once every answer it lists in docs/claude/data/owner-answers.md is no longer TODO (or, for photo tasks, the incoming-photos/ files exist on main). Then treat it as READY.
@@ -31,6 +31,9 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-19 | Product page image weight (L4) | ui/p3-19-image-weight | MERGED (#43) | - |
 | P3-20 | Keyboard focus fixes (L4) | ui/p3-20-keyboard-focus | MERGED (#44) | - |
 | P3-21 | Tap targets, small text, bottom overlap (L4) | ui/p3-21-targets-text | MERGED (#45) | - |
+| P3-22 | Audit content fixes: H1s, tracking wording, llms price, small copy (L1) | content/p3-22-audit-fixes | READY | - |
+| P3-24 | Category answer blocks (L1) | content/p3-24-category-answers | READY | P3-22 |
+| P3-23 | UK spelling pass, run ALONE | content/p3-23-uk-spelling | READY | P3-22, P3-24 |
 | P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
 | P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | MERGED (#10) | - |
 | P1-3 | Order steps + trust strip | ux/p1-3-order-steps | MERGED (#11) | - |
@@ -63,7 +66,7 @@ Image tasks (P5) always come last, and only when Saud has uploaded the images.
 | Lane | Tasks, in order | Model |
 |------|-----------------|-------|
 | L0 Saud only (no code) | Search Console indexing (~10 URLs a day), IndexNow submit, check pages on a phone, answer Q9, Q10, Q15, upload photos | - |
-| L1 SEO | P3-13 | Sonnet 5.5, medium |
+| L1 SEO | P3-13, then P3-22, P3-24 (audit: docs/claude/audits/2026-11-20-full-site-audit.md) | Sonnet 5.5, medium |
 | L2 Policy | P3-14 | Sonnet 5.5, medium |
 | L3 Content pages | P3-5 (needs Saud's yes), P3-4 (Q9), P4-2 (Q10), in that order, one after another | P3-5 high; others medium |
 | L4 UI | P3-17, P3-18, P3-19, P3-20, P3-21, then P3-15 (alone), then P3-16. Audit: docs/claude/audits/2026-11-20-ui-site-audit.md | Sonnet 5.5, medium |
@@ -76,6 +79,7 @@ Cannot run at the same time:
 - P3-16 and P5-1 both change the product page. Not together.
 - P3-17 and P3-19 also change the product page: not together with P3-16 or P5-1.
 - P3-21 touches the page bottom next to the footer: never at the same time as P3-15.
+- P3-23 (UK spelling) edits text in index.html, app.js, route-content, catalog.json and llms files, so it conflicts with every lane. Run it alone, after P3-22 and P3-24 are merged and no other task PR is open.
 - Two tasks inside L3 both add or edit pages and the shared lists below. One after another.
 
 Rules for parallel chats:

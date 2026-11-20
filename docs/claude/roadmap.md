@@ -82,6 +82,11 @@ Code: P4-1 seasonal pages (Father's Day, Friendship Day, Raksha Bandhan, Onam li
 Saud: Amazon Karigar only with GST and capacity (Q8); YouTube Shorts from Reels; Pinterest optional; monthly check of ChatGPT/Gemini/Perplexity for "handmade crochet gifts Kerala/India".
 Measure: confirmed orders / organic sessions vs ~1.6% India D2C benchmark; repeat customers; seasonal page performance.
 
+## Full-site audit follow-up (20 Nov 2026)
+Audit: docs/claude/audits/2026-11-20-full-site-audit.md (website-audit, seo-geo-aeo, seo-skill, ui-ux-pro-max). Answers Q16-Q19.
+Code: P3-22 audit content fixes (L1), then P3-24 category answer blocks (L1), then P3-23 UK spelling pass (alone).
+Parked: customer proof on the site (Q17: none for now). Saud: keep collecting real customer messages/photos with permission; when there are some, a task can be drafted.
+
 ## Phase 5: images (last)
 P5-1 real product photo galleries + in-hand size photos (Saud uploads photos), P5-2 new Sunflower + Lily bouquets (Saud uploads approved images), P5-3 hidden IPTC tag (parked, Q14).
 

@@ -118,8 +118,24 @@ The occasion cards on `/` use icon-font words (`favorite`, `cake`, `child_care`,
 
 Suggested grouping: items 3, 4, 8 and 9 fit in one small content PR (Sonnet 5.5, medium). Items 2, 5 and 6 need Saud's answers first.
 
-## Questions for Saud
-1. **T1:** Does every order ship with courier tracking?
-2. **C1:** Do you have customer messages or photos of delivered gifts you can share with permission?
-3. **W1:** UK spelling ("colour", "customise") or US ("color", "customize")?
-4. **X1:** OK to change "a lifetime of use" to "lasts for years with gentle care"?
+## Decisions (Saud, 20 Nov 2026) and where each finding is fixed
+Answers are saved as Q16-Q19 in `docs/claude/data/owner-answers.md`.
+
+| Finding | Decision / solution | Task | Status |
+|---|---|---|---|
+| S1 H1s | Use the suggested H1s, keep taglines as sublines | P3-22 | READY |
+| T1 Tracking | Q16: no tracking on the website; Saud sends tracking details manually. Remove "with courier tracking" from the 69 product pages; mention tracking only on /faq and /shipping-delivery | P3-22 | READY |
+| G1 llms price | "under ₹200" → "starting from ₹149" | P3-22 | READY |
+| X1 About copy | Q19: OK. "the quality yarn" → "quality yarn"; "a lifetime of use" → "so it lasts for years with gentle care" | P3-22 | READY |
+| X2 Consistency | "1–2 weeks" everywhere; "a photo of your finished gift" | P3-22 | READY |
+| U1 Icons | `aria-hidden` on 4 home icons | P3-22 | READY |
+| A1 Category answers | One question + 40–60 word answer per category page, catalog prices only, no new FAQPage schema | P3-24 | READY after P3-22 |
+| W1 Spelling | Q18: UK spelling for all visible text | P3-23 | Run alone, after P3-22 and P3-24 |
+| C1 Customer proof | Q17: none for now. Do not add testimonials or reviews | - | PARKED |
+| Indexing, seasonal links | Saud (L0), before each season | - | Ongoing |
+
+## Questions for Saud (answered)
+1. **T1:** Does every order ship with courier tracking? → Q16 (sent manually; mention only where needed)
+2. **C1:** Customer messages or photos? → Q17 (none for now)
+3. **W1:** UK or US spelling? → Q18 (UK)
+4. **X1:** "lasts for years with gentle care"? → Q19 (OK)
