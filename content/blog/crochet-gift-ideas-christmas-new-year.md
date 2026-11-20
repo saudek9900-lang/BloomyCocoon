@@ -1,6 +1,7 @@
 ---
 title: "Crochet Gift Ideas for Christmas and New Year"
 description: "Explore handmade crochet gift ideas for the holiday season, from plushies to home decor. Simple tips for choosing gifts made with yarn."
+titleSuffix: " | BloomyCocoon"
 slug: "crochet-gift-ideas-christmas-new-year"
 date: "2026-11-13"
 image: "images/hero_crochet_scene.png"
@@ -24,7 +25,7 @@ Handmade crochet gifts offer a warm alternative. Each piece is made by hand with
 
 Crochet plushies make delightful gifts for friends and family. Because they are made with soft yarn, they feel cozy to hold and look cute sitting on a bed, desk, or armchair.
 
-Popular choices include our [Bunny Plushie](/products/bunny-plushie) and [Mini Teddy Plushie](/products/mini-teddy-plushie). These small animal figures bring a gentle presence to any room. When you give a plush toy made by hand, you give something created loop by loop with patience.
+Popular choices include our [Bunny Plushie](/products/bunny-plushie) and [Mini Teddy Plushie](/products/mini-teddy-plushie). These small animal figures bring a gentle presence to any room. New to the craft? Read [what amigurumi means](/blog/what-is-amigurumi-crochet-plushies-guide). When you give a plush toy made by hand, you give something created loop by loop with patience.
 
 You can browse our [Crochet Plushies & Amigurumi](/crochet-plushies) collection to see different animals and character shapes.
 

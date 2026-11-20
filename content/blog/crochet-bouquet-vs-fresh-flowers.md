@@ -1,6 +1,7 @@
 ---
 title: "Crochet Bouquet vs Fresh Flowers: Which Makes a Better Gift?"
 description: "Compare crochet bouquets with fresh flowers on keepsake value, care, and gifting moments. Find the right choice for your next celebration."
+titleSuffix: ""
 slug: "crochet-bouquet-vs-fresh-flowers"
 date: "2026-11-13"
 image: "images/mixed_luxury_bouquet.png"
@@ -42,7 +43,7 @@ Each flower is crocheted by hand and assembled into a bouquet. We use a crochet 
 
 Crafting flower stems from yarn allows for a wide range of botanical forms. Individual petals can be curled, scalloped, or layered to resemble classic garden blossoms such as roses, tulips, daisies, or sunflowers. Because each element begins as a single loop of yarn on a hook, the maker can adjust stitch height—using single crochet, half-double crochet, or double crochet—to give each petal natural curving lines.
 
-When celebrating a relationship milestone, pairing flowers with thoughtful words makes the day feel special. You can read our [Anniversary Gift Guides](/anniversary-gifts) for ideas on choosing meaningful gifts for partners.
+When celebrating a relationship milestone, pairing flowers with thoughtful words makes the day feel special. You can read our [Anniversary Gift Guides](/anniversary-gifts) for ideas on choosing meaningful gifts for partners, or our [Valentine's Day crochet gift ideas](/blog/valentines-day-crochet-gift-ideas).
 
 ## Choosing Colors and Custom Options
 
