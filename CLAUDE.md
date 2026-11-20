@@ -55,7 +55,7 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-9 | Damage and remake policy | content/p3-9-policy | MERGED (#26) | - |
 | P3-10 | Phase B/C UI builds | - | MERGED (split into P3-10a, b, c)| P2-5 |
 | P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | MERGED (#25) | P3-1 |
-| P4-2 | Workshops details (L3) | content/p4-2-workshops | WAITING (Q10; owner will answer later) | - |
+| P4-2 | Workshops details (L3) | content/p4-2-workshops | PARKED (Saud: park workshop tasks; Q10 unanswered) | - |
 | P5-1 | Product photo galleries | img/p5-1-photos | WAITING (photos in incoming-photos/) | - |
 | P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | WAITING (images in incoming-photos/new-bouquets/) | - |
 | P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
