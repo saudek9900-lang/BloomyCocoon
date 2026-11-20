@@ -6,4 +6,4 @@ Colours and wrapping are confirmed with you on WhatsApp before we start, so the 
 
 A few gentle habits keep it lovely. Store it somewhere clean and dry, away from prolonged moisture, and dust it with a soft, dry brush. Avoid pulling at the stems or stitches.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

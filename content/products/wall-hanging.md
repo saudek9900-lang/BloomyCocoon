@@ -6,4 +6,4 @@ Yarn and colours are chosen with you on WhatsApp, so you can ask for a palette t
 
 Avoid placing heavy objects on it and avoid pulling at the stitches or attached details. When in doubt about cleaning, ask us before washing it.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

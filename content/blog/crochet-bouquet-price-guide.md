@@ -68,7 +68,7 @@ Ordering a bouquet takes six simple steps:
 5. We send you a photo of your finished gift to approve.
 6. Pay the balance, and we dispatch your gift.
 
-Your bouquet is made and delivered in 1-2 weeks. The 50% advance is only asked for after we have confirmed your order on WhatsApp, and you approve a photo of the finished gift before paying the balance and before it is dispatched.
+Your bouquet is made and delivered in 1–2 weeks. The 50% advance is only asked for after we have confirmed your order on WhatsApp, and you approve a photo of the finished gift before paying the balance and before it is dispatched.
 
 ## Choosing the right bouquet for your budget
 
@@ -85,7 +85,7 @@ If you are still deciding between a crochet bouquet and fresh flowers, our guide
 
 **Are these fixed prices?** No. They are "Starting from" prices, and the final price is confirmed with you on WhatsApp before we begin.
 
-**How long does it take?** Every bouquet is made and delivered in 1-2 weeks. Message us at least two weeks before the date you need it.
+**How long does it take?** Every bouquet is made and delivered in 1–2 weeks. Message us at least two weeks before the date you need it.
 
 **How do I pay?** A 50% advance by UPI or Google Pay once your order is confirmed on WhatsApp, and the balance after you approve the photo of your finished gift, before dispatch.
 

@@ -6,4 +6,4 @@ The plushie comes with custom colour options: tell us on WhatsApp which colours 
 
 Handle it with care so the shape and the small details stay as they were stitched. For light dust, shake it gently outdoors, and keep it dry.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

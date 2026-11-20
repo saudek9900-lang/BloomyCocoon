@@ -6,4 +6,4 @@ Colours are confirmed with you on WhatsApp before we start, so if you would like
 
 To keep your plushie in shape, store it in a clean, dry place away from prolonged moisture. Dust it gently with a soft, dry brush and avoid pulling at the stitches or any attached details.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
