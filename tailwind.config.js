@@ -77,14 +77,14 @@ export default {
                 gutter: "24px"
             },
             fontFamily: {
-                "body-md": ["Inter"],
-                "headline-sm": ["Playfair Display"],
-                "display-lg": ["Playfair Display"],
-                "headline-md": ["Playfair Display"],
-                "label-md": ["Inter"],
-                caption: ["Inter"],
-                "display-lg-mobile": ["Playfair Display"],
-                "body-lg": ["Inter"]
+                "body-md": ["Inter", "Inter Fallback", "sans-serif"],
+                "headline-sm": ["Playfair Display", "Playfair Display Fallback", "serif"],
+                "display-lg": ["Playfair Display", "Playfair Display Fallback", "serif"],
+                "headline-md": ["Playfair Display", "Playfair Display Fallback", "serif"],
+                "label-md": ["Inter", "Inter Fallback", "sans-serif"],
+                caption: ["Inter", "Inter Fallback", "sans-serif"],
+                "display-lg-mobile": ["Playfair Display", "Playfair Display Fallback", "serif"],
+                "body-lg": ["Inter", "Inter Fallback", "sans-serif"]
             },
             fontSize: {
                 "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
