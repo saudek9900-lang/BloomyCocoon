@@ -26,7 +26,7 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-14 | Return policy alignment (L2) | content/p3-14-return-policy | MERGED (#37) | - |
 | P3-15 | Footer tap targets, run ALONE (L4) | ui/p3-15-footer-targets | WAITING (Saud OK) | - |
 | P3-16 | "Customise this" link, optional (L4) | ui/p3-16-customise-link | WAITING (Saud's wording) | - |
-| P3-17 | Related products grid fix (L4) | ui/p3-17-related-grid | READY | - |
+| P3-17 | Related products grid fix (L4) | ui/p3-17-related-grid | MERGED (#40) | - |
 | P3-18 | Font layout shift fix (L4) | ui/p3-18-font-cls | READY | - |
 | P3-19 | Product page image weight (L4) | ui/p3-19-image-weight | READY | - |
 | P3-20 | Keyboard focus fixes (L4) | ui/p3-20-keyboard-focus | READY | - |
