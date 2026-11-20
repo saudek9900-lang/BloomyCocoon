@@ -31,8 +31,8 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-19 | Product page image weight (L4) | ui/p3-19-image-weight | MERGED (#43) | - |
 | P3-20 | Keyboard focus fixes (L4) | ui/p3-20-keyboard-focus | MERGED (#44) | - |
 | P3-21 | Tap targets, small text, bottom overlap (L4) | ui/p3-21-targets-text | MERGED (#45) | - |
-| P3-22 | Audit content fixes: H1s, tracking wording, llms price, small copy (L1) | content/p3-22-audit-fixes | READY | - |
-| P3-24 | Category answer blocks (L1) | content/p3-24-category-answers | READY | P3-22 |
+| P3-22 | Audit content fixes: H1s, tracking wording, llms price, small copy (L1) | content/p3-22-audit-fixes | MERGED (#49) | - |
+| P3-24 | Category answer blocks (L1) | content/p3-24-category-answers | MERGED (#50) | P3-22 |
 | P3-23 | UK spelling pass, run ALONE | content/p3-23-uk-spelling | READY | P3-22, P3-24 |
 | P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
 | P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | MERGED (#10) | - |
@@ -47,7 +47,7 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | MERGED (#21) | P2-4 |
 | P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | MERGED (#22) | - |
 | P3-3 | Product sizes | content/p3-3-sizes | PARKED (owner: no size data) | - |
-| P3-4 | About the makers (L3) | content/p3-4-about | OPEN (#39) | - |
+| P3-4 | About the makers (L3) | content/p3-4-about | MERGED (#39) | - |
 | P3-5 | Gulf country pages (L3) | content/p3-5-gulf-pages | MERGED (#38) | P2-2 |
 | P3-6 | Malayalam page | content/p3-6-malayalam | PARKED (owner: no Malayalam pages) | P2-2 |
 | P3-7 | Return-gift packs | content/p3-7-packs | PARKED (Q5: bulk OK, no MOQ, but no pack sizes or prices) | - |
@@ -55,9 +55,9 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-9 | Damage and remake policy | content/p3-9-policy | MERGED (#26) | - |
 | P3-10 | Phase B/C UI builds | - | MERGED (split into P3-10a, b, c)| P2-5 |
 | P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | MERGED (#25) | P3-1 |
-| P4-2 | Workshops details (L3) | content/p4-2-workshops | WAITING (Q10; owner will answer later) | - |
-| P5-1 | Product photo galleries | img/p5-1-photos | WAITING (photos in incoming-photos/) | - |
-| P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | WAITING (images in incoming-photos/new-bouquets/) | - |
+| P4-2 | Workshops details (L3) | content/p4-2-workshops | PARKED (Q10: owner parked it) | - |
+| P5-1 | Product photo galleries | img/p5-1-photos | PARKED (owner: no images for now) | - |
+| P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | PARKED (owner: no images for now) | - |
 | P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
 
 Image tasks (P5) always come last, and only when Saud has uploaded the images.
