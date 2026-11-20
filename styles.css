@@ -708,7 +708,7 @@ button[onclick="navigateBack()"] span {
     .product-card .p-md, .product-card .p-6 { padding: 12px !important; }
     .product-card h3 { font-size: 15px !important; line-height: 1.18 !important; margin-bottom: 6px !important; }
     .product-card p { display: none; }
-    .product-card .pointer-events-none span { font-size: 11px !important; line-height: 1.15 !important; padding: 4px 8px !important; }
+    .product-card .pointer-events-none span { font-size: 12px !important; line-height: 1.15 !important; padding: 4px 8px !important; }
     .product-card button { min-height: 44px; min-width: 44px; }
     #screen-about main > section:first-of-type { height: 52vh !important; min-height: 360px; }
     #screen-about main > section:first-of-type p { padding: 10px 14px !important; }
@@ -727,7 +727,7 @@ button[onclick="navigateBack()"] span {
     .mobile-contact-grid .w-16, .mobile-contact-grid .h-16 { width: 42px !important; height: 42px !important; margin-bottom: 8px !important; }
     .mobile-contact-grid .material-symbols-outlined { font-size: 22px !important; }
     .mobile-contact-grid p { font-size: 12px !important; line-height: 1.25 !important; overflow-wrap: anywhere; }
-    .mobile-contact-grid span.font-label-md { font-size: 11px !important; padding: 4px 8px !important; }
+    .mobile-contact-grid span.font-label-md { font-size: 12px !important; padding: 4px 8px !important; }
     .compact-process-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 10px !important; }
     .compact-process-grid .w-48, .compact-process-grid .h-48 { width: 88px !important; height: 88px !important; margin-bottom: 10px !important; border-width: 3px !important; }
     .compact-process-grid h3 { font-size: 14px !important; line-height: 1.2 !important; }
@@ -869,3 +869,37 @@ button[onclick="navigateBack()"] span {
 
 
 
+
+
+/* P3-21: tap targets, small text and bottom space (audit U4, U6, U7, U8).
+   Footer links are not touched here (that is P3-15). */
+@media (pointer: coarse), (max-width: 767px) {
+    /* Links get a 44px tall hit area; the look stays the same. */
+    #app-viewport nav[aria-label="Breadcrumb"] a,
+    #app-viewport td a,
+    #app-viewport a.hover\:underline:not(p *),
+    #app-viewport a.font-label-md.font-bold,
+    #app-viewport a.inline-flex,
+    #app-viewport a.flex.items-center,
+    #app-viewport a.rounded-full {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+    #app-viewport a.flex.items-center { display: flex; }
+    #app-viewport summary { min-height: 44px; }
+    #quick-look-close-btn { min-width: 44px; min-height: 44px; }
+    #modal-add-to-cart-btn { min-height: 44px; }
+    .whatsapp-float { min-width: 44px; min-height: 44px; }
+}
+
+/* Text: nothing below 12px (cart count badges excepted) */
+.text-\[10px\]:not(.cart-badge):not(.min-w-\[18px\]),
+.text-\[11px\]:not(.cart-badge):not(.min-w-\[18px\]) {
+    font-size: 12px;
+}
+
+/* Room at the bottom of every page for the sticky Add to Cart bar and the floating WhatsApp button */
+@media (max-width: 767px) {
+    footer[class] { padding-bottom: calc(5rem + env(safe-area-inset-bottom)) !important; }
+}
