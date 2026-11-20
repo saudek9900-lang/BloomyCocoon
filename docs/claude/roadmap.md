@@ -11,6 +11,11 @@ P1-1 to P1-5, P2-1 to P2-5, P3-1 (Vishu, Mother's Day), P3-2 (price guide), P3-9
 | P0 | L0 Saud | Request indexing in Search Console (~10 URLs a day), IndexNow submit, phone check of new pages, answer Q15 | Saud | - |
 | P1 | L1 SEO | P3-13 SEO quick fix | Ready | Sonnet 5.5, medium |
 | P1 | L2 Policy | P3-14 Return policy alignment | Waiting Q15 | Sonnet 5.5, medium |
+| P1 | L4 UI | P3-17 Related products grid fix (broken on desktop) | Ready | Sonnet 5.5, medium |
+| P1 | L4 UI | P3-18 Font layout shift fix (CLS 0.23-0.26 on phones) | Ready | Sonnet 5.5, medium |
+| P1 | L4 UI | P3-19 Product page image weight (850 KB hidden PNG) | Ready | Sonnet 5.5, medium |
+| P2 | L4 UI | P3-20 Keyboard focus fixes | Ready | Sonnet 5.5, medium |
+| P2 | L4 UI | P3-21 Tap targets, small text, bottom overlap | Ready | Sonnet 5.5, medium |
 | P1 | L4 UI | P3-15 Footer tap targets (run alone) | Waiting Saud OK | Sonnet 5.5, medium |
 | P2 | L3 Content | P3-5 Gulf pages ("send gifts to family in India from the Gulf", India-only delivery) | Parked, needs Saud's yes | Sonnet 5.5, HIGH |
 | P2 | L3 Content | P3-4 About the makers | Waiting Q9 (later) | Sonnet 5.5, medium |
@@ -24,7 +29,9 @@ P1-1 to P1-5, P2-1 to P2-5, P3-1 (Vishu, Mother's Day), P3-2 (price guide), P3-9
 - L1, L2 and L3 together (different files). Merge one PR at a time; each lane merges origin/main before its PR.
 - P3-15 (footer) alone: it edits 36 footers in index.html, so it conflicts with every lane.
 - L5 images alone and last: P5-2 adds products (count, sitemap, feed, llms-full), P5-1 changes the product template.
-- P3-16 and P5-1 not together (both change the product page).
+- P3-16, P3-17, P3-19 and P5-1: only one at a time (all change the product page).
+- P3-21 and P3-15 not together (both near the footer).
+- L4 audit with sources for P3-17 to P3-21: docs/claude/audits/2026-11-20-ui-site-audit.md.
 
 ## Other things left (Saud)
 Testimonials from the last 10-20 customers (with permission); Instagram 3 Reels a week and Valentine's reminders; link Search Console to GA4; WhatsApp Business catalog (top 20) and quick replies; outreach to 5 Kerala gift sites; media pitches (needs Q9). Not doing: Meesho, Flipkart, Amazon.ae/noon, paid links, mobile CSS clean-up without a screenshot baseline.
