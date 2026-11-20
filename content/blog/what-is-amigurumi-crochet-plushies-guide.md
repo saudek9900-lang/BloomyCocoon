@@ -1,6 +1,7 @@
 ---
-title: "What Is Amigurumi? A Simple Guide to Crochet Plushies"
-description: "Learn what amigurumi means, how crochet plushies are made in continuous spirals, and what makes them a thoughtful gift."
+title: "What Is Amigurumi? Meaning, Examples & Handmade Gift Ideas"
+titleSuffix: ""
+description: "Amigurumi is the Japanese craft of small stuffed crochet figures. Learn what it means, how plushies are worked in spirals and why they make a lovely gift."
 slug: "what-is-amigurumi-crochet-plushies-guide"
 date: "2026-11-13"
 image: "images/crochet_bunny_plush.png"
@@ -16,7 +17,7 @@ products:
   - "duck-plushie"
 ---
 
-In the world of yarn crafts, small stuffed figures are some of the most popular items to make and receive. With large heads, round cheeks, and friendly expressions, these cute characters are known by their Japanese name: amigurumi.
+Amigurumi is the Japanese art of crocheting or knitting small stuffed animals and characters. The name joins two Japanese words: ami, meaning crocheted or knitted, and nuigurumi, meaning a stuffed doll or soft toy. Most amigurumi are worked in continuous spirals and then stuffed, which gives them a soft, rounded shape.
 
 While amigurumi figures may look simple, making them requires careful stitch counting, steady hand tension, and patience. Understanding the background of amigurumi and how makers build these toys helps you appreciate the skill behind each piece.
 
