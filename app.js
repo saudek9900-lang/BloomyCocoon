@@ -11,6 +11,7 @@ import {
     getMatchingOccasions
 } from './src/route-content.mjs';
 import { getProductAltText } from './src/product-cards.mjs';
+import { hydrateOrderPlaceholders } from './src/order-steps.mjs';
 
 /* BloomyCocoon Main Application Controller */
 
@@ -3729,6 +3730,9 @@ document.addEventListener('DOMContentLoaded', () => {
         form.replaceChildren(successPanel);
         showToast("Opening WhatsApp with your message.");
     };
+
+    // Fill the shared order steps / trust strip if the page was not pre-rendered (for example the unbuilt dev app).
+    hydrateOrderPlaceholders();
 
     function hydrateExternalConversionLinks() {
         document.querySelectorAll('a[data-whatsapp-message]').forEach(link => {
