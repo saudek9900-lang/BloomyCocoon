@@ -151,6 +151,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: "Mother's Day Gifts",
   },
+  'screen-onam-gifts': {
+    path: '/onam-gifts',
+    outputDir: 'onam-gifts',
+    title: "Handmade Crochet Onam Gifts from Kerala | BloomyCocoon",
+    description: "Handmade crochet Onam gifts from Kerala: bouquets, gift combos and home decor, made to order. Message us 2 weeks ahead on WhatsApp.",
+    schemaType: 'CollectionPage',
+    breadcrumbName: "Onam Gifts",
+  },
   'screen-raksha-bandhan-gifts': {
     path: '/raksha-bandhan-gifts',
     outputDir: 'raksha-bandhan-gifts',
@@ -359,6 +367,18 @@ export const OCCASION_PRODUCTS = {
     'crochet-tote-bag',
     'mini-flower-pot',
     'crochet-plant-holder',
+  ],
+  'screen-onam-gifts': [
+    'rose-bouquet',
+    'tulip-bouquet',
+    'lavender-bouquet',
+    'mini-bouquet-note-card',
+    'crochet-garland',
+    'door-hanging',
+    'wall-hanging',
+    'table-decor-piece',
+    'plushie-flower-combo',
+    'custom-crochet-hamper',
   ],
   'screen-raksha-bandhan-gifts': [
     'initial-letter-keychain',
