@@ -70,7 +70,7 @@ Each piece is individually packed, and we can add optional customised event name
 
 Prices on the site are "Starting from" prices. The final price is confirmed with you on WhatsApp, and the delivery charge is confirmed before making begins. After your order is confirmed, you pay a 50% advance by UPI or Google Pay. We send you a photo of the finished gift to approve, and you pay the balance before dispatch.
 
-Every piece is made by hand and delivered in 1-2 weeks. For larger quantities, ask us on WhatsApp.
+Every piece is made by hand and delivered in 1–2 weeks. For larger quantities, ask us on WhatsApp.
 
 ## Frequently asked questions
 
@@ -84,7 +84,7 @@ Yes. We can attach custom thank-you tags with the couple's names, the event date
 
 ### How long does it take?
 
-Every piece is made by hand and delivered in 1-2 weeks. For larger quantities, ask us on WhatsApp.
+Every piece is made by hand and delivered in 1–2 weeks. For larger quantities, ask us on WhatsApp.
 
 ### How does payment work?
 

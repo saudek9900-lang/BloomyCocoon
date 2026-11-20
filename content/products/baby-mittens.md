@@ -6,4 +6,4 @@ Colours and sizing are confirmed with you on WhatsApp before we start, because t
 
 For light dust, use a soft, dry brush or gently shake it outdoors. Keeping it dry helps it stay soft and neat.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

@@ -18,7 +18,7 @@ export const TRUST_ITEMS = [
   { icon: 'verified', text: 'Handmade in Mampad, Kerala' },
   { icon: 'account_balance_wallet', text: '50% advance after WhatsApp confirmation' },
   { icon: 'photo_camera', text: 'Photo approval before dispatch' },
-  { icon: 'schedule', text: 'Made and delivered in 1-2 weeks' },
+  { icon: 'schedule', text: 'Made and delivered in 1–2 weeks' },
 ];
 
 export const WHATSAPP_DISPLAY_NUMBER = '+91 90611 74579';

@@ -6,4 +6,4 @@ Shade details are confirmed with you on WhatsApp before making begins, so the bu
 
 Keep it away from prolonged direct sunlight and avoid placing heavy objects on top of it, which can squash its shape. Not sure how to clean your plushie? Ask us before you wash it.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

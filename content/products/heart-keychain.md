@@ -6,4 +6,4 @@ Tell us on WhatsApp which colour you would like, and we confirm the shade with y
 
 Handle it gently, since every charm is handmade. Keep it dry, and avoid pulling at the stitches or any attached details when it hangs from your keys or bag.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
