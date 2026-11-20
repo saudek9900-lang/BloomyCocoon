@@ -127,6 +127,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: 'Crochet Gifts in Kerala',
   },
+  'screen-eid-gifts': {
+    path: '/eid-gifts',
+    outputDir: 'eid-gifts',
+    title: 'Handmade Crochet Eid Gifts in Kerala | BloomyCocoon',
+    description: 'Handmade crochet Eid gifts for Eid al-Fitr and Eid al-Adha: bouquets, gift combos, home decor and plushies. Message us 2 weeks ahead on WhatsApp.',
+    schemaType: 'CollectionPage',
+    breadcrumbName: 'Eid Gifts',
+  },
   'screen-birthday-gifts': {
     path: '/birthday-gifts',
     outputDir: 'birthday-gifts',
@@ -275,6 +283,18 @@ export const OCCASION_PRODUCTS = {
     'crochet-coaster',
     'baby-booties-cap-set',
     'crochet-plant-holder',
+  ],
+  'screen-eid-gifts': [
+    'rose-bouquet',
+    'tulip-bouquet',
+    'lavender-bouquet',
+    'mini-bouquet-note-card',
+    'plushie-flower-combo',
+    'custom-crochet-hamper',
+    'table-decor-piece',
+    'wall-hanging',
+    'mini-teddy-plushie',
+    'bunny-plushie',
   ],
   'screen-birthday-gifts': [
     'birthday-mini-gift-box',
