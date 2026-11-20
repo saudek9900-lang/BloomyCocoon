@@ -12,7 +12,7 @@ export const ORDER_STEPS = [
 
 export const ORDER_STEPS_HEADING = 'How ordering works';
 
-export const ORDER_DRAWER_LINE = '50% advance only after we confirm on WhatsApp. You approve a photo before paying the rest.';
+export const ORDER_DRAWER_LINE = 'About 50% advance. Exact amount confirmed on WhatsApp. You approve a photo before paying the rest.';
 
 export const TRUST_ITEMS = [
   { icon: 'verified', text: 'Handmade in Mampad, Kerala' },

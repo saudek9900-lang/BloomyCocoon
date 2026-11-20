@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test:jsonld": "node scripts/verify-jsonld-render.mjs",
     "test:collections": "node scripts/test-collections-deeplink.mjs",
-    "test:forms": "node scripts/test-forms.mjs"
+    "test:forms": "node scripts/test-forms.mjs",
+    "test:cart": "node scripts/test-cart.mjs"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
