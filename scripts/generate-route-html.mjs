@@ -383,7 +383,7 @@ function injectProductDetail(html, product, catalog) {
   const sameCategory = [...categoryList.slice(categoryIndex + 1), ...categoryList.slice(0, categoryIndex)];
   const otherCategory = catalog.filter((p) => p.id !== product.id && p.category !== product.category);
   const relatedProducts = [...sameCategory, ...otherCategory].slice(0, 4);
-  const relatedHtml = renderCollectionProductsHtml(relatedProducts);
+  const relatedHtml = renderCollectionProductsHtml(relatedProducts.map((p) => ({ ...p, featured: false })));
 
   let next = html;
 
