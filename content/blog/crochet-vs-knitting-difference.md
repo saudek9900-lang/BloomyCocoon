@@ -9,6 +9,10 @@ related:
   - "/crochet-plushies"
   - "/crochet-bouquets"
   - "/about"
+products:
+  - "mini-teddy-plushie"
+  - "rose-bouquet"
+  - "crochet-coaster"
 ---
 
 Yarn crafts have interested makers for generations. When people see a textured blanket, a small animal plush toy, or a flower stem made of yarn, they often ask whether the piece was knitted or crocheted. While both crafts use yarn to create soft items, they rely on different tools, stitch structures, and techniques.

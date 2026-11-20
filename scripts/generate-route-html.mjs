@@ -631,6 +631,7 @@ async function writeBlogPages(baseHtml) {
       post,
       allPosts: posts,
       unifiedFooterHtml: UNIFIED_FOOTER_HTML,
+      catalog,
     });
     await writeFile(path.join(postDir, 'index.html'), postHtml);
   }

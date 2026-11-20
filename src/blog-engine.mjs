@@ -3,6 +3,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { marked } from 'marked';
 import { ROUTE_SCHEMA_ID } from './route-content.mjs';
+import { getProductCardMarkup } from './product-cards.mjs';
 
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
 
@@ -429,7 +430,7 @@ function getPathDisplayLabel(relPath) {
 /**
  * Generate Single Blog Post (/blog/<slug>) HTML
  */
-export function generateBlogPostHtml({ baseHtml, post, allPosts, unifiedFooterHtml }) {
+export function generateBlogPostHtml({ baseHtml, post, allPosts, unifiedFooterHtml, catalog = [] }) {
   const title = `${post.title} | BloomyCocoon Blog`;
   const description = post.description;
   const canonicalUrl = `${SITE_ORIGIN}/blog/${post.slug}`;
@@ -489,6 +490,24 @@ export function generateBlogPostHtml({ baseHtml, post, allPosts, unifiedFooterHt
       inLanguage: 'en-IN',
     },
   ];
+
+  // Optional "products:" frontmatter list (catalog ids) rendered as product cards at the end of the post
+  const productIds = Array.isArray(post.products) ? post.products : [];
+  const postProducts = productIds.map((id) => {
+    const product = catalog.find((item) => item.id === id);
+    if (!product) {
+      throw new Error(`Blog post "${post.slug}" lists unknown product id "${id}" in frontmatter products`);
+    }
+    return product;
+  });
+  const productsHtml = postProducts.length > 0 ? `
+          <!-- Gifts from this guide -->
+          <section aria-labelledby="blog-gifts-heading">
+            <h2 id="blog-gifts-heading" class="font-headline-sm text-lg md:text-xl font-bold text-on-surface mb-4">Gifts from this guide</h2>
+            <div class="mobile-product-grid grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-gutter">
+              ${postProducts.map((product) => getProductCardMarkup({ ...product, featured: false })).join('\n')}
+            </div>
+          </section>` : '';
 
   // Related links block
   const relatedLinks = Array.isArray(post.related) ? post.related : [];
@@ -554,6 +573,7 @@ export function generateBlogPostHtml({ baseHtml, post, allPosts, unifiedFooterHt
 
         <!-- End of Post Sections -->
         <div class="mt-12 md:mt-16 pt-10 border-t border-outline-variant/20 space-y-10">
+          ${productsHtml}
           ${relatedLinks.length > 0 ? `
           <!-- Related Site Guides & Collections -->
           <div class="bg-surface-container-low rounded-2xl p-6 md:p-8 border border-outline-variant/20">

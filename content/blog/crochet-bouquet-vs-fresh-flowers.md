@@ -9,6 +9,11 @@ related:
   - "/crochet-bouquets"
   - "/crochet-care"
   - "/anniversary-gifts"
+products:
+  - "rose-bouquet"
+  - "tulip-bouquet"
+  - "lavender-bouquet"
+  - "single-crochet-rose"
 ---
 
 When we look for a gift for a special occasion, flowers are often the first idea that comes to mind. Fresh flowers look lovely when they arrive on a doorstep or table. At the same time, anyone who has received fresh flowers knows that their beauty is short. Before long, delicate petals droop, water in the vase gets cloudy, and the arrangement is thrown away.
