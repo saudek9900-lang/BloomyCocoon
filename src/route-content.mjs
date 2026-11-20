@@ -135,6 +135,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: 'Eid Gifts',
   },
+  'screen-vishu-gifts': {
+    path: '/vishu-gifts',
+    outputDir: 'vishu-gifts',
+    title: "Handmade Crochet Vishu Gifts from Kerala | BloomyCocoon",
+    description: "Handmade crochet Vishu gifts from Kerala: bouquets, gift combos and home decor, made to order. Message us 2 weeks ahead on WhatsApp.",
+    schemaType: 'CollectionPage',
+    breadcrumbName: "Vishu Gifts",
+  },
   'screen-birthday-gifts': {
     path: '/birthday-gifts',
     outputDir: 'birthday-gifts',
@@ -295,6 +303,18 @@ export const OCCASION_PRODUCTS = {
     'wall-hanging',
     'mini-teddy-plushie',
     'bunny-plushie',
+  ],
+  'screen-vishu-gifts': [
+    'rose-bouquet',
+    'mini-bouquet-note-card',
+    'keychain-flower-combo',
+    'plushie-flower-combo',
+    'custom-crochet-hamper',
+    'table-decor-piece',
+    'door-hanging',
+    'wall-hanging',
+    'mini-flower-pot',
+    'crochet-cushion-cover',
   ],
   'screen-birthday-gifts': [
     'birthday-mini-gift-box',

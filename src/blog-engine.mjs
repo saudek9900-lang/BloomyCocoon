@@ -415,6 +415,7 @@ function getPathDisplayLabel(relPath) {
     '/send-gifts-to-kerala': 'Send Gifts to Kerala from Abroad',
     '/crochet-gifts-kerala': 'Crochet Gifts in Kerala',
     '/eid-gifts': 'Eid Gifts',
+    '/vishu-gifts': "Vishu Gifts",
     '/birthday-gifts': 'Curated Birthday Gifts',
     '/baby-shower-gifts': 'Baby Shower & Newborn Gifts',
     '/return-gifts': 'Return Gifts & Small Celebrations',
