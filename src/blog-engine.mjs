@@ -3,7 +3,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { marked } from 'marked';
 import { ROUTE_SCHEMA_ID } from './route-content.mjs';
-import { getProductCardMarkup } from './product-cards.mjs';
+import { getProductCardMarkup, formatStartingPrice } from './product-cards.mjs';
 
 const SITE_ORIGIN = 'https://www.bloomycocoon.com';
 
@@ -120,6 +120,30 @@ export function escapeHtml(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+/**
+ * Replaces {{price-table:<category>}} placeholders (written on their own line in a post)
+ * with a table of every catalog product in that category: name, link and "Starting from" price.
+ * Built from the catalog at build time so prices never drift from src/catalog.json.
+ */
+export function renderPriceTables(htmlContent, catalog, slug = 'post') {
+  return htmlContent.replace(/<p>\s*\{\{price-table:([a-z0-9-]+)\}\}\s*<\/p>/gi, (_match, category) => {
+    const items = catalog.filter((item) => item.category === category);
+    if (items.length === 0) {
+      throw new Error(`Blog post "${slug}" uses {{price-table:${category}}} but the catalog has no products in that category`);
+    }
+    const rows = items.map((item) => `
+          <tr>
+            <td><a href="/products/${escapeHtml(item.id)}">${escapeHtml(item.name)}</a></td>
+            <td class="price-table-price">Starting from ${escapeHtml(formatStartingPrice(item.startingPrice))}</td>
+          </tr>`).join('');
+    return `<div class="price-table-wrap"><table class="price-table">
+        <thead><tr><th scope="col">Product</th><th scope="col">Price</th></tr></thead>
+        <tbody>${rows}
+        </tbody>
+      </table></div>`;
+  });
 }
 
 /**
@@ -576,7 +600,7 @@ export function generateBlogPostHtml({ baseHtml, post, allPosts, unifiedFooterHt
 
         <!-- Markdown Body -->
         <div class="blog-prose font-body-lg text-base md:text-lg text-on-surface leading-relaxed space-y-6">
-          ${post.htmlContent}
+          ${renderPriceTables(post.htmlContent, catalog, post.slug)}
         </div>
 
         <!-- End of Post Sections -->
