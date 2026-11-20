@@ -1337,8 +1337,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const img = document.getElementById('lightbox-img');
         if (!modal || !img) return;
 
-        const targetSrc = src || (detailCurrentProduct ? getProductImage(detailCurrentProduct) : img.src);
+        const targetSrc = src || (detailCurrentProduct ? getWebpImagePath(getProductImage(detailCurrentProduct)) : img.src);
         const targetAlt = alt || (detailCurrentProduct ? `${detailCurrentProduct.name} - Handcrafted crochet stitch detail` : 'Product image');
+        img.onerror = () => {
+            img.onerror = null;
+            if (/\.webp$/i.test(targetSrc)) img.src = targetSrc.replace(/\.webp$/i, '.png');
+        };
         img.src = targetSrc;
         img.alt = targetAlt;
 
@@ -1441,7 +1445,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const lightboxImg = document.getElementById('lightbox-img');
         if (lightboxImg) {
-            lightboxImg.src = imagePath;
+            // src is set when Zoom opens (openProductLightbox), so the hidden lightbox does not download the full image on page load
             lightboxImg.alt = `${product.name} - Handcrafted crochet stitch detail`;
         }
 
@@ -3624,7 +3628,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const imgEl = document.getElementById('modal-product-img');
         if (imgEl) {
-            imgEl.src = getProductImage(product);
+            const quickLookPng = getProductImage(product);
+            imgEl.onerror = () => {
+                imgEl.onerror = null;
+                imgEl.src = quickLookPng;
+            };
+            imgEl.src = getWebpImagePath(quickLookPng);
             imgEl.alt = getProductAltText(product);
         }
 
