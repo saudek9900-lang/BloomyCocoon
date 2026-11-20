@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import {
@@ -376,6 +376,19 @@ function injectProductDetail(html, product, catalog) {
   const relatedHtml = renderCollectionProductsHtml(relatedProducts);
 
   let next = html;
+
+  // 0. "About this gift": long description from content/products/<id>.md (paragraphs separated by a blank line)
+  const longDescriptionPath = path.resolve('content/products', `${product.id}.md`);
+  if (existsSync(longDescriptionPath)) {
+    const paragraphs = readFileSync(longDescriptionPath, 'utf8')
+      .split(/\r?\n\s*\r?\n/)
+      .map((text) => text.trim())
+      .filter(Boolean);
+    const aboutHtml = paragraphs.map((text) => `<p>${escapeHtml(text)}</p>`).join('\n                        ');
+    next = next
+      .replace(/<section\b([^>]*)\bclass=["']hidden ([^"']*)["']([^>]*\bid=["']detail-about["'])/i, '<section$1class="$2"$3')
+      .replace(/(<div\b[^>]*\bid=["']detail-about-body["'][^>]*>)([\s\S]*?)(<\/div>)/i, `$1\n                        ${aboutHtml}\n                    $3`);
+  }
 
   // 1. Breadcrumbs
   const breadcrumbNav = `<nav aria-label="Breadcrumb" class="mb-6 text-xs text-on-surface-variant flex items-center flex-wrap gap-1.5" id="detail-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
