@@ -45,6 +45,18 @@ BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Ke
 - [Baby Shower & Newborn Gifts](https://www.bloomycocoon.com/baby-shower-gifts): Booties, caps, rattles, and nursery garlands.
 - [Return Gifts & Favors](https://www.bloomycocoon.com/return-gifts): Single stems, keychains, and bulk celebration favors under ₹200.
 
+## Blog Guides
+
+- [Blog index](https://www.bloomycocoon.com/blog): Handmade crochet gift ideas and guides.
+- [Crochet Bouquet Price Guide (India)](https://www.bloomycocoon.com/blog/crochet-bouquet-price-guide): Starting from prices for every bouquet and stem, add-ons, and how ordering works.
+- [Crochet Bouquet vs Fresh Flowers](https://www.bloomycocoon.com/blog/crochet-bouquet-vs-fresh-flowers): Keepsake value, care, and gifting moments compared.
+- [Crochet Gift Ideas for Christmas and New Year](https://www.bloomycocoon.com/blog/crochet-gift-ideas-christmas-new-year): Handmade crochet gift ideas for the holiday season.
+- [Crochet Return Gift Ideas for Weddings and Birthdays](https://www.bloomycocoon.com/blog/crochet-return-gift-ideas): Single flowers, keychains and charms. Bulk orders on WhatsApp.
+- [Crochet vs Knitting: What's the Difference?](https://www.bloomycocoon.com/blog/crochet-vs-knitting-difference): Hook versus needles, and why crochet suits plushies and flowers.
+- [Send a Handmade Gift to Kerala from the UAE or Saudi Arabia](https://www.bloomycocoon.com/blog/send-gift-to-kerala-from-uae): How ordering on WhatsApp works, step by step.
+- [Valentine's Day Crochet Gift Ideas](https://www.bloomycocoon.com/blog/valentines-day-crochet-gift-ideas): Flowers, plushies and keychains for Valentine's Day.
+- [What Is Amigurumi?](https://www.bloomycocoon.com/blog/what-is-amigurumi-crochet-plushies-guide): The meaning of amigurumi and why handmade plushies make a lovely gift.
+
 ## Machine-Readable Manifests & Catalogs
 
 - [Complete 69-Product Catalog (llms-full.txt)](https://www.bloomycocoon.com/llms-full.txt): Comprehensive product list with Starting from prices, descriptions, and direct URLs.

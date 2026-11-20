@@ -1,6 +1,7 @@
 ---
 title: "Crochet vs Knitting: What's the Difference?"
 description: "Learn the key differences between crochet and knitting, from single-hook loops to two needles, and why crochet shapes plushies and flowers so well."
+titleSuffix: " | BloomyCocoon"
 slug: "crochet-vs-knitting-difference"
 date: "2026-11-13"
 image: "images/about_process.png"
@@ -43,7 +44,7 @@ This firm structure makes crochet great for making flowers. Petals and leaves ne
 
 When making three-dimensional objects, crochet offers great freedom. Because you work with one loop, you can add or decrease stitches at any point around a curve.
 
-This makes crochet the natural choice for amigurumi, the craft of making small stuffed animals and characters in continuous rounds. A maker can shape round heads, animal snouts, ears, and small paws smoothly. Knitting can make rounded shapes too, using different tools and techniques. In crochet, working in spirals allows the maker to place increases and decreases anywhere without interrupting the rhythm of the work.
+This makes crochet the natural choice for [amigurumi](/blog/what-is-amigurumi-crochet-plushies-guide), the craft of making small stuffed animals and characters in continuous rounds. A maker can shape round heads, animal snouts, ears, and small paws smoothly. Knitting can make rounded shapes too, using different tools and techniques. In crochet, working in spirals allows the maker to place increases and decreases anywhere without interrupting the rhythm of the work.
 
 ## Choosing Yarn Weight and Hook Size
 

@@ -1,5 +1,5 @@
 ---
-title: "How to Send a Handmade Gift to Kerala from the UAE or Saudi Arabia"
+title: "Send a Handmade Gift to Kerala from the UAE or Saudi Arabia"
 titleSuffix: ""
 description: "Living in the UAE or Saudi Arabia and want to send a handmade crochet gift to family in Kerala? Here is how ordering on WhatsApp works, step by step."
 slug: "send-gift-to-kerala-from-uae"
