@@ -41,3 +41,13 @@ pnpm-debug.log*
 .env
 .env.*
 !.env.example
+
+# Private working folders (never commit)
+Faceless/
+product-data/
+.claude/settings.local.json
+
+# Screenshots
+screenshots/
+*.screenshot.png
+Screenshot*.png
