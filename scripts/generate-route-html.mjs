@@ -37,6 +37,7 @@ const preRenderedProductsHtml = renderCollectionProductsHtml(catalog);
 
 const OCCASION_GRID_MAP = {
   'screen-anniversary-gifts': 'anniversary-product-grid',
+  'screen-valentines-day-gifts': 'valentines-product-grid',
   'screen-birthday-gifts': 'birthday-product-grid',
   'screen-baby-shower-gifts': 'baby-shower-product-grid',
   'screen-return-gifts': 'return-gifts-product-grid',
