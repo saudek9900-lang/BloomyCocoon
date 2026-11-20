@@ -222,6 +222,26 @@
       "destination": "/mothers-day-gifts/index.html"
     },
     {
+      "source": "/diwali-gifts",
+      "destination": "/diwali-gifts/index.html"
+    },
+    {
+      "source": "/onam-gifts",
+      "destination": "/onam-gifts/index.html"
+    },
+    {
+      "source": "/raksha-bandhan-gifts",
+      "destination": "/raksha-bandhan-gifts/index.html"
+    },
+    {
+      "source": "/friendship-day-gifts",
+      "destination": "/friendship-day-gifts/index.html"
+    },
+    {
+      "source": "/fathers-day-gifts",
+      "destination": "/fathers-day-gifts/index.html"
+    },
+    {
       "source": "/birthday-gifts",
       "destination": "/birthday-gifts/index.html"
     },
