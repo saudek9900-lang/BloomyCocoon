@@ -1,16 +1,17 @@
 # BloomyCocoon: instructions for Claude Code
 
 ## When Saud says "continue" (or anything like "carry on", "next task")
-1. Read the task queue below, top to bottom.
-2. For each task, check its PR on GitHub (REST only, GraphQL is blocked here: `gh api "repos/saudek9900-lang/BloomyCocoon/pulls?state=all&head=saudek9900-lang:<branch>"`). If you cannot, check `git log origin/main`.
-3. If any queue task has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. Only one open task PR at a time.
-4. Otherwise pick the first task that is not merged and is runnable:
+1. Before anything else, sync the Status column from GitHub (merged -> MERGED, open -> OPEN) and commit it on the task branch as the first commit: 'docs: sync queue status'. GitHub is the truth; the table is a mirror.
+2. Read the task queue below, top to bottom.
+3. For each task, check its PR on GitHub (REST only, GraphQL is blocked here: `gh api "repos/saudek9900-lang/BloomyCocoon/pulls?state=all&head=saudek9900-lang:<branch>"`). If you cannot, check `git log origin/main`.
+4. If any queue task has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. Only one open task PR at a time.
+5. Otherwise pick the first task that is not merged and is runnable:
    - READY: runnable if the tasks in its "Needs" column are merged.
    - WAITING: runnable once every answer it lists in docs/claude/data/owner-answers.md is no longer TODO (or, for photo tasks, the incoming-photos/ files exist on main). Then treat it as READY.
    - PARKED or NOT DRAFTED: never run. Skip.
    Skipped tasks: list them in your reply with what unblocks each.
-5. Before running the chosen task, apply "Model and thinking level" below. Then run it: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), give the final report, and STOP. One task per session.
-6. If nothing is runnable: tell Saud which answers or photos unblock the next task.
+6. Before running the chosen task, apply "Model and thinking level" below. Then run it: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), give the final report, and STOP. One task per session.
+7. If nothing is runnable: tell Saud which answers or photos unblock the next task.
 
 ## Task queue
 Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. Run in this order.
