@@ -873,7 +873,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (screenId === 'screen-contact') return 'contact';
         if (screenId === 'screen-collection') return 'category_page';
         if (typeof CATEGORY_PAGES !== 'undefined' && CATEGORY_PAGES[screenId]) return 'category_page';
-        if (['screen-anniversary-gifts', 'screen-birthday-gifts', 'screen-baby-shower-gifts', 'screen-return-gifts'].includes(screenId)) return 'occasion_page';
+        if (['screen-anniversary-gifts', 'screen-valentines-day-gifts', 'screen-birthday-gifts', 'screen-baby-shower-gifts', 'screen-return-gifts'].includes(screenId)) return 'occasion_page';
         if (['screen-faq', 'screen-shipping-delivery', 'screen-returns-cancellations', 'screen-order-terms', 'screen-privacy-policy', 'screen-crochet-care', 'screen-about', 'screen-workshops'].includes(screenId)) return 'info_page';
         return 'other';
     }
@@ -1028,6 +1028,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/crochet-care') return 'screen-crochet-care';
         if (cleanPath === '/workshops') return 'screen-workshops';
         if (cleanPath === '/anniversary-gifts') return 'screen-anniversary-gifts';
+        if (cleanPath === '/valentines-day-gifts') return 'screen-valentines-day-gifts';
         if (cleanPath === '/birthday-gifts') return 'screen-birthday-gifts';
         if (cleanPath === '/baby-shower-gifts') return 'screen-baby-shower-gifts';
         if (cleanPath === '/return-gifts') return 'screen-return-gifts';

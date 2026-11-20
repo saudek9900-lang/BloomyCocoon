@@ -411,6 +411,7 @@ function getPathDisplayLabel(relPath) {
     '/crochet-home-decor': 'Crochet Home & Decor',
     '/crochet-gift-combos': 'Crochet Gift Combos & Hampers',
     '/anniversary-gifts': 'Curated Anniversary Gifts',
+    '/valentines-day-gifts': "Valentine's Day Gifts",
     '/birthday-gifts': 'Curated Birthday Gifts',
     '/baby-shower-gifts': 'Baby Shower & Newborn Gifts',
     '/return-gifts': 'Return Gifts & Small Celebrations',

@@ -198,6 +198,10 @@
       "destination": "/anniversary-gifts/index.html"
     },
     {
+      "source": "/valentines-day-gifts",
+      "destination": "/valentines-day-gifts/index.html"
+    },
+    {
       "source": "/birthday-gifts",
       "destination": "/birthday-gifts/index.html"
     },

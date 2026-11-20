@@ -146,6 +146,7 @@ function getAllRoutes() {
     '/order-terms',
     '/crochet-care',
     '/anniversary-gifts',
+    '/valentines-day-gifts',
     '/birthday-gifts',
     '/baby-shower-gifts',
     '/return-gifts',

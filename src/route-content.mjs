@@ -103,6 +103,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: 'Anniversary Gifts',
   },
+  'screen-valentines-day-gifts': {
+    path: '/valentines-day-gifts',
+    outputDir: 'valentines-day-gifts',
+    title: "Crochet Valentine's Day Gifts for 14 February | BloomyCocoon",
+    description: "Handmade crochet Valentine's Day gifts for 14 February: rose bouquets, couple keychains and gift boxes. Message us 2 weeks ahead. Details on WhatsApp.",
+    schemaType: 'CollectionPage',
+    breadcrumbName: "Valentine's Day Gifts",
+  },
   'screen-birthday-gifts': {
     path: '/birthday-gifts',
     outputDir: 'birthday-gifts',
@@ -215,6 +223,18 @@ export const OCCASION_PRODUCTS = {
     'lavender-bouquet',
     'heart-keychain',
     'custom-crochet-hamper',
+  ],
+  'screen-valentines-day-gifts': [
+    'rose-bouquet',
+    'single-crochet-rose',
+    'couple-bouquet-combo',
+    'anniversary-gift-box',
+    'couple-keychain-set',
+    'couple-keychain-combo',
+    'heart-keychain',
+    'plushie-flower-combo',
+    'mini-bouquet-note-card',
+    'custom-premium-bouquet',
   ],
   'screen-birthday-gifts': [
     'birthday-mini-gift-box',
