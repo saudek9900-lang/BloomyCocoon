@@ -67,6 +67,8 @@ const CORE_ROUTES = [
   { path: '/crochet-gift-combos', priority: '0.85', changefreq: 'weekly', categoryKey: 'screen-crochet-gift-combos', sourceFile: 'src/route-content.mjs' },
   { path: '/anniversary-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-anniversary-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/valentines-day-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-valentines-day-gifts', sourceFile: 'src/route-content.mjs' },
+  { path: '/send-gifts-to-kerala', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-send-gifts-to-kerala', sourceFile: 'src/route-content.mjs' },
+  { path: '/crochet-gifts-kerala', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-crochet-gifts-kerala', sourceFile: 'src/route-content.mjs' },
   { path: '/birthday-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-birthday-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/baby-shower-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-baby-shower-gifts', sourceFile: 'src/route-content.mjs' },
   { path: '/return-gifts', priority: '0.85', changefreq: 'weekly', occasionKey: 'screen-return-gifts', sourceFile: 'src/route-content.mjs' },

@@ -202,6 +202,14 @@
       "destination": "/valentines-day-gifts/index.html"
     },
     {
+      "source": "/send-gifts-to-kerala",
+      "destination": "/send-gifts-to-kerala/index.html"
+    },
+    {
+      "source": "/crochet-gifts-kerala",
+      "destination": "/crochet-gifts-kerala/index.html"
+    },
+    {
       "source": "/birthday-gifts",
       "destination": "/birthday-gifts/index.html"
     },
