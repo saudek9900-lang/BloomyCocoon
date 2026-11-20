@@ -879,24 +879,33 @@
                     </a>
                 </div>
                 <!-- Title -->
-                <section class="mb-6 md:mb-8 text-center md:text-left">
-                    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-md">The Collection</h1>
-                    <p class="font-body-lg text-base md:text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                <section class="mb-4 md:mb-8 text-center md:text-left">
+                    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2 md:mb-md">The Collection</h1>
+                    <p class="font-body-lg text-sm md:text-body-lg text-on-surface-variant max-w-2xl leading-snug md:leading-relaxed">
                         Explore BloomyCocoon’s handmade crochet collection — bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos crafted in Kerala and delivered across India. Add your favourites to cart, continue to WhatsApp, or start a <a class="text-secondary font-label-md hover:underline" href="/custom-order">custom order</a> for a more personal gift.
                     </p>
-                    <p class="font-body-md text-on-surface-variant mt-md bg-surface-container-low border border-outline-variant/20 rounded-2xl px-4 py-3 inline-block">Starting from prices are a guide. Final quote, customization, timeline and delivery are confirmed on WhatsApp before making begins. You can also check the <a class="text-secondary font-label-md hover:underline" href="/faq">FAQ</a>.</p>
+                    <p class="font-body-md text-xs md:text-base text-on-surface-variant mt-2 md:mt-md bg-surface-container-low border border-outline-variant/20 rounded-2xl px-3 py-2 md:px-4 md:py-3 inline-block">Starting from prices are a guide. Final quote, customization, timeline and delivery are confirmed on WhatsApp before making begins. You can also check the <a class="text-secondary font-label-md hover:underline" href="/faq">FAQ</a>.</p>
                 </section>
 
                 <!-- Search & Filters category scroll -->
-                <section id="collection-sticky-bar" class="collection-sticky-bar mb-6 md:mb-lg sticky z-40 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-lg md:px-lg border-b border-outline-variant/15 space-y-2">
-                    <div class="relative max-w-md">
+                <section id="collection-sticky-bar" class="collection-sticky-bar mb-4 md:mb-lg sticky z-40 bg-background/95 backdrop-blur-sm py-1.5 md:py-2 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-lg md:px-lg border-b border-outline-variant/15 space-y-1.5 md:space-y-2">
+                    <div class="flex items-center gap-2">
+                    <div class="relative flex-1 max-w-md">
                         <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] pointer-events-none" aria-hidden="true">search</span>
-                        <input type="text" id="collection-search-input" oninput="handleCollectionSearch(this.value)" placeholder="Search roses, plushies, keychains, gifts..." class="w-full bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-10 py-2 text-base md:text-sm font-body-md text-on-surface placeholder:text-on-surface-variant/80 focus:ring-2 focus:ring-secondary/25 focus:border-secondary transition-all" aria-label="Search handmade crochet collection">
+                        <input type="text" id="collection-search-input" oninput="handleCollectionSearch(this.value)" placeholder="Search roses, plushies, keychains, gifts..." class="w-full min-h-[44px] bg-surface-container-low border border-outline-variant/30 rounded-full pl-10 pr-10 py-2 text-base md:text-sm font-body-md text-on-surface placeholder:text-on-surface-variant/80 focus:ring-2 focus:ring-secondary/25 focus:border-secondary transition-all" aria-label="Search handmade crochet collection">
                         <button id="collection-search-clear" onclick="clearCollectionSearch()" class="hidden absolute right-1 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full" aria-label="Clear search">
                             <span class="material-symbols-outlined text-[18px]" aria-hidden="true">close</span>
                         </button>
                     </div>
-                    <div class="flex gap-2 items-center overflow-x-auto no-scrollbar py-1" data-collection-filters>
+                    <label for="collection-sort" class="sr-only">Sort products</label>
+                    <select id="collection-sort" onchange="handleCollectionSort(this.value)" class="shrink-0 min-h-[44px] w-[8.75rem] sm:w-auto bg-surface-container-low border border-outline-variant/30 rounded-full pl-3 pr-8 py-2 text-xs sm:text-sm font-body-md text-on-surface focus:ring-2 focus:ring-secondary/25 focus:border-secondary">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: low to high</option>
+                        <option value="price-desc">Price: high to low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                    </div>
+                    <div class="flex gap-2 items-center overflow-x-auto no-scrollbar py-0 md:py-1" data-collection-filters>
                         <button onclick="filterCollectionCategory('all', this)" data-category-filter="all" class="whitespace-nowrap px-5 py-2.5 rounded-full font-label-md text-sm bg-secondary text-on-secondary shadow-sm transition-all duration-200 min-h-[44px]">All Items</button>
                         <button onclick="filterCollectionCategory('bouquets', this)" data-category-filter="bouquets" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[44px]">Bouquets <span aria-hidden="true" class="material-symbols-outlined text-[16px] align-middle">local_florist</span></button>
                         <button onclick="filterCollectionCategory('plushies', this)" data-category-filter="plushies" class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary-container text-on-primary-container hover:bg-secondary/15 transition-all duration-200 font-label-md text-sm min-h-[44px]">Plushies <span aria-hidden="true" class="material-symbols-outlined text-[16px] align-middle">toys</span></button>
@@ -908,8 +917,8 @@
                     </div>
                 </section>
 
-                <section class="mb-6 md:mb-lg">
-                    <p id="collection-category-copy" class="font-body-md text-on-surface-variant bg-surface-container-low border border-outline-variant/20 rounded-2xl px-4 py-3">
+                <section class="mb-4 md:mb-lg">
+                    <p id="collection-category-copy" class="font-body-md text-xs md:text-base text-on-surface-variant bg-surface-container-low border border-outline-variant/20 rounded-2xl px-3 py-2 md:px-4 md:py-3">
                         Explore BloomyCocoon's handmade crochet collection — bouquets, plushies, keychains, baby gifts, accessories, home decor and gift combos crafted in Kerala and delivered across India. Add your favourites to cart and continue to WhatsApp to customize and finalize your order.
                     </p>
                 </section>
@@ -926,6 +935,7 @@
                         <span class="material-symbols-outlined text-3xl" aria-hidden="true">search_off</span>
                     </div>
                     <h2 class="font-headline-sm text-xl md:text-headline-sm text-secondary font-semibold">No stitches matched your search</h2>
+                    <p id="collection-empty-query" class="hidden font-body-md text-on-surface text-sm md:text-base break-words"></p>
                     <p class="font-body-md text-on-surface-variant max-w-md mx-auto text-sm md:text-base">
                         Can't find what you're imagining? We love handcrafting custom pieces from inspiration photos and color ideas.
                     </p>
