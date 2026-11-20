@@ -43,6 +43,7 @@ const OCCASION_GRID_MAP = {
   'screen-eid-gifts': 'eid-product-grid',
   'screen-vishu-gifts': 'vishu-product-grid',
   'screen-mothers-day-gifts': 'mothers-day-product-grid',
+  'screen-diwali-gifts': 'diwali-product-grid',
   'screen-onam-gifts': 'onam-product-grid',
   'screen-raksha-bandhan-gifts': 'raksha-bandhan-product-grid',
   'screen-friendship-day-gifts': 'friendship-day-product-grid',

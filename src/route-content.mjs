@@ -151,6 +151,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: "Mother's Day Gifts",
   },
+  'screen-diwali-gifts': {
+    path: '/diwali-gifts',
+    outputDir: 'diwali-gifts',
+    title: "Handmade Crochet Diwali Gifts from Kerala | BloomyCocoon",
+    description: "Handmade crochet Diwali gifts from Kerala: gift combos, hampers and home decor, made to order. Message us 2 weeks ahead on WhatsApp.",
+    schemaType: 'CollectionPage',
+    breadcrumbName: "Diwali Gifts",
+  },
   'screen-onam-gifts': {
     path: '/onam-gifts',
     outputDir: 'onam-gifts',
@@ -367,6 +375,18 @@ export const OCCASION_PRODUCTS = {
     'crochet-tote-bag',
     'mini-flower-pot',
     'crochet-plant-holder',
+  ],
+  'screen-diwali-gifts': [
+    'custom-crochet-hamper',
+    'birthday-mini-gift-box',
+    'mini-bouquet-note-card',
+    'keychain-flower-combo',
+    'table-decor-piece',
+    'door-hanging',
+    'crochet-garland',
+    'mini-flower-pot',
+    'crochet-coaster',
+    'flower-keychain',
   ],
   'screen-onam-gifts': [
     'rose-bouquet',

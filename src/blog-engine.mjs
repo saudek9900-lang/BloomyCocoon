@@ -441,6 +441,7 @@ function getPathDisplayLabel(relPath) {
     '/eid-gifts': 'Eid Gifts',
     '/vishu-gifts': "Vishu Gifts",
     '/mothers-day-gifts': "Mother's Day Gifts",
+    '/diwali-gifts': "Diwali Gifts",
     '/onam-gifts': "Onam Gifts",
     '/raksha-bandhan-gifts': "Raksha Bandhan Gifts",
     '/friendship-day-gifts': "Friendship Day Gifts",

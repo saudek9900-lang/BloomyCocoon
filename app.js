@@ -1034,6 +1034,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/eid-gifts') return 'screen-eid-gifts';
         if (cleanPath === '/vishu-gifts') return 'screen-vishu-gifts';
         if (cleanPath === '/mothers-day-gifts') return 'screen-mothers-day-gifts';
+        if (cleanPath === '/diwali-gifts') return 'screen-diwali-gifts';
         if (cleanPath === '/onam-gifts') return 'screen-onam-gifts';
         if (cleanPath === '/raksha-bandhan-gifts') return 'screen-raksha-bandhan-gifts';
         if (cleanPath === '/friendship-day-gifts') return 'screen-friendship-day-gifts';

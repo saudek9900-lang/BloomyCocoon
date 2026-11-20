@@ -222,6 +222,10 @@
       "destination": "/mothers-day-gifts/index.html"
     },
     {
+      "source": "/diwali-gifts",
+      "destination": "/diwali-gifts/index.html"
+    },
+    {
       "source": "/onam-gifts",
       "destination": "/onam-gifts/index.html"
     },
