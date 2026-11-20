@@ -222,6 +222,10 @@
       "destination": "/mothers-day-gifts/index.html"
     },
     {
+      "source": "/raksha-bandhan-gifts",
+      "destination": "/raksha-bandhan-gifts/index.html"
+    },
+    {
       "source": "/friendship-day-gifts",
       "destination": "/friendship-day-gifts/index.html"
     },

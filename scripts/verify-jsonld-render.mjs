@@ -152,6 +152,7 @@ function getAllRoutes() {
     '/eid-gifts',
     '/vishu-gifts',
     '/mothers-day-gifts',
+    '/raksha-bandhan-gifts',
     '/friendship-day-gifts',
     '/fathers-day-gifts',
     '/birthday-gifts',

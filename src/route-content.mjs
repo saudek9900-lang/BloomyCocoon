@@ -151,6 +151,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: "Mother's Day Gifts",
   },
+  'screen-raksha-bandhan-gifts': {
+    path: '/raksha-bandhan-gifts',
+    outputDir: 'raksha-bandhan-gifts',
+    title: "Handmade Crochet Raksha Bandhan Gifts from Kerala | BloomyCocoon",
+    description: "Handmade crochet Raksha Bandhan gifts from Kerala: keychains, mini bouquets and hampers, made to order. Message us 2 weeks ahead on WhatsApp.",
+    schemaType: 'CollectionPage',
+    breadcrumbName: "Raksha Bandhan Gifts",
+  },
   'screen-friendship-day-gifts': {
     path: '/friendship-day-gifts',
     outputDir: 'friendship-day-gifts',
@@ -351,6 +359,18 @@ export const OCCASION_PRODUCTS = {
     'crochet-tote-bag',
     'mini-flower-pot',
     'crochet-plant-holder',
+  ],
+  'screen-raksha-bandhan-gifts': [
+    'initial-letter-keychain',
+    'custom-character-keychain',
+    'teddy-keychain',
+    'mini-teddy-plushie',
+    'bunny-plushie',
+    'crochet-coin-pouch',
+    'keychain-flower-combo',
+    'mini-bouquet-note-card',
+    'birthday-mini-gift-box',
+    'custom-crochet-hamper',
   ],
   'screen-friendship-day-gifts': [
     'couple-keychain-set',
