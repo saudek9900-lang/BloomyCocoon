@@ -98,8 +98,8 @@ export const ROUTE_CONTENT = {
   'screen-anniversary-gifts': {
     path: '/anniversary-gifts',
     outputDir: 'anniversary-gifts',
-    title: 'Handmade Crochet Anniversary Gifts & Bouquets in Kerala | BloomyCocoon',
-    description: 'Celebrate love with handmade crochet anniversary flower bouquets, couple gift combos and romantic keepsakes from BloomyCocoon in Kerala. Custom orders on WhatsApp.',
+    title: 'Handmade Crochet Anniversary Gifts in Kerala | BloomyCocoon',
+    description: 'Handmade crochet anniversary gifts in Kerala: flower bouquets, couple combos and keepsakes. Order 12-14 days ahead. Details confirmed on WhatsApp.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Anniversary Gifts',
   },
@@ -122,8 +122,8 @@ export const ROUTE_CONTENT = {
   'screen-return-gifts': {
     path: '/return-gifts',
     outputDir: 'return-gifts',
-    title: 'Handmade Crochet Return Gifts & Favors in Kerala | BloomyCocoon',
-    description: 'Charming handmade crochet return gifts, keychains, single flower stems and party favors starting from ₹149 for birthdays and weddings in Kerala. Bulk quotes on WhatsApp.',
+    title: 'Crochet Return Gifts, Handmade in Kerala | BloomyCocoon',
+    description: 'Handmade crochet return gifts for birthdays and functions in Kerala: keychains, flower stems and party favors. Bulk orders confirmed on WhatsApp.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Return Gifts & Favors',
   },

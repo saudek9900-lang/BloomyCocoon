@@ -431,7 +431,9 @@ function getPathDisplayLabel(relPath) {
  * Generate Single Blog Post (/blog/<slug>) HTML
  */
 export function generateBlogPostHtml({ baseHtml, post, allPosts, unifiedFooterHtml, catalog = [] }) {
-  const title = `${post.title} | BloomyCocoon Blog`;
+  // Optional frontmatter titleSuffix lets a post shorten or drop the default suffix to keep <title> within ~60 characters.
+  const titleSuffix = typeof post.titleSuffix === 'string' ? post.titleSuffix : ' | BloomyCocoon Blog';
+  const title = `${post.title}${titleSuffix}`;
   const description = post.description;
   const canonicalUrl = `${SITE_ORIGIN}/blog/${post.slug}`;
   const formattedDate = formatDisplayDate(post.date);
