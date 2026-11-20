@@ -2,9 +2,9 @@ export const SITE_ORIGIN = 'https://www.bloomycocoon.com';
 export const CANONICAL_URL = `${SITE_ORIGIN}/`;
 export const ROUTE_SCHEMA_ID = 'catalog-faq-schema';
 
-export const ENTITY_DESCRIPTION = 'BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India, offering custom crochet bouquets, plushies, keychains, accessories, home decor, and personalized handmade gifts through WhatsApp-based ordering.';
+export const ENTITY_DESCRIPTION = 'BloomyCocoon is a handmade crochet gifting brand from Mampad, Malappuram, Kerala, India, offering custom crochet bouquets, plushies, keychains, accessories, home decor, and personalised handmade gifts through WhatsApp-based ordering.';
 export const PAYMENT_DESCRIPTION = '50% advance by UPI or Google Pay once your order is confirmed on WhatsApp. Balance after you approve the photos, before dispatch.';
-export const FINAL_PRICE_NOTE = 'Final price may vary based on size, color, custom name, flowers, and delivery. Final price is confirmed on WhatsApp.';
+export const FINAL_PRICE_NOTE = 'Final price may vary based on size, colour, custom name, flowers, and delivery. Final price is confirmed on WhatsApp.';
 
 export const ROUTE_CONTENT = {
   'screen-home': {
@@ -275,7 +275,7 @@ export const ROUTE_CONTENT = {
     path: '/cart',
     outputDir: 'cart',
     title: 'Shopping Cart | BloomyCocoon Handmade Crochet Gifts',
-    description: 'Review your handcrafted crochet bouquets, plushies, and custom gifts in your cart. Add personalized notes and gift add-ons before WhatsApp order confirmation.',
+    description: 'Review your handcrafted crochet bouquets, plushies, and custom gifts in your cart. Add personalised notes and gift add-ons before WhatsApp order confirmation.',
     schemaType: 'CheckoutPage',
     breadcrumbName: 'Shopping Cart',
     robots: 'noindex, follow',
@@ -612,7 +612,7 @@ export const CATEGORY_PRODUCT_FAQS = {
     ['What if my home decor piece arrives damaged?', 'Please send an unboxing video within 24 hours of delivery. We do not accept returns after purchase, but a damaged item is replaced where feasible.'],
   ],
   'gift-combos': [
-    ["Can I customize what's included in this combo?", 'Yes, the mix of items in a combo is confirmed with you directly on WhatsApp.'],
+    ["Can I customise what's included in this combo?", 'Yes, the mix of items in a combo is confirmed with you directly on WhatsApp.'],
     ['Can I add a note card or fairy lights to this combo?', 'Yes, both can be added as gift add-ons at checkout.'],
   ],
 };
@@ -635,7 +635,7 @@ export function buildProductTitle(name) {
 export function buildProductDescription(name, description, price) {
   const safePrice = Number(price) || 149;
   const prefix = `${name}. `;
-  const suffix = ` Starting from ₹${safePrice}. Made to order in Kerala, customize on WhatsApp.`;
+  const suffix = ` Starting from ₹${safePrice}. Made to order in Kerala, customise on WhatsApp.`;
   let body = (description || `Handmade crochet ${name} crafted in Kerala.`).trim();
 
   let full = `${prefix}${body}${suffix}`;

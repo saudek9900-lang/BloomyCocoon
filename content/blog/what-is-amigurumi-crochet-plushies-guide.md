@@ -35,7 +35,7 @@ You can explore our collection of animal toys in our [Crochet Plushies & Amiguru
 
 The basic foundation of amigurumi relies on single crochet stitches worked in continuous spirals.
 
-When crocheting a blanket or a scarf, the maker works back and forth in flat rows, turning the piece at the end of each line. In amigurumi, the maker starts at the center using an adjustable yarn ring. From that small loop, stitches are worked in a continuous round without joining or turning.
+When crocheting a blanket or a scarf, the maker works back and forth in flat rows, turning the piece at the end of each line. In amigurumi, the maker starts at the centre using an adjustable yarn ring. From that small loop, stitches are worked in a continuous round without joining or turning.
 
 To shape curved surfaces, the maker adds increases to expand the shape or decreases to taper it. Crocheting tightly creates a dense fabric that keeps the inner stuffing hidden inside.
 
@@ -47,9 +47,9 @@ For smaller versions that fit on bags and keyrings, take a look at our [Crochet 
 
 Keeping an even tension helps produce neat, uniform stitches throughout the figure. When filling the piece, adding stuffing in small amounts step by step helps maintain a smooth, balanced shape. Taking time with tension and stuffing helps the finished figure keep its shape.
 
-## Choosing Colors for Amigurumi Characters
+## Choosing Colours for Amigurumi Characters
 
-Color choice plays a big role in bringing amigurumi to life. Natural animal tones like cream, soft grey, fawn brown, and charcoal create realistic small creatures. Bright pastel colors like mint green, lavender, and buttercup yellow give characters a playful storybook feel.
+Colour choice plays a big role in bringing amigurumi to life. Natural animal tones like cream, soft grey, fawn brown, and charcoal create realistic small creatures. Bright pastel colours like mint green, lavender, and buttercup yellow give characters a playful storybook feel.
 
 Because each figure is made by hand, you can ask for colour combinations, confirmed with you on WhatsApp.
 

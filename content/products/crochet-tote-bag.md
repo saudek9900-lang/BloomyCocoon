@@ -1,4 +1,4 @@
-The Crochet Tote Bag is a roomy handmade tote for everyday styling, gifting and custom colour requests. It is crocheted in soft yarn, and it has a Kept Favorite badge.
+The Crochet Tote Bag is a roomy handmade tote for everyday styling, gifting and custom colour requests. It is crocheted in soft yarn, and it has a Kept Favourite badge.
 
 It suits daily errands, a birthday gift or a thoughtful present for someone who likes handmade things. We list it on our birthday gifts page, and it pairs well with a bag charm.
 

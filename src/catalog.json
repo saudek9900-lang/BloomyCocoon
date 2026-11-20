@@ -6,7 +6,7 @@
     "startingPrice": 149,
     "image": "images/crochet_rose_bouquet_single-crochet-rose-landscape.png",
     "badge": "Single Stem",
-    "description": "Best for tiny gestures, student gifts and note-card add-ons, with colors confirmed on WhatsApp."
+    "description": "Best for tiny gestures, student gifts and note-card add-ons, with colours confirmed on WhatsApp."
   },
   {
     "id": "single-crochet-tulip",
@@ -33,7 +33,7 @@
     "startingPrice": 799,
     "image": "images/crochet_rose_bouquet_rose-bouquet.png",
     "badge": "Made with Love",
-    "description": "Best for anniversaries, couple gifts and soft surprises, with colors and wrapping confirmed on WhatsApp."
+    "description": "Best for anniversaries, couple gifts and soft surprises, with colours and wrapping confirmed on WhatsApp."
   },
   {
     "id": "tulip-bouquet",
@@ -50,7 +50,7 @@
     "category": "bouquets",
     "startingPrice": 799,
     "image": "images/crochet_lavender_bouquet_lavender-bouquet.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "A calming lavender bouquet for keepsake gifting, cozy decor and soft handmade surprises."
   },
   {
@@ -70,7 +70,7 @@
     "startingPrice": 399,
     "image": "images/cozy_bear_plushie_mini-teddy-plushie.png",
     "badge": "Tiny Hug",
-    "description": "Best for cute birthday gifts, student desks and tiny keepsakes, with colors confirmed on WhatsApp."
+    "description": "Best for cute birthday gifts, student desks and tiny keepsakes, with colours confirmed on WhatsApp."
   },
   {
     "id": "bunny-plushie",
@@ -78,7 +78,7 @@
     "category": "plushies",
     "startingPrice": 499,
     "image": "images/crochet_bunny_plush_bunny-plushie.png",
-    "badge": "Gift Favorite",
+    "badge": "Gift Favourite",
     "description": "A gentle bunny plushie for birthdays, baby gifting and keepsakes, with shade details confirmed on WhatsApp."
   },
   {
@@ -87,7 +87,7 @@
     "category": "plushies",
     "startingPrice": 499,
     "image": "images/crochet_cat_plushie_cat-plushie.png",
-    "description": "A cozy cat companion with handmade charm and custom color options."
+    "description": "A cozy cat companion with handmade charm and custom colour options."
   },
   {
     "id": "duck-plushie",
@@ -111,7 +111,7 @@
     "category": "plushies",
     "startingPrice": 449,
     "image": "images/crochet_frog_plushie.png",
-    "description": "A playful frog plushie with custom expressions and cozy colors."
+    "description": "A playful frog plushie with custom expressions and cozy colours."
   },
   {
     "id": "penguin-plushie",
@@ -127,7 +127,7 @@
     "category": "plushies",
     "startingPrice": 599,
     "image": "images/crochet_dinosaur_plushie.png",
-    "description": "A friendly dinosaur plushie with handmade spikes and custom colors."
+    "description": "A friendly dinosaur plushie with handmade spikes and custom colours."
   },
   {
     "id": "octopus-plushie",
@@ -144,7 +144,7 @@
     "startingPrice": 699,
     "image": "images/crochet_bunny_plush_custom-animal-plushie.png",
     "badge": "Custom",
-    "description": "A made-to-order animal plushie inspired by your idea, with size, colors and final quote confirmed on WhatsApp."
+    "description": "A made-to-order animal plushie inspired by your idea, with size, colours and final quote confirmed on WhatsApp."
   },
   {
     "id": "mini-pocket-plushies",
@@ -152,7 +152,7 @@
     "category": "plushies",
     "startingPrice": 299,
     "image": "images/cozy_bear_plushie_mini-pocket-plushies.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "Small pocket plushies for tiny gifting, students, desk friends and surprise add-ons."
   },
   {
@@ -170,7 +170,7 @@
     "category": "keychains",
     "startingPrice": 149,
     "image": "images/crochet_flower_keychain_flower-keychain.png",
-    "description": "A cheerful crochet flower charm stitched from soft handmade yarn for bags, keys and small gifts. Pick your preferred yarn shade on WhatsApp to match a favorite color or gift hamper."
+    "description": "A cheerful crochet flower charm stitched from soft handmade yarn for bags, keys and small gifts. Pick your preferred yarn shade on WhatsApp to match a favourite colour or gift hamper."
   },
   {
     "id": "mushroom-keychain",
@@ -186,7 +186,7 @@
     "category": "keychains",
     "startingPrice": 249,
     "image": "images/mini_animal_keychain_teddy-keychain.png",
-    "description": "A tiny handmade teddy keychain finished in soft yarn for everyday keys, backpacks and sweet surprise gifting. Custom yarn color choices can be confirmed directly on WhatsApp before crafting."
+    "description": "A tiny handmade teddy keychain finished in soft yarn for everyday keys, backpacks and sweet surprise gifting. Custom yarn colour choices can be confirmed directly on WhatsApp before crafting."
   },
   {
     "id": "bunny-keychain",
@@ -194,7 +194,7 @@
     "category": "keychains",
     "startingPrice": 249,
     "image": "images/mini_animal_keychain_bunny-keychain.png",
-    "description": "A handcrafted bunny keychain featuring petite ears and a cozy yarn texture for backpacks, keys and thoughtful gift add-ons. Share your favorite shade on WhatsApp to personalize the finish."
+    "description": "A handcrafted bunny keychain featuring petite ears and a cozy yarn texture for backpacks, keys and thoughtful gift add-ons. Share your favourite shade on WhatsApp to personalise the finish."
   },
   {
     "id": "cat-keychain",
@@ -202,7 +202,7 @@
     "category": "keychains",
     "startingPrice": 249,
     "image": "images/mini_animal_keychain_cat-keychain.png",
-    "description": "A cute handmade cat keychain stitched in soft yarn for daily bags, keys and curated gift boxes. Customize the yarn shades on WhatsApp to create a sweet keepsake for friends or students."
+    "description": "A cute handmade cat keychain stitched in soft yarn for daily bags, keys and curated gift boxes. Customise the yarn shades on WhatsApp to create a sweet keepsake for friends or students."
   },
   {
     "id": "duck-keychain",
@@ -210,7 +210,7 @@
     "category": "keychains",
     "startingPrice": 249,
     "image": "images/mini_animal_keychain_duck-keychain.png",
-    "description": "A cheerful crochet duck keychain bringing playful handmade charm to keys, pouches and small gifting moments. Confirm your preferred yarn colors on WhatsApp before stitching begins."
+    "description": "A cheerful crochet duck keychain bringing playful handmade charm to keys, pouches and small gifting moments. Confirm your preferred yarn colours on WhatsApp before stitching begins."
   },
   {
     "id": "initial-letter-keychain",
@@ -218,7 +218,7 @@
     "category": "keychains",
     "startingPrice": 199,
     "image": "images/heart_keychain_initial-letter-keychain.png",
-    "badge": "Personalized",
+    "badge": "Personalised",
     "description": "A custom initial keychain for names, students, couples and handmade gift hampers."
   },
   {
@@ -244,7 +244,7 @@
     "category": "keychains",
     "startingPrice": 199,
     "image": "images/strawberry_keychain_strawberry-keychain.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "A fruity strawberry charm for bags, keys, student gifts and playful handmade surprises."
   },
   {
@@ -261,7 +261,7 @@
     "category": "baby-gifts",
     "startingPrice": 399,
     "image": "images/crochet_headband_baby-cap.png",
-    "description": "A cozy handmade baby cap with custom color and sizing options."
+    "description": "A cozy handmade baby cap with custom colour and sizing options."
   },
   {
     "id": "baby-mittens",
@@ -303,7 +303,7 @@
     "category": "baby-gifts",
     "startingPrice": 499,
     "image": "images/crochet_bunny_plush_baby-bunny-plushie.png",
-    "description": "A gentle baby bunny plushie in soft yarn and nursery-friendly colors."
+    "description": "A gentle baby bunny plushie in soft yarn and nursery-friendly colours."
   },
   {
     "id": "baby-bear-plushie",
@@ -372,7 +372,7 @@
     "category": "accessories",
     "startingPrice": 149,
     "image": "images/crochet_bracelet_earrings.png",
-    "description": "A lightweight handmade crochet bracelet stitched in soft yarn for relaxed everyday wear and friendship gifting. Pick your preferred yarn colors and simple pairing ideas on WhatsApp."
+    "description": "A lightweight handmade crochet bracelet stitched in soft yarn for relaxed everyday wear and friendship gifting. Pick your preferred yarn colours and simple pairing ideas on WhatsApp."
   },
   {
     "id": "crochet-earrings",
@@ -396,7 +396,7 @@
     "category": "accessories",
     "startingPrice": 199,
     "image": "images/crochet_bag_charm_phone-charm.png",
-    "description": "A petite crochet phone charm crafted from soft handmade yarn for personal daily styling and cute gift add-ons. Select your favorite shade combination on WhatsApp before making starts."
+    "description": "A petite crochet phone charm crafted from soft handmade yarn for personal daily styling and cute gift add-ons. Select your favourite shade combination on WhatsApp before making starts."
   },
   {
     "id": "crochet-coin-pouch",
@@ -422,9 +422,9 @@
     "category": "accessories",
     "startingPrice": 799,
     "image": "images/crochet_tote_bag_crochet-tote-bag.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "featured": true,
-    "description": "A roomy handmade tote for everyday styling, gifting and custom color requests."
+    "description": "A roomy handmade tote for everyday styling, gifting and custom colour requests."
   },
   {
     "id": "crochet-coaster",
@@ -448,7 +448,7 @@
     "category": "home-decor",
     "startingPrice": 349,
     "image": "images/crochet_car_hanging.png",
-    "description": "A soft handmade crochet hanging charm designed to brighten car mirrors, windows and thoughtful gift surprises. Personalize your yarn palette on WhatsApp to craft a warm keepsake piece."
+    "description": "A soft handmade crochet hanging charm designed to brighten car mirrors, windows and thoughtful gift surprises. Personalise your yarn palette on WhatsApp to craft a warm keepsake piece."
   },
   {
     "id": "crochet-garland",
@@ -481,7 +481,7 @@
     "startingPrice": 999,
     "image": "images/crochet_wall_hanging_custom-name-decor.png",
     "badge": "Name Custom",
-    "description": "A personalized crochet name decor piece for rooms, doors, baby gifting and keepsakes."
+    "description": "A personalised crochet name decor piece for rooms, doors, baby gifting and keepsakes."
   },
   {
     "id": "crochet-cushion-cover",
@@ -489,7 +489,7 @@
     "category": "home-decor",
     "startingPrice": 699,
     "image": "images/crochet_cushion_cover_crochet-cushion-cover.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "A cozy cushion cover for warm corners, housewarming gifts and soft home decor."
   },
   {
@@ -498,7 +498,7 @@
     "category": "home-decor",
     "startingPrice": 499,
     "image": "images/crochet_plant_holder_crochet-plant-holder.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "A cozy plant holder for shelves, windows and handmade home decor gifts."
   },
   {
@@ -518,7 +518,7 @@
     "startingPrice": 399,
     "image": "images/crochet_keychain_flower_combo.png",
     "badge": "Combo",
-    "description": "A small gift pairing for students, friends and surprise notes, with colors confirmed on WhatsApp."
+    "description": "A small gift pairing for students, friends and surprise notes, with colours confirmed on WhatsApp."
   },
   {
     "id": "mini-bouquet-note-card",

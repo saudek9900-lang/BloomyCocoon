@@ -1,4 +1,4 @@
-The Strawberry Keychain is a fruity little strawberry charm, crocheted by hand in soft yarn. It is a Kept Favorite among our keychains, and it is easy to see why: it is small, bright and a little sweet.
+The Strawberry Keychain is a fruity little strawberry charm, crocheted by hand in soft yarn. It is a Kept Favourite among our keychains, and it is easy to see why: it is small, bright and a little sweet.
 
 It suits bags, keys, student gifts and playful handmade surprises, and we list it on our birthday and return gifts pages. It also works as a small gift when you want something cheerful without a big occasion.
 

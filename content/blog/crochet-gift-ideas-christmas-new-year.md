@@ -47,15 +47,15 @@ You can explore our [Crochet Keychains & Charms](/crochet-keychains) to see diff
 
 ## Home Accents for Cozy Spaces
 
-Winter celebrations often center around the home. Crochet items for living spaces help make rooms feel welcoming and cozy during cold holiday evenings.
+Winter celebrations often centre around the home. Crochet items for living spaces help make rooms feel welcoming and cozy during cold holiday evenings.
 
-Small decor pieces like our [Crochet Plant Holder](/products/crochet-plant-holder) and [Crochet Coaster](/products/crochet-coaster) add soft color to dining tables, coffee tables, and kitchen corners. They make thoughtful hostess gifts when you visit friends for holiday dinners.
+Small decor pieces like our [Crochet Plant Holder](/products/crochet-plant-holder) and [Crochet Coaster](/products/crochet-coaster) add soft colour to dining tables, coffee tables, and kitchen corners. They make thoughtful hostess gifts when you visit friends for holiday dinners.
 
 You can see more home items in our [Crochet Home & Decor](/crochet-home-decor) collection.
 
-## Choosing Holiday Colors
+## Choosing Holiday Colours
 
-Red and green are traditional colors for Christmas, but you can choose any color palette your recipient likes.
+Red and green are traditional colours for Christmas, but you can choose any colour palette your recipient likes.
 
 Soft creams, light pinks, and gentle blues create a quiet winter look that fits modern rooms. Deep maroon and forest green offer a classic holiday appearance. Colours are confirmed with you on WhatsApp.
 
