@@ -115,7 +115,7 @@ export const ROUTE_CONTENT = {
     path: '/send-gifts-to-kerala',
     outputDir: 'send-gifts-to-kerala',
     title: 'Send Crochet Gifts to Kerala from the Gulf | BloomyCocoon',
-    description: 'Living in the UAE, Saudi Arabia or Qatar? Send a handmade crochet gift to family in Kerala. Order on WhatsApp from any number and plan 2 weeks ahead.',
+    description: 'Living in the Gulf? Order a handmade crochet gift on WhatsApp and we deliver it to family in India. Pay by UPI or Google Pay. Plan 2 weeks ahead.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Send Gifts to Kerala',
   },
