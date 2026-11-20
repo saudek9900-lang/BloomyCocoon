@@ -15,6 +15,9 @@ SEO Round 3, UI Phase A, /workshops, blog + 5 posts, speed round, JSON-LD fix + 
 - Merchant free listings: test with a few fixed-price items; "starting from" prices and WhatsApp-only checkout risk disapproval.
 - Google Business Profile only if you hand-deliver locally or allow pickup (Google needs in-person contact).
 
+## Models and thinking
+Default Sonnet 5.5, medium thinking. High for P2-2, P2-5, P3-5. Claude Code tells Saud to switch before starting or at the end of the report. Details in CLAUDE.md.
+
 ## Phase 1: now to 4 Dec 2026 (indexing + trust)
 Code (Claude Code, in order): P1-1 tracking follow-up, P1-2 internal links + IndexNow key, P1-3 order steps + trust strip, P1-4 titles/meta, P1-5 Valentine's page (live by 20 Dec).
 Saud: merge each PR after checking the preview; Search Console request indexing ~10 URLs a day (bouquets and combos, then blog posts); link Search Console to GA4; WhatsApp Business catalog (top 20) + quick replies; start answering docs/claude/data/owner-answers.md (Q1, Q3, Q4, Q11 first).

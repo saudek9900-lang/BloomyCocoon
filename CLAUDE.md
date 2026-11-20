@@ -9,7 +9,7 @@
    - WAITING: runnable once every answer it lists in docs/claude/data/owner-answers.md is no longer TODO (or, for photo tasks, the incoming-photos/ files exist on main). Then treat it as READY.
    - PARKED or NOT DRAFTED: never run. Skip.
    Skipped tasks: list them in your reply with what unblocks each.
-5. Run the chosen task: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), give the final report, and STOP. One task per session.
+5. Before running the chosen task, apply "Model and thinking level" below. Then run it: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), give the final report, and STOP. One task per session.
 6. If nothing is runnable: tell Saud which answers or photos unblock the next task.
 
 ## Task queue
@@ -43,6 +43,14 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
 
 Image tasks (P5) always come last.
+
+## Model and thinking level
+- Default for every task: Sonnet 5.5, medium thinking.
+- High thinking (Sonnet 5.5): P2-2 (Kerala/NRI copy), P2-5 (UI audit), P3-5 (Gulf pages). Opus 5.5 is also fine for these.
+- Low thinking: only trivial edits (renames, list updates).
+- Never use Haiku for code changes, site copy or audits.
+- You cannot change your own model or thinking level. Before starting a task, compare it with this list and with your current model. If the task needs a different model or a higher thinking level than you are running, DO NOT START. Tell Saud: "Change thinking to <level> (or model to <model>) with /model, then say continue." If you are not sure of the current thinking level, ask Saud.
+- In every final report, say if the NEXT runnable task needs a different model or thinking level, so Saud can switch before saying "continue" (for example: "Next is P2-2: switch thinking to high").
 
 ## Project
 - Handmade crochet gifts. Site: https://www.bloomycocoon.com (www is canonical). Based in Mampad, Malappuram, Kerala.
