@@ -814,6 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (labelSpan) {
             labelSpan.textContent = label;
         }
+        whatsappFloat.setAttribute('aria-label', label);
     }
 
     // Meta Pixel standard events matching our GA4 events (only the ones below are sent to Meta)
@@ -3379,9 +3380,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Re-render final custom details
             document.getElementById('final-type').innerText = orderData.type || "Not chosen yet";
-            
-            showToast("✨ Custom order request submitted!");
-            
+
             let message = "Hello BloomyCocoon! 🌸 I would like to place a custom crochet order.\n\n";
             message += `Customer name: ${orderData.name}\n`;
             message += `Base type: ${orderData.type || "Not chosen yet"}\n`;
@@ -3402,10 +3401,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 order_type: orderData.type
             });
 
-            showToast("Opening WhatsApp with your custom request...");
-            setTimeout(() => {
-                openWhatsAppMessage(message);
-            }, 600);
+            // Open WhatsApp straight from the tap (a delayed window.open is often blocked on phones),
+            // and keep a visible link in case the browser still blocks it.
+            const fallbackLink = document.getElementById('custom-order-wa-link');
+            if (fallbackLink) fallbackLink.href = buildWhatsAppUrl(message);
+            openWhatsAppMessage(message);
+            showToast("Tap Send in WhatsApp to share your request.");
         }
     };
 
@@ -3728,10 +3729,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const form = event.target;
         const nameInput = form.querySelector('#contact-name, input[type="text"]');
-        const emailInput = form.querySelector('#contact-email, input[type="email"]');
         const msgInput = form.querySelector('#contact-message, textarea');
         const name = nameInput ? nameInput.value.trim() : '';
-        const email = emailInput ? emailInput.value.trim() : '';
         const msg = msgInput ? msgInput.value.trim() : '';
 
         let firstInvalid = null;
@@ -3740,13 +3739,6 @@ document.addEventListener('DOMContentLoaded', () => {
             firstInvalid = firstInvalid || nameInput;
         } else {
             window.clearFieldError(nameInput, 'contact-name-error');
-        }
-
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            showFieldError(emailInput, 'contact-email-error', 'Please enter a valid email address.');
-            firstInvalid = firstInvalid || emailInput;
-        } else {
-            window.clearFieldError(emailInput, 'contact-email-error');
         }
 
         if (!msg) {
@@ -3764,7 +3756,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let message = "Hello BloomyCocoon! 🌸 I would like to contact you about a crochet gift enquiry.\n\n";
         message += `Customer name: ${name}\n`;
-        message += `Email: ${email}\n`;
         message += `Message: ${msg}\n`;
         message += "Source: Contact Page";
 
