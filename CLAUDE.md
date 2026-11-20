@@ -4,8 +4,8 @@
 1. Before anything else, sync the Status column from GitHub (merged -> MERGED, open -> OPEN) and commit it on the task branch as the first commit: 'docs: sync queue status'. GitHub is the truth; the table is a mirror.
 2. Read the task queue below, top to bottom.
 3. For each task, check its PR on GitHub (REST only, GraphQL is blocked here: `gh api "repos/saudek9900-lang/BloomyCocoon/pulls?state=all&head=saudek9900-lang:<branch>"`). If you cannot, check `git log origin/main`.
-4. If any queue task has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. Only one open task PR at a time.
-5. Otherwise pick the first task that is not merged and is runnable:
+4. Saud runs one chat per lane (see "Parallel lanes" below) and says which lane, for example "continue L1". If he names no lane, ask which one. If any task IN THAT LANE has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. One open task PR per lane. P3-15 (footer) and the L5 image tasks are the exception: they run alone, only when no other task PR is open.
+5. Otherwise pick the first task of that lane that is not merged and is runnable:
    - READY: runnable if the tasks in its "Needs" column are merged.
    - WAITING: runnable once every answer it lists in docs/claude/data/owner-answers.md is no longer TODO (or, for photo tasks, the incoming-photos/ files exist on main). Then treat it as READY.
    - PARKED or NOT DRAFTED: never run. Skip.
@@ -22,6 +22,10 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-12 | SEO audit + indexing check, docs only (PRIORITY) | seo/p3-12-audit | MERGED (#31) | - |
 | P3-10b | B2: Custom order + contact clarity (PRIORITY) | ui/b2-custom-order | MERGED (#32) | - |
 | P3-10c | C1: Cart polish (PRIORITY) | ui/c1-cart | MERGED (#33) | P3-10a |
+| P3-13 | SEO quick fix: titles, meta, blog links, llms.txt (L1) | seo/p3-13-titles-links | READY | - |
+| P3-14 | Return policy alignment (L2) | content/p3-14-return-policy | WAITING (Q15) | - |
+| P3-15 | Footer tap targets, run ALONE (L4) | ui/p3-15-footer-targets | WAITING (Saud OK) | - |
+| P3-16 | "Customise this" link, optional (L4) | ui/p3-16-customise-link | WAITING (Saud's wording) | - |
 | P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
 | P1-2 | Internal links for indexing + IndexNow key | seo/p1-2-internal-links | MERGED (#10) | - |
 | P1-3 | Order steps + trust strip | ux/p1-3-order-steps | MERGED (#11) | - |
@@ -35,20 +39,43 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-1 | Vishu + Mother's Day pages | content/p3-1-spring-pages | MERGED (#21) | P2-4 |
 | P3-2 | Crochet bouquet price guide | content/p3-2-price-guide | MERGED (#22) | - |
 | P3-3 | Product sizes | content/p3-3-sizes | PARKED (owner: no size data) | - |
-| P3-4 | About the makers | content/p3-4-about | WAITING (Q9: owner will answer later; Q7: owner has no hours data) | - |
-| P3-5 | Gulf country pages | content/p3-5-gulf-pages | PARKED (owner: no Gulf shipping) | P2-2 |
+| P3-4 | About the makers (L3) | content/p3-4-about | WAITING (Q9: owner will answer later; Q7: owner has no hours data) | - |
+| P3-5 | Gulf country pages (L3) | content/p3-5-gulf-pages | PARKED (needs Saud's yes: reframed as gifts delivered in India, no Gulf shipping) | P2-2 |
 | P3-6 | Malayalam page | content/p3-6-malayalam | PARKED (owner: no Malayalam pages) | P2-2 |
 | P3-7 | Return-gift packs | content/p3-7-packs | PARKED (Q5: bulk OK, no MOQ, but no pack sizes or prices) | - |
 | P3-8 | Merchant feed test set | seo/p3-8-feed | PARKED (owner: skip) | - |
 | P3-9 | Damage and remake policy | content/p3-9-policy | MERGED (#26) | - |
 | P3-10 | Phase B/C UI builds | - | MERGED (split into P3-10a, b, c)| P2-5 |
 | P4-1 | Seasonal pages (Father's Day to Diwali) | content/p4-1-seasonal | MERGED (#25) | P3-1 |
-| P4-2 | Workshops details | content/p4-2-workshops | WAITING (Q10; owner will answer later) | - |
+| P4-2 | Workshops details (L3) | content/p4-2-workshops | WAITING (Q10; owner will answer later) | - |
 | P5-1 | Product photo galleries | img/p5-1-photos | WAITING (photos in incoming-photos/) | - |
 | P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | WAITING (images in incoming-photos/new-bouquets/) | - |
 | P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
 
-Image tasks (P5) always come last.
+Image tasks (P5) always come last, and only when Saud has uploaded the images.
+
+## Parallel lanes (Saud runs one chat per lane)
+| Lane | Tasks, in order | Model |
+|------|-----------------|-------|
+| L0 Saud only (no code) | Search Console indexing (~10 URLs a day), IndexNow submit, check pages on a phone, answer Q9, Q10, Q15, upload photos | - |
+| L1 SEO | P3-13 | Sonnet 5.5, medium |
+| L2 Policy | P3-14 | Sonnet 5.5, medium |
+| L3 Content pages | P3-5 (needs Saud's yes), P3-4 (Q9), P4-2 (Q10), in that order, one after another | P3-5 high; others medium |
+| L4 UI | P3-15 (alone), then P3-16 | Sonnet 5.5, medium |
+| L5 Images | P5-1, P5-2, P5-3 (last, alone) | Sonnet 5.5, medium |
+
+Can run at the same time: L1, L2 and L3 (different files, small overlaps). L0 can always run.
+Cannot run at the same time:
+- P3-15 (footer) edits 36 footers in index.html, so it conflicts with every lane. Run it alone, first or last.
+- L5 images: P5-1 changes the product template and images, P5-2 adds products (count, sitemap, feed, llms-full). Run alone, after everything else is merged. P5-1 and P5-2 also cannot run together.
+- P3-16 and P5-1 both change the product page. Not together.
+- Two tasks inside L3 both add or edit pages and the shared lists below. One after another.
+
+Rules for parallel chats:
+- Shared files that cause conflicts: index.html, app.js, styles.css, package.json, vercel.json, src/route-content.mjs, src/sitemap-generator.mjs, public/llms.txt, public/llms-full.txt. Keep edits small and local to your task.
+- Do NOT edit CLAUDE.md status rows or commit public/sitemap.xml in a task branch (the build regenerates it). Queue status is synced in a separate docs PR.
+- Before opening the PR: `git fetch origin && git merge origin/main`, then re-run `npm run build`, `npm run test:jsonld` and any test:* scripts. Fix conflicts yourself; never force-push.
+- Saud merges one PR at a time. After each merge, the other lanes merge origin/main again before their PR.
 
 ## Skills (in .claude/skills/)
 - `seo-skill` (`/seo audit|page|technical|content|schema|sitemap|geo|ecommerce <url>`): use for SEO checks inside a task (P1-2, P1-4, P2-x content pages) and when Saud asks for an SEO audit. Audit only; reports go to docs/claude/audits/.

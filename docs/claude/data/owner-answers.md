@@ -57,3 +57,7 @@ Skip. No fixed-price test items.
 ## Q14 Merchant feed images (P5-3)
 Do you use the Merchant feed? Which product images need Google's DigitalSourceType tag?
 Merchant feed not submitted so far.
+
+## Q15 Return policy wording (P3-14)
+Should the site say "no returns after purchase" (matches the product JSON-LD today), or "repair or replacement where feasible for damaged items" (matches the returns page today)? Q6 stays: send an unboxing video, or raise a query within 2 days of delivery.
+TODO

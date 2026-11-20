@@ -1,4 +1,39 @@
-# BloomyCocoon growth plan (updated 2026-11-20)
+# BloomyCocoon plan: current status and parallel lanes (updated 2026-11-20, evening)
+
+This section replaces the phase order further down. The task queue and lane rules in CLAUDE.md win if they differ.
+
+## Done and live (main 8fa36a2)
+P1-1 to P1-5, P2-1 to P2-5, P3-1 (Vishu, Mother's Day), P3-2 (price guide), P3-9 (damage wording), P3-11 (return-gifts FAQ), P3-12 (SEO audit), P3-10a/b/c (collections fix, custom order and contact clarity, cart polish), P4-1 (Father's Day, Friendship Day, Raksha Bandhan, Onam, Diwali pages).
+
+## Priority and lanes
+| Priority | Lane | Task | Status | Model |
+|----------|------|------|--------|-------|
+| P0 | L0 Saud | Request indexing in Search Console (~10 URLs a day), IndexNow submit, phone check of new pages, answer Q15 | Saud | - |
+| P1 | L1 SEO | P3-13 SEO quick fix | Ready | Sonnet 5.5, medium |
+| P1 | L2 Policy | P3-14 Return policy alignment | Waiting Q15 | Sonnet 5.5, medium |
+| P1 | L4 UI | P3-15 Footer tap targets (run alone) | Waiting Saud OK | Sonnet 5.5, medium |
+| P2 | L3 Content | P3-5 Gulf pages ("send gifts to family in India from the Gulf", India-only delivery) | Parked, needs Saud's yes | Sonnet 5.5, HIGH |
+| P2 | L3 Content | P3-4 About the makers | Waiting Q9 (later) | Sonnet 5.5, medium |
+| P2 | L3 Content | P4-2 Workshops | Waiting Q10 (later) | Sonnet 5.5, medium |
+| P2 | L4 UI | P3-16 "Customise this" link (optional) | Waiting Saud's wording | Sonnet 5.5, medium |
+| Last | L5 Images | P5-1 photo galleries, P5-2 new bouquets, P5-3 image tag | Parked until Saud uploads images | Sonnet 5.5, medium |
+| Parked | - | P3-3 sizes (no data), P3-6 Malayalam (not needed), P3-7 packs (no sizes or prices), P3-8 feed test (skipped) | Parked | - |
+
+## What can run at the same time
+- L0 always.
+- L1, L2 and L3 together (different files). Merge one PR at a time; each lane merges origin/main before its PR.
+- P3-15 (footer) alone: it edits 36 footers in index.html, so it conflicts with every lane.
+- L5 images alone and last: P5-2 adds products (count, sitemap, feed, llms-full), P5-1 changes the product template.
+- P3-16 and P5-1 not together (both change the product page).
+
+## Other things left (Saud)
+Testimonials from the last 10-20 customers (with permission); Instagram 3 Reels a week and Valentine's reminders; link Search Console to GA4; WhatsApp Business catalog (top 20) and quick replies; outreach to 5 Kerala gift sites; media pitches (needs Q9). Not doing: Meesho, Flipkart, Amazon.ae/noon, paid links, mobile CSS clean-up without a screenshot baseline.
+
+---
+
+# Original plan (written 2026-11-20 morning; kept for the reasons and research)
+
+## Growth plan (research and phases)
 
 Based on the research of 2026-11-20 (traffic, competitors, indexing, seasons, channels, conversion). The planning chat holds the master copy; if this differs, ask Saud.
 Goal: more organic traffic, more WhatsApp orders, better conversion. Markets: all India, Kerala first, plus Gulf NRI families sending gifts to Kerala.
