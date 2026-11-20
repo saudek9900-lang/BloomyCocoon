@@ -1384,17 +1384,10 @@
                             <p class="text-on-surface-variant">Share your crochet gift idea, delivery question, or custom order note. For quick answers before messaging, visit the <a class="text-secondary font-label-md hover:underline" href="/faq">FAQ</a>.</p>
                         </div>
                         <form onsubmit="submitContactForm(event)" novalidate class="space-y-md">
-                            <div class="grid md:grid-cols-2 gap-md">
-                                <div class="space-y-xs">
-                                    <label for="contact-name" class="font-label-md text-label-md ml-xs text-on-surface-variant block mb-1">Your Name <span aria-hidden="true" class="text-secondary">*</span></label>
+                            <div class="space-y-xs">
+                                <label for="contact-name" class="font-label-md text-label-md ml-xs text-on-surface-variant block mb-1">Your Name <span aria-hidden="true" class="text-secondary">*</span></label>
                                     <input required id="contact-name" name="name" autocomplete="name" aria-describedby="contact-name-error" oninput="clearFieldError(this, 'contact-name-error')" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl p-md focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-base md:text-body-md" placeholder="Rose Marie" type="text">
                                     <p id="contact-name-error" class="hidden text-xs text-error font-medium mt-1 ml-xs" role="alert"></p>
-                                </div>
-                                <div class="space-y-xs">
-                                    <label for="contact-email" class="font-label-md text-label-md ml-xs text-on-surface-variant block mb-1">Email Address <span aria-hidden="true" class="text-secondary">*</span></label>
-                                    <input required id="contact-email" name="email" autocomplete="email" aria-describedby="contact-email-error" oninput="clearFieldError(this, 'contact-email-error')" class="w-full bg-surface-container-low border border-outline-variant/30 rounded-xl p-md focus:ring-2 focus:ring-secondary/20 transition-all font-body-md text-base md:text-body-md" placeholder="rose@example.com" type="email">
-                                    <p id="contact-email-error" class="hidden text-xs text-error font-medium mt-1 ml-xs" role="alert"></p>
-                                </div>
                             </div>
                             <div class="space-y-xs">
                                 <label for="contact-message" class="font-label-md text-label-md ml-xs text-on-surface-variant block mb-1">Your Message <span aria-hidden="true" class="text-secondary">*</span></label>
@@ -1402,7 +1395,7 @@
                                 <p id="contact-message-error" class="hidden text-xs text-error font-medium mt-1 ml-xs" role="alert"></p>
                             </div>
                             <div class="flex justify-center pt-md">
-                                <button class="bg-secondary text-white px-6 py-3 rounded-full font-headline-sm text-headline-sm hover:opacity-90 transition-all shadow-md hover:shadow-lg active:scale-95" type="submit">Send Message</button>
+                                <button class="bg-secondary text-white px-6 py-3 rounded-full font-headline-sm text-headline-sm hover:opacity-90 transition-all shadow-md hover:shadow-lg active:scale-95" type="submit">Message us on WhatsApp</button>
                             </div>
                         </form>
                     </div>
@@ -1583,27 +1576,27 @@
                                     <div>
                                         <label class="font-label-md text-xs uppercase tracking-wider text-secondary block mb-2 font-semibold">Suggested Palettes</label>
                                         <div class="flex flex-wrap gap-2" id="custom-color-swatches">
-                                            <button type="button" onclick="selectCustomColor('Blush Pink', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
+                                            <button type="button" onclick="selectCustomColor('Blush Pink', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 min-h-[44px] rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
                                                 <span class="w-3 h-3 rounded-full bg-[#f8b4ab] border border-white"></span>
                                                 Blush Pink
                                             </button>
-                                            <button type="button" onclick="selectCustomColor('Sage Green', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
+                                            <button type="button" onclick="selectCustomColor('Sage Green', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 min-h-[44px] rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
                                                 <span class="w-3 h-3 rounded-full bg-[#A8B5A2] border border-white"></span>
                                                 Sage Green
                                             </button>
-                                            <button type="button" onclick="selectCustomColor('Baby Blue', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
+                                            <button type="button" onclick="selectCustomColor('Baby Blue', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 min-h-[44px] rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
                                                 <span class="w-3 h-3 rounded-full bg-[#B2D0E8] border border-white"></span>
                                                 Baby Blue
                                             </button>
-                                            <button type="button" onclick="selectCustomColor('Lavender', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
+                                            <button type="button" onclick="selectCustomColor('Lavender', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 min-h-[44px] rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
                                                 <span class="w-3 h-3 rounded-full bg-[#D4C3E3] border border-white"></span>
                                                 Lavender
                                             </button>
-                                            <button type="button" onclick="selectCustomColor('Buttercup Yellow', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
+                                            <button type="button" onclick="selectCustomColor('Buttercup Yellow', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 min-h-[44px] rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
                                                 <span class="w-3 h-3 rounded-full bg-[#FDE68A] border border-white"></span>
                                                 Buttercup
                                             </button>
-                                            <button type="button" onclick="selectCustomColor('Custom Mix', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
+                                            <button type="button" onclick="selectCustomColor('Custom Mix', this)" class="color-swatch-btn flex items-center gap-1.5 px-3 py-1.5 min-h-[44px] rounded-full border border-outline-variant/30 bg-white text-on-surface text-xs font-label-md transition-all hover:border-secondary">
                                                 <span class="w-3 h-3 rounded-full bg-gradient-to-r from-pink-300 to-amber-200 border border-white"></span>
                                                 Custom Mix
                                             </button>
@@ -1643,7 +1636,7 @@
                                 <div id="step-card-3" class="hidden space-y-md">
                                     <div>
                                         <h3 class="font-headline-sm text-headline-sm text-secondary">Ready to Send to WhatsApp</h3>
-                                        <p class="text-caption text-on-surface-variant">We confirm design details, photo progress, final quote, payment and shipping on WhatsApp.</p>
+                                        <p class="text-caption text-on-surface-variant">We confirm design details, photo progress, final quote, payment and shipping on WhatsApp. You can send reference photos in the WhatsApp chat.</p>
                                     </div>
                                     <div class="space-y-sm pt-xs">
                                         <div>
@@ -1666,14 +1659,14 @@
                                     <div class="w-16 h-16 bg-tertiary text-white rounded-full flex items-center justify-center mx-auto mb-sm shadow-md">
                                         <span class="material-symbols-outlined text-3xl" aria-hidden="true">done</span>
                                     </div>
-                                    <h3 class="font-headline-sm text-headline-sm text-secondary">Your Request is Hand-Stitched!</h3>
+                                    <h3 class="font-headline-sm text-headline-sm text-secondary">Your request is ready</h3>
                                     <p class="font-body-md text-on-surface-variant leading-relaxed max-w-sm mx-auto">
-                                        Thank you! We've saved your custom configuration: <br>
+                                        Tap Send in WhatsApp to share it with us. <br>
                                         <strong class="text-on-surface">Base Type:</strong> <span id="final-type">Not chosen yet</span>
                                     </p>
-                                    <p class="text-caption text-on-surface-variant">Opening WhatsApp to confirm your final quote, payment, timeline and delivery...</p>
+                                    <p class="text-caption text-on-surface-variant">We confirm your final quote, payment, timeline and delivery on WhatsApp. WhatsApp did not open? <a id="custom-order-wa-link" href="https://wa.me/919061174579" target="_blank" rel="noopener" class="text-secondary font-semibold underline">Open it here</a>.</p>
                                     <div class="pt-md">
-                                        <button onclick="resetCustomOrder()" class="bg-secondary text-white px-8 py-3 rounded-full font-label-md text-sm shadow-sm">Create Another Order</button>
+                                        <button onclick="resetCustomOrder()" class="bg-secondary text-white px-8 py-3 rounded-full font-label-md text-sm shadow-sm min-h-[44px]">Start Another Request</button>
                                     </div>
                                 </div>
                             </div>
@@ -1688,7 +1681,6 @@
                                 <div class="bg-white rounded-2xl p-sm soft-glow border border-outline-variant/15 my-md">
                                     <div class="aspect-square rounded-xl overflow-hidden mb-sm bg-primary-container relative">
                                         <picture class="contents"><source id="preview-webp-source" srcset="/assets/mixed_luxury_bouquet-4RArEmw5-320.webp 320w, /assets/mixed_luxury_bouquet-4RArEmw5-480.webp 480w, /assets/mixed_luxury_bouquet-4RArEmw5-640.webp 640w, /assets/mixed_luxury_bouquet-4RArEmw5.webp 1024w" sizes="(min-width: 768px) 33vw, 100vw" type="image/webp"><img id="preview-image" alt="Custom crochet gift preview by BloomyCocoon" class="w-full h-full object-cover transition-all duration-500" src="/assets/mixed_luxury_bouquet-4RArEmw5.png" loading="lazy" width="400" height="500" decoding="async"></picture>
-                                        <span class="absolute top-2 left-2 bg-secondary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase shadow-sm">Custom Build</span>
                                     </div>
                                     <div class="space-y-1">
                                         <h4 id="preview-type" class="font-headline-sm text-secondary text-lg">Not chosen yet</h4>
@@ -5194,7 +5186,7 @@
     </div>
 
     <!-- Global Floating WhatsApp Button -->
-    <a href="https://wa.me/919061174579" target="_blank" rel="noopener" id="whatsapp-global-float" class="whatsapp-float h-12 w-12 md:w-auto md:px-5 gap-2" aria-label="Chat on WhatsApp" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about handmade crochet gifts and custom orders.">
+    <a href="https://wa.me/919061174579" target="_blank" rel="noopener" id="whatsapp-global-float" class="whatsapp-float h-12 w-12 md:w-auto md:px-5 gap-2" aria-label="WhatsApp Us" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about handmade crochet gifts and custom orders.">
         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.431 2.5 1.157 3.476L6.5 17.5l2.176-.906a5.751 5.751 0 003.355.845c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.766-5.768-5.766zm3.39 8.163c-.156.438-.767.828-1.22 1.002-.303.116-.7.217-1.127.217-.61 0-1.393-.195-2.23-.746-1.173-.772-1.93-1.954-2.518-2.868-.27-.417-.468-.86-.468-1.332 0-.583.25-.873.493-1.109.117-.113.235-.226.353-.339.094-.09.18-.178.257-.257.086-.089.172-.113.256-.113.084 0 .167.012.235.036.082.029.17.067.247.199.1.171.343.834.373.896.03.062.051.134.01.218-.042.084-.092.14-.15.207-.058.067-.123.15-.176.206-.06.063-.122.132-.053.252.069.12.306.505.656.816.45.4.83.524 1.01.61.18.086.284.073.39-.049.106-.122.457-.532.58-.716.12-.184.24-.153.404-.092.164.062 1.04.49 1.217.579.177.089.295.134.339.21.044.076.044.44-.112.878zM12 2C6.477 2 2 6.477 2 12c0 2.01.593 3.88 1.61 5.44L2 22l4.7-.93C8.16 21.65 9.99 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.745 0-3.374-.483-4.767-1.32l-.341-.205-2.828.56.57-2.723-.228-.363A7.94 7.94 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
         </svg>
