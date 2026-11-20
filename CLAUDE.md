@@ -28,7 +28,7 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P3-16 | "Customise this" link, optional (L4) | ui/p3-16-customise-link | WAITING (Saud's wording) | - |
 | P3-17 | Related products grid fix (L4) | ui/p3-17-related-grid | MERGED (#40) | - |
 | P3-18 | Font layout shift fix (L4) | ui/p3-18-font-cls | MERGED (#41) | - |
-| P3-19 | Product page image weight (L4) | ui/p3-19-image-weight | READY | - |
+| P3-19 | Product page image weight (L4) | ui/p3-19-image-weight | MERGED (#43) | - |
 | P3-20 | Keyboard focus fixes (L4) | ui/p3-20-keyboard-focus | READY | - |
 | P3-21 | Tap targets, small text, bottom overlap (L4) | ui/p3-21-targets-text | READY | - |
 | P1-1 | Tracking follow-up (live-host gate + missing events) | track/p1-1-tracking | MERGED (#9) | - |
