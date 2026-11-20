@@ -122,8 +122,8 @@ export const ROUTE_CONTENT = {
   'screen-return-gifts': {
     path: '/return-gifts',
     outputDir: 'return-gifts',
-    title: 'Handmade Crochet Return Gifts & Favors in Kerala | BloomyCocoon',
-    description: 'Charming handmade crochet return gifts, keychains, single flower stems and party favors starting from ₹149 for birthdays and weddings in Kerala. Bulk quotes on WhatsApp.',
+    title: 'Crochet Return Gifts, Handmade in Kerala | BloomyCocoon',
+    description: 'Handmade crochet return gifts for birthdays and functions in Kerala: keychains, flower stems and party favors. Bulk orders confirmed on WhatsApp.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Return Gifts & Favors',
   },
