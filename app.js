@@ -1473,7 +1473,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Related items
         const relatedContainer = document.getElementById('detail-related-products-grid');
         if (relatedContainer) {
-            const sameCategory = collectionProducts.filter(p => p.id !== product.id && p.category === product.category);
+            const categoryList = collectionProducts.filter(p => p.category === product.category);
+            const categoryIndex = categoryList.findIndex(p => p.id === product.id);
+            const sameCategory = [...categoryList.slice(categoryIndex + 1), ...categoryList.slice(0, categoryIndex)];
             const otherCategory = collectionProducts.filter(p => p.id !== product.id && p.category !== product.category);
             const related = [...sameCategory, ...otherCategory].slice(0, 4);
             relatedContainer.innerHTML = related.map(p => getProductCardMarkup(p)).join('\n');

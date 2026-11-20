@@ -365,7 +365,10 @@ function injectProductDetail(html, product, catalog) {
   const waMessage = encodeURIComponent(`Hi BloomyCocoon, I would like to order the ${product.name} (Starting from ₹${safePrice}). What colors and custom options are available?`);
 
   // Find 4 related products
-  const sameCategory = catalog.filter((p) => p.id !== product.id && p.category === product.category);
+  // Same-category products, starting after the current one and wrapping, so every product is linked from its neighbours.
+  const categoryList = catalog.filter((p) => p.category === product.category);
+  const categoryIndex = categoryList.findIndex((p) => p.id === product.id);
+  const sameCategory = [...categoryList.slice(categoryIndex + 1), ...categoryList.slice(0, categoryIndex)];
   const otherCategory = catalog.filter((p) => p.id !== product.id && p.category !== product.category);
   const relatedProducts = [...sameCategory, ...otherCategory].slice(0, 4);
   const relatedHtml = renderCollectionProductsHtml(relatedProducts);
