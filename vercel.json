@@ -214,6 +214,14 @@
       "destination": "/eid-gifts/index.html"
     },
     {
+      "source": "/vishu-gifts",
+      "destination": "/vishu-gifts/index.html"
+    },
+    {
+      "source": "/mothers-day-gifts",
+      "destination": "/mothers-day-gifts/index.html"
+    },
+    {
       "source": "/birthday-gifts",
       "destination": "/birthday-gifts/index.html"
     },
