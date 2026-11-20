@@ -837,11 +837,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function trackPageView() {
+        if (!window.BC_TRACKING_LIVE) return;
         // GA4 and Clarity follow history changes on their own; Meta Pixel needs a manual PageView.
         if (typeof window.fbq === 'function') window.fbq('track', 'PageView');
     }
 
+    function getCartItemCount() {
+        return cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+
+    function trackViewCart() {
+        trackEvent('view_cart', { item_count: getCartItemCount() });
+    }
+
+    function trackRemoveFromCart(item) {
+        if (!item) return;
+        const catalogItem = collectionProducts.find(p => p.id === item.id);
+        trackEvent('remove_from_cart', {
+            item_id: item.id,
+            item_name: item.name,
+            item_category: item.category || catalogItem?.category || ''
+        });
+    }
+
+    function getWhatsAppLinkLocation(link) {
+        if (link.id === 'whatsapp-global-float') return 'floating';
+        if (link.closest('footer')) return 'footer';
+        if (link.closest('#site-header, #mobile-menu')) return 'header_nav';
+        if (link.closest('#sideCart, #screen-cart')) return 'cart';
+        if (link.closest('#quick-look-modal, #screen-product-detail')) return 'product';
+        if (location.pathname.startsWith('/blog')) return 'blog';
+        const screenId = link.closest('.screen')?.id || currentScreen;
+        if (screenId === 'screen-custom-orders') return 'custom_order';
+        if (screenId === 'screen-contact') return 'contact';
+        if (screenId === 'screen-collection') return 'category_page';
+        if (typeof CATEGORY_PAGES !== 'undefined' && CATEGORY_PAGES[screenId]) return 'category_page';
+        if (['screen-anniversary-gifts', 'screen-birthday-gifts', 'screen-baby-shower-gifts', 'screen-return-gifts'].includes(screenId)) return 'occasion_page';
+        if (['screen-faq', 'screen-shipping-delivery', 'screen-returns-cancellations', 'screen-order-terms', 'screen-privacy-policy', 'screen-crochet-care', 'screen-about', 'screen-workshops'].includes(screenId)) return 'info_page';
+        return 'other';
+    }
+
+    // One delegated listener for every wa.me link. GA4 only (Meta already gets Contact / InitiateCheckout).
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest && e.target.closest('a[href*="wa.me"]');
+        if (!link) return;
+        trackEvent('whatsapp_click', { link_location: getWhatsAppLinkLocation(link) });
+    });
+
+    // Search: send the term once after typing stops (about 1s), only for 2+ characters, max 50 characters.
+    let searchTrackTimer = null;
+    function trackSearchDebounced(query) {
+        clearTimeout(searchTrackTimer);
+        const term = String(query || '').trim().slice(0, 50);
+        if (term.length < 2) return;
+        searchTrackTimer = setTimeout(() => trackEvent('search', { search_term: term }), 1000);
+    }
+
+    // Blog read: fire once per post per page view when 75% of the article has been scrolled past.
+    const blogReadSent = new Set();
+    function checkBlogRead() {
+        if (!location.pathname.startsWith('/blog/')) return;
+        const slug = location.pathname.replace(/^\/blog\//, '').replace(/\/+$/, '');
+        if (!slug || blogReadSent.has(slug)) return;
+        const article = document.querySelector('main article');
+        if (!article) return;
+        const rect = article.getBoundingClientRect();
+        const scrolled = (window.innerHeight - rect.top) / Math.max(rect.height, 1);
+        if (scrolled >= 0.75) {
+            blogReadSent.add(slug);
+            trackEvent('blog_read', { post_slug: slug });
+        }
+    }
+    window.addEventListener('scroll', checkBlogRead, { passive: true });
+
     function trackEvent(eventName, params = {}) {
+        if (!window.BC_TRACKING_LIVE) return;
         trackMetaEvent(eventName, params);
         if (window.gtag && typeof window.gtag === "function") {
             window.gtag("event", eventName, params);
@@ -1557,6 +1627,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderProductDetailScreen(targetPath || window.location.pathname);
             }
             if (targetScreenId === 'screen-cart') {
+                trackViewCart();
                 renderCart();
             }
 
@@ -2158,6 +2229,8 @@ document.addEventListener('DOMContentLoaded', () => {
             lastCartTrigger = triggerEl;
         }
 
+        const wasOpen = sideCart.classList.contains('cart-visible');
+        if (isOpen && !wasOpen) trackViewCart();
         sideCart.classList.toggle('cart-visible', isOpen);
         sideCart.classList.toggle('translate-x-full', !isOpen);
         sideCart.classList.toggle('translate-x-0', isOpen);
@@ -2627,6 +2700,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         item.qty += delta;
         if (item.qty <= 0) {
+            trackRemoveFromCart(item);
             cart = cart.filter(i => i.id !== id);
         }
 
@@ -2636,6 +2710,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.removeFromCart = function(id) {
         const preservedFocus = captureCartFocusTarget();
         const removed = cart.find(i => i.id === id);
+        trackRemoveFromCart(removed);
         cart = cart.filter(i => i.id !== id);
         if (cart.length === 0) {
             cartGiftAddons.card.enabled = false;
@@ -3435,6 +3510,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.handleCollectionSearch = function(query) {
         activeSearchQuery = query || '';
+        trackSearchDebounced(query);
         const clearBtn = document.getElementById('collection-search-clear');
         if (clearBtn) {
             clearBtn.classList.toggle('hidden', !query.trim());
@@ -4031,6 +4107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render cart on startup to sync header badge and drawer state from localStorage
     renderCart();
+    if (currentScreen === 'screen-cart') trackViewCart();
 
     if (sharedCartNote) {
         const noteEl = document.getElementById('cart-customer-note');
