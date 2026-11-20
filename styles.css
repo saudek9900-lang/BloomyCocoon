@@ -805,6 +805,29 @@ button[onclick="navigateBack()"] span {
 .blog-prose a:hover {
     color: var(--color-on-surface);
 }
+.blog-prose .price-table-wrap {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+.blog-prose .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+.blog-prose .price-table th,
+.blog-prose .price-table td {
+    text-align: left;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--color-outline-variant);
+}
+.blog-prose .price-table th {
+    color: var(--color-on-surface);
+    font-weight: 700;
+}
+.blog-prose .price-table-price {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
 .blog-prose blockquote {
     border-left: 4px solid var(--color-secondary);
     padding-left: 1.25rem;
