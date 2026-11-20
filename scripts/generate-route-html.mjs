@@ -497,7 +497,7 @@ function injectProductDetail(html, product, catalog) {
   // 11. Lightbox Image
   next = next.replace(
     /<img\b[^>]*\bid=["']lightbox-img["'][^>]*>/i,
-    `<img id="lightbox-img" src="${escapeHtml(webpFull)}" alt="${escapeHtml(product.name)} - Handcrafted crochet stitch detail" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300" loading="lazy" decoding="async">`
+    `<img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="${escapeHtml(product.name)} - Handcrafted crochet stitch detail" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300" loading="lazy" decoding="async">`
   );
 
   // 12. Related products grid
