@@ -2377,6 +2377,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleButtons = document.querySelectorAll('[aria-controls="mobile-menu"]');
         toggleButtons.forEach(btn => {
             btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-label', 'Open mobile menu');
         });
         if (wasOpen && restoreFocus) {
             toggleButtons[0]?.focus({ preventScroll: true });
@@ -2408,12 +2409,35 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenu.classList.toggle('hidden', !shouldOpen);
             document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
                 btn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+                btn.setAttribute('aria-label', shouldOpen ? 'Close mobile menu' : 'Open mobile menu');
             });
             if (shouldOpen) {
                 requestAnimationFrame(() => mobileMenu.querySelector('button, a')?.focus({ preventScroll: true }));
             }
         }
     };
+
+    // Keep Tab and Shift+Tab inside the open mobile menu (toggle button + menu items)
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (!mobileMenu || mobileMenu.classList.contains('hidden')) return;
+        const toggle = document.querySelector('[aria-controls="mobile-menu"]');
+        const items = [...mobileMenu.querySelectorAll('a[href], button:not([disabled])')]
+            .filter(el => el.getClientRects().length > 0);
+        const stops = [toggle, ...items].filter(Boolean);
+        if (stops.length === 0) return;
+        const first = stops[0];
+        const last = stops[stops.length - 1];
+        const active = document.activeElement;
+        if (e.shiftKey && (active === first || !stops.includes(active))) {
+            e.preventDefault();
+            last.focus({ preventScroll: true });
+        } else if (!e.shiftKey && (active === last || !stops.includes(active))) {
+            e.preventDefault();
+            first.focus({ preventScroll: true });
+        }
+    });
 
     const primaryNavEl = document.querySelector('[data-primary-nav]');
     if (primaryNavEl) {
