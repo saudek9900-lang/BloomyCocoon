@@ -769,6 +769,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let activeFilterCategory = 'all';
     let activeSearchQuery = '';
+    let activeSortOrder = 'featured';
+    const COLLECTION_SORTS = ['featured', 'price-asc', 'price-desc', 'name'];
     window.collectionProducts = collectionProducts;
     window.cartGiftAddons = cartGiftAddons;
     window.buildCartWhatsAppMessage = buildCartWhatsAppMessage;
@@ -1072,11 +1074,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getCleanCollectionSearch(search) {
         const params = new URLSearchParams(search || '');
+        const out = new URLSearchParams();
         const rawCategory = params.get('category');
-        if (!rawCategory) return '';
-        const category = legacyFilterMap[rawCategory] || rawCategory;
-        const isKnownCategory = collectionCategories.some(item => item.id === category);
-        return isKnownCategory ? `?category=${encodeURIComponent(category)}` : '';
+        if (rawCategory) {
+            const category = legacyFilterMap[rawCategory] || rawCategory;
+            const isKnownCategory = category !== 'all' && collectionCategories.some(item => item.id === category);
+            if (isKnownCategory) out.set('category', category);
+        }
+        const query = (params.get('q') || params.get('search') || '').trim().slice(0, 80);
+        if (query) out.set('q', query);
+        const sort = params.get('sort');
+        if (sort && sort !== 'featured' && COLLECTION_SORTS.includes(sort)) out.set('sort', sort);
+        const text = out.toString();
+        return text ? `?${text}` : '';
     }
 
     function getRouteForScreen(screenId, search = window.location.search, targetPath) {
@@ -1843,9 +1853,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (initialScreen === 'screen-cart') {
         renderCart();
     }
-    if (initialScreen === 'screen-collection') {
-        applyCollectionFilterFromUrl();
-    }
+    // The collection filters are applied once at the end of the script (see "applyCollectionFilterFromUrl();" in
+    // the bootstrap section), after filterCollectionCategory and handleCollectionSearch are defined. Calling it here,
+    // earlier, threw "filterCollectionCategory is not defined" and stopped the whole script on /collections?category=...
 
     // ----------------------------------------------------
     // 3. NAVIGATION BINDINGS (SPECS)
@@ -3465,11 +3475,11 @@ document.addEventListener('DOMContentLoaded', () => {
         copyEl.textContent = categoryDescriptions[activeCategory] || categoryDescriptions.all;
     }
 
-    window.filterCollectionCategory = function(category, buttonEl) {
+    window.filterCollectionCategory = function(category, buttonEl, options = {}) {
         const activeCategory = legacyFilterMap[category] || category;
         activeFilterCategory = activeCategory;
         updateCategoryDescription(activeCategory);
-        trackEvent('category_filter_click', { category: activeCategory });
+        if (!options.silent) trackEvent('category_filter_click', { category: activeCategory });
         const root = getCollectionFilterRoot(buttonEl);
         if (root) {
             root.querySelectorAll('button[data-category-filter]').forEach(btn => {
@@ -3488,16 +3498,53 @@ document.addEventListener('DOMContentLoaded', () => {
         updateContextualWhatsAppFloat('screen-collection');
 
         if (currentScreen === 'screen-collection') {
-            const search = activeCategory === 'all' ? '' : `?category=${encodeURIComponent(activeCategory)}`;
-            updateBrowserRoute('screen-collection', 'replace', search);
+            updateBrowserRoute('screen-collection', 'replace', buildCollectionSearch());
             syncScreenMetadata('screen-collection');
         }
     };
+
+    function buildCollectionSearch() {
+        const params = new URLSearchParams();
+        if (activeFilterCategory && activeFilterCategory !== 'all') params.set('category', activeFilterCategory);
+        const query = activeSearchQuery.trim().slice(0, 80);
+        if (query) params.set('q', query);
+        if (activeSortOrder !== 'featured') params.set('sort', activeSortOrder);
+        const text = params.toString();
+        return text ? `?${text}` : '';
+    }
+
+    let collectionUrlSyncTimer = null;
+    function syncCollectionUrl({ immediate = false } = {}) {
+        clearTimeout(collectionUrlSyncTimer);
+        const run = () => {
+            if (currentScreen !== 'screen-collection') return;
+            try { updateBrowserRoute('screen-collection', 'replace', buildCollectionSearch()); } catch (e) { /* history API can be rate limited */ }
+        };
+        if (immediate) run(); else collectionUrlSyncTimer = setTimeout(run, 250);
+    }
+
+    function sortCollectionCards(productGrid) {
+        const cards = Array.from(productGrid.querySelectorAll(':scope > .product-card'));
+        cards.forEach((card, index) => { if (card.dataset.origIndex === undefined) card.dataset.origIndex = String(index); });
+        const info = (card) => collectionProducts.find(item => item.id === card.getAttribute('data-product-id')) || {};
+        const original = (card) => Number(card.dataset.origIndex);
+        const compare = {
+            featured: (x, y) => original(x) - original(y),
+            'price-asc': (x, y) => (info(x).startingPrice - info(y).startingPrice) || original(x) - original(y),
+            'price-desc': (x, y) => (info(y).startingPrice - info(x).startingPrice) || original(x) - original(y),
+            name: (x, y) => String(info(x).name || '').localeCompare(String(info(y).name || '')) || original(x) - original(y)
+        }[activeSortOrder] || ((x, y) => original(x) - original(y));
+        const sorted = [...cards].sort(compare);
+        if (sorted.every((card, index) => card === cards[index])) return;
+        sorted.forEach(card => productGrid.appendChild(card));
+    }
 
     function applyCombinedCollectionFilters() {
         const productGrid = document.querySelector('#collection-product-grid');
         const emptyState = document.getElementById('collection-empty-state');
         if (!productGrid) return;
+
+        sortCollectionCards(productGrid);
 
         let visibleCount = 0;
         const query = activeSearchQuery.toLowerCase().trim();
@@ -3519,6 +3566,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (emptyState) {
             emptyState.classList.toggle('hidden', visibleCount > 0);
+            const searched = document.getElementById('collection-empty-query');
+            if (searched) {
+                const shown = activeSearchQuery.trim();
+                searched.textContent = shown ? `Nothing matched \u201c${shown}\u201d.` : '';
+                searched.classList.toggle('hidden', !shown);
+            }
         }
     }
 
@@ -3527,9 +3580,16 @@ document.addEventListener('DOMContentLoaded', () => {
         trackSearchDebounced(query);
         const clearBtn = document.getElementById('collection-search-clear');
         if (clearBtn) {
-            clearBtn.classList.toggle('hidden', !query.trim());
+            clearBtn.classList.toggle('hidden', !activeSearchQuery.trim());
         }
         applyCombinedCollectionFilters();
+        syncCollectionUrl();
+    };
+
+    window.handleCollectionSort = function(value) {
+        activeSortOrder = COLLECTION_SORTS.includes(value) ? value : 'featured';
+        applyCombinedCollectionFilters();
+        syncCollectionUrl({ immediate: true });
     };
 
     window.clearCollectionSearch = function() {
@@ -3539,6 +3599,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const clearBtn = document.getElementById('collection-search-clear');
         if (clearBtn) clearBtn.classList.add('hidden');
         applyCombinedCollectionFilters();
+        syncCollectionUrl({ immediate: true });
     };
 
     // ----------------------------------------------------
@@ -3782,10 +3843,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function applyCollectionFilterFromUrl() {
+        if (currentScreen !== 'screen-collection' || !document.getElementById('collection-product-grid')) return;
         const urlParams = new URLSearchParams(window.location.search);
         const category = urlParams.get('category');
-        const searchQuery = urlParams.get('search') || urlParams.get('q');
+        const searchQuery = (urlParams.get('q') || urlParams.get('search') || '').trim().slice(0, 80);
+        const sortParam = urlParams.get('sort');
         const toggle = document.querySelector('#screen-collection [data-category-filter-toggle]');
+
+        // Set search and sort state first, so the URL rewrite done by filterCollectionCategory keeps them.
+        activeSortOrder = COLLECTION_SORTS.includes(sortParam) ? sortParam : 'featured';
+        const sortSelect = document.getElementById('collection-sort');
+        if (sortSelect) sortSelect.value = activeSortOrder;
+        activeSearchQuery = searchQuery;
+        const searchInput = document.getElementById('collection-search-input');
+        if (searchInput) searchInput.value = searchQuery;
+        const clearBtn = document.getElementById('collection-search-clear');
+        if (clearBtn) clearBtn.classList.toggle('hidden', !searchQuery);
 
         if (category) {
             const activeCategory = legacyFilterMap[category] || category;
@@ -3793,21 +3866,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (btn) {
                 setCollectionCategoryListOpen(getCollectionFilterRoot(btn), true);
                 filterCollectionCategory(activeCategory, btn);
-            } else if (toggle) {
-                filterCollectionCategory('all', toggle);
+            } else {
+                filterCollectionCategory('all', toggle || undefined, { silent: true });
             }
-        } else if (toggle) {
-            filterCollectionCategory('all', toggle);
-        }
-
-        if (searchQuery) {
-            const searchInput = document.getElementById('collection-search-input');
-            if (searchInput) {
-                searchInput.value = searchQuery;
-            }
-            if (typeof window.handleCollectionSearch === 'function') {
-                window.handleCollectionSearch(searchQuery);
-            }
+        } else {
+            filterCollectionCategory('all', toggle || undefined, { silent: true });
         }
     }
 

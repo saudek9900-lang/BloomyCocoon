@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build && node scripts/generate-route-html.mjs",
     "preview": "vite preview",
-    "test:jsonld": "node scripts/verify-jsonld-render.mjs"
+    "test:jsonld": "node scripts/verify-jsonld-render.mjs",
+    "test:collections": "node scripts/test-collections-deeplink.mjs"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
