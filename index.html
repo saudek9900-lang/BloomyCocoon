@@ -696,32 +696,7 @@
                             <h2 class="font-headline-md text-2xl md:text-headline-md text-on-surface mb-base">How to Order</h2>
                             <p class="font-body-md text-on-surface-variant">A simple Cart to WhatsApp flow, with personal confirmation, a final quote, and order details checked before anything is handmade.</p>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-md md:gap-lg">
-                            <div class="order-step-card bg-surface-container-low rounded-2xl p-md border border-outline-variant/15 soft-glow">
-                                <div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md">
-                                    <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
-                                </div>
-                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Step 1</span>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mt-xs mb-xs">Browse &amp; Add to Cart</h3>
-                                <p class="font-body-md text-on-surface-variant">Explore handmade crochet gifts, choose your favourites, and add them to Cart with the Starting from price as a guide.</p>
-                            </div>
-                            <div class="order-step-card bg-surface-container-low rounded-2xl p-md border border-outline-variant/15 soft-glow">
-                                <div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-md">
-                                    <span class="material-symbols-outlined" aria-hidden="true">chat</span>
-                                </div>
-                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Step 2</span>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mt-xs mb-xs">Finalize on WhatsApp</h3>
-                                <p class="font-body-md text-on-surface-variant">Your selected items open in WhatsApp so customization, quantity, payment, final quote and delivery can be confirmed personally.</p>
-                            </div>
-                            <div class="order-step-card bg-surface-container-low rounded-2xl p-md border border-outline-variant/15 soft-glow">
-                                <div class="w-12 h-12 rounded-full bg-primary-container text-secondary flex items-center justify-center mb-md">
-                                    <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
-                                </div>
-                                <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Step 3</span>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface mt-xs mb-xs">Handmade with Care</h3>
-                                <p class="font-body-md text-on-surface-variant">Once confirmed, your crochet pieces are handmade with care and prepared for gifting before delivery across Kerala and India.</p>
-                            </div>
-                        </div>
+                        <div data-order-steps="no-heading"></div>
                         <p class="font-caption text-on-surface-variant text-center mt-lg">Colours, size and names are customized on WhatsApp &middot; Delivery across Kerala and India &middot; Starting from prices, with final quote confirmed before making begins.</p>
                     </div>
                 </section>
@@ -1189,6 +1164,13 @@
                                     </summary>
                                     <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">50% advance by UPI or Google Pay once your order is confirmed on WhatsApp. Balance after you approve the photos, before dispatch.</p>
                                 </details>
+                                <details class="faq-details bg-surface-container-low rounded-xl border border-outline-variant/20 hover:border-secondary/40 transition-colors p-md group">
+                                    <summary class="list-none flex justify-between items-center cursor-pointer">
+                                        <span class="font-headline-sm text-headline-sm text-on-surface">Why do you ask for a 50% advance?</span>
+                                        <span class="material-symbols-outlined faq-icon" aria-hidden="true">expand_more</span>
+                                    </summary>
+                                    <p class="text-on-surface-variant font-body-md mt-4 leading-relaxed">Each gift is made by hand for you. The advance lets us start making it, and you approve a photo of the finished gift before paying the balance.</p>
+                                </details>
                             </div>
                         </div>
 
@@ -1351,6 +1333,7 @@
                                 </div>
                                 <h3 class="font-headline-sm text-headline-sm mb-xs text-on-secondary-container font-bold">WhatsApp</h3>
                                 <p class="text-on-secondary-fixed-variant font-body-md text-body-md mb-md">Direct support for custom inquiries</p>
+                                <p class="text-on-secondary-fixed-variant font-body-md text-body-md font-semibold mb-md">+91 90611 74579</p>
                                 <span class="font-label-md text-label-md bg-white px-md py-xs rounded-full text-secondary">Chat with us</span>
                             </a>
                             <!-- Email -->
@@ -1695,6 +1678,9 @@
                             </div>
                         </div>
                     </div>
+                </section>
+                <section class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pb-12" aria-label="How ordering works">
+                    <div data-order-steps></div>
                 </section>
             </main>
 
@@ -3381,6 +3367,9 @@
                         </div>
                     </div>
                 </div>
+                <section class="max-w-container-max mx-auto px-4 sm:px-6 md:px-lg pb-12" aria-label="How ordering works">
+                    <div data-order-steps></div>
+                </section>
             </main>
 
             <!-- Standard Shared Footer -->
@@ -3490,6 +3479,7 @@
                                 <span id="detail-product-price" class="text-2xl md:text-3xl font-bold font-headline-md text-secondary tabular-nums">Starting from ₹149</span>
                                 <span class="text-xs text-on-surface-variant/80 font-medium">• Crafted to order in Kerala</span>
                             </div>
+                            <div data-trust-strip></div>
                         </div>
 
                         <p id="detail-product-desc" class="font-body-md text-on-surface-variant text-base leading-relaxed">
@@ -3572,9 +3562,6 @@
                                     <span>Order on WhatsApp</span>
                                 </a>
                             </div>
-                            <p class="text-[11px] text-center text-on-surface-variant/85 font-semibold text-secondary">
-                                50% advance after WhatsApp confirmation &middot; Photos for approval before dispatch
-                            </p>
                             <p class="text-[11px] text-center text-on-surface-variant/85">
                                 Starting prices are a guide. Final quote &amp; color customization confirmed personally on WhatsApp.
                             </p>
@@ -3587,6 +3574,11 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- How ordering works -->
+                <section class="my-14 max-w-3xl mx-auto" aria-label="How ordering works">
+                    <div data-order-steps></div>
+                </section>
 
                 <!-- Product Care & FAQ Section -->
                 <section class="my-14 max-w-3xl mx-auto">
@@ -3626,6 +3618,15 @@
                             </summary>
                             <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
                                 50% advance by UPI or Google Pay once your order is confirmed on WhatsApp, before hand-crocheting begins. Once completed, we send you high-resolution photos for approval before you pay the remaining balance and we dispatch with courier tracking.
+                            </p>
+                        </details>
+                        <details class="faq-details group rounded-2xl bg-surface-container-low p-4 border border-outline-variant/15">
+                            <summary class="flex cursor-pointer items-center justify-between font-label-md text-on-surface">
+                                <span>Why do you ask for a 50% advance?</span>
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary" aria-hidden="true">expand_more</span>
+                            </summary>
+                            <p class="mt-3 font-body-md text-on-surface-variant text-sm leading-relaxed">
+                                Each gift is made by hand for you. The advance lets us start making it, and you approve a photo of the finished gift before paying the balance.
                             </p>
                         </details>
                     </div>
@@ -3763,6 +3764,8 @@
                     <span class="font-bold cart-advance-amount" id="cart-advance-amount">₹0</span>
                 </div>
             </div>
+
+            <p class="text-[11px] text-center text-on-surface-variant leading-relaxed" id="cart-drawer-advance-line">50% advance only after we confirm on WhatsApp. You approve a photo before paying the rest.</p>
 
             <!-- Primary WhatsApp CTA -->
             <button disabled class="checkout-btn w-full bg-secondary text-white py-3.5 rounded-2xl font-label-md text-sm md:text-base flex items-center justify-center gap-2 active:scale-95 transition-all opacity-55 cursor-default shadow-sm hover:shadow-md min-h-[44px]" aria-label="Continue to WhatsApp to confirm final quote and order details" aria-describedby="cart-checkout-note cart-payment-note">

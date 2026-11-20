@@ -24,6 +24,7 @@ import {
 } from '../src/product-cards.mjs';
 import { generateSitemapXml, generateLlmsFullTxt } from '../src/sitemap-generator.mjs';
 import { generateGoogleMerchantXml } from '../src/merchant-feed-generator.mjs';
+import { fillOrderPlaceholders, WHATSAPP_DISPLAY_NUMBER } from '../src/order-steps.mjs';
 import { getAllBlogPosts, generateBlogIndexHtml, generateBlogPostHtml } from '../src/blog-engine.mjs';
 
 const DIST_DIR = path.resolve('dist');
@@ -556,6 +557,7 @@ const UNIFIED_FOOTER_HTML = `<footer class="bg-surface-container py-10 md:py-xl 
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://www.instagram.com/bloomy_cocoon_/">Instagram</a>
                         <a class="font-body-md text-on-surface-variant hover:text-secondary transition-colors" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">WhatsApp</a>
                     </nav>${footerGuidesHtml}
+                    <p class="font-body-md text-sm text-on-surface-variant">WhatsApp: <a class="hover:text-secondary transition-colors font-semibold" target="_blank" rel="noopener" href="https://wa.me/919061174579" data-whatsapp-message="Hi BloomyCocoon, I would like to enquire about your handmade crochet gifts.">${WHATSAPP_DISPLAY_NUMBER}</a></p>
                     <p class="font-caption text-caption text-on-surface-variant">© 2026 BloomyCocoon. Crafted for your moments.</p>
                 </div>
             </footer>`;
@@ -605,7 +607,7 @@ async function writeProductHtml(baseHtml, product, catalog) {
 }
 
 const rawBaseHtml = restoreFaqFocusOutline(await readFile(INDEX_PATH, 'utf8'));
-const baseHtml = injectPreRenderedProducts(rawBaseHtml);
+const baseHtml = fillOrderPlaceholders(injectPreRenderedProducts(rawBaseHtml));
 await writeFile(
   INDEX_PATH,
   injectHomeHeroPreload(
