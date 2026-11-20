@@ -873,7 +873,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (screenId === 'screen-contact') return 'contact';
         if (screenId === 'screen-collection') return 'category_page';
         if (typeof CATEGORY_PAGES !== 'undefined' && CATEGORY_PAGES[screenId]) return 'category_page';
-        if (['screen-anniversary-gifts', 'screen-valentines-day-gifts', 'screen-send-gifts-to-kerala', 'screen-crochet-gifts-kerala', 'screen-eid-gifts', 'screen-vishu-gifts', 'screen-mothers-day-gifts', 'screen-birthday-gifts', 'screen-baby-shower-gifts', 'screen-return-gifts'].includes(screenId)) return 'occasion_page';
+        if (['screen-anniversary-gifts', 'screen-valentines-day-gifts', 'screen-send-gifts-to-kerala', 'screen-crochet-gifts-kerala', 'screen-eid-gifts', 'screen-vishu-gifts', 'screen-mothers-day-gifts', 'screen-fathers-day-gifts', 'screen-birthday-gifts', 'screen-baby-shower-gifts', 'screen-return-gifts'].includes(screenId)) return 'occasion_page';
         if (['screen-faq', 'screen-shipping-delivery', 'screen-returns-cancellations', 'screen-order-terms', 'screen-privacy-policy', 'screen-crochet-care', 'screen-about', 'screen-workshops'].includes(screenId)) return 'info_page';
         return 'other';
     }
@@ -1034,6 +1034,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cleanPath === '/eid-gifts') return 'screen-eid-gifts';
         if (cleanPath === '/vishu-gifts') return 'screen-vishu-gifts';
         if (cleanPath === '/mothers-day-gifts') return 'screen-mothers-day-gifts';
+        if (cleanPath === '/fathers-day-gifts') return 'screen-fathers-day-gifts';
         if (cleanPath === '/birthday-gifts') return 'screen-birthday-gifts';
         if (cleanPath === '/baby-shower-gifts') return 'screen-baby-shower-gifts';
         if (cleanPath === '/return-gifts') return 'screen-return-gifts';

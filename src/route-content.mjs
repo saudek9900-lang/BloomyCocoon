@@ -151,6 +151,14 @@ export const ROUTE_CONTENT = {
     schemaType: 'CollectionPage',
     breadcrumbName: "Mother's Day Gifts",
   },
+  'screen-fathers-day-gifts': {
+    path: '/fathers-day-gifts',
+    outputDir: 'fathers-day-gifts',
+    title: "Handmade Crochet Father's Day Gifts from Kerala | BloomyCocoon",
+    description: "Handmade crochet Father's Day gifts from Kerala: keychains, car charms and home decor, made to order. Message us 2 weeks ahead on WhatsApp.",
+    schemaType: 'CollectionPage',
+    breadcrumbName: "Father's Day Gifts",
+  },
   'screen-birthday-gifts': {
     path: '/birthday-gifts',
     outputDir: 'birthday-gifts',
@@ -335,6 +343,18 @@ export const OCCASION_PRODUCTS = {
     'crochet-tote-bag',
     'mini-flower-pot',
     'crochet-plant-holder',
+  ],
+  'screen-fathers-day-gifts': [
+    'car-hanging-charm',
+    'initial-letter-keychain',
+    'custom-character-keychain',
+    'crochet-coaster',
+    'table-decor-piece',
+    'crochet-phone-sleeve',
+    'keychain-flower-combo',
+    'mini-bouquet-note-card',
+    'custom-crochet-hamper',
+    'custom-name-decor',
   ],
   'screen-birthday-gifts': [
     'birthday-mini-gift-box',
