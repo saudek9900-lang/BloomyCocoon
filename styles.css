@@ -903,3 +903,21 @@ button[onclick="navigateBack()"] span {
 @media (max-width: 767px) {
     footer[class] { padding-bottom: calc(5rem + env(safe-area-inset-bottom)) !important; }
 }
+
+/* P3-15: footer link tap targets (44px tall) on phones and touch devices; same look. */
+@media (pointer: coarse), (max-width: 767px) {
+    footer nav a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        text-align: center;
+    }
+    footer nav[class][aria-label="Footer navigation"] { row-gap: 0; }
+    footer nav ul[class] { row-gap: 0; }
+    footer p a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+}
