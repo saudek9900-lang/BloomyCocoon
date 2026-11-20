@@ -1,28 +1,30 @@
-# BloomyCocoon plan: current status and parallel lanes (updated 2026-11-20, evening)
+# BloomyCocoon plan: current status and parallel lanes (updated 2026-11-20, night)
 
 This section replaces the phase order further down. The task queue and lane rules in CLAUDE.md win if they differ.
 
-## Done and live (main 8fa36a2)
-P1-1 to P1-5, P2-1 to P2-5, P3-1 (Vishu, Mother's Day), P3-2 (price guide), P3-9 (damage wording), P3-11 (return-gifts FAQ), P3-12 (SEO audit), P3-10a/b/c (collections fix, custom order and contact clarity, cart polish), P4-1 (Father's Day, Friendship Day, Raksha Bandhan, Onam, Diwali pages).
+## Done and live (main, 2026-11-20 night)
+P1-1 to P1-5, P2-1 to P2-5, P3-1 (Vishu, Mother's Day), P3-2 (price guide), P3-9 (damage wording), P3-11 (return-gifts FAQ), P3-12 (SEO audit), P3-10a/b/c (collections fix, custom order and contact clarity, cart polish), P3-13 (SEO quick fix, #36), P3-14 (return policy, #37), P3-5 (Gulf ordering section, #38), P3-4 (About the makers, #39), P4-1 (Father's Day, Friendship Day, Raksha Bandhan, Onam, Diwali pages).
+
+### L4 UI work shipped today (audit: docs/claude/audits/2026-11-20-ui-site-audit.md)
+| PR | Task | What changed |
+|----|------|--------------|
+| #40 | P3-17 | "You May Also Like" grid on all 69 product pages: 4 equal cards on desktop, 2 per row on phone and tablet |
+| #41 | P3-18 | Fallback fonts sized to match Inter and Playfair Display: layout shift 0.23-0.26 down to about 0 on phones (local test) |
+| #43 | P3-19 | Hidden zoom image no longer downloaded on load (page load images about 1 MB down to 65 KB on a product page); Quick Look and Zoom use WebP |
+| #44 | P3-20 | Mobile menu keeps keyboard focus inside while open; button label switches to "Close mobile menu" |
+| #45 | P3-21 | 44px tap targets (71 down to 9 under 44px at 375px), nothing under 12px text, room at page bottom for the sticky bar and WhatsApp button, 2 small wrap glitches fixed |
+| #46 | P3-15 | Footer links 44px tall on phones (28 of 29 were under 44px) |
+
+L4 is finished. P3-16 ("Customise this" link) is parked: Saud said skip.
 
 ## Priority and lanes
 | Priority | Lane | Task | Status | Model |
 |----------|------|------|--------|-------|
-| P0 | L0 Saud | Request indexing in Search Console (~10 URLs a day), IndexNow submit, phone check of new pages, answer Q15 | Saud | - |
-| P1 | L1 SEO | P3-13 SEO quick fix | Ready | Sonnet 5.5, medium |
-| P1 | L2 Policy | P3-14 Return policy alignment | Waiting Q15 | Sonnet 5.5, medium |
-| P1 | L4 UI | P3-17 Related products grid fix (broken on desktop) | Ready | Sonnet 5.5, medium |
-| P1 | L4 UI | P3-18 Font layout shift fix (CLS 0.23-0.26 on phones) | Ready | Sonnet 5.5, medium |
-| P1 | L4 UI | P3-19 Product page image weight (850 KB hidden PNG) | Ready | Sonnet 5.5, medium |
-| P2 | L4 UI | P3-20 Keyboard focus fixes | Ready | Sonnet 5.5, medium |
-| P2 | L4 UI | P3-21 Tap targets, small text, bottom overlap | Ready | Sonnet 5.5, medium |
-| P1 | L4 UI | P3-15 Footer tap targets (run alone) | Waiting Saud OK | Sonnet 5.5, medium |
-| P2 | L3 Content | P3-5 Gulf pages ("send gifts to family in India from the Gulf", India-only delivery) | Parked, needs Saud's yes | Sonnet 5.5, HIGH |
-| P2 | L3 Content | P3-4 About the makers | Waiting Q9 (later) | Sonnet 5.5, medium |
-| P2 | L3 Content | P4-2 Workshops | Waiting Q10 (later) | Sonnet 5.5, medium |
-| P2 | L4 UI | P3-16 "Customise this" link (optional) | Waiting Saud's wording | Sonnet 5.5, medium |
-| Last | L5 Images | P5-1 photo galleries, P5-2 new bouquets, P5-3 image tag | Parked until Saud uploads images | Sonnet 5.5, medium |
-| Parked | - | P3-3 sizes (no data), P3-6 Malayalam (not needed), P3-7 packs (no sizes or prices), P3-8 feed test (skipped) | Parked | - |
+| P0 | L0 Saud | Request indexing in Search Console (~10 URLs a day), IndexNow submit, phone check of new pages (including the new footer, menu and product grid), answer Q10 and Q14 | Saud | - |
+| Last | L5 Images | P5-1 photo galleries, P5-2 new bouquets (needs images in incoming-photos/, none uploaded yet), P5-3 image tag (parked, Q14) | Waiting for Saud's photos | Sonnet 5.5, medium |
+| Parked | - | P3-16 customise link (Saud: skip), P3-3 sizes (no data), P3-6 Malayalam (not needed), P3-7 packs (no sizes or prices), P3-8 feed test (skipped), P4-2 workshops (Q10, later) | Parked | - |
+
+Nothing else is runnable. L1, L2, L3 and L4 are closed.
 
 ## What can run at the same time
 - L0 always.
