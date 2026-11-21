@@ -68,7 +68,7 @@ Image tasks (P5) always come last, and only when Saud has uploaded the images.
 | L0 Saud only (no code) | Search Console indexing (~10 URLs a day), IndexNow submit, check pages on a phone, answer Q9, Q10, Q15, upload photos | - |
 | L1 SEO | P3-13, then P3-22, P3-24 (audit: docs/claude/audits/2026-11-20-full-site-audit.md) | Sonnet 5.5, medium |
 | L2 Policy | P3-14 | Sonnet 5.5, medium |
-| L3 Content pages | P3-5 (needs Saud's yes), P3-4 (Q9), P4-2 (Q10), in that order, one after another | P3-5 high; others medium |
+| L3 Content pages (CLOSED: P3-5 and P3-4 merged, P4-2 parked) | P3-5, P3-4, P4-2 | P3-5 high; others medium |
 | L4 UI | P3-17, P3-18, P3-19, P3-20, P3-21, then P3-15 (alone), then P3-16. Audit: docs/claude/audits/2026-11-20-ui-site-audit.md | Sonnet 5.5, medium |
 | L5 Images | P5-1, P5-2, P5-3 (last, alone) | Sonnet 5.5, medium |
 
