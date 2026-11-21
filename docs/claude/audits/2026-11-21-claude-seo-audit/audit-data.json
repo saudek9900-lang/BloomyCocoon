@@ -1,0 +1,209 @@
+{
+  "summary": {
+    "health_score": 84,
+    "business_type": "E-commerce (handmade crochet gifts, WhatsApp ordering)",
+    "top_findings": [
+      "Blog hreflang points to homepage on 9 blog URLs",
+      "Product main image 194 KB with no srcset",
+      "LCP image lazy-loaded on /about and /contact",
+      "Home hero mobile LCP 3.7 s (lab)",
+      "Seasonal pages 40-52% similar"
+    ],
+    "quick_wins": [
+      "Fix hreflang rewrite in src/blog-engine.mjs",
+      "Add srcset to product main image",
+      "Eager-load first image on /about and /contact",
+      "Remove /cart from llms.txt",
+      "Lengthen short titles on /order-terms and /privacy-policy"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 90,
+      "what_works": [
+        "111/111 sitemap URLs return 200",
+        "Self canonicals",
+        "Strong security headers",
+        "noindex on /cart and /workshops"
+      ],
+      "findings": [
+        {
+          "title": "Blog hreflang points to homepage",
+          "severity": "High",
+          "description": "9 blog URLs have hreflang en-IN and x-default pointing to /",
+          "recommendation": "Rewrite hreflang to canonical in src/blog-engine.mjs"
+        },
+        {
+          "title": "Flat sitemap lastmod",
+          "severity": "Low",
+          "description": "106 URLs share 2026-11-20",
+          "recommendation": "Per-product lastmod"
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 78,
+      "what_works": [
+        "Content scorer 94-96/100",
+        "600-950 words on most pages"
+      ],
+      "findings": [
+        {
+          "title": "Seasonal page overlap",
+          "severity": "Medium",
+          "description": "Eid/Vishu 0.52 shingle similarity",
+          "recommendation": "Add occasion-specific sections"
+        },
+        {
+          "title": "Product template share",
+          "severity": "Medium",
+          "description": "44% unique main text on average",
+          "recommendation": "Add product-specific lines"
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 90,
+      "what_works": [
+        "One H1 everywhere",
+        "No duplicate titles or descriptions",
+        "No orphan pages"
+      ],
+      "findings": [
+        {
+          "title": "Short titles",
+          "severity": "Medium",
+          "description": "/order-terms 26, /privacy-policy 29 chars",
+          "recommendation": "Extend titles"
+        },
+        {
+          "title": "Short meta descriptions",
+          "severity": "Low",
+          "description": "/blog 75 chars and 3 others",
+          "recommendation": "Extend to 120-160"
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 85,
+      "what_works": [
+        "Valid JSON-LD on all pages",
+        "No banned fields"
+      ],
+      "findings": [
+        {
+          "title": "AggregateOffer on Product",
+          "severity": "Info",
+          "description": "Validator prefers Offer+price for merchant listings",
+          "recommendation": "Keep: prices are Starting from"
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 72,
+      "what_works": [
+        "CLS near 0 on all tested pages"
+      ],
+      "findings": [
+        {
+          "title": "Product LCP image heavy",
+          "severity": "High",
+          "description": "194 KB full webp, mobile LCP 2.94 s",
+          "recommendation": "srcset with existing variants"
+        },
+        {
+          "title": "Lazy LCP image",
+          "severity": "Medium",
+          "description": "/contact mobile LCP 3.56 s, /about 2.50 s",
+          "recommendation": "Eager + fetchpriority high"
+        },
+        {
+          "title": "Home hero mobile",
+          "severity": "Medium",
+          "description": "Mobile LCP 3.73 s, 108 KB",
+          "recommendation": "Add 768w variant or tighten sizes"
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 86,
+      "what_works": [
+        "AI crawlers allowed",
+        "llms.txt and llms-full.txt live",
+        "Static HTML per route"
+      ],
+      "findings": [
+        {
+          "title": "llms.txt lists noindex /cart",
+          "severity": "Low",
+          "description": "Cart line in Core Pages",
+          "recommendation": "Remove line"
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 78,
+      "what_works": [
+        "All alt text and dimensions present",
+        "WebP served to browsers"
+      ],
+      "findings": [
+        {
+          "title": "Static HTML references large PNGs",
+          "severity": "Low",
+          "description": "1,212 PNG src refs, up to 934 KB",
+          "recommendation": "Use WebP in static src; keep PNG for og/feed"
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes",
+        "timeframe": "Week 1",
+        "items": [
+          "Blog hreflang fix",
+          "Product image srcset"
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Improvements",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "Eager LCP on /about and /contact",
+          "Home hero mobile size",
+          "Short titles"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Month 2",
+        "items": [
+          "Seasonal page differentiation",
+          "Mobile product above-the-fold",
+          "Testimonials (owner)"
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "Connect Search Console/CrUX",
+          "Re-run audit after fixes"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "",
+    "screenshots_dir": ""
+  }
+}
