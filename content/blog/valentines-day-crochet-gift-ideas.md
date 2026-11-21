@@ -59,16 +59,16 @@ Valentine's Day is also a great time to celebrate broader relationship milestone
 
 You can visit our [Anniversary Gift Guides](/anniversary-gifts) for more ideas on celebrating special moments together.
 
-## Picking Colors That Your Partner Loves
+## Picking Colours That Your Partner Loves
 
-Every relationship has its own favorite memories and colors. Colours are confirmed with you on WhatsApp. When ordering handmade crochet, you can consider palette ideas that reflect your partner's style:
+Every relationship has its own favourite memories and colours. Colours are confirmed with you on WhatsApp. When ordering handmade crochet, you can consider palette ideas that reflect your partner's style:
 
 - Classic Red: Deep red and white for a traditional romantic style.
 - Soft Pastels: Blush pink, cream, and light green for a gentle look.
 - Warm Tones: Terracotta and warm yellow for a cheerful feel.
 - Lavender and Blue: Soft purple and light blue for a quiet aesthetic.
 
-Choosing thoughtful color combinations makes the gift feel personal.
+Choosing thoughtful colour combinations makes the gift feel personal.
 
 ## A Thoughtful Way to Celebrate Love
 

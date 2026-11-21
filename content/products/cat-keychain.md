@@ -6,4 +6,4 @@ Customise the yarn shades on WhatsApp to create the keepsake you have in mind. W
 
 To keep the colour bright, keep it away from prolonged direct sunlight. For light dust, a soft, dry brush or a gentle shake outdoors is enough.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

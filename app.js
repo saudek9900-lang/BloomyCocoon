@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 149,
     "image": "images/crochet_rose_bouquet_single-crochet-rose-landscape.png",
     "badge": "Single Stem",
-    "description": "Best for tiny gestures, student gifts and note-card add-ons, with colors confirmed on WhatsApp."
+    "description": "Best for tiny gestures, student gifts and note-card add-ons, with colours confirmed on WhatsApp."
   },
   {
     "id": "single-crochet-tulip",
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 799,
     "image": "images/crochet_rose_bouquet_rose-bouquet.png",
     "badge": "Made with Love",
-    "description": "Best for anniversaries, couple gifts and soft surprises, with colors and wrapping confirmed on WhatsApp."
+    "description": "Best for anniversaries, couple gifts and soft surprises, with colours and wrapping confirmed on WhatsApp."
   },
   {
     "id": "tulip-bouquet",
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "bouquets",
     "startingPrice": 799,
     "image": "images/crochet_lavender_bouquet_lavender-bouquet.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "A calming lavender bouquet for keepsake gifting, cozy decor and soft handmade surprises."
   },
   {
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 399,
     "image": "images/cozy_bear_plushie_mini-teddy-plushie.png",
     "badge": "Tiny Hug",
-    "description": "Best for cute birthday gifts, student desks and tiny keepsakes, with colors confirmed on WhatsApp."
+    "description": "Best for cute birthday gifts, student desks and tiny keepsakes, with colours confirmed on WhatsApp."
   },
   {
     "id": "bunny-plushie",
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "plushies",
     "startingPrice": 499,
     "image": "images/crochet_bunny_plush_bunny-plushie.png",
-    "badge": "Gift Favorite",
+    "badge": "Gift Favourite",
     "description": "A gentle bunny plushie for birthdays, baby gifting and keepsakes, with shade details confirmed on WhatsApp."
   },
   {
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "plushies",
     "startingPrice": 499,
     "image": "images/crochet_cat_plushie_cat-plushie.png",
-    "description": "A cozy cat companion with handmade charm and custom color options."
+    "description": "A cozy cat companion with handmade charm and custom colour options."
   },
   {
     "id": "duck-plushie",
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "plushies",
     "startingPrice": 449,
     "image": "images/crochet_frog_plushie.png",
-    "description": "A playful frog plushie with custom expressions and cozy colors."
+    "description": "A playful frog plushie with custom expressions and cozy colours."
   },
   {
     "id": "penguin-plushie",
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "plushies",
     "startingPrice": 599,
     "image": "images/crochet_dinosaur_plushie.png",
-    "description": "A friendly dinosaur plushie with handmade spikes and custom colors."
+    "description": "A friendly dinosaur plushie with handmade spikes and custom colours."
   },
   {
     "id": "octopus-plushie",
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 699,
     "image": "images/crochet_bunny_plush_custom-animal-plushie.png",
     "badge": "Custom",
-    "description": "A made-to-order animal plushie inspired by your idea, with size, colors and final quote confirmed on WhatsApp."
+    "description": "A made-to-order animal plushie inspired by your idea, with size, colours and final quote confirmed on WhatsApp."
   },
   {
     "id": "mini-pocket-plushies",
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "plushies",
     "startingPrice": 299,
     "image": "images/cozy_bear_plushie_mini-pocket-plushies.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "Small pocket plushies for tiny gifting, students, desk friends and surprise add-ons."
   },
   {
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "keychains",
     "startingPrice": 149,
     "image": "images/crochet_flower_keychain_flower-keychain.png",
-    "description": "A cheerful crochet flower charm stitched from soft handmade yarn for bags, keys and small gifts. Pick your preferred yarn shade on WhatsApp to match a favorite color or gift hamper."
+    "description": "A cheerful crochet flower charm stitched from soft handmade yarn for bags, keys and small gifts. Pick your preferred yarn shade on WhatsApp to match a favourite colour or gift hamper."
   },
   {
     "id": "mushroom-keychain",
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "keychains",
     "startingPrice": 249,
     "image": "images/mini_animal_keychain_teddy-keychain.png",
-    "description": "A tiny handmade teddy keychain finished in soft yarn for everyday keys, backpacks and sweet surprise gifting. Custom yarn color choices can be confirmed directly on WhatsApp before crafting."
+    "description": "A tiny handmade teddy keychain finished in soft yarn for everyday keys, backpacks and sweet surprise gifting. Custom yarn colour choices can be confirmed directly on WhatsApp before crafting."
   },
   {
     "id": "bunny-keychain",
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "keychains",
     "startingPrice": 249,
     "image": "images/mini_animal_keychain_bunny-keychain.png",
-    "description": "A handcrafted bunny keychain featuring petite ears and a cozy yarn texture for backpacks, keys and thoughtful gift add-ons. Share your favorite shade on WhatsApp to personalize the finish."
+    "description": "A handcrafted bunny keychain featuring petite ears and a cozy yarn texture for backpacks, keys and thoughtful gift add-ons. Share your favourite shade on WhatsApp to personalise the finish."
   },
   {
     "id": "cat-keychain",
@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "keychains",
     "startingPrice": 249,
     "image": "images/mini_animal_keychain_cat-keychain.png",
-    "description": "A cute handmade cat keychain stitched in soft yarn for daily bags, keys and curated gift boxes. Customize the yarn shades on WhatsApp to create a sweet keepsake for friends or students."
+    "description": "A cute handmade cat keychain stitched in soft yarn for daily bags, keys and curated gift boxes. Customise the yarn shades on WhatsApp to create a sweet keepsake for friends or students."
   },
   {
     "id": "duck-keychain",
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "keychains",
     "startingPrice": 249,
     "image": "images/mini_animal_keychain_duck-keychain.png",
-    "description": "A cheerful crochet duck keychain bringing playful handmade charm to keys, pouches and small gifting moments. Confirm your preferred yarn colors on WhatsApp before stitching begins."
+    "description": "A cheerful crochet duck keychain bringing playful handmade charm to keys, pouches and small gifting moments. Confirm your preferred yarn colours on WhatsApp before stitching begins."
   },
   {
     "id": "initial-letter-keychain",
@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "keychains",
     "startingPrice": 199,
     "image": "images/heart_keychain_initial-letter-keychain.png",
-    "badge": "Personalized",
+    "badge": "Personalised",
     "description": "A custom initial keychain for names, students, couples and handmade gift hampers."
   },
   {
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "keychains",
     "startingPrice": 199,
     "image": "images/strawberry_keychain_strawberry-keychain.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "A fruity strawberry charm for bags, keys, student gifts and playful handmade surprises."
   },
   {
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "baby-gifts",
     "startingPrice": 399,
     "image": "images/crochet_headband_baby-cap.png",
-    "description": "A cozy handmade baby cap with custom color and sizing options."
+    "description": "A cozy handmade baby cap with custom colour and sizing options."
   },
   {
     "id": "baby-mittens",
@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "baby-gifts",
     "startingPrice": 499,
     "image": "images/crochet_bunny_plush_baby-bunny-plushie.png",
-    "description": "A gentle baby bunny plushie in soft yarn and nursery-friendly colors."
+    "description": "A gentle baby bunny plushie in soft yarn and nursery-friendly colours."
   },
   {
     "id": "baby-bear-plushie",
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "accessories",
     "startingPrice": 149,
     "image": "images/crochet_bracelet_earrings.png",
-    "description": "A lightweight handmade crochet bracelet stitched in soft yarn for relaxed everyday wear and friendship gifting. Pick your preferred yarn colors and simple pairing ideas on WhatsApp."
+    "description": "A lightweight handmade crochet bracelet stitched in soft yarn for relaxed everyday wear and friendship gifting. Pick your preferred yarn colours and simple pairing ideas on WhatsApp."
   },
   {
     "id": "crochet-earrings",
@@ -500,7 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "accessories",
     "startingPrice": 199,
     "image": "images/crochet_bag_charm_phone-charm.png",
-    "description": "A petite crochet phone charm crafted from soft handmade yarn for personal daily styling and cute gift add-ons. Select your favorite shade combination on WhatsApp before making starts."
+    "description": "A petite crochet phone charm crafted from soft handmade yarn for personal daily styling and cute gift add-ons. Select your favourite shade combination on WhatsApp before making starts."
   },
   {
     "id": "crochet-coin-pouch",
@@ -526,9 +526,9 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "accessories",
     "startingPrice": 799,
     "image": "images/crochet_tote_bag_crochet-tote-bag.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "featured": true,
-    "description": "A roomy handmade tote for everyday styling, gifting and custom color requests."
+    "description": "A roomy handmade tote for everyday styling, gifting and custom colour requests."
   },
   {
     "id": "crochet-coaster",
@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "home-decor",
     "startingPrice": 349,
     "image": "images/crochet_car_hanging.png",
-    "description": "A soft handmade crochet hanging charm designed to brighten car mirrors, windows and thoughtful gift surprises. Personalize your yarn palette on WhatsApp to craft a warm keepsake piece."
+    "description": "A soft handmade crochet hanging charm designed to brighten car mirrors, windows and thoughtful gift surprises. Personalise your yarn palette on WhatsApp to craft a warm keepsake piece."
   },
   {
     "id": "crochet-garland",
@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 999,
     "image": "images/crochet_wall_hanging_custom-name-decor.png",
     "badge": "Name Custom",
-    "description": "A personalized crochet name decor piece for rooms, doors, baby gifting and keepsakes."
+    "description": "A personalised crochet name decor piece for rooms, doors, baby gifting and keepsakes."
   },
   {
     "id": "crochet-cushion-cover",
@@ -593,7 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "home-decor",
     "startingPrice": 699,
     "image": "images/crochet_cushion_cover_crochet-cushion-cover.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "A cozy cushion cover for warm corners, housewarming gifts and soft home decor."
   },
   {
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "category": "home-decor",
     "startingPrice": 499,
     "image": "images/crochet_plant_holder_crochet-plant-holder.png",
-    "badge": "Kept Favorite",
+    "badge": "Kept Favourite",
     "description": "A cozy plant holder for shelves, windows and handmade home decor gifts."
   },
   {
@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "startingPrice": 399,
     "image": "images/crochet_keychain_flower_combo.png",
     "badge": "Combo",
-    "description": "A small gift pairing for students, friends and surprise notes, with colors confirmed on WhatsApp."
+    "description": "A small gift pairing for students, friends and surprise notes, with colours confirmed on WhatsApp."
   },
   {
     "id": "mini-bouquet-note-card",
@@ -693,13 +693,13 @@ document.addEventListener('DOMContentLoaded', () => {
     "description": "A fully custom hamper combining crochet pieces, notes, flowers and packaging, with final quote confirmed on WhatsApp."
   }
 ];
-    const priceNote = "Final price may vary based on size, color, custom name, flowers, and delivery.";
+    const priceNote = "Final price may vary based on size, colour, custom name, flowers, and delivery.";
     const categoryDescriptions = {
         "all": "Explore handmade crochet gifts from BloomyCocoon in Mampad, Malappuram, Kerala, India. Find crochet bouquets, plushies, keychains, baby gifts, accessories, home decor and custom gift combos for birthdays, anniversaries, students, baby showers and surprise gifts, with delivery across Kerala and India.",
-        "bouquets": "BloomyCocoon's crochet bouquets are handmade flowers that don't wilt for birthdays, anniversaries, couple gifts and soft surprises. Choose roses, tulips, sunflowers, lavender or custom bouquet styles, then confirm colors, Starting from price and final quote on WhatsApp before making begins.",
-        "plushies": "Soft handmade crochet plushies for birthdays, baby gifting, student desks, couple surprises and keepsake gifts. Each plushie can be discussed for color, size and small details through WhatsApp, making it a cozy custom crochet gift from Kerala for moments that need a gentle hug.",
-        "keychains": "Crochet keychains are small handmade gifts for students, friends, couples, bags, keys and custom hampers. Choose hearts, flowers, initials, animals or character-inspired charms, then confirm colors, quantity and final quote on WhatsApp before BloomyCocoon makes your order in Kerala with care.",
-        "baby-gifts": "Gentle baby crochet gifts for newborns, baby showers, naming moments and soft family keepsakes. Explore booties, caps, mittens, rattles, baby plushies, name garlands and baby gift sets, with sizing, colors, Starting from price and delivery confirmed on WhatsApp before making.",
+        "bouquets": "BloomyCocoon's crochet bouquets are handmade flowers that don't wilt for birthdays, anniversaries, couple gifts and soft surprises. Choose roses, tulips, sunflowers, lavender or custom bouquet styles, then confirm colours, Starting from price and final quote on WhatsApp before making begins.",
+        "plushies": "Soft handmade crochet plushies for birthdays, baby gifting, student desks, couple surprises and keepsake gifts. Each plushie can be discussed for colour, size and small details through WhatsApp, making it a cozy custom crochet gift from Kerala for moments that need a gentle hug.",
+        "keychains": "Crochet keychains are small handmade gifts for students, friends, couples, bags, keys and custom hampers. Choose hearts, flowers, initials, animals or character-inspired charms, then confirm colours, quantity and final quote on WhatsApp before BloomyCocoon makes your order in Kerala with care.",
+        "baby-gifts": "Gentle baby crochet gifts for newborns, baby showers, naming moments and soft family keepsakes. Explore booties, caps, mittens, rattles, baby plushies, name garlands and baby gift sets, with sizing, colours, Starting from price and delivery confirmed on WhatsApp before making.",
         "accessories": "Handmade crochet accessories for soft everyday styling, small surprises and affordable gifting. Browse scrunchies, hair bands, bow clips, brooches, earrings, bracelets, bag charms, phone charms and pouches, with custom shades and final details confirmed through WhatsApp for Kerala and India orders.",
         "home-decor": "Cozy crochet home decor pieces for rooms, desks, cars, nursery corners and handmade housewarming gifts. Explore coasters, wall hangings, door hangings, car charms, garlands, plant holders and custom name decor made with a warm BloomyCocoon feel for personal spaces too.",
         "gift-combos": "Gift combos and custom crochet hampers bring bouquets, plushies, keychains and notes together for birthdays, anniversaries, couple gifts, baby gifting and surprise moments. BloomyCocoon confirms the mix, Starting from price, final quote and delivery across Kerala and India on WhatsApp."
@@ -798,14 +798,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (screenId === 'screen-collection') {
             if (activeFilterCategory && activeFilterCategory !== 'all') {
                 const catLabel = getCategoryLabel(activeFilterCategory);
-                msg = `Hi BloomyCocoon! 🌸 I'm exploring your ${catLabel} collection and would love to know about customization options.`;
+                msg = `Hi BloomyCocoon! 🌸 I'm exploring your ${catLabel} collection and would love to know about customisation options.`;
             } else {
                 msg = "Hi BloomyCocoon! 🌸 I'm exploring your handmade collection and would love to inquire about available pieces.";
             }
         } else if (screenId === 'screen-faq') {
             msg = "Hi BloomyCocoon! 🌸 I'm reading your FAQ and have a question about delivery / custom orders.";
         } else if (screenId === 'screen-contact') {
-            msg = "Hi BloomyCocoon! 🌸 I'd love to chat about a personalized crochet order.";
+            msg = "Hi BloomyCocoon! 🌸 I'd love to chat about a personalised crochet order.";
         }
 
         whatsappFloat.setAttribute('data-whatsapp-message', msg);
@@ -941,7 +941,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `   Category: ${getCategoryLabel(item.category)}\n`;
             message += `   Qty: ${item.qty} × ₹${formatPrice(getSafePrice(item.price))} = ₹${formatPrice(lineSubtotal)}\n`;
             if (item.itemNote && item.itemNote.trim()) {
-                message += `   Custom wish / color: "${item.itemNote.trim()}"\n`;
+                message += `   Custom wish / colour: "${item.itemNote.trim()}"\n`;
             }
             message += `\n`;
         });
@@ -984,7 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `*Order Notes / Delivery Details:*\n${note}\n\n`;
         }
 
-        message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, color, custom name, flowers, and delivery.\n\n";
+        message += "I understand these are Starting from prices. Please help me confirm the final quote on WhatsApp based on size, colour, custom name, flowers, and delivery.\n\n";
         message += "50% advance by UPI or Google Pay once my order is confirmed on WhatsApp. Balance after I approve the photos, before dispatch.\n";
         message += "Delivery is available across Kerala and India.";
         return message;
@@ -1265,7 +1265,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `\nAdd-ons: ${addonsList.join(', ')}.`;
             message += `\nEstimated starting total: ₹${totalEst}.`;
         }
-        message += `\nWhat colors and custom options are available?`;
+        message += `\nWhat colours and custom options are available?`;
 
         const waUrl = `https://wa.me/919061174579?text=${encodeURIComponent(message)}`;
         const mainWaBtn = document.getElementById('detail-whatsapp-btn');
@@ -1337,8 +1337,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const img = document.getElementById('lightbox-img');
         if (!modal || !img) return;
 
-        const targetSrc = src || (detailCurrentProduct ? getProductImage(detailCurrentProduct) : img.src);
+        const targetSrc = src || (detailCurrentProduct ? getWebpImagePath(getProductImage(detailCurrentProduct)) : img.src);
         const targetAlt = alt || (detailCurrentProduct ? `${detailCurrentProduct.name} - Handcrafted crochet stitch detail` : 'Product image');
+        img.onerror = () => {
+            img.onerror = null;
+            if (/\.webp$/i.test(targetSrc)) img.src = targetSrc.replace(/\.webp$/i, '.png');
+        };
         img.src = targetSrc;
         img.alt = targetAlt;
 
@@ -1441,7 +1445,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const lightboxImg = document.getElementById('lightbox-img');
         if (lightboxImg) {
-            lightboxImg.src = imagePath;
+            // src is set when Zoom opens (openProductLightbox), so the hidden lightbox does not download the full image on page load
             lightboxImg.alt = `${product.name} - Handcrafted crochet stitch detail`;
         }
 
@@ -2373,6 +2377,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const toggleButtons = document.querySelectorAll('[aria-controls="mobile-menu"]');
         toggleButtons.forEach(btn => {
             btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-label', 'Open mobile menu');
         });
         if (wasOpen && restoreFocus) {
             toggleButtons[0]?.focus({ preventScroll: true });
@@ -2404,12 +2409,35 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenu.classList.toggle('hidden', !shouldOpen);
             document.querySelectorAll('[aria-controls="mobile-menu"]').forEach(btn => {
                 btn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+                btn.setAttribute('aria-label', shouldOpen ? 'Close mobile menu' : 'Open mobile menu');
             });
             if (shouldOpen) {
                 requestAnimationFrame(() => mobileMenu.querySelector('button, a')?.focus({ preventScroll: true }));
             }
         }
     };
+
+    // Keep Tab and Shift+Tab inside the open mobile menu (toggle button + menu items)
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (!mobileMenu || mobileMenu.classList.contains('hidden')) return;
+        const toggle = document.querySelector('[aria-controls="mobile-menu"]');
+        const items = [...mobileMenu.querySelectorAll('a[href], button:not([disabled])')]
+            .filter(el => el.getClientRects().length > 0);
+        const stops = [toggle, ...items].filter(Boolean);
+        if (stops.length === 0) return;
+        const first = stops[0];
+        const last = stops[stops.length - 1];
+        const active = document.activeElement;
+        if (e.shiftKey && (active === first || !stops.includes(active))) {
+            e.preventDefault();
+            last.focus({ preventScroll: true });
+        } else if (!e.shiftKey && (active === last || !stops.includes(active))) {
+            e.preventDefault();
+            first.focus({ preventScroll: true });
+        }
+    });
 
     const primaryNavEl = document.querySelector('[data-primary-nav]');
     if (primaryNavEl) {
@@ -2945,11 +2973,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
 
-                    <!-- Bottom row: Custom color or note for this item -->
+                    <!-- Bottom row: Custom colour or note for this item -->
                     <div class="pt-1.5">
                         <div class="relative">
                             <span class="material-symbols-outlined text-on-surface-variant text-[16px] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">palette</span>
-                            <input type="text" data-item-note="${escapeHTML(item.id)}" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colors or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="min-h-[44px] w-full bg-white border border-outline-variant/25 rounded-xl pl-8 pr-3 py-2 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/75 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom color or personalization wish for ${escapeHTML(item.name)}">
+                            <input type="text" data-item-note="${escapeHTML(item.id)}" value="${escapeHTML(item.itemNote || '')}" oninput="updateItemNote('${item.id}', this.value)" placeholder="Custom colours or wish for this item (e.g. blush pink petals, baby name 'Aarav')..." class="min-h-[44px] w-full bg-white border border-outline-variant/25 rounded-xl pl-8 pr-3 py-2 text-base md:text-xs text-on-surface placeholder:text-on-surface-variant/75 focus:bg-white focus:ring-1 focus:ring-secondary/40 transition-all" aria-label="Custom colour or personalisation wish for ${escapeHTML(item.name)}">
                         </div>
                     </div>
                 </div>
@@ -3170,7 +3198,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                  </span>
                                  <span class="material-symbols-outlined text-[16px] text-secondary group-hover:translate-x-0.5 transition-transform" aria-hidden="true">arrow_forward</span>
                              </div>
-                             <p class="text-[11px] text-on-surface-variant/80 mt-1">Personalize with hand-calligraphed cards and fairy lights on the full cart page.</p>
+                             <p class="text-[11px] text-on-surface-variant/80 mt-1">Personalise with hand-calligraphed cards and fairy lights on the full cart page.</p>
                          </a>
                      </div>
                  `;
@@ -3360,7 +3388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nameVal = nameInput ? nameInput.value.trim() : '';
 
         if (!nameVal) {
-            showFieldError(nameInput, 'order-name-error', 'Please enter your full name so we can personalize your WhatsApp request.');
+            showFieldError(nameInput, 'order-name-error', 'Please enter your full name so we can personalise your WhatsApp request.');
             nameInput?.focus();
             showToast("Please enter your full name.");
             return;
@@ -3385,7 +3413,7 @@ document.addEventListener('DOMContentLoaded', () => {
             message += `Customer name: ${orderData.name}\n`;
             message += `Base type: ${orderData.type || "Not chosen yet"}\n`;
             message += `Palette preference: ${orderData.color || "Not chosen yet"}\n`;
-            message += `Personalization notes: ${orderData.notes || "None specified yet."}\n`;
+            message += `Personalisation notes: ${orderData.notes || "None specified yet."}\n`;
             if (orderData.occasion) {
                 message += `Occasion: ${orderData.occasion}\n`;
             }
@@ -3624,7 +3652,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const imgEl = document.getElementById('modal-product-img');
         if (imgEl) {
-            imgEl.src = getProductImage(product);
+            const quickLookPng = getProductImage(product);
+            imgEl.onerror = () => {
+                imgEl.onerror = null;
+                imgEl.src = quickLookPng;
+            };
+            imgEl.src = getWebpImagePath(quickLookPng);
             imgEl.alt = getProductAltText(product);
         }
 
@@ -3657,7 +3690,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const whatsappBtn = document.getElementById('modal-whatsapp-inquire-btn');
         if (whatsappBtn) {
             whatsappBtn.onclick = () => {
-                const msg = `Hi BloomyCocoon! 🌸 I would like to inquire about the "${product.name}" (${formatStartingPrice(product.startingPrice)}). Can you share color options and making time?`;
+                const msg = `Hi BloomyCocoon! 🌸 I would like to inquire about the "${product.name}" (${formatStartingPrice(product.startingPrice)}). Can you share colour options and making time?`;
                 openWhatsAppMessage(msg);
             };
         }

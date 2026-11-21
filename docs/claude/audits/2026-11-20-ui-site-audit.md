@@ -1,5 +1,7 @@
 # UI audit: whole site, L4 lane (2026-11-20)
 
+**Status: all findings fixed and merged (2026-11-20).** U1 = P3-17 (#40), U2 = P3-18 (#41), U3 = P3-19 (#43), U5 = P3-20 (#44; the route-change half was a wrong finding), U4/U6/U7/U8 = P3-21 (#45), footer links = P3-15 (#46). Not done: product-name links under cards (20px tall, optional) and the floating WhatsApp pill over the add-on box at 1024px (not a bug).
+
 Docs only. No code or site text was changed.
 Checklist: `ui-ux-pro-max` (accessibility, touch, performance, layout, type, motion, forms, navigation). Its palette and fonts were not used.
 This follows the P2-5 audit (`docs/claude/ui-phase-bc-proposal.md`). That audit covered collections, custom order, cart and contact at 375px. P3-10a/b/c already fixed most of what it found. This audit covers the whole site at all four widths.
@@ -80,7 +82,8 @@ Effort: S = under half a day, M = about a day. Each finding names the L4 task th
 - **Fix idea:** add bottom padding equal to the bar or button height while it is shown. Do it in CSS on the page wrapper, not in the 36 footers.
 - Effort S, risk low.
 
-### U5. Keyboard: the mobile menu does not hold focus, and route changes drop focus (MEDIUM) → P3-20
+### U5. Keyboard: the mobile menu does not hold focus (MEDIUM) → P3-20
+- **Correction (found while building P3-20):** the second half of this finding, "route changes drop focus", was wrong. The link I tested does a full page load, where focus starting at the top of the page is normal. In-app transitions already call `focusScreenHeading`. No change was needed for that part.
 - **Mobile menu (375):**
   - Opened with the keyboard, Tab leaves the open menu and walks into the page behind it. After 20 Tabs, focus was on an add-to-cart button 1,300px down, with the menu still open.
   - The button's `aria-label` stays "Open mobile menu" while the menu is open.

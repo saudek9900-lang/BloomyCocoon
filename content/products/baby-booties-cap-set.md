@@ -6,4 +6,4 @@ Shades are confirmed with you on WhatsApp before making begins, and sizing is co
 
 Gentle handling preserves its shape, finishing and small details. Store it somewhere clean and dry, and message us if you want advice on cleaning.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

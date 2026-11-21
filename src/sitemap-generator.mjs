@@ -209,7 +209,7 @@ export function generateSitemapXml(catalog, defaultDate = EXISTING_ROUTES_LASTMO
 
 export function generateLlmsFullTxt(catalog, baseLlms) {
   let full = baseLlms.trim() + '\n\n## Complete Product Catalog\n\n';
-  full += 'Below is the complete list of 69 handcrafted crochet gifts available at BloomyCocoon. All items are made slowly and customized on WhatsApp.\n\n';
+  full += 'Below is the complete list of 69 handcrafted crochet gifts available at BloomyCocoon. All items are made slowly and customised on WhatsApp.\n\n';
 
   const categories = [...new Set(catalog.map((p) => p.category))];
   for (const cat of categories) {

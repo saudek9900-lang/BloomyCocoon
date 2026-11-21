@@ -6,4 +6,4 @@ Yarn and colours are chosen with you on WhatsApp, so tell us the mood you want a
 
 Handle it gently, because every flower is handmade. Keep it dry, avoid tugging at the stems, and if you are unsure how to clean a particular piece, ask us on WhatsApp before washing it.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

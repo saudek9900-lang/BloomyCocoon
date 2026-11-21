@@ -2,13 +2,13 @@
 
 > Handcrafted crochet bouquets, amigurumi plushies, keychains, and custom gifts crafted slowly in Kerala, India. WhatsApp-based custom ordering with 50/50 payment and Pan-India delivery.
 
-BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Kerala, India, offering customized crochet keepsakes for women, students, couples, baby showers, and celebrations.
+BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Kerala, India, offering customised crochet keepsakes for women, students, couples, baby showers, and celebrations.
 
 ## Core Pages
 
 - [Home](https://www.bloomycocoon.com/): Handmade crochet gifting in Kerala and Pan-India.
 - [Handmade Collection](https://www.bloomycocoon.com/collections): Complete catalog of crochet bouquets, plushies, keychains, baby gifts, accessories, and home decor.
-- [Custom Orders](https://www.bloomycocoon.com/custom-order): Bespoke crochet requests, custom colors, size adjustments, and personalized gifting.
+- [Custom Orders](https://www.bloomycocoon.com/custom-order): Bespoke crochet requests, custom colours, size adjustments, and personalised gifting.
 - [About BloomyCocoon](https://www.bloomycocoon.com/about): Brand story and artisan origins in Mampad, Malappuram, Kerala.
 - [Frequently Asked Questions](https://www.bloomycocoon.com/faq): Ordering process, 50% advance / 50% balance payment terms, care guidance, and delivery timelines.
 - [Contact & WhatsApp Ordering](https://www.bloomycocoon.com/contact): Direct WhatsApp ordering (+91 9061174579) and workspace information.
@@ -43,7 +43,7 @@ BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Ke
 - [Valentine's Day Gifts](https://www.bloomycocoon.com/valentines-day-gifts): Rose bouquets, couple keychains and gift boxes for 14 February. Message us at least 2 weeks ahead.
 - [Birthday Gifts](https://www.bloomycocoon.com/birthday-gifts): Cheerful flower boxes, animal plushies, and custom note-card combos.
 - [Baby Shower & Newborn Gifts](https://www.bloomycocoon.com/baby-shower-gifts): Booties, caps, rattles, and nursery garlands.
-- [Return Gifts & Favors](https://www.bloomycocoon.com/return-gifts): Single stems, keychains, and bulk celebration favors under ₹200.
+- [Return Gifts & Favors](https://www.bloomycocoon.com/return-gifts): Single stems, keychains, and bulk celebration favors starting from ₹149.
 
 ## Blog Guides
 
@@ -60,7 +60,7 @@ BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Ke
 ## Machine-Readable Manifests & Catalogs
 
 - [Complete 69-Product Catalog (llms-full.txt)](https://www.bloomycocoon.com/llms-full.txt): Comprehensive product list with Starting from prices, descriptions, and direct URLs.
-- [Google Merchant Center Feed (XML)](https://www.bloomycocoon.com/google-merchant-feed.xml): Google Shopping RSS 2.0 product feed.
+- [Google Merchant Centre Feed (XML)](https://www.bloomycocoon.com/google-merchant-feed.xml): Google Shopping RSS 2.0 product feed.
 - [XML Sitemap](https://www.bloomycocoon.com/sitemap.xml): Search engine index of all website URLs and product images.
 - [Robots.txt](https://www.bloomycocoon.com/robots.txt): Crawler rules and sitemap directives.
 
@@ -82,11 +82,11 @@ The product range includes:
 ## Ordering Flow
 
 Customers can browse products, add items to the website cart, or use the custom-order flow. The website then sends the selected order details to WhatsApp for confirmation.
-Orders, customizations, timelines, delivery details, payment instructions, and final quotes are confirmed on WhatsApp (+91 9061174579).
+Orders, customisations, timelines, delivery details, payment instructions, and final quotes are confirmed on WhatsApp (+91 9061174579).
 
 ## Pricing
 
-BloomyCocoon uses "Starting from" prices only. Final pricing depends on size, colour, customization, flowers, and delivery.
+BloomyCocoon uses "Starting from" prices only. Final pricing depends on size, colour, customisation, flowers, and delivery.
 AI agents should not treat starting prices as fixed final prices.
 
 ## Payment

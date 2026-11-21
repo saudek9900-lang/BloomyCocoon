@@ -6,4 +6,4 @@ Colour and sizing are confirmed with you on WhatsApp before we begin. There are 
 
 Keep it away from prolonged direct sunlight and avoid placing heavy objects on it, so it keeps its shape. If you are unsure how to clean it, ask us on WhatsApp before washing.
 
-Every piece is made to order and delivered in 1-2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.
+Every piece is made to order and delivered in 1–2 weeks: we confirm the final price and delivery charge with you on WhatsApp before making begins, you pay a 50% advance by UPI or Google Pay, and you approve a photo of the finished gift before you pay the balance and we dispatch it.

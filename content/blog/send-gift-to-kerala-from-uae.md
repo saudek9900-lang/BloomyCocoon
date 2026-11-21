@@ -62,7 +62,7 @@ When your gift is finished, we send you a photo of it on WhatsApp so you can app
 
 ## How early to order
 
-Every gift is made by hand and delivered in 1-2 weeks. For birthdays, anniversaries, Onam, Vishu and Eid, message us at least 2 weeks before the day. That gives us time to confirm the details, make the gift with care and send it. If you are planning for Valentine's Day, see our [Valentine's Day gifts](/valentines-day-gifts) and plan ahead in the same way.
+Every gift is made by hand and delivered in 1–2 weeks. For birthdays, anniversaries, Onam, Vishu and Eid, message us at least 2 weeks before the day. That gives us time to confirm the details, make the gift with care and send it. If you are planning for Valentine's Day, see our [Valentine's Day gifts](/valentines-day-gifts) and plan ahead in the same way.
 
 ## A short checklist
 
