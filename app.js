@@ -158,6 +158,24 @@ document.addEventListener('DOMContentLoaded', () => {
     "description": "A calming lavender bouquet for keepsake gifting, cozy decor and soft handmade surprises."
   },
   {
+    "id": "sunflower-bouquet",
+    "name": "Sunflower Bouquet",
+    "category": "bouquets",
+    "startingPrice": 899,
+    "image": "images/crochet_sunflower_bouquet_sunflower-bouquet.png",
+    "badge": "New Arrival",
+    "description": "A bright sunflower bouquet for birthdays, congratulations and cheerful surprises, with colours confirmed on WhatsApp."
+  },
+  {
+    "id": "lily-bouquet",
+    "name": "Lily Bouquet",
+    "category": "bouquets",
+    "startingPrice": 799,
+    "image": "images/crochet_lily_bouquet_lily-bouquet.png",
+    "badge": "New Arrival",
+    "description": "An elegant lily bouquet for anniversaries, thank-you gifts and gentle celebrations, with colours confirmed on WhatsApp."
+  },
+  {
     "id": "custom-premium-bouquet",
     "name": "Custom Premium Bouquet",
     "category": "bouquets",

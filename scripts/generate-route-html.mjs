@@ -705,10 +705,10 @@ const baseLlms = await readFile(path.join(PUBLIC_DIR, 'llms.txt'), 'utf8');
 const llmsFullTxt = generateLlmsFullTxt(catalog, baseLlms);
 await writeFile(path.join(PUBLIC_DIR, 'llms-full.txt'), llmsFullTxt);
 await writeFile(path.join(DIST_DIR, 'llms-full.txt'), llmsFullTxt);
-console.log('Generated llms-full.txt with 69 catalog products');
+console.log(`Generated llms-full.txt with ${catalog.length} catalog products`);
 
 // Generate Google Merchant Centre XML feed
 const merchantXml = generateGoogleMerchantXml(catalog);
 await writeFile(path.join(PUBLIC_DIR, 'google-merchant-feed.xml'), merchantXml);
 await writeFile(path.join(DIST_DIR, 'google-merchant-feed.xml'), merchantXml);
-console.log('Generated google-merchant-feed.xml for 69 catalog products');
+console.log(`Generated google-merchant-feed.xml for ${catalog.length} catalog products`);
