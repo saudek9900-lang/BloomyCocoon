@@ -59,7 +59,7 @@ BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Ke
 
 ## Machine-Readable Manifests & Catalogs
 
-- [Complete 69-Product Catalog (llms-full.txt)](https://www.bloomycocoon.com/llms-full.txt): Comprehensive product list with Starting from prices, descriptions, and direct URLs.
+- [Complete 71-Product Catalog (llms-full.txt)](https://www.bloomycocoon.com/llms-full.txt): Comprehensive product list with Starting from prices, descriptions, and direct URLs.
 - [Google Merchant Centre Feed (XML)](https://www.bloomycocoon.com/google-merchant-feed.xml): Google Shopping RSS 2.0 product feed.
 - [XML Sitemap](https://www.bloomycocoon.com/sitemap.xml): Search engine index of all website URLs and product images.
 - [Robots.txt](https://www.bloomycocoon.com/robots.txt): Crawler rules and sitemap directives.
