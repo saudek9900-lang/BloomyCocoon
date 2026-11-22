@@ -59,7 +59,7 @@ BloomyCocoon is a handmade crochet gifting brand based in Mampad, Malappuram, Ke
 
 ## Machine-Readable Manifests & Catalogs
 
-- [Complete 69-Product Catalog (llms-full.txt)](https://www.bloomycocoon.com/llms-full.txt): Comprehensive product list with Starting from prices, descriptions, and direct URLs.
+- [Complete 71-Product Catalog (llms-full.txt)](https://www.bloomycocoon.com/llms-full.txt): Comprehensive product list with Starting from prices, descriptions, and direct URLs.
 - [Google Merchant Centre Feed (XML)](https://www.bloomycocoon.com/google-merchant-feed.xml): Google Shopping RSS 2.0 product feed.
 - [XML Sitemap](https://www.bloomycocoon.com/sitemap.xml): Search engine index of all website URLs and product images.
 - [Robots.txt](https://www.bloomycocoon.com/robots.txt): Crawler rules and sitemap directives.
@@ -106,7 +106,7 @@ BloomyCocoon is a service-area based artisan business. The full residential addr
 
 ## Complete Product Catalog
 
-Below is the complete list of 69 handcrafted crochet gifts available at BloomyCocoon. All items are made slowly and customised on WhatsApp.
+Below is the complete list of 71 handcrafted crochet gifts available at BloomyCocoon. All items are made slowly and customised on WhatsApp.
 
 ### Bouquets
 
@@ -116,6 +116,8 @@ Below is the complete list of 69 handcrafted crochet gifts available at BloomyCo
 - [Rose Bouquet](https://www.bloomycocoon.com/products/rose-bouquet) (Starting from ₹799): Best for anniversaries, couple gifts and soft surprises, with colours and wrapping confirmed on WhatsApp.
 - [Tulip Bouquet](https://www.bloomycocoon.com/products/tulip-bouquet) (Starting from ₹899): A graceful bouquet for birthdays, thank-you gifts and gentle celebrations.
 - [Lavender Bouquet](https://www.bloomycocoon.com/products/lavender-bouquet) (Starting from ₹799): A calming lavender bouquet for keepsake gifting, cozy decor and soft handmade surprises.
+- [Sunflower Bouquet](https://www.bloomycocoon.com/products/sunflower-bouquet) (Starting from ₹899): A bright sunflower bouquet for birthdays, congratulations and cheerful surprises, with colours confirmed on WhatsApp.
+- [Lily Bouquet](https://www.bloomycocoon.com/products/lily-bouquet) (Starting from ₹799): An elegant lily bouquet for anniversaries, thank-you gifts and gentle celebrations, with colours confirmed on WhatsApp.
 - [Custom Premium Bouquet](https://www.bloomycocoon.com/products/custom-premium-bouquet) (Starting from ₹1499): A premium custom bouquet tailored by flower type, palette, size and packaging, with final quote confirmed on WhatsApp.
 
 ### Plushies
