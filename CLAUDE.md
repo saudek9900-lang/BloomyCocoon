@@ -60,8 +60,8 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P5-1 | Product photo galleries | img/p5-1-photos | PARKED (owner: no images for now) | - |
 | P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | PARKED (owner: no images for now) | - |
 | P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
-| P6-1 | Product meta fix + CTR titles (L6) | content/p6-1-snippets | READY | - |
-| P6-2 | Product page de-duplication, run ALONE (L6) | content/p6-2-product-dedupe | NOT DRAFTED | P6-1 |
+| P6-1 | Product meta fix + CTR titles (L6) | content/p6-1-snippets | MERGED (#56) | - |
+| P6-2 | Product page de-duplication, run ALONE (L6) | content/p6-2-product-dedupe | READY | P6-1 |
 | P6-3 | Icons to inline SVG, run ALONE (L6) | ui/p6-3-svg-icons | NOT DRAFTED | P6-2 |
 | P6-4 | Internal links to unindexed products + remove SearchAction (L6) | seo/p6-4-links | NOT DRAFTED | P6-2 |
 | P6-5 | Post: crochet keychain gift guide (L6) | content/p6-5-keychain-post | NOT DRAFTED | - |
