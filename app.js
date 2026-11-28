@@ -1181,26 +1181,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const metadata = screenMetadata[screenId] || screenMetadata['screen-home'];
         const canonicalUrl = getCanonicalForScreen(screenId);
-        
+        const pageDescription = screenId === 'screen-collection'
+            ? metadata.description.replace('{{PRODUCT_COUNT}}', String(collectionProducts.length))
+            : metadata.description;
+
         document.title = metadata.title;
-        
+
         const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', metadata.description);
+        if (metaDesc) metaDesc.setAttribute('content', pageDescription);
         
         const ogTitle = document.querySelector('meta[property="og:title"]');
         if (ogTitle) ogTitle.setAttribute('content', metadata.title);
         
         const ogDesc = document.querySelector('meta[property="og:description"]');
-        if (ogDesc) ogDesc.setAttribute('content', metadata.description);
+        if (ogDesc) ogDesc.setAttribute('content', pageDescription);
 
         const ogType = document.querySelector('meta[property="og:type"]');
         if (ogType) ogType.setAttribute('content', 'website');
-        
+
         const twitterTitle = document.querySelector('meta[name="twitter:title"]');
         if (twitterTitle) twitterTitle.setAttribute('content', metadata.title);
-        
+
         const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-        if (twitterDesc) twitterDesc.setAttribute('content', metadata.description);
+        if (twitterDesc) twitterDesc.setAttribute('content', pageDescription);
 
         const canonical = document.querySelector('link[rel="canonical"]');
         if (canonical) canonical.setAttribute('href', canonicalUrl);

@@ -1,6 +1,7 @@
 ---
-title: "Crochet Bouquet Price Guide (India)"
-description: "See what a handmade crochet bouquet costs in India. Starting from prices for every BloomyCocoon bouquet and stem, add-ons, and how ordering works."
+title: "Crochet Bouquet Price in India: From ₹149"
+titleSuffix: " | BloomyCocoon"
+description: "See starting-from prices for every BloomyCocoon bouquet and stem, plus add-ons and how ordering works. Final price is always confirmed on WhatsApp."
 slug: "crochet-bouquet-price-guide"
 date: "2026-11-20"
 image: "images/mixed_luxury_bouquet.png"

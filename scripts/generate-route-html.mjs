@@ -358,8 +358,9 @@ function insertRouteSchema(html, screenId, baseHtml) {
 
 async function writeRouteHtml(baseHtml, screenId) {
   const route = ROUTE_CONTENT[screenId];
+  const metadataOptions = screenId === 'screen-collection' ? { productCount: catalog.length } : {};
   const routeHtml = insertRouteSchema(
-    updateMetadata(ensureUnifiedFooter(isolateScreen(baseHtml, screenId)), getRouteMetadata(screenId)),
+    updateMetadata(ensureUnifiedFooter(isolateScreen(baseHtml, screenId)), getRouteMetadata(screenId, metadataOptions)),
     screenId,
     baseHtml,
   );
