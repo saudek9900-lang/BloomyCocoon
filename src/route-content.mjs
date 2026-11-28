@@ -19,7 +19,7 @@ export const ROUTE_CONTENT = {
     path: '/collections',
     outputDir: 'collections',
     title: 'Crochet Bouquets, Plushies & Keychains | BloomyCocoon',
-    description: 'Browse handmade crochet bouquets, plushies, keychains, baby gifts, accessories and home decor from BloomyCocoon. Custom orders across India.',
+    description: 'Browse {{PRODUCT_COUNT}} handmade crochet bouquets, plushies, keychains, baby gifts, accessories and home decor from BloomyCocoon. Custom orders across India.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Handmade Collection',
   },
@@ -35,7 +35,7 @@ export const ROUTE_CONTENT = {
     path: '/about',
     outputDir: 'about',
     title: 'About BloomyCocoon | Crochet Gifts from Malappuram, Kerala',
-    description: 'Meet the sisters behind BloomyCocoon, a handmade crochet studio in Mampad, Malappuram, Kerala. Custom bouquets, plushies and gifts, made to order.',
+    description: 'Meet the sisters behind BloomyCocoon, a home crochet studio in Mampad, Malappuram, Kerala, with no factory. Every gift is made to order on WhatsApp.',
     schemaType: 'AboutPage',
     breadcrumbName: 'About BloomyCocoon',
   },
@@ -210,8 +210,8 @@ export const ROUTE_CONTENT = {
   'screen-return-gifts': {
     path: '/return-gifts',
     outputDir: 'return-gifts',
-    title: 'Crochet Return Gifts, Handmade in Kerala | BloomyCocoon',
-    description: 'Handmade crochet return gifts for birthdays and functions in Kerala: keychains, flower stems and party favors. Bulk orders confirmed on WhatsApp.',
+    title: 'Crochet Return Gifts: From ₹149 | BloomyCocoon',
+    description: 'Handmade crochet return gifts for birthdays and functions in Kerala, from ₹149. Bulk orders welcome with no minimum, confirmed directly on WhatsApp.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Return Gifts & Favors',
   },
@@ -242,8 +242,8 @@ export const ROUTE_CONTENT = {
   'screen-crochet-baby-gifts': {
     path: '/crochet-baby-gifts',
     outputDir: 'crochet-baby-gifts',
-    title: 'Handmade Crochet Baby Gifts & Sets | BloomyCocoon',
-    description: 'Shop soft handmade crochet baby booties, caps, mittens, rattles, name garlands and newborn gift hampers starting from ₹299 at BloomyCocoon.',
+    title: 'Crochet Baby Gifts: From ₹299 | BloomyCocoon',
+    description: 'Shop soft handmade crochet baby gifts in Kerala: booties, caps, mittens, rattles, name garlands and newborn hampers. Starting from ₹299 on WhatsApp.',
     schemaType: 'CollectionPage',
     breadcrumbName: 'Baby Gifts',
   },
@@ -524,11 +524,14 @@ export function getRouteCanonical(screenId) {
   return `${SITE_ORIGIN}${route.path}`;
 }
 
-export function getRouteMetadata(screenId) {
+export function getRouteMetadata(screenId, { productCount } = {}) {
   const route = getRouteContent(screenId);
+  const description = typeof productCount === 'number'
+    ? route.description.replace('{{PRODUCT_COUNT}}', String(productCount))
+    : route.description;
   return {
     title: route.title,
-    description: route.description,
+    description,
     canonical: getRouteCanonical(screenId),
     robots: route.robots || null,
   };
@@ -636,19 +639,33 @@ export function buildProductTitle(name) {
 
 export function buildProductDescription(name, description, price) {
   const safePrice = Number(price) || 149;
-  const prefix = `${name}. `;
-  const suffix = ` Starting from ₹${safePrice}. Made to order in Kerala, customise on WhatsApp.`;
-  let body = (description || `Handmade crochet ${name} crafted in Kerala.`).trim();
+  const priceSentence = ` Starting from ₹${safePrice}.`;
+  const madeWithWhatsapp = ' Made to order in Kerala, customise on WhatsApp.';
+  const madeWithoutWhatsapp = ' Made to order in Kerala.';
+  const fallback = `Handmade crochet ${name}, made to order in Kerala. Starting from ₹${safePrice}.`;
 
-  let full = `${prefix}${body}${suffix}`;
-  if (full.length > 160) {
-    const maxBodyLen = 160 - prefix.length - suffix.length;
-    body = maxBodyLen > 0
-      ? body.slice(0, maxBodyLen).replace(/\s+\S*$/, '').replace(/[.,;:\s]+$/, '')
-      : '';
-    full = `${prefix}${body}${suffix}`.replace(/\s{2,}/g, ' ').trim();
+  const raw = (description || '').trim();
+  let firstSentence = (raw.split(/(?<=[.!?])\s+/)[0] || '').trim();
+  if (!firstSentence) return fallback;
+  if (!/[.!?]$/.test(firstSentence)) firstSentence += '.';
+
+  const candidates = [
+    `${firstSentence}${priceSentence}${madeWithWhatsapp}`,
+    `${firstSentence}${priceSentence}${madeWithoutWhatsapp}`,
+  ];
+
+  // If the full first sentence is too long, drop its trailing comma clauses
+  // one at a time (never slicing mid-word) until the result fits.
+  const bareSentence = firstSentence.replace(/[.!?]$/, '');
+  const clauses = bareSentence.split(/,\s+/);
+  for (let keep = clauses.length - 1; keep >= 1; keep -= 1) {
+    const trimmedSentence = `${clauses.slice(0, keep).join(', ')}.`;
+    candidates.push(`${trimmedSentence}${priceSentence}${madeWithWhatsapp}`);
+    candidates.push(`${trimmedSentence}${priceSentence}${madeWithoutWhatsapp}`);
   }
-  return full;
+
+  const fit = candidates.find((candidate) => candidate.length >= 110 && candidate.length <= 160);
+  return fit || fallback;
 }
 
 export function getProductRouteMetadata(product) {
