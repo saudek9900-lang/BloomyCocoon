@@ -1,5 +1,7 @@
 # BloomyCocoon plan: current status and parallel lanes (updated 2026-11-20, end of day)
 
+> **Newest plan (28 Nov 2026): docs/claude/growth-plan-2026-11-28.md.** It adds lane L6 and tasks P6-1 to P6-7 and the Saud task list. Where it differs from the sections below, the newer plan and CLAUDE.md win.
+
 This section replaces the phase order further down. The task queue and lane rules in CLAUDE.md win if they differ.
 
 ## Done and live (main, 2026-11-20 night)
