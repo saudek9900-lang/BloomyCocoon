@@ -1,6 +1,6 @@
 # P6-1: Product meta fix + CTR titles
 
-Branch: content/p6-1-snippets. PR title: "P6-1: Product meta fix + CTR titles". Lane L6. Model: Sonnet 5.5, medium thinking.
+Start by syncing local files with GitHub (CLAUDE.md step 0). Branch: content/p6-1-snippets. PR title: "P6-1: Product meta fix + CTR titles". Lane L6. Model: Sonnet 5.5, medium thinking.
 Read first: docs/claude/growth-plan-2026-11-28.md (why this task exists) and CLAUDE.md (rules).
 
 ## Why
@@ -37,3 +37,4 @@ T3 Overlap check: /return-gifts (people ready to buy) and /blog/crochet-return-g
 - Built pages: title, meta description, og and twitter tags, H1 and JSON-LD name are consistent. One H1 and one canonical per page.
 - `git fetch origin && git merge origin/main`, then `npm run build`, `npm run test:jsonld` and any test:* scripts pass.
 - Next runnable task: P6-2 is NOT DRAFTED. Tell Saud to ask the planning chat to draft it, and that P6-2 needs Opus 5.5 with high thinking.
+- After all checks pass, merge the PR yourself by the "Merging" rules in CLAUDE.md, then sync local main with GitHub and confirm the commit is on origin/main. Include the merge commit id in the final report.

@@ -1,16 +1,17 @@
 # BloomyCocoon: instructions for Claude Code
 
 ## When Saud says "continue" (or anything like "carry on", "next task")
-1. Before anything else, sync the Status column from GitHub (merged -> MERGED, open -> OPEN) and commit it on the task branch as the first commit: 'docs: sync queue status'. GitHub is the truth; the table is a mirror.
+0. FIRST sync this local checkout with GitHub: `git fetch origin`, then `git status`. If there are uncommitted or unpushed changes, STOP and tell Saud what they are (never discard them). Otherwise `git checkout main && git pull --ff-only origin main`, and create the task branch from this fresh main.
+1. Then sync the Status column from GitHub (merged -> MERGED, open -> OPEN) and commit it on the task branch as the first commit: 'docs: sync queue status'. GitHub is the truth; the table is a mirror.
 2. Read the task queue below, top to bottom.
 3. For each task, check its PR on GitHub (REST only, GraphQL is blocked here: `gh api "repos/saudek9900-lang/BloomyCocoon/pulls?state=all&head=saudek9900-lang:<branch>"`). If you cannot, check `git log origin/main`.
-4. Saud runs one chat per lane (see "Parallel lanes" below) and says which lane, for example "continue L1". If he names no lane, ask which one. If any task IN THAT LANE has an OPEN PR: stop. Tell Saud it is waiting for him to check the Vercel preview and merge, and give the PR link. One open task PR per lane. P3-15 (footer), P3-23 (UK spelling) and the L5 image tasks are the exception: they run alone, only when no other task PR is open.
+4. Saud runs one chat per lane (see "Parallel lanes" below) and says which lane, for example "continue L1". If he names no lane, ask which one. If any task IN THAT LANE has an OPEN PR: merge it first by the "Merging" rules below (you merge, Saud does not), sync main again, then continue with the next task. If it cannot be merged, stop and tell Saud why, with the PR link. One open task PR per lane. P3-15 (footer), P3-23 (UK spelling) and the L5 image tasks are the exception: they run alone, only when no other task PR is open.
 5. Otherwise pick the first task of that lane that is not merged and is runnable:
    - READY: runnable if the tasks in its "Needs" column are merged.
    - WAITING: runnable once every answer it lists in docs/claude/data/owner-answers.md is no longer TODO (or, for photo tasks, the incoming-photos/ files exist on main). Then treat it as READY.
    - PARKED or NOT DRAFTED: never run. Skip.
    Skipped tasks: list them in your reply with what unblocks each.
-6. Before running the chosen task, apply "Model and thinking level" below. Then run it: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), give the final report, and STOP. One task per session.
+6. Before running the chosen task, apply "Model and thinking level" below. Then run it: open its prompt file, follow it exactly, push only its branch, open the PR (`gh api repos/saudek9900-lang/BloomyCocoon/pulls -f title=... -f head=<branch> -f base=main -F body=@file`), merge the PR by the "Merging" rules below, sync local main again (`git checkout main && git pull --ff-only origin main`), give the final report, and STOP. One task per session.
 7. If nothing is runnable: tell Saud which answers or photos unblock the next task.
 
 ## Task queue
@@ -96,7 +97,7 @@ Rules for parallel chats:
 - Shared files that cause conflicts: index.html, app.js, styles.css, package.json, vercel.json, src/route-content.mjs, src/sitemap-generator.mjs, public/llms.txt, public/llms-full.txt. Keep edits small and local to your task.
 - Do NOT edit CLAUDE.md status rows or commit public/sitemap.xml in a task branch (the build regenerates it). Queue status is synced in a separate docs PR.
 - Before opening the PR: `git fetch origin && git merge origin/main`, then re-run `npm run build`, `npm run test:jsonld` and any test:* scripts. Fix conflicts yourself; never force-push.
-- Saud merges one PR at a time. After each merge, the other lanes merge origin/main again before their PR.
+- Claude Code merges one PR at a time (see "Merging"). After each merge, the other lanes merge origin/main again before their PR.
 
 ## Skills (in .claude/skills/)
 - `seo-skill` (`/seo audit|page|technical|content|schema|sitemap|geo|ecommerce <url>`): use for SEO checks inside a task (P1-2, P1-4, P2-x content pages) and when Saud asks for an SEO audit. Audit only; reports go to docs/claude/audits/.
@@ -123,10 +124,21 @@ Rules for parallel chats:
 
 ## Git rules (override anything in older prompts)
 - Prompts were first written for another tool. Where they say "Do not push", it means: push ONLY the task branch.
-- Never push to main. Never merge. Never force-push. Never delete branches.
+- Never push directly to main. Never force-push. Never delete branches. Merge only through a pull request, by the "Merging" rules below.
 - One commit per task step, clear messages. Open one PR per prompt, to main, with the PR title from the queue.
 - End every session with the final report the prompt asks for, plus the PR link.
 - If anything is unclear or needs data that was not given: STOP and ask Saud. Do not guess.
+
+## Merging (Claude Code merges its own task PRs; Saud does not have to)
+Saud's decision on 28 Nov 2026. This replaces every older line that says Saud merges or that you must wait for him.
+Merge a PR only when ALL of these are true:
+- It is the PR of the task you just ran (or an open PR of the lane you were told to run, from step 4), and it is in the queue.
+- `git fetch origin && git merge origin/main` is done, and `npm run build`, `npm run test:jsonld` and every `test:*` script pass.
+- Every item in the prompt's "Verify" list is satisfied, and the PR changes nothing outside the task's scope.
+- GitHub says the PR is mergeable (no conflicts): `gh api repos/saudek9900-lang/BloomyCocoon/pulls/<n> --jq .mergeable`.
+- The Vercel preview check on the PR's head commit is green: `gh api repos/saudek9900-lang/BloomyCocoon/commits/<sha>/status --jq .state` must be `success`. If it is `pending`, poll every 60 seconds for up to 10 minutes. If it is `failure` or `error`, do not merge: report it.
+Then merge with a merge commit (matches the history): `gh api -X PUT repos/saudek9900-lang/BloomyCocoon/pulls/<n>/merge -f merge_method=merge`. Afterwards confirm the commit is on origin/main.
+Do NOT merge when anything above is false, when the PR is not yours, or when you are unsure: stop and tell Saud why, with the PR link. If the merge call is refused (403/405), stop and tell Saud. Merging deploys to production, so never merge on a failed or skipped check.
 
 ## Ground rules
 - Never invent data: no prices, sizes, dimensions, shipping times, fees, dates, reviews or ratings.
