@@ -14,7 +14,7 @@
 7. If nothing is runnable: tell Saud which answers or photos unblock the next task.
 
 ## Task queue
-Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. Run in this order.
+Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. Newest plan (28 Nov 2026, tasks P6-x): docs/claude/growth-plan-2026-11-28.md. Run in this order.
 | # | Task | Branch | Status | Needs |
 |---|------|--------|--------|-------|
 | P3-10a | B1: Collections deep-link bug + tidy (PRIORITY) | ui/b1-collections | MERGED (#29) | - |
@@ -59,6 +59,13 @@ Prompts live in docs/claude/prompts/. Plan and reasons: docs/claude/roadmap.md. 
 | P5-1 | Product photo galleries | img/p5-1-photos | PARKED (owner: no images for now) | - |
 | P5-2 | New Sunflower + Lily bouquets | feat/p5-2-new-bouquets | PARKED (owner: no images for now) | - |
 | P5-3 | Hidden IPTC tag on feed images | - | PARKED (Q14) | - |
+| P6-1 | Product meta fix + CTR titles (L6) | content/p6-1-snippets | READY | - |
+| P6-2 | Product page de-duplication, run ALONE (L6) | content/p6-2-product-dedupe | NOT DRAFTED | P6-1 |
+| P6-3 | Icons to inline SVG, run ALONE (L6) | ui/p6-3-svg-icons | NOT DRAFTED | P6-2 |
+| P6-4 | Internal links to unindexed products + remove SearchAction (L6) | seo/p6-4-links | NOT DRAFTED | P6-2 |
+| P6-5 | Post: crochet keychain gift guide (L6) | content/p6-5-keychain-post | NOT DRAFTED | - |
+| P6-6 | Post: handmade gifts for a newborn (L6) | content/p6-6-newborn-post | NOT DRAFTED | - |
+| P6-7 | Post: crochet gift hamper ideas (L6) | content/p6-7-hamper-post | NOT DRAFTED | - |
 
 Image tasks (P5) always come last, and only when Saud has uploaded the images.
 
@@ -71,6 +78,7 @@ Image tasks (P5) always come last, and only when Saud has uploaded the images.
 | L3 Content pages (CLOSED: P3-5 and P3-4 merged, P4-2 parked) | P3-5, P3-4, P4-2 | P3-5 high; others medium |
 | L4 UI | P3-17, P3-18, P3-19, P3-20, P3-21, then P3-15 (alone), then P3-16. Audit: docs/claude/audits/2026-11-20-ui-site-audit.md | Sonnet 5.5, medium |
 | L5 Images | P5-1, P5-2, P5-3 (last, alone) | Sonnet 5.5, medium |
+| L6 Growth (plan: docs/claude/growth-plan-2026-11-28.md) | P6-1, then P6-2 (alone), P6-3 (alone), P6-4, then P6-5 to P6-7 | P6-1, P6-4: Sonnet 5.5 medium; P6-2, P6-3: Opus 5.5 high; posts: Sonnet 5.5 high |
 
 Can run at the same time: L1, L2 and L3 (different files, small overlaps). L0 can always run.
 Cannot run at the same time:
@@ -81,6 +89,8 @@ Cannot run at the same time:
 - P3-21 touches the page bottom next to the footer: never at the same time as P3-15.
 - P3-23 (UK spelling) edits text in index.html, app.js, route-content, catalog.json and llms files, so it conflicts with every lane. Run it alone, after P3-22 and P3-24 are merged and no other task PR is open.
 - Two tasks inside L3 both add or edit pages and the shared lists below. One after another.
+- P6-2 (product template, 71 pages) and P6-3 (icons, site-wide) run ALONE, when no other task PR is open. P6-4 starts after P6-2 is merged. P6-5 to P6-7 only add blog files and may run next to P6-4, one PR at a time.
+- P6-1 edits src/route-content.mjs and blog frontmatter: do not run it next to another task that edits them.
 
 Rules for parallel chats:
 - Shared files that cause conflicts: index.html, app.js, styles.css, package.json, vercel.json, src/route-content.mjs, src/sitemap-generator.mjs, public/llms.txt, public/llms-full.txt. Keep edits small and local to your task.
@@ -99,6 +109,7 @@ Rules for parallel chats:
 ## Model and thinking level
 - Default for every task: Sonnet 5.5, medium thinking.
 - High thinking (Sonnet 5.5): P2-2 (Kerala/NRI copy), P2-5 (UI audit), P3-5 (Gulf pages). Opus 5.5 is also fine for these.
+- Opus 5.5, high thinking: P6-2 and P6-3 (template and site-wide changes). Sonnet 5.5 high thinking: P6-5 to P6-7 (new posts). P6-1 and P6-4: Sonnet 5.5, medium.
 - Low thinking: only trivial edits (renames, list updates).
 - Never use Haiku for code changes, site copy or audits.
 - You cannot change your own model or thinking level. Before starting a task, compare it with this list and with your current model. If the task needs a different model or a higher thinking level than you are running, DO NOT START. Tell Saud: "Change thinking to <level> (or model to <model>) with /model, then say continue." If you are not sure of the current thinking level, ask Saud.
